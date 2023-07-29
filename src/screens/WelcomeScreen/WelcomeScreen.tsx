@@ -16,5 +16,4 @@ const WelcomeScreen = ({ navigation }: Props) => {
   );
 };
 
-
 export default WelcomeScreen;
