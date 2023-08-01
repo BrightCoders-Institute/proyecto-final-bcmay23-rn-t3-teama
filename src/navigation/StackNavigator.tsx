@@ -9,7 +9,12 @@ export const StackNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Welcome" component={ WelcomeScreen } />
-      <Stack.Screen name="Login" component={ LoginScreen } />
+      <Stack.Screen name="Login" component={ LoginScreen } options={{
+        cardStyle: {
+          backgroundColor: 'white',
+        },
+        headerShown: false,
+      }} />
     </Stack.Navigator>
-  )
-}
+  );
+};
