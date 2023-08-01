@@ -39,17 +39,17 @@ const LoginScreen = () => {
       <TextFieldForm
           placeholder="Name *"
           inputValue={name}
-          onInputChange={(name: string, val: string) => onInputChange(name, val)}
+          onInputChange={(val: any) => onInputChange('name', val)}
         />
         <TextFieldForm
           placeholder="Password *"
           inputValue={password}
-          onInputChange={(name: string, val: string) => onInputChange(name, val)}
+          onInputChange={(val: any) => onInputChange('password', val)}
         />
         <TextFieldForm
           placeholder="Client Key *"
           inputValue={clientKey}
-          onInputChange={(name: number, val: string) => onInputChange(name, val)}
+          onInputChange={(val: any) => onInputChange('clientKey', val)}
         />
       </View>
       <View style={{height: height * 0.2, justifyContent: 'center'}}>
