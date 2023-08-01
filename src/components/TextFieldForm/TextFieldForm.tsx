@@ -42,6 +42,7 @@ export const TextFieldForm: React.FC<TextFieldFormProps> = ({
         style={[
           styles.inputField,
           isFocus || inputValue.trim() !== '' ? styles.focus : '',
+          !isInputValid && { borderColor: 'red' }
         ]}
         value={inputValue}
         onChangeText={onInputChange}
