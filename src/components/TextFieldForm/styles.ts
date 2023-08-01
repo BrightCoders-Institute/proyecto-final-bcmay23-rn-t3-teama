@@ -27,7 +27,6 @@ export const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginTop: 10,
     },
     textInput: {
         color: '#888888',
@@ -37,7 +36,7 @@ export const styles = StyleSheet.create({
     feedbackValidation: {
         color: 'red',
         fontSize: 12,
-        marginBottom: 10,
-        marginLeft: 5,
+        alignSelf: 'flex-start',
+        marginLeft: '10%',
     },
 });
