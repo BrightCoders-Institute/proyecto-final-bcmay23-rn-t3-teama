@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView,
   View,
@@ -42,25 +42,27 @@ const LoginScreen = () => {
   const [isDisabledLogInBtn, setIsDisabledLogInBtn] = useState(true);
   const {height} = useWindowDimensions();
 
+  useEffect(() => {
+    handleDisabledLoginButton();
+  }, [name, password, clientKey]);
+
   const handleInputChangeAndValidation = (name: string, value: any) => {
     onInputChange(name, value);
     handleFieldValidation(name, value);
   };
 
   const handleDisabledLoginButton = () => {
-    console.log('Loggin in ...');
     if (
       isNameValid &&
-      name.trim() !== '' &&
       isPasswordValid &&
       password.trim() !== '' &&
       isClientKeyValid &&
       clientKey.trim() !== ''
     ) {
+      console.log('Logging in...');
       setIsDisabledLogInBtn(false);
       return;
     }
-    setIsDisabledLogInBtn(true);
   };
 
   return (
@@ -100,7 +102,7 @@ const LoginScreen = () => {
           </View>
 
           <View style={{ height: height * 0.2, justifyContent: 'center' }}>
-            <ButtonPrimary title="LogIn" isValid={false} onPress={handleDisabledLoginButton} />
+            <ButtonPrimary title="LogIn" isDisabled={isDisabledLogInBtn} onPress={handleDisabledLoginButton} />
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
