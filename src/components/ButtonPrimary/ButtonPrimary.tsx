@@ -5,15 +5,16 @@ import {styles} from './styles';
 interface ButtonProps {
   title: string;
   onPress?: () => void;
-  isValid?: boolean;
+  isDisabled: boolean | true;
 }
 
-export const ButtonPrimary = ({title, onPress, isValid}: ButtonProps) => {
+export const ButtonPrimary = ({title, onPress, isDisabled}: ButtonProps) => {
   return (
     <TouchableOpacity
+      disabled={isDisabled}
       style={[
         styles.buttonContainer,
-        isValid ? styles.primaryButtonValid : styles.primaryButtonInvalid,
+        isDisabled ? styles.primaryButtonInvalid : styles.primaryButtonValid,
       ]}
       onPress={onPress}>
       <Text style={styles.buttonText}>{title}</Text>
