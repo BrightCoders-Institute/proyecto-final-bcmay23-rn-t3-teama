@@ -11,7 +11,7 @@ const WelcomeScreen = ({ navigation }: Props) => {
       <Text>Hola crayola</Text>
       <ButtonPrimary 
       title='Get started'
-      onPress={() => navigation.navigate('Login')}/>
+      onPress={() => navigation.navigate('BottomTab')}/>
     </SafeAreaView>
   );
 };
