@@ -46,7 +46,9 @@ export const TextFieldForm: React.FC<TextFieldFormProps> = ({
         ]}
         value={inputValue}
         onChangeText={onInputChange}
+        secureTextEntry={placeholder === 'Password' && true}
         autoCapitalize="none"
+        keyboardType={placeholder === 'Client Key' ? 'numeric' : 'default'}
         onBlur={handleBlur}
         onFocus={handleFocus}
         cursorColor="#5C65B1"
