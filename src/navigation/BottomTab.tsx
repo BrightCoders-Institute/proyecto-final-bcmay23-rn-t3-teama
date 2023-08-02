@@ -37,10 +37,8 @@ export const BottomTab = () => {
                 : iconName = 'person-outline'
             break;
           }
-  
           return (
             <Icon name={ iconName } size={20} color={ color } />
-
           )
         },
         tabBarActiveTintColor: '#795DEA',

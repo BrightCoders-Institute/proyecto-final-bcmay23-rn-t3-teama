@@ -6,10 +6,9 @@ interface ButtonProps {
     title: string;
     onPress?: () => void;
     isValid?: boolean;
-    imgSource?: any;
   }
 
-export const ButtonPrimary = ({ title, onPress, imgSource, isValid }: ButtonProps) => {
+export const ButtonPrimary = ({ title, onPress, isValid }: ButtonProps) => {
     return (
         <TouchableOpacity
             style={[
@@ -17,7 +16,6 @@ export const ButtonPrimary = ({ title, onPress, imgSource, isValid }: ButtonProp
                 isValid ? styles.primaryButtonValid : styles.primaryButtonInvalid,
             ]}
             onPress={onPress}>
-            {imgSource && <Image source={imgSource} style={styles.buttonImage} />}
             <Text style={styles.buttonText}>{title}</Text>
         </TouchableOpacity>
     );
