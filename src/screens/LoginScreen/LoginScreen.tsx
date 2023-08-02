@@ -8,6 +8,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { styles } from './styles';
+import LoadingModal from '../../components/LoadingModal/LoadingModal';
 import logo from '../../assets/img/logo.png';
 import fruits from '../../assets/img/fruits.png';
 import { ButtonPrimary } from '../../components/ButtonPrimary/ButtonPrimary';
@@ -16,6 +17,8 @@ import { TextFieldForm } from '../../components/TextFieldForm/TextFieldForm';
 import { useFieldValidation } from '../../hooks/useFieldValidation';
 
 const LoginScreen = () => {
+  const successLoginModalImg = require('../../assets/img/successLoginModal.png');
+  const errorLoginModalImg = require('../../assets/img/errorLoginModal.png');
   const {name, password, clientKey, onResetForm, onInputChange} = useForm({
     name: '',
     password: '',
@@ -40,7 +43,6 @@ const LoginScreen = () => {
   const {height} = useWindowDimensions();
 
   const handleInputChangeAndValidation = (name: string, value: any) => {
-    console.log(value);
     onInputChange(name, value);
     handleFieldValidation(name, value);
   };
