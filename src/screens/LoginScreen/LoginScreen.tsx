@@ -15,10 +15,10 @@ import { ButtonPrimary } from '../../components/ButtonPrimary/ButtonPrimary';
 import { useForm } from '../../hooks/useForm';
 import { TextFieldForm } from '../../components/TextFieldForm/TextFieldForm';
 import { useFieldValidation } from '../../hooks/useFieldValidation';
+const successLoginModalImg = require('../../assets/img/successLoginModal.png');
+const errorLoginModalImg = require('../../assets/img/errorLoginModal.png');
 
 const LoginScreen = () => {
-  const successLoginModalImg = require('../../assets/img/successLoginModal.png');
-  const errorLoginModalImg = require('../../assets/img/errorLoginModal.png');
   const {name, password, clientKey, onResetForm, onInputChange} = useForm({
     name: '',
     password: '',
@@ -40,6 +40,9 @@ const LoginScreen = () => {
     setErrorClientKeyText,
   } = useFieldValidation();
   const [isDisabledLogInBtn, setIsDisabledLogInBtn] = useState(true);
+  const [isLoaderVisile, setIsLoaderVisile] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const {height} = useWindowDimensions();
 
   useEffect(() => {
@@ -59,14 +62,35 @@ const LoginScreen = () => {
       isClientKeyValid &&
       clientKey.trim() !== ''
     ) {
-      console.log('Logging in...');
       setIsDisabledLogInBtn(false);
-      return;
     }
+  };
+
+  const logInUser = () => {
+    setIsLoaderVisile(true);
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false);
+      setIsSuccess(true);
+    }, 1500);
+
+    setTimeout(() => {
+      setIsLoaderVisile(false);
+    }, 3500);
   };
 
   return (
     <SafeAreaView>
+      <LoadingModal
+        isVisible={isLoaderVisile}
+        isLoading={isLoading}
+        successImageUrl={successLoginModalImg}
+        errorImageUrl={errorLoginModalImg}
+        title={isSuccess ? 'Logged Successfully' : 'Something went wrong'}
+        subtitle={isSuccess ? 'Welcome to FoodieCare!' : 'Invalid client key. Consult your nutritionist.'}
+        isSuccessful={isSuccess}
+      />
       <KeyboardAvoidingView behavior="height">
         <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
           <View style={{ height: height * 0.5 }}>
@@ -102,7 +126,7 @@ const LoginScreen = () => {
           </View>
 
           <View style={{ height: height * 0.2, justifyContent: 'center' }}>
-            <ButtonPrimary title="LogIn" isDisabled={isDisabledLogInBtn} onPress={handleDisabledLoginButton} />
+            <ButtonPrimary title="LogIn" isDisabled={isDisabledLogInBtn} onPress={logInUser} />
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
