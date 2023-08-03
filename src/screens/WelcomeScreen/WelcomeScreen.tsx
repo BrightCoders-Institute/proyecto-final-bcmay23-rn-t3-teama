@@ -25,7 +25,6 @@ const WelcomeScreen = ({navigation}: Props) => {
           style={[styles.imageLogo, {height: height * 0.25}]}
           resizeMode="contain"
         />
-
         <Text style={styles.slogan}>
           Share progress, magnified results. Your nutritionist always with you
         </Text>
@@ -37,7 +36,6 @@ const WelcomeScreen = ({navigation}: Props) => {
           resizeMode="contain"
         />
       </View>
-
       <View style={{height: height * 0.22, justifyContent: 'center'}}>
         <ButtonPrimary
           title="GET STARTED"
