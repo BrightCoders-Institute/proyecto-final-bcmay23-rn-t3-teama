@@ -1,23 +1,23 @@
 import React from 'react';
-import { Image, Text, TouchableOpacity } from 'react-native';
-import { styles } from './styles';
+import {Text, TouchableOpacity} from 'react-native';
+import {styles} from './styles';
 
 interface ButtonProps {
-    title: string;
-    onPress?: () => void;
-    isValid?: boolean;
-  }
+  title: string;
+  onPress?: () => void;
+  isDisabled: boolean | true;
+}
 
-export const ButtonPrimary = ({ title, onPress, isValid }: ButtonProps) => {
-    return (
-        <TouchableOpacity
-            style={[
-                styles.buttonContainer,
-                isValid ? styles.primaryButtonValid : styles.primaryButtonInvalid,
-            ]}
-            onPress={onPress}>
-            <Text style={styles.buttonText}>{title}</Text>
-        </TouchableOpacity>
-    );
+export const ButtonPrimary = ({title, onPress, isDisabled}: ButtonProps) => {
+  return (
+    <TouchableOpacity
+      disabled={isDisabled}
+      style={[
+        styles.buttonContainer,
+        isDisabled ? styles.primaryButtonInvalid : styles.primaryButtonValid,
+      ]}
+      onPress={onPress}>
+      <Text style={styles.buttonText}>{title}</Text>
+    </TouchableOpacity>
+  );
 };
-
