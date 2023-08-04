@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1085551482201-f806abgl9phtofbdsjgse6je9f0rurh4.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1085551482201-f806abgl9phtofbdsjgse6je9f0rurh4</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>1085551482201-nps26vduecl2j0954pb60du4p4j60ito.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAcK_lPHifKjONtl6jv1PbWhVgZPO5-G_w</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1085551482201</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.foodiecare</string>
+	<key>PROJECT_ID</key>
+	<string>foodiecare-8d331</string>
+	<key>STORAGE_BUCKET</key>
+	<string>foodiecare-8d331.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1085551482201:ios:1c2536f8b6a36cfaa1a848</string>
+</dict>
+</plist>
