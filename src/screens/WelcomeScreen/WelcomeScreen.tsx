@@ -40,6 +40,7 @@ const WelcomeScreen = ({navigation}: Props) => {
         <ButtonPrimary
           title="GET STARTED"
           onPress={() => navigation.navigate('Login')}
+          isDisabled= {false}
         />
       </View>
       <View>
