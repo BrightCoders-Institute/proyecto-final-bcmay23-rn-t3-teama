@@ -15,10 +15,13 @@ import { ButtonPrimary } from '../../components/ButtonPrimary/ButtonPrimary';
 import { useForm } from '../../hooks/useForm';
 import { TextFieldForm } from '../../components/TextFieldForm/TextFieldForm';
 import { useFieldValidation } from '../../hooks/useFieldValidation';
+import { StackScreenProps } from '@react-navigation/stack';
 const successLoginModalImg = require('../../assets/img/successLoginModal.png');
 const errorLoginModalImg = require('../../assets/img/errorLoginModal.png');
 
-const LoginScreen = () => {
+interface Props extends StackScreenProps<any, any> {}
+
+const LoginScreen = ({navigation}: Props) => {
   const {name, password, clientKey, onResetForm, onInputChange} = useForm({
     name: '',
     password: '',
@@ -73,6 +76,7 @@ const LoginScreen = () => {
     setTimeout(() => {
       setIsLoading(false);
       setIsSuccess(true);
+      navigation.navigate('BottomTab');
     }, 1500);
 
     setTimeout(() => {

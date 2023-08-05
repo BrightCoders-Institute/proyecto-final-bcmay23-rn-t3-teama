@@ -51,7 +51,7 @@ export const BottomTab = () => {
           }
       })
       }>
-      <Tab.Screen name="HomeScreen" options={{ title: 'Home' }} component={ HomeScreen } />
+      <Tab.Screen name="HomeScreen" options={{ headerShown: false, title: 'Home' }} component={ HomeScreen } />
       <Tab.Screen name="MyMealsScreen" options={{ title:'Diet' }} component={ MyMealsScreen } />
       <Tab.Screen name="ReportScreen" options={{ title: 'Report' }} component={ ReportScreen } />
       <Tab.Screen name="ProfileScreen" options={{ title: 'Profile' }} component={ ProfileScreen } />
