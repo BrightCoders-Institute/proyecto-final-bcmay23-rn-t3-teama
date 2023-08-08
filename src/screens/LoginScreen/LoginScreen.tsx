@@ -22,23 +22,23 @@ const errorLoginModalImg = require('../../assets/img/errorLoginModal.png');
 interface Props extends StackScreenProps<any, any> {}
 
 const LoginScreen = ({navigation}: Props) => {
-  const {name, password, clientKey, onResetForm, onInputChange} = useForm({
-    name: '',
+  const {email, password, clientKey, onResetForm, onInputChange} = useForm({
+    email: '',
     password: '',
     clientKey: '',
   });
   const {
-    isNameValid,
+    isEmailValid,
     isPasswordValid,
     isClientKeyValid,
-    errorNameText,
+    errorEmailText,
     errorPwText,
     errorClientKeyText,
-    setIsNameValid,
+    setIsEmailValid,
     setIsPasswordValid,
     setIsClientKeyValid,
     handleFieldValidation,
-    setErrorNameText,
+    setErrorEmailText,
     setErrorPwText,
     setErrorClientKeyText,
   } = useFieldValidation();
@@ -50,7 +50,7 @@ const LoginScreen = ({navigation}: Props) => {
 
   useEffect(() => {
     handleDisabledLoginButton();
-  }, [name, password, clientKey]);
+  }, [email, password, clientKey]);
 
   const handleInputChangeAndValidation = (name: string, value: any) => {
     onInputChange(name, value);
@@ -59,7 +59,7 @@ const LoginScreen = ({navigation}: Props) => {
 
   const handleDisabledLoginButton = () => {
     if (
-      isNameValid &&
+      isEmailValid &&
       isPasswordValid &&
       password.trim() !== '' &&
       isClientKeyValid &&
@@ -104,12 +104,12 @@ const LoginScreen = ({navigation}: Props) => {
 
           <View style={{ height: height * 0.3, flexDirection: 'column', justifyContent: 'space-between' }}>
             <TextFieldForm
-              placeholder="Name"
-              inputValue={name}
-              onInputChange={(value) => handleInputChangeAndValidation('name', value)}
-              invalidText={errorNameText}
-              isInputValid={isNameValid}
-              setInputValid={setIsNameValid}
+              placeholder="Email"
+              inputValue={email}
+              onInputChange={(value) => handleInputChangeAndValidation('email', value)}
+              invalidText={errorEmailText}
+              isInputValid={isEmailValid}
+              setInputValid={setIsEmailValid}
             />
             <TextFieldForm
               placeholder="Password"
