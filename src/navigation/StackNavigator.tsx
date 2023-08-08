@@ -8,7 +8,7 @@ const Stack = createStackNavigator();
 
 export const StackNavigator = () => {
   return (
-    <Stack.Navigator>     
+    <Stack.Navigator>
       <Stack.Screen
         name="Welcome"
         options={{
