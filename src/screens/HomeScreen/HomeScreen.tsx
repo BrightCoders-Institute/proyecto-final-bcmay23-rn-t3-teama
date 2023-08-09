@@ -8,7 +8,6 @@ import fruitsImage from '../../assets/img/stack-of-three-red-apples-hc-studio-re
 import anloImage from '../../assets/img/anlo.png';
 import arnoldImage from '../../assets/img/arnold.png';
 import { styles } from './styles';
-import MealInfoBadge from '../../components/MealInfoBadge/MealInfoBadge';
 
 const HomeScreen = () => {
   return (
@@ -36,11 +35,6 @@ const HomeScreen = () => {
         title="Healthy habits today"
         backgroundColor="#68A76E"
         imgSource={arnoldImage} />
-
-      <MealInfoBadge
-        type="kcal"
-        data="807"
-      />
     </ScrollView>
 
   );
