@@ -10,6 +10,24 @@ const backgoundType: { [type: string]: string } = {
     kcal: '#F3A939',
 };
 
+
+/**
+ * Componente MealInfoBadge.
+ *
+ * @param {MealInfoBadgeProps} props
+ * - Type [ time, level, kcal ]
+ * - Icon ( ruta de imagen )
+ * - Data ( Número de minutos, dificultad o número de kcal )
+ * @returns {JSX.Element} El componente MealInfoBadge.
+ *
+ * @example
+ * // Uso del componente con propiedades válidas
+ * <MealInfoBadge type="time" icon={require('./timeIcon.png')} data="15" />
+ *
+ * @example
+ * // Uso del componente con propiedades válidas
+ * <MealInfoBadge type="level" icon={require('./levelIcon.png')} data="Intermediate" />
+ */
 const MealInfoBadge = ({ type, icon, data }: MealInfoBadgeProps) => {
     const badgeColor = backgoundType[type];
     const dataType = type === 'time' ? 'Min' : type === 'level' ? 'Level' : 'Kcal';
@@ -24,3 +42,5 @@ const MealInfoBadge = ({ type, icon, data }: MealInfoBadgeProps) => {
 };
 
 export default MealInfoBadge;
+
+
