@@ -11,8 +11,8 @@ export const MyMealCardL = ({ title, caloriesRecomended, description, onPress, i
         <TouchableOpacity style={ styles.buttonContainer } onPress={onPress}>
             {imgSource && <Image source={imgSource} style={styles.buttonImage} />}
                 <View style={styles.titleContainer}>
-                    <Title text={title} fontSize={28}/>
-                    <SubTitle text={caloriesRecomended}  fontSize={15} color='black'/>
+                    <Title text={title} fontSize={25}/>
+                    <SubTitle text={caloriesRecomended}  fontSize={15} color='gray'/>
                 </View>
                 <View style={styles.textContainer}>
                     <Text style={styles.buttonText}>{description}</Text>

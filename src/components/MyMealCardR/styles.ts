@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
         elevation: 4,
     },
     buttonText: {
-        color: 'black',
+        color: 'gray',
         fontSize: 15,
     },
     textContainer: {

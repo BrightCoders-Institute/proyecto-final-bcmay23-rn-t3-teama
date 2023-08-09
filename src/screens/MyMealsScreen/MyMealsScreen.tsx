@@ -1,8 +1,11 @@
-import { View, Text } from 'react-native';
 import React from 'react';
+import { View } from 'react-native';
 import { MyMealCardR } from '../../components/MyMealCardR/MyMealCardR';
 import { MyMealCardL } from '../../components/MyMealCardL/MyMealCardL';
-import BreackfastImg from '../../assets/img/Breakfast.png'
+import BreakfastImg from '../../assets/img/Breakfast.png';
+import SnackImg from '../../assets/img/helty-snack.png';
+import LunchImg from '../../assets/img/grilledChiken.jpg';
+import DinnerImg from '../../assets/img/dinner.jpeg';
 
 
 
@@ -12,28 +15,28 @@ const MyMealsScreen = () => {
   return (
     <View>
       <MyMealCardR 
-        title='Breackfast' 
+        title='Breakfast' 
         caloriesRecomended={calories} 
         description={descriptionMeal}
-        imgSource={BreackfastImg}
+        imgSource={BreakfastImg}
         />
         <MyMealCardL 
         title='Snack' 
         caloriesRecomended={calories} 
         description={descriptionMeal}
-        imgSource={BreackfastImg}
+        imgSource={SnackImg}
         />
         <MyMealCardR 
-        title='Breackfast' 
+        title='Lunch' 
         caloriesRecomended={calories} 
         description={descriptionMeal}
-        imgSource={BreackfastImg}
+        imgSource={LunchImg}
         />
         <MyMealCardL 
-        title='Breackfast' 
+        title='Dinner' 
         caloriesRecomended={calories} 
         description={descriptionMeal}
-        imgSource={BreackfastImg}
+        imgSource={DinnerImg}
         />
     </View>
   );
