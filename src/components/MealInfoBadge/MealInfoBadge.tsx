@@ -17,23 +17,23 @@ const iconType: { [type: string]: any } = {
 };
 
 /**
- * Componente MealInfoBadge.
+ * MealInfoBadge Component.
  *
  * @param {MealInfoBadgeProps} props
  * - Type [ time, level, kcal ]
- * - Data ( Número de minutos, dificultad o número de kcal )
- * @returns {JSX.Element} El componente MealInfoBadge.
+ * - Data ( Amount of minutes, difficulty or amount of kcal )
+ * @returns {JSX.Element} MealInfoBadge.
  *
  * @example
- * // Uso del componente con propiedades válidas
+ * // Using the component with valid properties
  * <MealInfoBadge type="time" data="15" />
  *
  * @example
- * // Uso del componente con propiedades válidas
+ * // Using the component with valid properties
  * <MealInfoBadge type="level" data="Intermediate" />
  *
  * @example
- * // Uso del componente con propiedades válidas
+ * // Using the component with valid properties
  * <MealInfoBadge type="kcal" data="807" />
  */
 const MealInfoBadge = ({ type, data }: MealInfoBadgeProps): JSX.Element => {
