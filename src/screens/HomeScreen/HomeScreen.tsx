@@ -8,6 +8,8 @@ import fruitsImage from '../../assets/img/stack-of-three-red-apples-hc-studio-re
 import anloImage from '../../assets/img/anlo.png';
 import arnoldImage from '../../assets/img/arnold.png';
 import { styles } from './styles';
+import MealInfoBadge from '../../components/MealInfoBadge/MealInfoBadge';
+import FlameBadgeIcon from '../../assets/img/FlameBadgeIcon.png';
 
 const HomeScreen = () => {
   return (
@@ -41,3 +43,4 @@ const HomeScreen = () => {
 };
 
 export default HomeScreen;
+
