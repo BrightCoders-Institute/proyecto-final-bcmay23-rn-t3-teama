@@ -30,6 +30,7 @@ export interface WellnesCardProps {
 }
 
 export interface MealInfoBadgeProps {
-  type: string;
-  data: string;
+  minutes: string;
+  level: string;
+  kcal: string;
 }

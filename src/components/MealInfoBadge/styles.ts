@@ -1,9 +1,14 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
+    mainContainer: {
+        flexDirection: 'row',
+        alignSelf: 'center',
+        maxWidth: '95%',
+    },
     badgeContainer: {
-        width: 120,
-        height: 120,
+        width: 115,
+        height: 115,
         borderRadius: 20,
         alignItems: 'center',
         justifyContent: 'center',

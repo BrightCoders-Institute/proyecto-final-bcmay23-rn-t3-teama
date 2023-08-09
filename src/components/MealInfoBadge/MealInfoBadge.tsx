@@ -4,13 +4,13 @@ import { Image } from 'react-native';
 import { styles } from './styles';
 import { MealInfoBadgeProps } from '../../interfaces/interfaces';
 
-const backgoundType: { [type: string]: string } = {
+const backgroundType = {
     time: '#795DEA',
     level: '#56ADEC',
     kcal: '#F3A939',
 };
 
-const iconType: { [type: string]: any } = {
+const iconType = {
     time: require('../../assets/img/clockBadgeIcon.png'),
     level: require('../../assets/img/levelBadgeIcon.png'),
     kcal: require('../../assets/img/flameBadgeIcon.png'),
@@ -20,32 +20,34 @@ const iconType: { [type: string]: any } = {
  * MealInfoBadge Component.
  *
  * @param {MealInfoBadgeProps} props
- * - Type [ time, level, kcal ]
- * - Data ( Amount of minutes, difficulty or amount of kcal )
+ * -
+ * - Minutes: Amount or range of minutes
+ * - Level: Difficulty
+ * - Kcal: Amount of kcal
  * @returns {JSX.Element} MealInfoBadge.
  *
  * @example
  * // Using the component with valid properties
- * <MealInfoBadge type="time" data="15" />
- *
- * @example
- * // Using the component with valid properties
- * <MealInfoBadge type="level" data="Intermediate" />
- *
- * @example
- * // Using the component with valid properties
- * <MealInfoBadge type="kcal" data="807" />
+ * <MealInfoBadge minutes="10-15" level="Easy" kcal="807"/>
  */
-const MealInfoBadge = ({ type, data }: MealInfoBadgeProps): JSX.Element => {
-    const badgeColor = backgoundType[type];
-    const dataType = type === 'time' ? 'Min' : type === 'level' ? 'Level' : 'Kcal';
-    const icon = iconType[type];
-
+const MealInfoBadge = ({ minutes, level, kcal }: MealInfoBadgeProps): JSX.Element => {
     return (
-        <View style={{ ...styles.badgeContainer, backgroundColor: badgeColor }}>
-            <Image source={icon} style={styles.badgeIcon} />
-            <Text style={styles.badgeInfo}>{data}</Text>
-            <Text style={styles.badgeInfo}>{dataType}</Text>
+        <View style={styles.mainContainer}>
+            <View style={{ ...styles.badgeContainer, backgroundColor: backgroundType.time }}>
+                <Image source={iconType.time} style={styles.badgeIcon} />
+                <Text style={styles.badgeInfo}>{minutes}</Text>
+                <Text style={styles.badgeInfo}>Min</Text>
+            </View>
+            <View style={{ ...styles.badgeContainer, backgroundColor: backgroundType.level }}>
+                <Image source={iconType.level} style={styles.badgeIcon} />
+                <Text style={styles.badgeInfo}>{level}</Text>
+                <Text style={styles.badgeInfo}>Level</Text>
+            </View>
+            <View style={{ ...styles.badgeContainer, backgroundColor: backgroundType.kcal }}>
+                <Image source={iconType.kcal} style={styles.badgeIcon} />
+                <Text style={styles.badgeInfo}>{kcal}</Text>
+                <Text style={styles.badgeInfo}>Kcal</Text>
+            </View>
         </View>
     );
 };
