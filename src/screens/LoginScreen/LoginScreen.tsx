@@ -17,6 +17,7 @@ import { TextFieldForm } from '../../components/TextFieldForm/TextFieldForm';
 import { useFieldValidation } from '../../hooks/useFieldValidation';
 import { StackScreenProps } from '@react-navigation/stack';
 import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 const successLoginModalImg = require('../../assets/img/successLoginModal.png');
 const errorLoginModalImg = require('../../assets/img/errorLoginModal.png');
 
@@ -67,40 +68,40 @@ const LoginScreen = ({navigation}: Props) => {
       clientKey.trim() !== ''
     ) {
       setIsDisabledLogInBtn(false);
+      return;
     }
+    setIsDisabledLogInBtn(true);
   };
 
   const logInUser = async () => {
-    // setIsLoaderVisile(true);
-    // setIsLoading(true);
+    setIsLoaderVisile(true);
+    setIsLoading(true);
 
-    // setTimeout(() => {
-    //   setIsLoading(false);
-    //   setIsSuccess(true);
-    //   navigation.navigate('BottomTab');
-    // }, 1500);
+    const userDataRef = firestore().collection('userData');
+    userDataRef.where('userKey', '==', clientKey).get()
+      .then(querySnapshot => {
+        if (querySnapshot.empty) {
+          console.log('La clave no existe');
+          return;
+        }
 
-    // setTimeout(() => {
-    //   setIsLoaderVisile(false);
-    // }, 3500);
-
-
-    try {
-      // Ver si la key existe en la bd (userData)
-      const userDataRef = firestore().collection('userData');
-      const querySnapshot = await userDataRef.where('userKey', '==', clientKey).get();
-
-      if (querySnapshot.empty) {
-        console.log('La clave no existe');
-        return;
-      } else {
-        console.log('La clave sí existe');
-      }
-
-      // Si sí, hacer el login normal
-    } catch (error) {
-      console.error('Error al iniciar sesión:', error.message);
-    }
+        auth()
+          .signInWithEmailAndPassword(email, password)
+          .then(() => {
+            console.log('User account created & signed in!');
+            setIsSuccess(true);
+          })
+          .then(() => {
+            setIsLoading(false);
+            setTimeout(() => {
+              setIsLoaderVisile(false);
+              navigation.navigate('BottomTab');
+            }, 1500);
+          })
+      })
+      .catch(error => {
+        console.error('Error al iniciar sesión:', error.message);
+      });
   };
 
   return (
@@ -111,7 +112,7 @@ const LoginScreen = ({navigation}: Props) => {
         successImageUrl={successLoginModalImg}
         errorImageUrl={errorLoginModalImg}
         title={isSuccess ? 'Logged Successfully' : 'Something went wrong'}
-        subtitle={isSuccess ? 'Welcome to FoodieCare!' : 'Invalid client key. Consult your nutritionist.'}
+        subtitle={isSuccess ? 'Welcome to FoodieCare!' : 'Enter the correct keys or consult your nutritionist.'}
         isSuccessful={isSuccess}
       />
       <KeyboardAvoidingView behavior="height">
