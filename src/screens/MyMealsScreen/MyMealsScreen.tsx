@@ -7,8 +7,6 @@ import SnackImg from '../../assets/img/helty-snack.png';
 import LunchImg from '../../assets/img/grilledChiken.jpg';
 import DinnerImg from '../../assets/img/dinner.jpeg';
 
-
-
 const MyMealsScreen = () => {
   const descriptionMeal = 'Bowl whit fruit, some fruit and more fruit. You can add fruit.'
   const calories = 'Recomended 830 - 1170Cal'
