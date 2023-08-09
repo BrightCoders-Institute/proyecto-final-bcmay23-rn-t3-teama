@@ -10,27 +10,36 @@ const backgoundType: { [type: string]: string } = {
     kcal: '#F3A939',
 };
 
+const iconType: { [type: string]: any } = {
+    time: require('../../assets/img/clockBadgeIcon.png'),
+    level: require('../../assets/img/levelBadgeIcon.png'),
+    kcal: require('../../assets/img/flameBadgeIcon.png'),
+};
 
 /**
  * Componente MealInfoBadge.
  *
  * @param {MealInfoBadgeProps} props
  * - Type [ time, level, kcal ]
- * - Icon ( ruta de imagen )
  * - Data ( Número de minutos, dificultad o número de kcal )
  * @returns {JSX.Element} El componente MealInfoBadge.
  *
  * @example
  * // Uso del componente con propiedades válidas
- * <MealInfoBadge type="time" icon={require('./timeIcon.png')} data="15" />
+ * <MealInfoBadge type="time" data="15" />
  *
  * @example
  * // Uso del componente con propiedades válidas
- * <MealInfoBadge type="level" icon={require('./levelIcon.png')} data="Intermediate" />
+ * <MealInfoBadge type="level" data="Intermediate" />
+ *
+ * @example
+ * // Uso del componente con propiedades válidas
+ * <MealInfoBadge type="kcal" data="807" />
  */
-const MealInfoBadge = ({ type, icon, data }: MealInfoBadgeProps) => {
+const MealInfoBadge = ({ type, data }: MealInfoBadgeProps): JSX.Element => {
     const badgeColor = backgoundType[type];
     const dataType = type === 'time' ? 'Min' : type === 'level' ? 'Level' : 'Kcal';
+    const icon = iconType[type];
 
     return (
         <View style={{ ...styles.badgeContainer, backgroundColor: badgeColor }}>

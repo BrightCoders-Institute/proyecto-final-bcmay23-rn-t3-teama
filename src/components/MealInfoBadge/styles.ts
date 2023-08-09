@@ -19,7 +19,6 @@ export const styles = StyleSheet.create({
     },
     badgeInfo: {
         fontSize: 16,
-        // fontWeight: '500',
         color: 'white',
     },
 });

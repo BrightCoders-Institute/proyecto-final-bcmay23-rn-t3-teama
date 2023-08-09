@@ -1,7 +1,4 @@
 import { ImageSourcePropType } from 'react-native';
-import MealInfoBadge from '../components/MealInfoBadge/MealInfoBadge';
-import Icon from 'react-native-vector-icons/Ionicons';
-
 export interface LoadingModalProps {
   isLoading: boolean;
   isVisible: boolean;
@@ -34,6 +31,5 @@ export interface WellnesCardProps {
 
 export interface MealInfoBadgeProps {
   type: string;
-  icon: ImageSourcePropType;
   data: string;
 }
