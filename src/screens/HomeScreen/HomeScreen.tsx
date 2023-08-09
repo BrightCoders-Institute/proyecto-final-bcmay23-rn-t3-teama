@@ -41,7 +41,7 @@ const HomeScreen = () => {
       <MealInfoBadge
         type="level"
         icon={FlameBadgeIcon}
-        data="Medium"
+        data="20-30"
       />
     </ScrollView>
 
