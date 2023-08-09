@@ -9,7 +9,8 @@ import anloImage from '../../assets/img/anlo.png';
 import arnoldImage from '../../assets/img/arnold.png';
 import { styles } from './styles';
 import MealInfoBadge from '../../components/MealInfoBadge/MealInfoBadge';
-import FlameBadgeIcon from '../../assets/img/FlameBadgeIcon.png';
+// import flameBadgeIcon from '../../assets/img/flameBadgeIcon.png';
+import clockBadgeIcon from '../../assets/img/clockBadgeIcon.png';
 
 const HomeScreen = () => {
   return (
@@ -40,7 +41,7 @@ const HomeScreen = () => {
 
       <MealInfoBadge
         type="level"
-        icon={FlameBadgeIcon}
+        icon={clockBadgeIcon}
         data="20-30"
       />
     </ScrollView>
