@@ -73,7 +73,7 @@ const LoginScreen = ({navigation}: Props) => {
     setIsDisabledLogInBtn(true);
   };
 
-  const logInUser = async () => {
+  const logInUser = () => {
     setIsLoaderVisile(true);
     setIsLoading(true);
 
@@ -82,6 +82,14 @@ const LoginScreen = ({navigation}: Props) => {
       .then(querySnapshot => {
         if (querySnapshot.empty) {
           console.log('La clave no existe');
+          setIsLoading(false);
+          setIsSuccess(false);
+
+          setTimeout(() => {
+            setIsLoaderVisile(false);
+            setIsClientKeyValid(false);
+            setErrorClientKeyText('Invalid client key');
+          }, 3500);
           return;
         }
 
@@ -95,9 +103,32 @@ const LoginScreen = ({navigation}: Props) => {
             setIsLoading(false);
             setTimeout(() => {
               setIsLoaderVisile(false);
+              onResetForm();
               navigation.navigate('BottomTab');
             }, 1500);
           })
+          .catch(error => {
+            setIsLoading(false);
+            setIsSuccess(false);
+            setTimeout(() => {
+              setIsLoaderVisile(false);
+              if (error.code === 'auth/user-not-found') {
+                setIsEmailValid(false);
+                setErrorEmailText('No account for this email');
+              }
+
+              if (error.code === 'auth/invalid-email') {
+                setIsEmailValid(false);
+                setErrorEmailText('The mail address is badly formatted');
+              }
+
+              if (error.code === 'auth/wrong-password') {
+                setIsPasswordValid(false);
+                setErrorPwText('Incorrect password.');
+              }
+              console.error(error);
+            }, 3500);
+          });
       })
       .catch(error => {
         console.error('Error al iniciar sesión:', error.message);
