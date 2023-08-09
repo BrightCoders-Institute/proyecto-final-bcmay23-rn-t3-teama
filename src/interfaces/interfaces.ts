@@ -1,4 +1,5 @@
 import { ImageSourcePropType } from "react-native";
+import { SubTitle } from '../components/SubTitle/SubTitle';
 
 export interface LoadingModalProps {
     isLoading: boolean;
@@ -28,4 +29,11 @@ export interface SubTitleProps {
     imgSource?: string;
     backgroundColor?: string;
   
+  }
+  export interface MyMealCardProps {
+    title: string;
+    caloriesRecomended: string;
+    description: string;
+    onPress?: () => void;
+    imgSource?: ImageSourcePropType;
   }
