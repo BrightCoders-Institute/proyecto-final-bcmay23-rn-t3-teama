@@ -16,29 +16,31 @@ import { useForm } from '../../hooks/useForm';
 import { TextFieldForm } from '../../components/TextFieldForm/TextFieldForm';
 import { useFieldValidation } from '../../hooks/useFieldValidation';
 import { StackScreenProps } from '@react-navigation/stack';
+import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 const successLoginModalImg = require('../../assets/img/successLoginModal.png');
 const errorLoginModalImg = require('../../assets/img/errorLoginModal.png');
 
 interface Props extends StackScreenProps<any, any> {}
 
 const LoginScreen = ({navigation}: Props) => {
-  const {name, password, clientKey, onResetForm, onInputChange} = useForm({
-    name: '',
+  const {email, password, clientKey, onResetForm, onInputChange} = useForm({
+    email: '',
     password: '',
     clientKey: '',
   });
   const {
-    isNameValid,
+    isEmailValid,
     isPasswordValid,
     isClientKeyValid,
-    errorNameText,
+    errorEmailText,
     errorPwText,
     errorClientKeyText,
-    setIsNameValid,
+    setIsEmailValid,
     setIsPasswordValid,
     setIsClientKeyValid,
     handleFieldValidation,
-    setErrorNameText,
+    setErrorEmailText,
     setErrorPwText,
     setErrorClientKeyText,
   } = useFieldValidation();
@@ -50,7 +52,7 @@ const LoginScreen = ({navigation}: Props) => {
 
   useEffect(() => {
     handleDisabledLoginButton();
-  }, [name, password, clientKey]);
+  }, [email, password, clientKey]);
 
   const handleInputChangeAndValidation = (name: string, value: any) => {
     onInputChange(name, value);
@@ -59,29 +61,78 @@ const LoginScreen = ({navigation}: Props) => {
 
   const handleDisabledLoginButton = () => {
     if (
-      isNameValid &&
+      isEmailValid &&
       isPasswordValid &&
       password.trim() !== '' &&
       isClientKeyValid &&
       clientKey.trim() !== ''
     ) {
       setIsDisabledLogInBtn(false);
+      return;
     }
+    setIsDisabledLogInBtn(true);
   };
 
   const logInUser = () => {
     setIsLoaderVisile(true);
     setIsLoading(true);
 
-    setTimeout(() => {
-      setIsLoading(false);
-      setIsSuccess(true);
-      navigation.navigate('BottomTab');
-    }, 1500);
+    const userDataRef = firestore().collection('userData');
+    userDataRef.where('userKey', '==', clientKey).get()
+      .then(querySnapshot => {
+        if (querySnapshot.empty) {
+          console.log('La clave no existe');
+          setIsLoading(false);
+          setIsSuccess(false);
 
-    setTimeout(() => {
-      setIsLoaderVisile(false);
-    }, 3500);
+          setTimeout(() => {
+            setIsLoaderVisile(false);
+            setIsClientKeyValid(false);
+            setErrorClientKeyText('Invalid client key');
+          }, 3500);
+          return;
+        }
+
+        auth()
+          .signInWithEmailAndPassword(email, password)
+          .then(() => {
+            console.log('User account created & signed in!');
+            setIsSuccess(true);
+          })
+          .then(() => {
+            setIsLoading(false);
+            setTimeout(() => {
+              setIsLoaderVisile(false);
+              onResetForm();
+              navigation.navigate('BottomTab');
+            }, 1500);
+          })
+          .catch(error => {
+            setIsLoading(false);
+            setIsSuccess(false);
+            setTimeout(() => {
+              setIsLoaderVisile(false);
+              if (error.code === 'auth/user-not-found') {
+                setIsEmailValid(false);
+                setErrorEmailText('No account for this email');
+              }
+
+              if (error.code === 'auth/invalid-email') {
+                setIsEmailValid(false);
+                setErrorEmailText('The mail address is badly formatted');
+              }
+
+              if (error.code === 'auth/wrong-password') {
+                setIsPasswordValid(false);
+                setErrorPwText('Incorrect password.');
+              }
+              console.error(error);
+            }, 3500);
+          });
+      })
+      .catch(error => {
+        console.error('Error al iniciar sesión:', error.message);
+      });
   };
 
   return (
@@ -92,7 +143,7 @@ const LoginScreen = ({navigation}: Props) => {
         successImageUrl={successLoginModalImg}
         errorImageUrl={errorLoginModalImg}
         title={isSuccess ? 'Logged Successfully' : 'Something went wrong'}
-        subtitle={isSuccess ? 'Welcome to FoodieCare!' : 'Invalid client key. Consult your nutritionist.'}
+        subtitle={isSuccess ? 'Welcome to FoodieCare!' : 'Enter the correct keys or consult your nutritionist.'}
         isSuccessful={isSuccess}
       />
       <KeyboardAvoidingView behavior="height">
@@ -104,12 +155,12 @@ const LoginScreen = ({navigation}: Props) => {
 
           <View style={{ height: height * 0.3, flexDirection: 'column', justifyContent: 'space-between' }}>
             <TextFieldForm
-              placeholder="Name"
-              inputValue={name}
-              onInputChange={(value) => handleInputChangeAndValidation('name', value)}
-              invalidText={errorNameText}
-              isInputValid={isNameValid}
-              setInputValid={setIsNameValid}
+              placeholder="Email"
+              inputValue={email}
+              onInputChange={(value) => handleInputChangeAndValidation('email', value)}
+              invalidText={errorEmailText}
+              isInputValid={isEmailValid}
+              setInputValid={setIsEmailValid}
             />
             <TextFieldForm
               placeholder="Password"
