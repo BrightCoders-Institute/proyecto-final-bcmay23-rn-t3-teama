@@ -13,7 +13,7 @@ const HomeScreen = () => {
   return (
     <ScrollView>
       <WellcomeCard />
-      <WellcomeProgressCard title="Consumed Today" />
+      <WellcomeProgressCard title="Consumed today" />
       <View style={styles.titleContainar}>
         <Title text="Nutrition Tips" fontSize={20} />
       </View>
