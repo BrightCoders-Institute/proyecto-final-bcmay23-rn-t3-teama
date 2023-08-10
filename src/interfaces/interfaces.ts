@@ -1,5 +1,3 @@
-import { ImageSourcePropType } from "react-native";
-
 export interface LoadingModalProps {
     isLoading: boolean;
     isVisible: boolean;
@@ -16,16 +14,29 @@ export interface SubTitleProps {
     color?: string;
   }
 
-  export interface WellcomeProgressCardProps {
-    title: string;
-    onPress?: () => void;
-    imgSource?: ImageSourcePropType;
-  }
+export interface WellcomeProgressCardProps {
+  title: string;
+  onPress?: () => void;
+  imgSource?: ImageSourcePropType;
+}
 
-  export interface WellnesCardProps {
-    title: string;
-    onPress?: () => void;
-    imgSource?: string;
-    backgroundColor?: string;
-  
-  }
+export interface WellnesCardProps {
+  title: string;
+  onPress?: () => void;
+  imgSource?: string;
+  backgroundColor?: string;
+}
+
+export interface MyMealCardProps {
+  title: string;
+  caloriesRecomended: string;
+  description: string;
+  onPress?: () => void;
+  imgSource?: ImageSourcePropType;
+}
+
+export interface MealInfoBadgeProps {
+  minutes: string;
+  level: string;
+  kcal: string;
+}
