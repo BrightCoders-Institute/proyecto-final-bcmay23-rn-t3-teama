@@ -40,3 +40,7 @@ export interface MealInfoBadgeProps {
   level: string;
   kcal: string;
 }
+
+export interface RecipeImgProps {
+  imgSource: ImageSourcePropType;
+}
