@@ -2,18 +2,47 @@ import React from 'react';
 import { styles } from './styles';
 import { TouchableOpacity, Text, View } from 'react-native';
 
+interface DayObject {
+  isSelectedDay: boolean;
+  weekName: string;
+  completeDay: string;
+  day: number;
+  month: string;
+  year: number;
+}
+
 interface CallendarWeekdayProps {
-  days: {
-    weekName: string;
-    day: number;
-    month: string;
-    year: number;
-    isSelectedDay: boolean;
-  };
+  days: DayObject;
+  setSelectedDay: React.Dispatch<React.SetStateAction<DayObject | undefined>>;
+  weekdays: DayObject[];
+  setWeekDays: React.Dispatch<React.SetStateAction<DayObject[]>>;
 }
 
 export const CallendarWeekday: React.FC<CallendarWeekdayProps> = ({ days, setSelectedDay, weekdays, setWeekDays }) => {
-  // console.log(`${days.weekName} ${days.day} current?: ${days.isCurrentDay}`);
+
+  const handleOnDayPress = () => {
+    // console.log(`${days.completeDay}, ${days.day} ${days.month} ${days.year}`);
+
+    const newWeekdays = [ ...weekdays ];
+    const weekDaysInFalse = newWeekdays.map(day => {
+      if (day.isSelectedDay) {
+        return { ...day, isSelectedDay: false };
+      }
+      return day;
+    });
+
+    const weekDaysUpdated = weekDaysInFalse.map(day => {
+      if (day.day === days.day) {
+        return { ...day, isSelectedDay: true };
+      }
+      return day;
+    });
+
+    const newDayObj = { ...days, isSelectedDay: true };
+    setSelectedDay(newDayObj);
+    setWeekDays(weekDaysUpdated);
+  };
+
   return (
     <TouchableOpacity
       style={[
@@ -22,29 +51,7 @@ export const CallendarWeekday: React.FC<CallendarWeekdayProps> = ({ days, setSel
           ? { backgroundColor: '#7B5FEC', borderColor: '#7B5FEC' }
           : { backgroundColor: 'white', borderColor: '#68A76E' },
       ]}
-      onPress={() => {
-        console.log(`${days.completeDay}, ${days.day} ${days.month} ${days.year}`);
-
-        const newWeekdays = [ ...weekdays ]; //copia del original
-        // poner todos los días en false
-        const weekDaysInFalse = newWeekdays.map(day => {
-          if (day.isSelectedDay) {
-            return { ...day, isSelectedDay: false }; // Crear una copia del objeto con isSelectedDay cambiado
-          }
-          return day; // Mantener el objeto sin cambios
-        });
-        // poner el seleccionado en true
-        const weekDaysUpdated = weekDaysInFalse.map(day => {
-          if (day.day === days.day) {
-            return { ...day, isSelectedDay: true }; // Crear una copia del objeto con isSelectedDay cambiado
-          }
-          return day; // Mantener el objeto sin cambios
-        });
-
-        const newDayObj = { ...days, isSelectedDay: true };
-        setSelectedDay(newDayObj);
-        setWeekDays(weekDaysUpdated); // actualizar estado de los días
-      }}
+      onPress={ handleOnDayPress }
     >
       <Text
         style={[

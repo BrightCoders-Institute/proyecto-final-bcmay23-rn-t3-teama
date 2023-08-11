@@ -13,6 +13,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
 });
