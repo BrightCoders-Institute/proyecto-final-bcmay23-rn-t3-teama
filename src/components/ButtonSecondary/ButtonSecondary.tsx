@@ -6,13 +6,11 @@ interface ButtonProps {
   title: string;
   onPress?: () => void;
   color?: string;
-  borderColor?: string;
 }
 
-export const ButtonSecondary = ({title, onPress, color, borderColor}: ButtonProps) => {
+export const ButtonSecondary = ({title, onPress, color}: ButtonProps) => {
   const buttonStyle: ViewStyle = {
     backgroundColor: color || '#007bff',
-    borderColor: borderColor || '#007bff',
   };
 
   return (
