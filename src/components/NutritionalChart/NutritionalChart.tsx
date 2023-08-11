@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { View, SafeAreaView, Text } from 'react-native';
 import { ProgressBar } from 'react-native-paper';
+import { NutritionalChartProps } from '../../interfaces/interfaces';
 import style from './styles';
 
-const NutritionalChart = () => {
+const NutritionalChart = ({progress, grams}: NutritionalChartProps) => {
 
   const backgroundMacros = {
     carb: '#56ADEC',
@@ -17,14 +18,14 @@ const NutritionalChart = () => {
         <View style={style.container}>
           <ProgressBar
             color={backgroundMacros.carb}
-            progress={0.5}
+            progress={progress}
             style={style.progressBar}
           />
           <View style={style.infoContainer}>
           <Text style={style.titlenutrition}>Carbs</Text>
               <Text>
-                <Text style={[style.percentage, { color: backgroundMacros.carb }]}>55%</Text>
-                <Text style={style.gramsText}> (10g)</Text>
+                <Text style={[style.percentage, { color: backgroundMacros.carb }]}>{(progress * 100).toFixed(0)}%</Text>
+                <Text style={style.gramsText}> ({grams})g</Text>
               </Text>
           </View>
         </View>
@@ -32,14 +33,14 @@ const NutritionalChart = () => {
         <View style={style.container}>
         <ProgressBar
             color={backgroundMacros.protein}
-            progress={0.3}
+            progress={progress}
             style={style.progressBar}
           />
           <View style={style.infoContainer}>
           <Text style={style.titlenutrition}>Protein</Text>
               <Text>
-                <Text style={[style.percentage, { color: backgroundMacros.protein }]}>30%</Text>
-                <Text style={style.gramsText}> (20g)</Text>
+                <Text style={[style.percentage, { color: backgroundMacros.carb }]}>{(progress * 100).toFixed(0)}%</Text>
+                <Text style={style.gramsText}> ({grams})g</Text>
               </Text>
           </View>
         </View>
@@ -47,14 +48,14 @@ const NutritionalChart = () => {
         <View style={style.container}>
             <ProgressBar
                 color={backgroundMacros.fat}
-                progress={0.1}
+                progress={progress}
                 style={style.progressBar}
               />
           <View style={style.infoContainer}>
             <Text style={style.titlenutrition}>Fat</Text>
               <Text>
-                <Text style={[style.percentage, { color: backgroundMacros.fat }]}>10%</Text>
-                <Text style={style.gramsText}> (10g)</Text>
+                <Text style={[style.percentage, { color: backgroundMacros.carb }]}>{(progress * 100).toFixed(0)}%</Text>
+                <Text style={style.gramsText}> ({grams})g</Text>
               </Text>
           </View>
         </View>

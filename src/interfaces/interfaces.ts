@@ -34,3 +34,8 @@ export interface MealInfoBadgeProps {
   level: string;
   kcal: string;
 }
+
+export interface NutritionalChartProps {
+  progress: number;
+  grams: number;
+}
