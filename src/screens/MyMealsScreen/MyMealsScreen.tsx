@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, View, Text } from 'react-native';
+import { FlatList, View, Text, ScrollView } from 'react-native';
 import { styles } from './styles';
 import { StackScreenProps } from '@react-navigation/stack';
 import { MyMealCardR } from '../../components/MyMealCardR/MyMealCardR';
@@ -36,7 +36,7 @@ const MyMealsScreen = ({navigation}: Props) => {
   function getCurrentWeekdays() {
     const results: DayObject[] = [];
 
-    // const todaysDate = new Date("2023-07-23T00:00:00");
+    // const todaysDate = new Date("2023-12-31T00:00:00");
     const todaysDate = new Date();
 
     const dayCurrWeek = todaysDate.getDay();
@@ -58,46 +58,51 @@ const MyMealsScreen = ({navigation}: Props) => {
 
   return (
     <View style={ styles.container }>
-      <View style={ styles.calendarContainer }>
-        <Text style={ styles.dayTitle }>
-          <Text style={{color:'#68A76E'}}>{`${ namesDays[new Date().getDay()] === selectedDay?.completeDay ? 'Today' : selectedDay?.completeDay}`}</Text>
-          <Text style={{color:'#000000'}}>{`, ${selectedDay?.day} ${selectedDay?.month} ${selectedDay?.year}`}</Text>
-        </Text>
-        <FlatList
-          data={weekDays}
-          style={{marginLeft: 25}}
-          renderItem={({ item }) => <CallendarWeekday days={item} setSelectedDay={setSelectedDay} weekdays={weekDays} setWeekDays={setWeekDays} />}
-          horizontal
-        />
-      </View>
-      {/* <MyMealCardR
-        title='Breakfast'
-        caloriesRecomended={calories}
-        description={descriptionMeal}
-        imgSource={BreakfastImg}
-        onPress={() => navigation.navigate('Recipe')}
+      <ScrollView
+        contentContainerStyle={{ paddingBottom: 20 }}
+        stickyHeaderIndices={[0]}
+      >
+        <View style={ styles.calendarContainer }>
+          <Text style={ styles.dayTitle }>
+            <Text style={{color:'#68A76E'}}>{`${ namesDays[new Date().getDay()] === selectedDay?.completeDay ? 'Today' : selectedDay?.completeDay}`}</Text>
+            <Text style={{color:'#000000'}}>{`, ${selectedDay?.day} ${selectedDay?.month} ${selectedDay?.year}`}</Text>
+          </Text>
+          <FlatList
+            data={weekDays}
+            style={{marginLeft: 25}}
+            renderItem={({ item }) => <CallendarWeekday days={item} setSelectedDay={setSelectedDay} weekdays={weekDays} setWeekDays={setWeekDays} />}
+            horizontal
+          />
+        </View>
+        <MyMealCardR
+          title="Breakfast"
+          caloriesRecomended={calories}
+          description={descriptionMeal}
+          imgSource={BreakfastImg}
+          onPress={() => navigation.navigate('Recipe')}
         />
         <MyMealCardL
-        title='Snack'
-        caloriesRecomended={calories}
-        description={descriptionMeal}
-        imgSource={SnackImg}
-        onPress={() => navigation.navigate('Recipe')}
+          title="Snack"
+          caloriesRecomended={calories}
+          description={descriptionMeal}
+          imgSource={SnackImg}
+          onPress={() => navigation.navigate('Recipe')}
         />
         <MyMealCardR
-        title='Lunch'
-        caloriesRecomended={calories}
-        description={descriptionMeal}
-        imgSource={LunchImg}
-        onPress={() => navigation.navigate('Recipe')}
+          title="Lunch"
+          caloriesRecomended={calories}
+          description={descriptionMeal}
+          imgSource={LunchImg}
+          onPress={() => navigation.navigate('Recipe')}
         />
         <MyMealCardL
-        title='Dinner'
-        caloriesRecomended={calories}
-        description={descriptionMeal}
-        imgSource={DinnerImg}
-        onPress={() => navigation.navigate('Recipe')}
-        /> */}
+          title="Dinner"
+          caloriesRecomended={calories}
+          description={descriptionMeal}
+          imgSource={DinnerImg}
+          onPress={() => navigation.navigate('Recipe')}
+        />
+      </ScrollView>
     </View>
   );
 };
