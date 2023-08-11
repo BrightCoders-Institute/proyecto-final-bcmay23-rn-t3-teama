@@ -23,14 +23,14 @@ const MyMealsScreen: React.FC = () => {
 
   const descriptionMeal = 'Bowl whit fruit, some fruit and more fruit. You can add fruit.'
   const calories = 'Recomended 830 - 1170Cal';
+  const namesDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", ];
 
   useEffect(() => {
     getCurrentWeekdays();
   }, []);
 
   function getCurrentWeekdays() {
-    const namesDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", ];
     const results: DayObject[] = [];
 
     // const todaysDate = new Date("2023-12-31T00:00:00");
@@ -55,15 +55,19 @@ const MyMealsScreen: React.FC = () => {
 
   return (
     <View style={{ marginTop: 30 }}>
-      <View style={{ backgroundColor: 'white', height: 160 }}>
-        <Text>{`${selectedDay?.completeDay}, ${selectedDay?.day} ${selectedDay?.month} ${selectedDay?.year}`}</Text>
+      <View style={{ backgroundColor: 'white', height: 180 }}>
+        <Text style={{fontWeight: 'bold', marginTop: 15, fontSize: 20, marginLeft: 20}}>
+          <Text style={{color:'#68A76E'}}>{`${ namesDays[new Date().getDay()] === selectedDay?.completeDay ? 'Today': selectedDay?.completeDay}`}</Text>
+          <Text style={{color:'#000000'}}>{`, ${selectedDay?.day} ${selectedDay?.month} ${selectedDay?.year}`}</Text>
+        </Text>
         <FlatList
           data={weekDays}
+          style={{marginLeft: 8}}
           renderItem={({ item }) => <CallendarWeekday days={item} setSelectedDay={setSelectedDay} weekdays={weekDays} setWeekDays={setWeekDays} />}
           horizontal
         />
       </View>
-      <MyMealCardR 
+      {/* <MyMealCardR 
         title='Breakfast' 
         caloriesRecomended={calories} 
         description={descriptionMeal}
@@ -86,7 +90,7 @@ const MyMealsScreen: React.FC = () => {
         caloriesRecomended={calories} 
         description={descriptionMeal}
         imgSource={DinnerImg}
-        />
+        /> */}
     </View>
   );
 };
