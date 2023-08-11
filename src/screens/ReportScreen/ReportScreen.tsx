@@ -1,10 +1,11 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+import NutritionalChart from '../../components/NutritionalChart/NutritionalChart';
 
 export const ReportScreen = () => {
   return (
     <View>
-        <Text>Report Screen</Text>
+      <NutritionalChart />
     </View>
-  )
-}
+  );
+};
