@@ -1,3 +1,5 @@
+import { ImageSourcePropType } from "react-native";
+
 export interface LoadingModalProps {
   isLoading: boolean;
   isVisible: boolean;
@@ -41,6 +43,10 @@ export interface MealInfoBadgeProps {
   kcal: string;
 }
 
+export interface NutritionalChartProps {
+  progress: number;
+  grams: number;
+}
 export interface RecipeImgProps {
   imgSource: ImageSourcePropType;
 }
