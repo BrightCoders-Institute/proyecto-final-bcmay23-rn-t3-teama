@@ -1,11 +1,11 @@
 export interface LoadingModalProps {
-    isLoading: boolean;
-    isVisible: boolean;
-    successImageUrl: ImageSourcePropType;
-    errorImageUrl: ImageSourcePropType;
-    title: string;
-    subtitle: string;
-    isSuccessful: boolean;
+  isLoading: boolean;
+  isVisible: boolean;
+  successImageUrl: ImageSourcePropType;
+  errorImageUrl: ImageSourcePropType;
+  title: string;
+  subtitle: string;
+  isSuccessful: boolean;
 }
 
 export interface SubTitleProps {
@@ -41,6 +41,11 @@ export interface MealInfoBadgeProps {
   kcal: string;
 }
 
+export interface NutritionalChartProps {
+  progress: number;
+  grams: number;
+}
 export interface RecipeImgProps {
   imgSource: ImageSourcePropType;
 }
+

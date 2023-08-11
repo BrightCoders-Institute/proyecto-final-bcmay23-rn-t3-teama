@@ -30,12 +30,12 @@ export const StackNavigator = () => {
         }}
         component={LoginScreen}
       /> */}
-      <Stack.Screen
-        name="BottomTab"
-        options={{
-          headerShown: false,
-        }}
-        component={BottomTab}
+      <Stack.Screen 
+        name="BottomTab" 
+        options={{ 
+          headerShown: false 
+        }} 
+        component={BottomTab} 
       />
       <Stack.Screen
       name='Recipe'
