@@ -2,7 +2,7 @@ import React from 'react';
 import { styles } from './styles';
 import { TouchableOpacity, Text, View } from 'react-native';
 
-interface WeekDayProps {
+interface CallendarWeekdayProps {
   days: {
     weekName: string;
     day: number;
@@ -12,7 +12,7 @@ interface WeekDayProps {
   };
 }
 
-export const WeekDay: React.FC<WeekDayProps> = ({ days, setSelectedDay }) => {
+export const CallendarWeekday: React.FC<CallendarWeekdayProps> = ({ days, setSelectedDay, weekdays, setWeekDays }) => {
   // console.log(`${days.weekName} ${days.day} current?: ${days.isCurrentDay}`);
   return (
     <TouchableOpacity
@@ -24,8 +24,26 @@ export const WeekDay: React.FC<WeekDayProps> = ({ days, setSelectedDay }) => {
       ]}
       onPress={() => {
         console.log(`${days.completeDay}, ${days.day} ${days.month} ${days.year}`);
-        const newDayObj = { ...days, isSelectedDay: true};
+
+        const newWeekdays = [ ...weekdays ]; //copia del original
+        // poner todos los días en false
+        const weekDaysInFalse = newWeekdays.map(day => {
+          if (day.isSelectedDay) {
+            return { ...day, isSelectedDay: false }; // Crear una copia del objeto con isSelectedDay cambiado
+          }
+          return day; // Mantener el objeto sin cambios
+        });
+        // poner el seleccionado en true
+        const weekDaysUpdated = weekDaysInFalse.map(day => {
+          if (day.day === days.day) {
+            return { ...day, isSelectedDay: true }; // Crear una copia del objeto con isSelectedDay cambiado
+          }
+          return day; // Mantener el objeto sin cambios
+        });
+
+        const newDayObj = { ...days, isSelectedDay: true };
         setSelectedDay(newDayObj);
+        setWeekDays(weekDaysUpdated); // actualizar estado de los días
       }}
     >
       <Text

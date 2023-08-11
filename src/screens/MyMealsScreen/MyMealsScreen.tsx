@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FlatList, View, Text } from 'react-native';
 import { MyMealCardR } from '../../components/MyMealCardR/MyMealCardR';
 import { MyMealCardL } from '../../components/MyMealCardL/MyMealCardL';
-import { WeekDay } from '../../components/CallendarWeekday/CallendarWeekday';
+import { CallendarWeekday } from '../../components/CallendarWeekday/CallendarWeekday';
 import BreakfastImg from '../../assets/img/Breakfast.png';
 import SnackImg from '../../assets/img/helty-snack.png';
 import LunchImg from '../../assets/img/grilledChiken.jpg';
@@ -25,7 +25,7 @@ const MyMealsScreen = () => {
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", ];
     const results = [];
 
-    // const todaysDate = new Date("2023-10-28T00:00:00");
+    // const todaysDate = new Date("2023-12-31T00:00:00");
     const todaysDate = new Date();
 
     const dayCurrWeek = todaysDate.getDay();
@@ -38,7 +38,7 @@ const MyMealsScreen = () => {
       const date = new Date(todaysDate);
       date.setDate(todaysDate.getDate() + i);
       const nameDay = namesDays[(dayCurrWeek + i + 7) % 7].slice(0, 3).toUpperCase();
-      const dayObject = { isSelectedDay: ( i === 0 ? true : false ), weekName: nameDay, completeDay: (namesDays[(dayCurrWeek + i + 7) % 7]), day: date.getDate(), month: months[date.getMonth()], year: date.getFullYear() }
+      const dayObject = { isSelectedDay: i === 0, weekName: nameDay, completeDay: (namesDays[(dayCurrWeek + i + 7) % 7]), day: date.getDate(), month: months[date.getMonth()], year: date.getFullYear() }
       results.push(dayObject);
       if(i === 0) setSelectedDay(dayObject);
     }
@@ -53,7 +53,7 @@ const MyMealsScreen = () => {
         <FlatList
           data={weekDays}
           // style={{backgroundColor: 'red'}}
-          renderItem={({ item }) => <WeekDay days={item} setSelectedDay={setSelectedDay} />}
+          renderItem={({ item }) => <CallendarWeekday days={item} setSelectedDay={setSelectedDay} weekdays={weekDays} setWeekDays={setWeekDays} />}
           // keyExtractor={(item) => item.id.toString()}
           horizontal
         />
