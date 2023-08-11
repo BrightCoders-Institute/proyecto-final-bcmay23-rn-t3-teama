@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   weekday: {
+    // backgroundColor: 'red',
     borderWidth: 1.5,
     width: 50,
     height: 85,
@@ -12,5 +13,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-evenly',
     alignItems: 'center',
+    alignSelf: 'center'
   },
 });

@@ -8,27 +8,29 @@ interface WeekDayProps {
     day: number;
     month: string;
     year: number;
-    isCurrentDay: boolean;
+    isSelectedDay: boolean;
   };
 }
 
-export const WeekDay: React.FC<WeekDayProps> = ({ days }) => {
+export const WeekDay: React.FC<WeekDayProps> = ({ days, setSelectedDay }) => {
   // console.log(`${days.weekName} ${days.day} current?: ${days.isCurrentDay}`);
   return (
     <TouchableOpacity
       style={[
         styles.weekday,
-        days.isCurrentDay
+        days.isSelectedDay
           ? { backgroundColor: '#7B5FEC', borderColor: '#7B5FEC' }
           : { backgroundColor: 'white', borderColor: '#68A76E' },
       ]}
-      onPress={() =>
-        console.log(`${days.weekName}, ${days.day} ${days.month} ${days.year}`)
-      }
+      onPress={() => {
+        console.log(`${days.completeDay}, ${days.day} ${days.month} ${days.year}`);
+        const newDayObj = { ...days, isSelectedDay: true};
+        setSelectedDay(newDayObj);
+      }}
     >
       <Text
         style={[
-          days.isCurrentDay ? { color: 'white' } : { color: '#D8CFCF' },
+          days.isSelectedDay ? { color: 'white' } : { color: '#D8CFCF' },
           { textAlign: 'center' },
         ]}
       >
