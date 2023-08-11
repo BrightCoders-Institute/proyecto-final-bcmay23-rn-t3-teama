@@ -79,7 +79,7 @@ const MyMealsScreen = ({navigation}: Props) => {
           caloriesRecomended={calories}
           description={descriptionMeal}
           imgSource={BreakfastImg}
-          onPress={() => navigation.navigate('Recipe')}
+          onPress={() => navigation.navigate('Meals Details')}
         />
         <MyMealCardL
           title="Snack"
