@@ -35,7 +35,7 @@ export const StackNavigator = () => {
         options={{ 
           headerShown: false 
         }} 
-        component={ BottomTab } 
+        component={BottomTab} 
       />
       <Stack.Screen
       name='Recipe'

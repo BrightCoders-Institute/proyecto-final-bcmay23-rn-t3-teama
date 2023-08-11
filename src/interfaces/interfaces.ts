@@ -1,5 +1,3 @@
-import { ImageSourcePropType } from "react-native";
-
 export interface LoadingModalProps {
   isLoading: boolean;
   isVisible: boolean;
@@ -11,10 +9,10 @@ export interface LoadingModalProps {
 }
 
 export interface SubTitleProps {
-  text: string;
-  fontSize?: number;
-  color?: string;
-}
+    text: string;
+    fontSize?: number;
+    color?: string;
+  }
 
 export interface WellcomeProgressCardProps {
   title: string;
@@ -51,7 +49,3 @@ export interface RecipeImgProps {
   imgSource: ImageSourcePropType;
 }
 
-export interface NutritionalChartProps {
-  progress: number;
-  grams: number;
-}
