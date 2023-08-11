@@ -9,9 +9,8 @@ const Stack = createStackNavigator();
 
 export const StackNavigator = () => {
   return (
-    <Stack.Navigator>     
+    <Stack.Navigator>
       {/* <Stack.Screen
-
         name="Welcome"
         options={{
           cardStyle: {
@@ -31,7 +30,6 @@ export const StackNavigator = () => {
         }}
         component={LoginScreen}
       /> */}
-      />
       <Stack.Screen
         name="BottomTab"
         options={{
