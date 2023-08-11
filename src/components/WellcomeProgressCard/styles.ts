@@ -1,9 +1,9 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
 
     buttonContainer: {
-        backgroundColor:'white',
+        backgroundColor: 'white',
         alignSelf: 'center',
         borderRadius: 10,
         marginTop: 10,
@@ -22,8 +22,9 @@ export const styles = StyleSheet.create({
         elevation: 4,
     },
     titleText: {
-        color: 'black',
+        color: '#A69C9C',
         fontSize: 18,
+        marginBottom: 5,
     },
     buttonImage: {
         position: 'absolute',
@@ -33,13 +34,19 @@ export const styles = StyleSheet.create({
     },
     caloriesConsumedText: {
         color: '#58D164',
-        fontSize: 18,
+        fontSize: 20,
     },
     totalCaloriesText: {
-        color: 'black',
-        fontSize: 18,
+        color: '#A69C9C',
+        fontSize: 20,
     },
-    caloriesContainer:{
+    caloriesContainer: {
         flexDirection: 'row',
-    }
-})
+        marginBottom: 10,
+    },
+    progressBar: {
+        height: 15,
+        borderRadius: 10,
+        backgroundColor: '#F5F5F5',
+    },
+});

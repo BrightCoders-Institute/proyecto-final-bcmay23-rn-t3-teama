@@ -1,5 +1,5 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import WelcomeScreen from '../screens/WelcomeScreen/WelcomeScreen';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import { BottomTab } from './BottomTab';
@@ -11,6 +11,7 @@ export const StackNavigator = () => {
   return (
     <Stack.Navigator>     
       {/* <Stack.Screen
+
         name="Welcome"
         options={{
           cardStyle: {
@@ -30,12 +31,13 @@ export const StackNavigator = () => {
         }}
         component={LoginScreen}
       /> */}
-      <Stack.Screen 
-        name="BottomTab" 
-        options={{ 
-          headerShown: false 
-        }} 
-        component={ BottomTab } 
+      />
+      <Stack.Screen
+        name="BottomTab"
+        options={{
+          headerShown: false,
+        }}
+        component={BottomTab}
       />
       <Stack.Screen
       name='Recipe'
