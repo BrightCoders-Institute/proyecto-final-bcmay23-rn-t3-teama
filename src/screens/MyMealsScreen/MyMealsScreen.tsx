@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, View, Text } from 'react-native';
 import { styles } from './styles';
+import { StackScreenProps } from '@react-navigation/stack';
 import { MyMealCardR } from '../../components/MyMealCardR/MyMealCardR';
 import { MyMealCardL } from '../../components/MyMealCardL/MyMealCardL';
 import { CallendarWeekday } from '../../components/CallendarWeekday/CallendarWeekday';
@@ -17,8 +18,9 @@ interface DayObject {
   month: string;
   year: number;
 }
+interface Props extends StackScreenProps<any, any> {}
 
-const MyMealsScreen: React.FC = () => {
+const MyMealsScreen = ({navigation}: Props) => {
   const [weekDays, setWeekDays] = useState<DayObject[]>([]);
   const [selectedDay, setSelectedDay] = useState<DayObject | undefined>();
 
@@ -73,24 +75,28 @@ const MyMealsScreen: React.FC = () => {
         caloriesRecomended={calories}
         description={descriptionMeal}
         imgSource={BreakfastImg}
+        onPress={() => navigation.navigate('Recipe')}
         />
         <MyMealCardL
         title='Snack'
         caloriesRecomended={calories}
         description={descriptionMeal}
         imgSource={SnackImg}
+        onPress={() => navigation.navigate('Recipe')}
         />
         <MyMealCardR
         title='Lunch'
         caloriesRecomended={calories}
         description={descriptionMeal}
         imgSource={LunchImg}
+        onPress={() => navigation.navigate('Recipe')}
         />
         <MyMealCardL
         title='Dinner'
         caloriesRecomended={calories}
         description={descriptionMeal}
         imgSource={DinnerImg}
+        onPress={() => navigation.navigate('Recipe')}
         /> */}
     </View>
   );
