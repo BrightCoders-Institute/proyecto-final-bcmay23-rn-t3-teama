@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, View, Text } from 'react-native';
+import { styles } from './styles';
 import { MyMealCardR } from '../../components/MyMealCardR/MyMealCardR';
 import { MyMealCardL } from '../../components/MyMealCardL/MyMealCardL';
 import { CallendarWeekday } from '../../components/CallendarWeekday/CallendarWeekday';
@@ -21,10 +22,10 @@ const MyMealsScreen: React.FC = () => {
   const [weekDays, setWeekDays] = useState<DayObject[]>([]);
   const [selectedDay, setSelectedDay] = useState<DayObject | undefined>();
 
-  const descriptionMeal = 'Bowl whit fruit, some fruit and more fruit. You can add fruit.'
+  const descriptionMeal = 'Bowl whit fruit, some fruit and more fruit. You can add fruit.';
   const calories = 'Recomended 830 - 1170Cal';
-  const namesDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", ];
+  const namesDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   useEffect(() => {
     getCurrentWeekdays();
@@ -33,7 +34,7 @@ const MyMealsScreen: React.FC = () => {
   function getCurrentWeekdays() {
     const results: DayObject[] = [];
 
-    // const todaysDate = new Date("2023-12-31T00:00:00");
+    // const todaysDate = new Date("2023-07-23T00:00:00");
     const todaysDate = new Date();
 
     const dayCurrWeek = todaysDate.getDay();
@@ -54,40 +55,40 @@ const MyMealsScreen: React.FC = () => {
   }
 
   return (
-    <View style={{ marginTop: 30 }}>
-      <View style={{ backgroundColor: 'white', height: 180 }}>
-        <Text style={{fontWeight: 'bold', marginTop: 15, fontSize: 20, marginLeft: 20}}>
-          <Text style={{color:'#68A76E'}}>{`${ namesDays[new Date().getDay()] === selectedDay?.completeDay ? 'Today': selectedDay?.completeDay}`}</Text>
+    <View style={ styles.container }>
+      <View style={ styles.calendarContainer }>
+        <Text style={ styles.dayTitle }>
+          <Text style={{color:'#68A76E'}}>{`${ namesDays[new Date().getDay()] === selectedDay?.completeDay ? 'Today' : selectedDay?.completeDay}`}</Text>
           <Text style={{color:'#000000'}}>{`, ${selectedDay?.day} ${selectedDay?.month} ${selectedDay?.year}`}</Text>
         </Text>
         <FlatList
           data={weekDays}
-          style={{marginLeft: 8}}
+          style={{marginLeft: 25}}
           renderItem={({ item }) => <CallendarWeekday days={item} setSelectedDay={setSelectedDay} weekdays={weekDays} setWeekDays={setWeekDays} />}
           horizontal
         />
       </View>
-      {/* <MyMealCardR 
-        title='Breakfast' 
-        caloriesRecomended={calories} 
+      {/* <MyMealCardR
+        title='Breakfast'
+        caloriesRecomended={calories}
         description={descriptionMeal}
         imgSource={BreakfastImg}
         />
-        <MyMealCardL 
-        title='Snack' 
-        caloriesRecomended={calories} 
+        <MyMealCardL
+        title='Snack'
+        caloriesRecomended={calories}
         description={descriptionMeal}
         imgSource={SnackImg}
         />
-        <MyMealCardR 
-        title='Lunch' 
-        caloriesRecomended={calories} 
+        <MyMealCardR
+        title='Lunch'
+        caloriesRecomended={calories}
         description={descriptionMeal}
         imgSource={LunchImg}
         />
-        <MyMealCardL 
-        title='Dinner' 
-        caloriesRecomended={calories} 
+        <MyMealCardL
+        title='Dinner'
+        caloriesRecomended={calories}
         description={descriptionMeal}
         imgSource={DinnerImg}
         /> */}
