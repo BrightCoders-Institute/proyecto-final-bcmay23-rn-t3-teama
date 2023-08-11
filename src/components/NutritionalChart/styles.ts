@@ -8,8 +8,9 @@ const style = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: 10,
-        marginHorizontal: 8,
+        marginHorizontal: 5,
         marginVertical: 30,
+        // backgroundColor: 'blue',
     },
     mainContainer: {
         flexDirection: 'row',
@@ -20,15 +21,17 @@ const style = StyleSheet.create({
     progressBar: {
         transform: [{ rotate: '-90deg' }],
         height: 18,
-        width: 55,
+        width: 57,
         backgroundColor: '#EAEAEA',
     },
     infoContainer: {
         alignContent: 'flex-start',
         height: 50,
-        width: 70,
+        width: 80,
         marginTop: 2,
         marginRight: 15,
+        marginLeft: -5,
+        // backgroundColor: 'red',
     },
     titlenutrition:{
         paddingTop: 10,
@@ -38,7 +41,14 @@ const style = StyleSheet.create({
         paddingBottom: 6,
     },
     percentage: {
+        fontSize: 13,
+        fontWeight: 'bold',
+    },
+
+    gramsText: {
         fontSize: 12,
+        fontWeight: 'bold',
+        color: '#818181',
     },
 });
 
