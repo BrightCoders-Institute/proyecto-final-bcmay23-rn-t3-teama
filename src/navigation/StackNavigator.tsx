@@ -3,13 +3,15 @@ import { createStackNavigator } from '@react-navigation/stack';
 import WelcomeScreen from '../screens/WelcomeScreen/WelcomeScreen';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import { BottomTab } from './BottomTab';
+import { RecipeScreen } from '../screens/RecipeScreen/RecipeScreen';
 
 const Stack = createStackNavigator();
 
 export const StackNavigator = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen
+    <Stack.Navigator>     
+      {/* <Stack.Screen
+
         name="Welcome"
         options={{
           cardStyle: {
@@ -28,6 +30,7 @@ export const StackNavigator = () => {
           headerShown: false,
         }}
         component={LoginScreen}
+      /> */}
       />
       <Stack.Screen
         name="BottomTab"
@@ -35,6 +38,10 @@ export const StackNavigator = () => {
           headerShown: false,
         }}
         component={BottomTab}
+      />
+      <Stack.Screen
+      name='Recipe'
+      component={RecipeScreen}
       />
     </Stack.Navigator>
   );
