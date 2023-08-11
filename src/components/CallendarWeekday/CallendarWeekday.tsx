@@ -55,7 +55,7 @@ export const CallendarWeekday: React.FC<CallendarWeekdayProps> = ({ days, setSel
     >
       <Text
         style={[
-          days.isSelectedDay ? { color: 'white' } : { color: '#D8CFCF' },
+          days.isSelectedDay ? { color: 'white', fontWeight: '500' } : { color: '#D8CFCF' },
           { textAlign: 'center' },
         ]}
       >
@@ -63,15 +63,9 @@ export const CallendarWeekday: React.FC<CallendarWeekdayProps> = ({ days, setSel
       </Text>
 
       <View
-        style={{
-          backgroundColor: 'white',
-          borderRadius: 10,
-          width: 38,
-          height: 30,
-          justifyContent: 'center',
-        }}
+        style={ styles.dayContainer }
       >
-        <Text style={{ textAlign: 'center', color: 'black' }}>
+        <Text style={[ days.isSelectedDay ? { fontWeight: '700' } : { fontWeight: '400' }, styles.dayText ]}>
           {days.day}
         </Text>
       </View>
