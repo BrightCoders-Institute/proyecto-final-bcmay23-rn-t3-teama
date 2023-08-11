@@ -19,4 +19,7 @@ export const style = StyleSheet.create({
     percentagesTitle: {
         marginLeft: 22,
     },
+    btnCompleted: {
+        marginBottom: 10,
+    },
 });
