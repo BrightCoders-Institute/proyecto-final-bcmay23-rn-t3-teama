@@ -39,7 +39,7 @@ const NutritionalChart = ({progress, grams}: NutritionalChartProps) => {
           <View style={style.infoContainer}>
           <Text style={style.titlenutrition}>Protein</Text>
               <Text>
-                <Text style={[style.percentage, { color: backgroundMacros.carb }]}>{(progress * 100).toFixed(0)}%</Text>
+                <Text style={[style.percentage, { color: backgroundMacros.protein }]}>{(progress * 100).toFixed(0)}%</Text>
                 <Text style={style.gramsText}> ({grams})g</Text>
               </Text>
           </View>
@@ -54,7 +54,7 @@ const NutritionalChart = ({progress, grams}: NutritionalChartProps) => {
           <View style={style.infoContainer}>
             <Text style={style.titlenutrition}>Fat</Text>
               <Text>
-                <Text style={[style.percentage, { color: backgroundMacros.carb }]}>{(progress * 100).toFixed(0)}%</Text>
+                <Text style={[style.percentage, { color: backgroundMacros.fat }]}>{(progress * 100).toFixed(0)}%</Text>
                 <Text style={style.gramsText}> ({grams})g</Text>
               </Text>
           </View>

@@ -9,14 +9,13 @@ const style = StyleSheet.create({
         justifyContent: 'center',
         paddingVertical: 10,
         marginHorizontal: 5,
-        marginVertical: 30,
-        // backgroundColor: 'blue',
+        marginVertical: 10,
     },
     mainContainer: {
         flexDirection: 'row',
         alignSelf: 'center',
         maxWidth: '100%',
-        backgroundColor: 'white',
+        paddingBottom: -50,
     },
     progressBar: {
         transform: [{ rotate: '-90deg' }],

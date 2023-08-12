@@ -13,7 +13,7 @@ const backgroundType = {
 const iconType = {
     time: require('../../assets/img/clockBadgeIcon.png'),
     level: require('../../assets/img/levelBadgeIcon.png'),
-    kcal: require('../../assets/img/flameBadgeIcon.png'),
+    kcal: require('../../assets/img/FlameBadgeIcon.png'),
 };
 
 /**

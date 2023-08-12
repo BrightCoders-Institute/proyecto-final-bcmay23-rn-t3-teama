@@ -79,28 +79,28 @@ const MyMealsScreen = ({navigation}: Props) => {
           caloriesRecomended={calories}
           description={descriptionMeal}
           imgSource={BreakfastImg}
-          onPress={() => navigation.navigate('Recipe')}
+          onPress={() => navigation.navigate('Meals Details')}
         />
         <MyMealCardL
           title="Snack"
           caloriesRecomended={calories}
           description={descriptionMeal}
           imgSource={SnackImg}
-          onPress={() => navigation.navigate('Recipe')}
+          onPress={() => navigation.navigate('Meals Details')}
         />
         <MyMealCardR
           title="Lunch"
           caloriesRecomended={calories}
           description={descriptionMeal}
           imgSource={LunchImg}
-          onPress={() => navigation.navigate('Recipe')}
+          onPress={() => navigation.navigate('Meals Details')}
         />
         <MyMealCardL
           title="Dinner"
           caloriesRecomended={calories}
           description={descriptionMeal}
           imgSource={DinnerImg}
-          onPress={() => navigation.navigate('Recipe')}
+          onPress={() => navigation.navigate('Meals Details')}
         />
       </ScrollView>
     </View>

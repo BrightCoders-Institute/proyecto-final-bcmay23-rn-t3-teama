@@ -4,6 +4,7 @@ import WelcomeScreen from '../screens/WelcomeScreen/WelcomeScreen';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import { BottomTab } from './BottomTab';
 import { RecipeScreen } from '../screens/RecipeScreen/RecipeScreen';
+import MyMealDetailsScreen from '../screens/MyMealDetailsScreen/MyMealDetailsScreen';
 
 const Stack = createStackNavigator();
 
@@ -30,16 +31,20 @@ export const StackNavigator = () => {
         }}
         component={LoginScreen}
       /> */}
-      <Stack.Screen 
-        name="BottomTab" 
-        options={{ 
-          headerShown: false 
-        }} 
-        component={BottomTab} 
+      <Stack.Screen
+        name="BottomTab"
+        options={{
+          headerShown: false
+        }}
+        component={BottomTab}
       />
       <Stack.Screen
-      name='Recipe'
+      name="Recipe"
       component={RecipeScreen}
+      />
+      <Stack.Screen
+        name="Meals Details"
+        component={MyMealDetailsScreen}
       />
     </Stack.Navigator>
   );
