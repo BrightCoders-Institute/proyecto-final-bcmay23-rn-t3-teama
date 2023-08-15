@@ -62,3 +62,9 @@ export interface DayObject {
   month: string;
   year: number;
 }
+
+export interface CircularProgressBarProps {
+  radius: number;
+  progress: number;
+  color: string;
+}
