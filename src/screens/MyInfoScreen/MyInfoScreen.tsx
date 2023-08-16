@@ -24,6 +24,10 @@ export const MyInfoScreen = () => {
           <View>
             <WellcomeAvatar />
           </View>
+          <View style={styles.weighInfo}>
+            <Title text="120.20" fontSize={20}/>
+            <SubTitle text="(kg)" fontSize={20} color={'black'}/>
+          </View>
         </View>
       </ScrollView>
     </View>
