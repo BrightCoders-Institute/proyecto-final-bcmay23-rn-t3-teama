@@ -69,3 +69,7 @@ export interface CircularProgressBarProps {
   progress: number;
   color: string;
 }
+
+export interface wellcomeAvatarProps {
+  size: number;
+}
