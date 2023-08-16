@@ -13,7 +13,7 @@ export const CircularProgressBar = ({radius, progress, color}: CircularProgressB
       radius={radius}
       borderWidth={20}
       color={color}
-      shadowColor="#999"
+      shadowColor="#F4F3F3"
       bgColor="#fff"
     >
       <Title text='1600' fontSize={30}/>

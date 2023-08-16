@@ -4,10 +4,10 @@ export const style = StyleSheet.create({
     container: {
         flexDirection: 'row',
         width: 120,
-        height: 80,
+        height: 130,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingVertical: 10,
+        paddingVertical: 5,
         marginLeft: 3,
         marginVertical: 10,
     },
@@ -28,8 +28,8 @@ export const style = StyleSheet.create({
     },
     progressBar: {
         transform: [{ rotate: '-90deg' }],
-        height: 18,
-        width: 57,
+        height: 25,
+        width: 100,
         backgroundColor: '#EAEAEA',
     },
     infoContainer: {
@@ -38,8 +38,7 @@ export const style = StyleSheet.create({
         width: 80,
         marginTop: 2,
         marginRight: 15,
-        marginLeft: -5,
-        // backgroundColor: 'red',
+        marginLeft: -18,
     },
     titlenutrition:{
         paddingTop: 10,
