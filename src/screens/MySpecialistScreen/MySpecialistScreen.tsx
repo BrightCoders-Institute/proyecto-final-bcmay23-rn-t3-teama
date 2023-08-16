@@ -7,7 +7,15 @@ import { ButtonSecondary } from '../../components/ButtonSecondary/ButtonSecondar
 import { RatingStar } from '../../components/RatingStar/RatingStar';
 import { WhatsAppButton } from '../../components/WhatsAppButton/WhatsAppButton';
 
-const NUTRITIONIST_INFO = {
+interface NutritionistInfo {
+    name: string;
+    major: string;
+    cityAndCountry: string;
+    biography: string;
+    rating: string;
+}
+
+const NUTRITIONIST_INFO: NutritionistInfo = {
     name: 'Dr. Aimep3 Fischer',
     major: 'Ph.D. in Nutrition',
     cityAndCountry: 'Colima, Mx.',
@@ -15,17 +23,17 @@ const NUTRITIONIST_INFO = {
     rating: '5.0',
 };
 
-export const MySpecialistScreen = () => {
+export const MySpecialistScreen: React.FC = () => {
     const {height} = useWindowDimensions();
 
     const renderStars = () => {
         const starElements = [];
 
-        const wholeStars = Math.floor(NUTRITIONIST_INFO.rating);
-        const hasHalfStar = NUTRITIONIST_INFO.rating - wholeStars >= 0.5;
+        const wholeStars = Math.floor(Number(NUTRITIONIST_INFO.rating));
+        const hasHalfStar = Number(NUTRITIONIST_INFO.rating) - wholeStars >= 0.5;
 
         for (let i = 1; i <= 5; i++) {
-            let filled = 'empty';
+            let filled: 'empty' | 'full' | 'half' = 'empty';
             if (i <= wholeStars) {
                 filled = 'full';
             } else if (i === wholeStars + 1 && hasHalfStar) {
@@ -74,4 +82,3 @@ export const MySpecialistScreen = () => {
         </ScrollView>
     );
 };
-
