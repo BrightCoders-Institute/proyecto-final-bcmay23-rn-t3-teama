@@ -9,12 +9,22 @@ export const calendarTheme: Theme = {
 };
 
 export const styles = StyleSheet.create({
+    calendar: {
+        borderRadius: 10,
+        margin: 10,
+        elevation: 4,
+    },
+    selectedDateText: {
+        textAlign: 'center',
+        marginTop: 10,
+        color: 'black',
+    },
     subTitle: {
         margin: 10,
         fontWeight: '700',
         fontSize: 15,
         color: 'grey',
-        maxWidth: '40%',
+        width: '40%',
         textAlign: 'center',
         paddingVertical: 2,
         paddingHorizontal: 5,
