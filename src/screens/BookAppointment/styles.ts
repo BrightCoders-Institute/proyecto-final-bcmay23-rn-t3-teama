@@ -19,8 +19,26 @@ export const styles = StyleSheet.create({
         marginTop: 10,
         color: 'black',
     },
+    flatListItemTouchable: {
+        marginHorizontal: 5,
+        paddingVertical: 10,
+        borderRadius: 20,
+        elevation: 3,
+        shadowColor: 'black',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 2,
+        overflow: 'visible',
+    },
+    flatListItemText: {
+        marginHorizontal: 10,
+        fontWeight: '600',
+    },
+    flatList: {
+        paddingVertical: 5,
+    },
     subTitle: {
-        margin: 10,
+        marginVertical: 15,
         fontWeight: '700',
         fontSize: 15,
         color: 'grey',
