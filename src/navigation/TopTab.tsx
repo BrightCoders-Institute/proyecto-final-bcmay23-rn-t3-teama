@@ -2,6 +2,7 @@ import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import MySpecialistScreen from '../screens/MySpecialistScreen/MySpecialistScreen';
 import MyInfoScreen from '../screens/MyInfoScreen/MyInfoScreen';
+import BookAppointment from '../screens/BookAppointment/BookAppointment';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -25,7 +26,7 @@ function TopTab() {
                 tabBarGap: 10,
             }}
         >
-            <Tab.Screen name="MySpecialistScreen" options={{ title: 'My Specialist' }} component={MySpecialistScreen} />
+            <Tab.Screen name="MySpecialistScreen" options={{ title: 'My Specialist' }} component={BookAppointment} />
             <Tab.Screen name="MyInfoScreen" options={{ title: 'My Info' }} component={MyInfoScreen} />
         </Tab.Navigator>
     );
