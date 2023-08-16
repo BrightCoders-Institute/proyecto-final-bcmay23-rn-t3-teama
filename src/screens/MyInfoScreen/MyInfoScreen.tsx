@@ -1,12 +1,17 @@
 import React from 'react';
-import { View, ScrollView, Text } from 'react-native';
+import { View, ScrollView, Text, Image } from 'react-native';
 import { SubTitle } from '../../components/SubTitle/SubTitle';
 import { Title } from '../../components/Title/Title';
 import { WellcomeAvatar } from '../../components/WellcomeAvatar/WellcomeAvatar';
 import { styles } from './styles';
 
+const iconType = {
+  weightScale: require('../../assets/img/scale-sharp.png'),
+  calendar: require('../../assets/img/calendar.png'),
+  man: require('../../assets/img/man.png'),
+};
 
-export const MyInfoScreen = () => {
+const MyInfoScreen = () => {
   return (
     <ScrollView>
     <View style={styles.mainContainer}>
@@ -19,9 +24,9 @@ export const MyInfoScreen = () => {
         <View style={styles.container}>
           <View style={styles.generalInfo}>
             <View style={styles.recordMeasures}>
-              <Title text="120.20" fontSize={20}/>
+              <Title text={'120.20'} fontSize={20}/>
             </View>
-              <SubTitle text="(kg)" fontSize={18} color={'black'}/>
+              <SubTitle text={'(kg)'} fontSize={18} color={'black'}/>
               <SubTitle text={'weight'} fontSize={18} />
           </View>
           <View style={styles.generalInfo}>
@@ -29,9 +34,9 @@ export const MyInfoScreen = () => {
           </View>
           <View style={styles.generalInfo}>
             <View style={styles.recordMeasures}>
-             <Title text="182" fontSize={20}/>
+             <Title text={'182'} fontSize={20}/>
             </View>
-            <SubTitle text="(cm)" fontSize={18} color={'black'}/>
+            <SubTitle text={'(cm)'} fontSize={18} color={'black'}/>
             <SubTitle text={'hight'} fontSize={18}/>
           </View>
         </View>
@@ -42,27 +47,32 @@ export const MyInfoScreen = () => {
         <View style={styles.metricsContainer}>
           <View style={styles.column}>
             <View style={styles.containerImc}>
+              <Image source={iconType.weightScale} style={styles.smallIcons}/>
               <Title text={'IMC'} fontSize={17} color={'#939191'}/>
               <Title text={'29.40'} fontSize={17}/>
             </View>
             <View style={[styles.containerImc, {marginBottom: 0}]}>
+              <Image source={iconType.calendar} style={styles.smallIcons}/>
               <Title text={'Age'} fontSize={17} color={'#939191'}/>
               <Title text={'28 years'} fontSize={17}/>
             </View>
           </View>
             <View style={styles.singleViewContainer}>
-            <View style={styles.metrics}>
-              <Title text={'Wais'} fontSize={17} color={'#939191'}/>
-              <Title text={'70.50'} fontSize={17}/>
-            </View>
-            <View style={styles.metrics}>
-              <Title text={'Hips'} fontSize={17} color={'#939191'}/>
-              <Title text={'100.50'} fontSize={17}/>
-            </View>
-            <View style={styles.metrics}>
-              <Title text={'Bust'} fontSize={17} color={'#939191'}/>
-              <Title text={'110.20'} fontSize={17}/>
-            </View>
+              <Image source={iconType.man} style={styles.bodyIcon} />
+              <View style={styles.metricscontainer}>
+                <View style={styles.metrics}>
+                  <Title text={'Wais'} fontSize={17} color={'#939191'}/>
+                  <Title text={'70.50'} fontSize={17}/>
+                </View>
+                <View style={styles.metrics}>
+                  <Title text={'Hips'} fontSize={17} color={'#939191'}/>
+                  <Title text={'100.50'} fontSize={17}/>
+                </View>
+                <View style={styles.metrics}>
+                  <Title text={'Bust'} fontSize={17} color={'#939191'}/>
+                  <Title text={'110.20'} fontSize={17}/>
+                </View>
+              </View>
             </View>
         </View>
     </ScrollView>

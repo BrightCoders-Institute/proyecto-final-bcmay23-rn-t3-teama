@@ -80,6 +80,8 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 5,
     },
     containerImc: {
+        flexDirection: 'row',
+        alignItems: 'center',
         marginVertical: 2,
         marginBottom: 12,
         backgroundColor: 'white',
@@ -104,7 +106,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         borderRadius: 8,
         marginStart: 10,
-        backgroundColor: 'white',
+        backgroundColor: 'lightblue',
         marginVertical: 2,
         paddingHorizontal: 10,
         justifyContent: 'center',
@@ -119,5 +121,21 @@ export const styles = StyleSheet.create({
     },
     metrics:{
         paddingBottom: 10,
-    }
+    },
+    smallIcons: {
+        width: '40%',
+        height: '60%',
+        resizeMode: 'contain',
+        marginBottom: 5,
+    },
+    bodyIcon: {
+        width: '80%',
+        height: '40%',
+        resizeMode: 'contain',
+        marginBottom: 2,
+    },
+
+    metricscontainer: {
+        marginLeft: 10, // Adjust this spacing as needed
+    },
 });
