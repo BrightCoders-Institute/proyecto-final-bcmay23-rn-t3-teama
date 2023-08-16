@@ -14,19 +14,21 @@ export const MyInfoScreen = () => {
           <Text style={styles.keyText}>Client Key: 2840389</Text>
         </View>
         <View style={styles.patientName}>
-          <Title text='Patient Jonh Needham' fontSize={20}/>
+          <Title text="Patient Jonh Needham" fontSize={20}/>
         </View>
-        <View>
+        <View style={styles.container}>
           <View style={styles.weighInfo}>
             <Title text="120.20" fontSize={20}/>
-            <SubTitle text="(kg)" fontSize={20} color={'black'}/>
-          </View>
-          <View>
-            <WellcomeAvatar />
+            <SubTitle text="(kg)" fontSize={18} color={'black'}/>
+            <SubTitle text={'weight'} fontSize={18} />
           </View>
           <View style={styles.weighInfo}>
-            <Title text="120.20" fontSize={20}/>
-            <SubTitle text="(kg)" fontSize={20} color={'black'}/>
+            <WellcomeAvatar size={100} />
+          </View>
+          <View style={styles.weighInfo}>
+            <Title text="182" fontSize={20}/>
+            <SubTitle text="(cm)" fontSize={18} color={'black'}/>
+            <SubTitle text={'hight'} fontSize={18}/>
           </View>
         </View>
       </ScrollView>

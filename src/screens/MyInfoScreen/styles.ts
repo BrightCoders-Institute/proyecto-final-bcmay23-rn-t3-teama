@@ -21,6 +21,12 @@ export const styles = StyleSheet.create({
         shadowRadius: 3,
         elevation: 4,
     },
+    container:{
+        flexDirection: 'row',
+        alignSelf: 'center',
+        maxWidth: '100%',
+        paddingBottom: 40,
+    },
     clientKey: {
         alignSelf: 'center',
         alignItems:'center',
@@ -50,7 +56,12 @@ export const styles = StyleSheet.create({
         alignItems:'center',
     },
     weighInfo: {
-        alignSelf: 'center',
-
+        width: 120,
+        height: 80,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 10,
+        marginHorizontal: 5,
+        marginVertical: 10,
     },
 });
