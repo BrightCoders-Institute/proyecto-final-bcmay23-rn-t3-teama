@@ -4,7 +4,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import MyMealsScreen from '../screens/MyMealsScreen/MyMealsScreen';
 import { ReportScreen } from '../screens/ReportScreen/ReportScreen';
-import { ProfileScreen } from '../screens/ProfileScreen/ProfileScreen';
 import TopTab from './TopTab';
 
 const Tab = createBottomTabNavigator();

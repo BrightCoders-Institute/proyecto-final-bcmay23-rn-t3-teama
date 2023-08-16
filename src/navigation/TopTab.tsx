@@ -1,16 +1,14 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import MySpecialistScreen from '../screens/MySpecialistScreen/MySpecialistScreen';
 import MyInfoScreen from '../screens/MyInfoScreen/MyInfoScreen';
 
 const Tab = createMaterialTopTabNavigator();
 
 function TopTab() {
-    const { top } = useSafeAreaInsets();
     return (
         <Tab.Navigator
-            style={{ backgroundColor: 'white', paddingTop: top }}
+            style={{ backgroundColor: 'white' }}
             sceneContainerStyle={{ backgroundColor: 'white' }}
             screenOptions={{
                 tabBarStyle: {
