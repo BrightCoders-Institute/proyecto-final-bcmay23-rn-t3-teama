@@ -4,57 +4,58 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import MyMealsScreen from '../screens/MyMealsScreen/MyMealsScreen';
 import { ReportScreen } from '../screens/ReportScreen/ReportScreen';
-import { ProfileScreen } from '../screens/ProfileScreen/ProfileScreen';
+import TopTab from './TopTab';
 
 const Tab = createBottomTabNavigator();
 
 export const BottomTab = () => {
   return (
-     <Tab.Navigator
-     screenOptions= { ({ route }) => ({
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
         tabBarIcon: ({ color, focused }) => {
-  
+
           let iconName: string = '';
-          switch ( route.name ){
+          switch (route.name) {
             case 'HomeScreen':
-                focused 
+              focused
                 ? iconName = 'home'
-                : iconName ='home-outline'
-            break;
+                : iconName = 'home-outline';
+              break;
             case 'MyMealsScreen':
-                focused
+              focused
                 ? iconName = 'nutrition'
-                : iconName = 'nutrition-outline'
-            break;
+                : iconName = 'nutrition-outline';
+              break;
             case 'ReportScreen':
-                focused
+              focused
                 ? iconName = 'pie-chart'
-                : iconName = 'pie-chart-outline'
-            break;
-            case 'ProfileScreen':
-                focused
+                : iconName = 'pie-chart-outline';
+              break;
+            case 'TopTab':
+              focused
                 ? iconName = 'person'
-                : iconName = 'person-outline'
-            break;
+                : iconName = 'person-outline';
+              break;
           }
           return (
-            <Icon name={ iconName } size={20} color={ color } />
-          )
+            <Icon name={iconName} size={20} color={color} />
+          );
         },
         tabBarActiveTintColor: '#795DEA',
-          tabBarStyle: {
-            borderTopWidth: 0,
-            elevation: 5,
-          },
-          tabBarLabelStyle:{
-            fontSize : 17,
-          }
+        tabBarStyle: {
+          borderTopWidth: 0,
+          elevation: 5,
+        },
+        tabBarLabelStyle: {
+          fontSize: 17,
+        },
+        headerTitleAlign: 'center',
       })
       }>
-      <Tab.Screen name="HomeScreen" options={{ headerShown: false, title: 'Home' }} component={ HomeScreen } />
-      <Tab.Screen name="MyMealsScreen" options={{ headerShown: false, title:'Diet' }} component={ MyMealsScreen } />
-      <Tab.Screen name="ReportScreen" options={{headerShown: false,  title: 'Report' }} component={ ReportScreen } />
-      <Tab.Screen name="ProfileScreen" options={{ title: 'Profile' }} component={ ProfileScreen } />
+      <Tab.Screen name="HomeScreen" options={{ headerShown: false, title: 'Home' }} component={HomeScreen} />
+      <Tab.Screen name="MyMealsScreen" options={{ headerShown: false, title: 'Diet' }} component={MyMealsScreen} />
+      <Tab.Screen name="ReportScreen" options={{ title: 'Report' }} component={ReportScreen} />
+      <Tab.Screen name="TopTab" options={{ title: 'About', headerStyle: { borderColor: 'white' } }} component={TopTab} />
     </Tab.Navigator>
-  )
-}
+  );
+};
