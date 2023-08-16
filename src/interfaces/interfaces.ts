@@ -44,10 +44,27 @@ export interface MealInfoBadgeProps {
 }
 
 export interface NutritionalChartProps {
-  progress: number;
+  progress?: number;
   grams: number;
+  progressCarbs: number;
+  progressProtein: number;
+  progressFat: number;
 }
 export interface RecipeImgProps {
   imgSource: ImageSourcePropType;
 }
 
+export interface DayObject {
+  isSelectedDay: boolean;
+  weekName: string;
+  completeDay: string;
+  day: number;
+  month: string;
+  year: number;
+}
+
+export interface CircularProgressBarProps {
+  radius: number;
+  progress: number;
+  color: string;
+}
