@@ -2,33 +2,35 @@ import React, { useState } from 'react';
 import { View, Text, ScrollView, FlatList, TouchableOpacity } from 'react-native';
 import { calendarTheme, styles } from './styles';
 import { availableAppointmentTimes } from '../../testData/availableAppointmentTimes';
-import { Calendar } from 'react-native-calendars';
+import { Calendar, DateData } from 'react-native-calendars';
 import moment from 'moment';
 
 const BookAppointment = () => {
     const [selectedDate, setSelectedDate] = useState<string | null>(null);
     const [selectedTime, setSelectedTime] = useState<string | null>(null);
 
-    const onDayPress = (day) => {
-        setSelectedDate(day.dateString);
-        setSelectedTime(null);
-    };
-
-    const selectTime = (time) => {
-        setSelectedTime(time);
-    };
-
     const currentDate = moment().format('YYYY-MM-DD');
 
     const filteredAvailableTimes = selectedDate ? availableAppointmentTimes[selectedDate] : [];
 
-    const renderTimeItem = ({ item }) => (
+    const onDayPress = (day: DateData) => {
+        setSelectedDate(day.dateString);
+        setSelectedTime(null);
+    };
+
+    const selectTime = (time: string) => {
+        setSelectedTime(time);
+    };
+
+    const markedDates = {
+        [selectedDate || '']: { selected: true },
+    };
+
+
+    const renderTimeItem = ({ item }: { item: string }) => (
         <TouchableOpacity
             onPress={() => selectTime(item)}
-            style={{
-                ...styles.flatListItemTouchable,
-                backgroundColor: selectedTime === item ? '#795DEA' : '#f5f5f5',
-            }}
+            style={[styles.flatListItemTouchable, { backgroundColor: selectedTime === item ? '#795DEA' : '#f5f5f5' }]}
         >
             <Text style={{ ...styles.flatListItemText, color: selectedTime === item ? 'white' : 'grey' }}>{item}</Text>
         </TouchableOpacity>
@@ -43,9 +45,8 @@ const BookAppointment = () => {
                     theme={calendarTheme}
                     minDate={currentDate}
                     onDayPress={onDayPress}
-                    markedDates={{
-                        [selectedDate]: { selected: true },
-                    }}
+                    markedDates={markedDates}
+                    enableSwipeMonths={true}
                 />
                 {selectedDate && (
                     <Text style={styles.selectedDateText}>

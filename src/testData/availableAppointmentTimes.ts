@@ -1,4 +1,8 @@
-export const availableAppointmentTimes = {
+type AvailableAppointmentTimes = {
+    [date: string]: string[];
+};
+
+export const availableAppointmentTimes: AvailableAppointmentTimes = {
     '2023-08-17': [
         '10:00 AM',
         '11:30 AM',
