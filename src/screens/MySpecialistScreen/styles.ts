@@ -50,7 +50,7 @@ export const styles = StyleSheet.create({
         marginRight: 5,
     },
     starRatingContainer: {
-        marginBottom: 15,
+        marginBottom: 8,
         flexDirection: 'row',
     },
     nutriName: {

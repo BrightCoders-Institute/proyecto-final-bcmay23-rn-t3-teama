@@ -5,6 +5,7 @@ import NutritionistImage from '../../assets/img/nutritionist-profile.png';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { ButtonSecondary } from '../../components/ButtonSecondary/ButtonSecondary';
 import { RatingStar } from '../../components/RatingStar/RatingStar';
+import { WhatsAppButton } from '../../components/WhatsAppButton/WhatsAppButton';
 
 const NUTRITIONIST_INFO = {
     name: 'Dr. Aimep3 Fischer',
@@ -53,7 +54,6 @@ export const MySpecialistScreen = () => {
                 <Text style={styles.nutriName}>{NUTRITIONIST_INFO.name}</Text>
 
                 <Text style={[styles.separationText, styles.nutriMajor]}>{NUTRITIONIST_INFO.major}</Text>
-
                 <View style={styles.starRatingContainer}>
                     <View style={styles.stars}>{renderStars()}</View>
                     <Text style={styles.nutriRating}>{`${NUTRITIONIST_INFO.rating}`}</Text>
@@ -65,6 +65,9 @@ export const MySpecialistScreen = () => {
                 <View style={{ marginTop: 5 }}>
                     <Text style={styles.biographyTitle}>Biography</Text>
                     <Text style={styles.biographyText}>{NUTRITIONIST_INFO.biography}</Text>
+                </View>
+                <View style={{left: 40}}>
+                    <WhatsAppButton />
                 </View>
                 <ButtonSecondary title="Book Appointment →" color="#795DEA" fontSize={15} onPress={() => console.log('Hola')} />
             </View>
