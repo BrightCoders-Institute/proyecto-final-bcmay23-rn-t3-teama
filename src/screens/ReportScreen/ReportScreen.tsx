@@ -6,6 +6,7 @@ import { CircularProgressBar } from '../../components/CircularProgressBar/Circul
 import { styles } from './styles';
 import { Title } from '../../components/Title/Title';
 import { SubTitle } from '../../components/SubTitle/SubTitle';
+import { WhatsAppButton } from '../../components/WhatsAppButton/WhatsAppButton';
 
 export const ReportScreen = () => {
   return (
@@ -14,6 +15,8 @@ export const ReportScreen = () => {
       <View style={styles.topContainer} > 
         <ShowCalendar />
       </View>
+
+      <WhatsAppButton />
 
       <View style={styles.titleContainer} >
         <Title text='Nutrition intake' fontSize={25} />
