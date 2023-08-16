@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
         backgroundColor: 'white',
         alignSelf: 'center',
         borderRadius: 10,
-        marginTop: 10,
+        marginTop: 16,
         paddingVertical: 10,
         paddingHorizontal: 20,
         width: '95%',
@@ -55,7 +55,7 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 10,
         alignItems:'center',
     },
-    weighInfo: {
+    generalInfo: {
         width: 120,
         height: 80,
         alignItems: 'center',
@@ -63,5 +63,61 @@ export const styles = StyleSheet.create({
         paddingVertical: 10,
         marginHorizontal: 5,
         marginVertical: 10,
+    },
+    recordMeasures: {
+        paddingBottom: 10,
+    },
+    metricsTitle: {
+        marginLeft: 12,
+        paddingTop: 12,
+    },
+
+    metricsContainer: {
+        flexDirection: 'row',
+        padding: 12,
+    },
+    column: {
+        width: 160,
+        paddingHorizontal: 5,
+    },
+
+    containerImc: {
+        marginVertical: 2,
+        marginBottom: 12,
+        backgroundColor: 'white',
+        borderRadius: 11,
+        paddingLeft: 20,
+        marginTop: 2,
+        paddingVertical: 17,
+        paddingHorizontal: 10,
+        width: '100%',
+        height: 90,
+        justifyContent: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 4,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
+        elevation: 4,
+    },
+
+    singleViewContainer: {
+        flex: 1,
+        borderRadius: 8,
+        marginStart: 10,
+        backgroundColor: 'white',
+        marginVertical: 2,
+        paddingHorizontal: 10,
+        justifyContent: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 4,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
+        elevation: 4,
     },
 });

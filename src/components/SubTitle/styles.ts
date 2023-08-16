@@ -6,8 +6,7 @@ export const styles = StyleSheet.create({
     fontSize: 20,
   },
   containerSubTitle: {
-    // marginTop: 40,
-    // marginBottom: 30,
+     marginBottom: 4,
   },
 });
 
