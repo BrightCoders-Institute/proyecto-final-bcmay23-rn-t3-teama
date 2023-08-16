@@ -71,7 +71,6 @@ export const styles = StyleSheet.create({
         marginLeft: 12,
         paddingTop: 12,
     },
-
     metricsContainer: {
         flexDirection: 'row',
         padding: 12,
@@ -80,7 +79,6 @@ export const styles = StyleSheet.create({
         width: 160,
         paddingHorizontal: 5,
     },
-
     containerImc: {
         marginVertical: 2,
         marginBottom: 12,
@@ -102,7 +100,6 @@ export const styles = StyleSheet.create({
         shadowRadius: 3,
         elevation: 4,
     },
-
     singleViewContainer: {
         flex: 1,
         borderRadius: 8,
@@ -120,4 +117,7 @@ export const styles = StyleSheet.create({
         shadowRadius: 3,
         elevation: 4,
     },
+    metrics:{
+        paddingBottom: 10,
+    }
 });
