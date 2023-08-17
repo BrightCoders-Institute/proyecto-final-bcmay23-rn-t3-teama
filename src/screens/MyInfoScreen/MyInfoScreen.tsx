@@ -42,7 +42,7 @@ const MyInfoScreen = () => {
         </View>
     </View>
         <View style={styles.metricsTitle}>
-          <Title text={'Monthly Metrics'} fontSize={20}/>
+          <Title text={'Monthly Metrics'} fontSize={18}/>
         </View>
         <View style={styles.metricsContainer}>
           <View style={styles.column}>
@@ -62,12 +62,9 @@ const MyInfoScreen = () => {
             </View>
           </View>
             <View style={styles.singleViewContainer}>
-              <View>
-                <Image source={iconType.man} style={styles.bodyIcon}/>
-              </View>
               <View style={styles.metricscontainer}>
                 <View style={styles.metrics}>
-                  <Title text={'Wais'} fontSize={17} color={'#939191'}/>
+                  <Title text={'Waist'} fontSize={17} color={'#939191'}/>
                   <Title text={'70.50'} fontSize={19}/>
                 </View>
                 <View style={styles.metrics}>
@@ -78,6 +75,9 @@ const MyInfoScreen = () => {
                   <Title text={'Bust'} fontSize={17} color={'#939191'}/>
                   <Title text={'110.20'} fontSize={19}/>
                 </View>
+              </View>
+              <View>
+                <Image source={iconType.man} style={styles.bodyIcon}/>
               </View>
             </View>
         </View>

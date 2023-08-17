@@ -104,9 +104,10 @@ export const styles = StyleSheet.create({
     },
     singleViewContainer: {
         flex: 1,
+        flexDirection: 'row',
         borderRadius: 8,
         marginStart: 10,
-        backgroundColor: 'lightblue',
+        backgroundColor: 'white',
         marginVertical: 2,
         paddingHorizontal: 10,
         justifyContent: 'center',
@@ -121,6 +122,8 @@ export const styles = StyleSheet.create({
     },
     metrics:{
         paddingBottom: 10,
+        justifyContent: 'space-between',
+        marginBottom: 4,
     },
     smallIcons: {
         width: '30%',
@@ -130,21 +133,26 @@ export const styles = StyleSheet.create({
         marginBottom: 3,
     },
     bodyIcon: {
-        width: '40%',
-        height: '60%',
+        width: 140,
+        height: 160,
         resizeMode: 'cover',
-        marginBottom: 2,
+        marginTop: 18,
     },
 
     metricscontainer: {
-        marginLeft: 10,
+        marginLeft: 15,
+        alignItems: 'flex-start',
+        height: 40,
+        width: 70,
+        marginTop: 18,
     },
 
     imcContainer: {
-        marginStart: 3,
+        marginStart: 8,
     },
 
     ageContainer: {
-        marginStart: 2,
+        marginStart: 3,
     },
+
 });
