@@ -48,29 +48,35 @@ const MyInfoScreen = () => {
           <View style={styles.column}>
             <View style={styles.containerImc}>
               <Image source={iconType.weightScale} style={styles.smallIcons}/>
-              <Title text={'IMC'} fontSize={17} color={'#939191'}/>
-              <Title text={'29.40'} fontSize={17}/>
+              <View style={styles.imcContainer}>
+                <Title text={'IMC'} fontSize={17} color={'#939191'}/>
+                <Title text={'29.40'} fontSize={19}/>
+              </View>
             </View>
             <View style={[styles.containerImc, {marginBottom: 0}]}>
               <Image source={iconType.calendar} style={styles.smallIcons}/>
-              <Title text={'Age'} fontSize={17} color={'#939191'}/>
-              <Title text={'28 years'} fontSize={17}/>
+              <View style={styles.ageContainer}>
+                <Title text={'Age'} fontSize={17} color={'#939191'}/>
+                <Title text={'28 years'} fontSize={19}/>
+              </View>
             </View>
           </View>
             <View style={styles.singleViewContainer}>
-              <Image source={iconType.man} style={styles.bodyIcon} />
+              <View>
+                <Image source={iconType.man} style={styles.bodyIcon}/>
+              </View>
               <View style={styles.metricscontainer}>
                 <View style={styles.metrics}>
                   <Title text={'Wais'} fontSize={17} color={'#939191'}/>
-                  <Title text={'70.50'} fontSize={17}/>
+                  <Title text={'70.50'} fontSize={19}/>
                 </View>
                 <View style={styles.metrics}>
                   <Title text={'Hips'} fontSize={17} color={'#939191'}/>
-                  <Title text={'100.50'} fontSize={17}/>
+                  <Title text={'100.50'} fontSize={19}/>
                 </View>
                 <View style={styles.metrics}>
                   <Title text={'Bust'} fontSize={17} color={'#939191'}/>
-                  <Title text={'110.20'} fontSize={17}/>
+                  <Title text={'110.20'} fontSize={19}/>
                 </View>
               </View>
             </View>

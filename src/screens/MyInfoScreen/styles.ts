@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
         borderWidth: 3,
         borderRadius: 11,
         height: 45,
-        marginTop: 7,
+        marginTop: 20,
         paddingVertical: 8,
         paddingHorizontal: 10,
         width: '90%',
@@ -86,9 +86,9 @@ export const styles = StyleSheet.create({
         marginBottom: 12,
         backgroundColor: 'white',
         borderRadius: 11,
-        paddingLeft: 20,
+        paddingLeft: 7,
         marginTop: 2,
-        paddingVertical: 17,
+        paddingVertical: 16,
         paddingHorizontal: 10,
         width: '100%',
         height: 90,
@@ -123,19 +123,28 @@ export const styles = StyleSheet.create({
         paddingBottom: 10,
     },
     smallIcons: {
-        width: '40%',
+        width: '30%',
+        marginRight: 3,
         height: '60%',
         resizeMode: 'contain',
-        marginBottom: 5,
+        marginBottom: 3,
     },
     bodyIcon: {
-        width: '80%',
-        height: '40%',
-        resizeMode: 'contain',
+        width: '40%',
+        height: '60%',
+        resizeMode: 'cover',
         marginBottom: 2,
     },
 
     metricscontainer: {
-        marginLeft: 10, // Adjust this spacing as needed
+        marginLeft: 10,
+    },
+
+    imcContainer: {
+        marginStart: 3,
+    },
+
+    ageContainer: {
+        marginStart: 2,
     },
 });
