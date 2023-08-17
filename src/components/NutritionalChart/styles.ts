@@ -30,7 +30,6 @@ const style = StyleSheet.create({
         marginTop: 2,
         marginRight: 15,
         marginLeft: -5,
-        // backgroundColor: 'red',
     },
     titlenutrition:{
         paddingTop: 10,

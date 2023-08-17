@@ -8,8 +8,6 @@ const Tab = createMaterialTopTabNavigator();
 function TopTab() {
     return (
         <Tab.Navigator
-            style={{ backgroundColor: 'white' }}
-            sceneContainerStyle={{ backgroundColor: 'white' }}
             screenOptions={{
                 tabBarStyle: {
                     elevation: 0,

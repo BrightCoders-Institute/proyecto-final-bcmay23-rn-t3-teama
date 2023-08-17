@@ -44,11 +44,12 @@ export interface MealInfoBadgeProps {
 }
 
 export interface NutritionalChartProps {
-  progress?: number;
-  grams: number;
   progressCarbs: number;
   progressProtein: number;
   progressFat: number;
+  gramsCarbs: number;
+  gramsProtein: number;
+  gramsFat: number;
 }
 export interface RecipeImgProps {
   imgSource: ImageSourcePropType;
@@ -67,4 +68,16 @@ export interface CircularProgressBarProps {
   radius: number;
   progress: number;
   color: string;
+}
+
+export interface wellcomeAvatarProps {
+  size: number;
+}
+
+export interface NutritionInfoProps {
+  nutritionist: string;
+  location: string;
+  date: string;
+  time: string;
+  price: string;
 }
