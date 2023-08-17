@@ -69,7 +69,7 @@ export const styles = StyleSheet.create({
         paddingBottom: 5,
         paddingTop: 20,
     },
-    metricsTitle: {
+    titleCards: {
         marginLeft: 12,
         paddingTop: 12,
     },
@@ -154,12 +154,18 @@ export const styles = StyleSheet.create({
         marginStart: 3,
     },
     counsellingContainer: {
-        backgroundColor: '#FFFCFC',
+        backgroundColor: 'white',
         borderRadius: 13,
         paddingHorizontal: 20,
         paddingVertical: 15,
         elevation: 10,
-        shadowColor: 'black',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 4,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
     },
     topSection: {
         flexDirection: 'row',

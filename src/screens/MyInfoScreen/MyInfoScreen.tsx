@@ -52,7 +52,7 @@ const MyInfoScreen = ({}: NutritionInfoProps) => {
           </View>
         </View>
     </View>
-        <View style={styles.metricsTitle}>
+        <View style={styles.titleCards}>
           <Title text={'Monthly Metrics'} fontSize={18}/>
         </View>
         <View style={styles.metricsContainer}>
