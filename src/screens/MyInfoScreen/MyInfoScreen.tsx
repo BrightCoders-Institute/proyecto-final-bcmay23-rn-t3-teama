@@ -5,18 +5,19 @@ import { Title } from '../../components/Title/Title';
 import { WellcomeAvatar } from '../../components/WellcomeAvatar/WellcomeAvatar';
 import { styles } from './styles';
 
+interface NutritionCounsellingInfo {
+  nutritionist: string;
+  location: string;
+  date: string;
+  time: string;
+  price: string;
+}
+
 const iconType = {
   weightScale: require('../../assets/img/scale-sharp.png'),
   calendar: require('../../assets/img/calendar.png'),
   man: require('../../assets/img/man.png'),
 };
-interface NutritionCounsellingInfo {
-    nutritionist: string;
-    location: string;
-    date: string;
-    time: string;
-    price: string;
-}
 
 const NUTRITION_COUNSELLING_DATA: NutritionCounsellingInfo = {
     nutritionist: 'Dr. Aimep3 Fischer',

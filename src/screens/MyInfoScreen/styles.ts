@@ -138,7 +138,6 @@ export const styles = StyleSheet.create({
         resizeMode: 'cover',
         marginTop: 18,
     },
-
     metricscontainer: {
         marginLeft: 15,
         alignItems: 'flex-start',
@@ -146,13 +145,31 @@ export const styles = StyleSheet.create({
         width: 70,
         marginTop: 18,
     },
-
     imcContainer: {
         marginStart: 8,
     },
-
     ageContainer: {
         marginStart: 3,
     },
-
+    counsellingContainer: {
+        backgroundColor: '#FFFCFC',
+        borderRadius: 13,
+        paddingHorizontal: 20,
+        paddingVertical: 15,
+        elevation: 10,
+        shadowColor: 'black',
+    },
+    topSection: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 15,
+    },
+    middleSection: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    section: {
+        flex: 1,
+        marginRight: 10,
+    },
 });
