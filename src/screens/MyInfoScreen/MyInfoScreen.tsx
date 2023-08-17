@@ -3,15 +3,8 @@ import { View, ScrollView, Text, Image } from 'react-native';
 import { SubTitle } from '../../components/SubTitle/SubTitle';
 import { Title } from '../../components/Title/Title';
 import { WellcomeAvatar } from '../../components/WellcomeAvatar/WellcomeAvatar';
+import { NutritionInfoProps } from '../../interfaces/interfaces';
 import { styles } from './styles';
-
-interface NutritionCounsellingInfo {
-  nutritionist: string;
-  location: string;
-  date: string;
-  time: string;
-  price: string;
-}
 
 const iconType = {
   weightScale: require('../../assets/img/scale-sharp.png'),
@@ -19,7 +12,7 @@ const iconType = {
   man: require('../../assets/img/man.png'),
 };
 
-const NUTRITION_COUNSELLING_DATA: NutritionCounsellingInfo = {
+const NUTRITION_COUNSELLING_DATA: NutritionInfoProps = {
     nutritionist: 'Dr. Aimep3 Fischer',
     date: 'Wed, Aug 26, 2023',
     time: '5:40 PM',
@@ -27,7 +20,9 @@ const NUTRITION_COUNSELLING_DATA: NutritionCounsellingInfo = {
     price: '600.00',
 };
 
-const MyInfoScreen: React.FC = () => {
+const MyInfoScreen = ({}: NutritionInfoProps) => {
+
+
   return (
     <ScrollView>
     <View style={styles.mainContainer}>
@@ -40,20 +35,20 @@ const MyInfoScreen: React.FC = () => {
         <View style={styles.container}>
           <View style={styles.generalInfo}>
             <View style={styles.recordMeasures}>
-              <Title text={'120.20'} fontSize={20}/>
+              <Title text={'120.20'} fontSize={19}/>
             </View>
-              <SubTitle text={'(kg)'} fontSize={18} color={'black'}/>
-              <SubTitle text={'weight'} fontSize={18} />
+              <SubTitle text={'(kg)'} fontSize={17} color={'black'}/>
+              <SubTitle text={'weight'} fontSize={16} />
           </View>
           <View style={styles.generalInfo}>
-            <WellcomeAvatar size={100} />
+            <WellcomeAvatar size={110} />
           </View>
           <View style={styles.generalInfo}>
             <View style={styles.recordMeasures}>
-             <Title text={'182'} fontSize={20}/>
+             <Title text={'182'} fontSize={19}/>
             </View>
-            <SubTitle text={'(cm)'} fontSize={18} color={'black'}/>
-            <SubTitle text={'hight'} fontSize={18}/>
+            <SubTitle text={'(cm)'} fontSize={17} color={'black'}/>
+            <SubTitle text={'hight'} fontSize={16}/>
           </View>
         </View>
     </View>
@@ -97,7 +92,7 @@ const MyInfoScreen: React.FC = () => {
               </View>
             </View>
         </View>
-        <View style={{padding: 15, marginTop: 440}}>
+        <View style={{padding: 15}}>
             <Text style={{color: '#010101', fontSize: 18, marginBottom: 10, fontWeight: 'bold'}}>Nutrition Counselling</Text>
             <View style={styles.counsellingContainer}>
                 <View style={styles.topSection}>

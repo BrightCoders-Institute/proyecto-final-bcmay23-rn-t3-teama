@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 20,
         width: '95%',
-        height: 240,
+        height: 250,
         justifyContent: 'center',
         shadowColor: '#000',
         shadowOffset: {
@@ -25,7 +25,8 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         alignSelf: 'center',
         maxWidth: '100%',
-        paddingBottom: 40,
+        paddingBottom: 30,
+        paddingTop: 10,
     },
     clientKey: {
         alignSelf: 'center',
@@ -65,7 +66,8 @@ export const styles = StyleSheet.create({
         marginVertical: 10,
     },
     recordMeasures: {
-        paddingBottom: 10,
+        paddingBottom: 5,
+        paddingTop: 20,
     },
     metricsTitle: {
         marginLeft: 12,

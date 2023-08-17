@@ -73,3 +73,11 @@ export interface CircularProgressBarProps {
 export interface wellcomeAvatarProps {
   size: number;
 }
+
+export interface NutritionInfoProps {
+  nutritionist: string;
+  location: string;
+  date: string;
+  time: string;
+  price: string;
+}
