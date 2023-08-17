@@ -1,6 +1,6 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import MySpecialistScreen from '../screens/MySpecialistScreen/MySpecialistScreen';
+import { MySpecialistScreen } from '../screens/MySpecialistScreen/MySpecialistScreen';
 import MyInfoScreen from '../screens/MyInfoScreen/MyInfoScreen';
 
 const Tab = createMaterialTopTabNavigator();
