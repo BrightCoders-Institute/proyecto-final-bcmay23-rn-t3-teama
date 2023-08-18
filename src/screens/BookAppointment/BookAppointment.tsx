@@ -5,6 +5,7 @@ import { availableAppointmentTimes } from '../../testData/availableAppointmentTi
 import { Calendar, DateData } from 'react-native-calendars';
 import moment from 'moment';
 import Map from '../../components/Map/Map';
+import { ButtonSecondary } from '../../components/ButtonSecondary/ButtonSecondary';
 
 
 const BookAppointment = () => {
@@ -19,6 +20,7 @@ const BookAppointment = () => {
         setSelectedDate(day.dateString);
         setSelectedTime(null);
     };
+    console.log('Fecha seleccionada: ', selectedDate);
 
     const selectTime = (time: string) => {
         setSelectedTime(time);
@@ -38,6 +40,8 @@ const BookAppointment = () => {
         </TouchableOpacity>
     );
 
+
+    console.log('Hora seleccionada: ', selectedTime);
     return (
         <ScrollView>
             <View>
@@ -52,10 +56,10 @@ const BookAppointment = () => {
                 />
             </View>
 
-            <View>
-                <Text style={styles.subTitle}>Choose the time</Text>
-                {selectedDate ? (
-                    filteredAvailableTimes.length === 0 ? (
+            {selectedDate && (
+                <View>
+                    <Text style={styles.subTitle}>Choose the time</Text>
+                    {filteredAvailableTimes.length === 0 ? (
                         <Text style={styles.unavailableDate}>Sorry! There are no available appointments on this date.</Text>
                     ) : (
                         <FlatList
@@ -66,14 +70,17 @@ const BookAppointment = () => {
                             horizontal
                             showsHorizontalScrollIndicator={false}
                         />
-                    )
-                ) : null}
-            </View>
-
+                    )}
+                </View>
+            )}
 
             <View>
                 <Text style={styles.subTitle}>Location</Text>
                 <Map />
+            </View>
+
+            <View style={styles.buttonView}>
+                <ButtonSecondary title="Confirm Appointment" color="#795DEA" onPress={() => console.log('Appointment Confirmed!')} />
             </View>
         </ScrollView>
     );

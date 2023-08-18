@@ -51,11 +51,15 @@ export const styles = StyleSheet.create({
         fontWeight: '600',
     },
     subTitle: {
-        marginVertical: 15,
+        marginTop: 20,
+        marginBottom: 10,
         fontWeight: '700',
         fontSize: 17,
         color: 'black',
         width: '40%',
         marginLeft: '2.5%',
+    },
+    buttonView: {
+        marginVertical: 25,
     },
 });
