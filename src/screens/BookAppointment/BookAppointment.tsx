@@ -4,6 +4,8 @@ import { calendarTheme, styles } from './styles';
 import { availableAppointmentTimes } from '../../testData/availableAppointmentTimes';
 import { Calendar, DateData } from 'react-native-calendars';
 import moment from 'moment';
+import Map from '../../components/Map/Map';
+
 
 const BookAppointment = () => {
     const [selectedDate, setSelectedDate] = useState<string | null>(null);
@@ -26,9 +28,9 @@ const BookAppointment = () => {
         [selectedDate || '']: { selected: true },
     };
 
-
     const renderTimeItem = ({ item }: { item: string }) => (
         <TouchableOpacity
+            activeOpacity={0.5}
             onPress={() => selectTime(item)}
             style={[styles.flatListItemTouchable, { backgroundColor: selectedTime === item ? '#795DEA' : '#f5f5f5' }]}
         >
@@ -66,8 +68,9 @@ const BookAppointment = () => {
                 />
             </View>
 
-            <View>
+            <View style={{}} >
                 <Text style={styles.subTitle}>Location</Text>
+                <Map />
             </View>
         </ScrollView>
     );

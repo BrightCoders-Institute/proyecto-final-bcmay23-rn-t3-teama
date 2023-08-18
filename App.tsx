@@ -5,6 +5,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { StackNavigator } from './src/navigation/StackNavigator';
 import firestore from '@react-native-firebase/firestore';
 import { PaperProvider } from 'react-native-paper';
+import { enableLatestRenderer } from 'react-native-maps';
+
+enableLatestRenderer();
 
 function App(): JSX.Element {
 
