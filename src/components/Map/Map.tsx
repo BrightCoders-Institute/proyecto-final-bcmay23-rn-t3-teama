@@ -1,11 +1,12 @@
 import React from 'react';
 import MapView, { Marker } from 'react-native-maps';
+import { styles } from './styles';
 
 
 const Map = () => {
     return (
         <MapView
-            style={{ width: '90%', height: 200, alignSelf: 'center' }}
+            style={styles.map}
             initialRegion={{
                 latitude: 19.243798803708895,
                 longitude: -103.72873328431236,

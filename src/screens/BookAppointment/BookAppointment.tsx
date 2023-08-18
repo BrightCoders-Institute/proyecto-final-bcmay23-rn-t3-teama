@@ -13,7 +13,7 @@ const BookAppointment = () => {
 
     const currentDate = moment().format('YYYY-MM-DD');
 
-    const filteredAvailableTimes = selectedDate ? availableAppointmentTimes[selectedDate] : [];
+    const filteredAvailableTimes = selectedDate ? availableAppointmentTimes[selectedDate] || [] : [];
 
     const onDayPress = (day: DateData) => {
         setSelectedDate(day.dateString);
@@ -34,7 +34,7 @@ const BookAppointment = () => {
             onPress={() => selectTime(item)}
             style={[styles.flatListItemTouchable, { backgroundColor: selectedTime === item ? '#795DEA' : '#f5f5f5' }]}
         >
-            <Text style={{ ...styles.flatListItemText, color: selectedTime === item ? 'white' : 'grey' }}>{item}</Text>
+            <Text style={{ ...styles.flatListItemText, color: selectedTime === item ? 'white' : 'black' }}>{item}</Text>
         </TouchableOpacity>
     );
 
@@ -50,25 +50,28 @@ const BookAppointment = () => {
                     markedDates={markedDates}
                     enableSwipeMonths={true}
                 />
-                {selectedDate && (
-                    <Text style={styles.selectedDateText}>
-                        Fecha seleccionada: {selectedDate}
-                    </Text>
-                )}
-            </View>
-            <View>
-                <Text style={styles.subTitle}>Choose the time</Text>
-                <FlatList
-                    style={styles.flatList}
-                    data={filteredAvailableTimes}
-                    renderItem={renderTimeItem}
-                    keyExtractor={(item) => item}
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                />
             </View>
 
-            <View style={{}} >
+            <View>
+                <Text style={styles.subTitle}>Choose the time</Text>
+                {selectedDate ? (
+                    filteredAvailableTimes.length === 0 ? (
+                        <Text style={styles.unavailableDate}>Sorry! There are no available appointments on this date.</Text>
+                    ) : (
+                        <FlatList
+                            style={styles.flatList}
+                            data={filteredAvailableTimes}
+                            renderItem={renderTimeItem}
+                            keyExtractor={(item) => item}
+                            horizontal
+                            showsHorizontalScrollIndicator={false}
+                        />
+                    )
+                ) : null}
+            </View>
+
+
+            <View>
                 <Text style={styles.subTitle}>Location</Text>
                 <Map />
             </View>

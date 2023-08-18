@@ -11,7 +11,8 @@ export const calendarTheme: Theme = {
 export const styles = StyleSheet.create({
     calendar: {
         borderRadius: 10,
-        margin: 10,
+        marginHorizontal: 10,
+        marginBottom: 20,
         elevation: 4,
     },
     selectedDateText: {
@@ -19,9 +20,24 @@ export const styles = StyleSheet.create({
         marginTop: 10,
         color: 'black',
     },
+    unavailableDate: {
+        width: '95%',
+        marginBottom: 15,
+        alignSelf: 'center',
+        textAlign: 'center',
+        backgroundColor: '#ff4545',
+        color: 'white',
+        borderRadius: 10,
+        paddingVertical: 7.5,
+        paddingHorizontal: 2.5,
+    },
+    flatList: {
+        marginBottom: 15,
+        marginLeft: '2.5%',
+    },
     flatListItemTouchable: {
         marginHorizontal: 5,
-        paddingVertical: 10,
+        paddingVertical: 8,
         borderRadius: 20,
         elevation: 3,
         shadowColor: 'black',
@@ -34,19 +50,12 @@ export const styles = StyleSheet.create({
         marginHorizontal: 10,
         fontWeight: '600',
     },
-    flatList: {
-        paddingVertical: 5,
-    },
     subTitle: {
         marginVertical: 15,
         fontWeight: '700',
-        fontSize: 15,
-        color: 'grey',
+        fontSize: 17,
+        color: 'black',
         width: '40%',
-        textAlign: 'center',
-        paddingVertical: 2,
-        paddingHorizontal: 5,
-        borderBottomWidth: 2,
-        borderBottomColor: '#795DEA',
+        marginLeft: '2.5%',
     },
 });
