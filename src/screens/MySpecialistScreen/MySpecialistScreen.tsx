@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { ButtonSecondary } from '../../components/ButtonSecondary/ButtonSecondary';
 import { RatingStar } from '../../components/RatingStar/RatingStar';
 import { WhatsAppButton } from '../../components/WhatsAppButton/WhatsAppButton';
+import { StackScreenProps } from '@react-navigation/stack';
 
 interface NutritionistInfo {
     name: string;
@@ -23,7 +24,8 @@ const NUTRITIONIST_INFO: NutritionistInfo = {
     rating: '5.0',
 };
 
-export const MySpecialistScreen: React.FC = () => {
+interface Props extends StackScreenProps<any, any> {}
+export const MySpecialistScreen = ({navigation}: Props) => {
     const {height} = useWindowDimensions();
 
     const renderStars = () => {
@@ -77,7 +79,7 @@ export const MySpecialistScreen: React.FC = () => {
                 <View style={{left: 40}}>
                     <WhatsAppButton />
                 </View>
-                <ButtonSecondary title="Book Appointment →" color="#795DEA" fontSize={15} onPress={() => console.log('Hola')} />
+                <ButtonSecondary title="Book Appointment →" color="#795DEA" fontSize={15} onPress={() => navigation.navigate('Book Appointment')} />
             </View>
         </ScrollView>
     );
