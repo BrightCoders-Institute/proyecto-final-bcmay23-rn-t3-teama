@@ -5,6 +5,7 @@ import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import { BottomTab } from './BottomTab';
 import { RecipeScreen } from '../screens/RecipeScreen/RecipeScreen';
 import MyMealDetailsScreen from '../screens/MyMealDetailsScreen/MyMealDetailsScreen';
+import BookAppointment from '../screens/BookAppointment/BookAppointment';
 
 const Stack = createStackNavigator();
 
@@ -45,6 +46,10 @@ export const StackNavigator = () => {
       <Stack.Screen
         name="Meals Details"
         component={MyMealDetailsScreen}
+      />
+      <Stack.Screen
+        name="Book Appointment"
+        component={BookAppointment}
       />
     </Stack.Navigator>
   );
