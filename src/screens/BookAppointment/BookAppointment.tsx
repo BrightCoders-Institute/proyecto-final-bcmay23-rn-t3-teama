@@ -6,11 +6,18 @@ import { Calendar, DateData } from 'react-native-calendars';
 import moment from 'moment';
 import Map from '../../components/Map/Map';
 import { ButtonSecondary } from '../../components/ButtonSecondary/ButtonSecondary';
+import LoadingModal from '../../components/LoadingModal/LoadingModal';
+
+
+const successCompleted = require('../../assets/img/successDoctorModal.png');
+const errorImage = require('../../assets/img/errorDoctorModal.png');
 
 
 const BookAppointment = () => {
     const [selectedDate, setSelectedDate] = useState<string | null>(null);
     const [selectedTime, setSelectedTime] = useState<string | null>(null);
+    const [isModalVisible, setModalVisible] = useState(false);
+    const [isAppointmentSuccessful, setAppointmentSuccessful] = useState(false);
 
     const currentDate = moment().format('YYYY-MM-DD');
 
@@ -40,10 +47,29 @@ const BookAppointment = () => {
         </TouchableOpacity>
     );
 
+    const confirmAppointment = () => {
+        setTimeout(() => {
+            setModalVisible(true);
+        }, 2000);
+    };
 
-    console.log('Hora seleccionada: ', selectedTime);
+    const closeModal = () => {
+        setModalVisible(false);
+        setAppointmentSuccessful(true);
+    };
+
     return (
         <ScrollView>
+            <LoadingModal
+                isVisible={isModalVisible}
+                isLoading={false}
+                successImageUrl={successCompleted}
+                errorImageUrl={errorImage}
+                title={isAppointmentSuccessful ? 'Booking confirmed' : 'Oops! something went wrong'}
+                subtitle={isAppointmentSuccessful ? 'Please atteng your appointment on the agreed day and time' : 'Sorry, the appointment could not be scheduled, please try again later.'}
+                isSuccessful={isAppointmentSuccessful}
+                onClose={closeModal}
+            />
             <View>
                 <Text style={styles.subTitle}>Choose the date</Text>
                 <Calendar
@@ -80,7 +106,7 @@ const BookAppointment = () => {
             </View>
 
             <View style={styles.buttonView}>
-                <ButtonSecondary title="Confirm Appointment" color="#795DEA" onPress={() => console.log('Appointment Confirmed!')} />
+                <ButtonSecondary title="Confirm Appointment" color="#795DEA" onPress={confirmAppointment} />
             </View>
         </ScrollView>
     );
