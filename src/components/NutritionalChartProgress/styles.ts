@@ -42,7 +42,7 @@ export const style = StyleSheet.create({
     },
     titlenutrition:{
         paddingTop: 10,
-        margin: 1,
+        margin: 0,
         fontSize: 15,
         fontWeight: 'bold',
         paddingBottom: 6,
@@ -57,5 +57,8 @@ export const style = StyleSheet.create({
         fontWeight: 'bold',
         color: '#818181',
     },
+    porcentGrams: {
+        left: -10,
+    }
 });
 

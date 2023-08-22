@@ -14,11 +14,11 @@ export const CircularProgressBar = ({radius, progress, color}: CircularProgressB
       borderWidth={20}
       color={color}
       shadowColor="#F4F3F3"
-      bgColor="#fff"
+      bgColor="#FFFF"
     >
       <Title text='1600' fontSize={30}/>
       <SubTitle text='/ 3200' color='gray' fontSize={18} />
-      <SubTitle text='Your calories eaten today' color='gray' fontSize={12} />
+      <SubTitle text='Your calories eaten today' color='gray' fontSize={10} />
     </ProgressCircle>
   </View>
   )

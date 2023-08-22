@@ -23,7 +23,7 @@ export const ReportScreen = () => {
       </View>
 
       <View style={styles.centerContainer} >
-        <CircularProgressBar  radius={100}  progress={25} color="#58D164" />
+        <CircularProgressBar  radius={100}  progress={50} color="#58D164" />
         <View style={{flexDirection: 'column', marginLeft: 15}}>
           <Title text='Goal per day' fontSize={20} />
           <SubTitle text='  3200 Cal' color='gray' fontSize={18}/>
@@ -31,14 +31,16 @@ export const ReportScreen = () => {
       </View>
       <View style={styles.titleContainer2}>
         <Title text='Daily everage' fontSize={25} />
-      </View>
+      </View> 
       
       <View style={styles.bottomContainer}>
         <NutritionalChartProgress 
           progressCarbs={0.5} 
           progressProtein={0.3} 
           progressFat={0.2} 
-          grams={50} 
+          gramsCarbs={50} 
+          gramsProtein={50} 
+          gramsFat={50} 
           />
         </View>
     </View>
