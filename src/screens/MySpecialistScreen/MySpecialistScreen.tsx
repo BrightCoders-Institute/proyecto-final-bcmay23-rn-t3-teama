@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, useWindowDimensions, Image, Text, ScrollView } from 'react-native';
+import { View, useWindowDimensions, Image, Text, SafeAreaView } from 'react-native';
 import { styles } from './styles';
 import NutritionistImage from '../../assets/img/nutritionist-profile.png';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -52,7 +52,7 @@ export const MySpecialistScreen = ({navigation}: Props) => {
     };
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <View style={styles.imageContainer}>
                 <View style={styles.circle} />
                 <Image
@@ -83,6 +83,6 @@ export const MySpecialistScreen = ({navigation}: Props) => {
                 </View>
                 <ButtonSecondary title="Book Appointment →" color="#795DEA" fontSize={15} onPress={() => navigation.navigate('Book Appointment')} />
             </View>
-        </View>
+        </SafeAreaView>
     );
 };
