@@ -21,7 +21,6 @@ const MyMealDetailsScreen = ({navigation}: Props) => {
 
     const handleMarkCompleted = () => {
         setModalVisible(true);
-
     };
 
     const closeModal = () => {
@@ -45,13 +44,15 @@ const MyMealDetailsScreen = ({navigation}: Props) => {
         isSuccessful={true}
         onClose={closeModal}
       />
-
-
       <ScrollView>
-        <RecipeImg imgSource={imgRecipe.breakfast}/>
-        <View style={style.titleContainer}>
-          <Title text="Fruit Bowl" fontSize={26}/>
-          <SubTitle text="Bowl with fruits, some fruits and more fruits. You can add toppings" fontSize={17} color={'#A9A8A8'}/>
+          <RecipeImg imgSource={imgRecipe.breakfast}/>
+          <View style={style.titleContainer}>
+          <View style={style.title}>
+            <Title text="Fruit Bowl" fontSize={26}/>
+          </View>
+          <View style={style.subtitle}>
+            <SubTitle text="Bowl with fruits, some fruits and more fruits. You can add toppings" fontSize={17} color={'#A9A8A8'}/>
+          </View>
         </View>
         <View style={style.btnRecipe}>
           <ButtonSecondary title="View Recipe" onPress={() => navigation.navigate('Recipe')} color={'#795DEA'} />

@@ -2,22 +2,28 @@ import {StyleSheet} from 'react-native';
 
 export const style = StyleSheet.create({
     container:{
-        flex:1,
         backgroundColor: 'white',
+        flexGrow: 1,
+        paddingVertical: '5%',
     },
     titleContainer:{
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 9,
-        marginRight: 85,
-        marginLeft: 85,
-        marginBottom: 30,
+    },
+    title: {
+        padding: '2%',
+    },
+      subtitle: {
+        fontSize: 17,
+        width: '75%',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     btnRecipe: {
-        marginBottom: 20,
+        marginVertical: '2%',
     },
     percentagesTitle: {
-        marginLeft: 22,
+        marginLeft: '2%',
     },
     btnCompleted: {
         marginBottom: 10,
