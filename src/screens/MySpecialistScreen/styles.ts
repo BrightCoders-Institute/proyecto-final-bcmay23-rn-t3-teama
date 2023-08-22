@@ -18,18 +18,18 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
     },
     circle: {
-        width: '91%',
+        width: '70%',
         aspectRatio: 1,
         borderRadius: 999,
         backgroundColor: '#8E7BD7',
         position: 'absolute',
-        left: '-24%',
+        left: '-15%',
         bottom: '-30%',
     },
     nutritionistImage: {
         resizeMode: 'contain',
         position: 'absolute',
-        left: '-25%',
+        left: '-30%',
     },
     locationContainer: {
         display: 'flex',

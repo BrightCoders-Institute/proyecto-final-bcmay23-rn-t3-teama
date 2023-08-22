@@ -55,7 +55,7 @@ export const BottomTab = () => {
       <Tab.Screen name="HomeScreen" options={{ headerShown: false, title: 'Home' }} component={HomeScreen} />
       <Tab.Screen name="MyMealsScreen" options={{ headerShown: false, title: 'Diet' }} component={MyMealsScreen} />
       <Tab.Screen name="ReportScreen" options={{ headerShown: false, title: 'Report' }} component={ReportScreen} />
-      <Tab.Screen name="TopTab" options={{ title: 'About', headerStyle: { borderColor: 'white' } }} component={TopTab} />
+      <Tab.Screen name="TopTab" options={{ headerShown: false, headerStyle: { borderColor: 'white' } }} component={TopTab} />
     </Tab.Navigator>
   );
 };

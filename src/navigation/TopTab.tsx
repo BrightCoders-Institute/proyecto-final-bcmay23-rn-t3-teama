@@ -14,6 +14,7 @@ function TopTab() {
                     borderWidth: 0,
                     shadowColor: 'transparent',
                 },
+                tabBarItemStyle: { height: 70 },
                 tabBarLabelStyle: {
                     fontSize: 18, color: '#FF914D',
                     textTransform: 'capitalize',

@@ -53,14 +53,14 @@ export const MySpecialistScreen = ({navigation}: Props) => {
 
     return (
         <ScrollView style={styles.container}>
-            <View style={[{height: height * 0.40}, styles.imageContainer]}>
+            <View style={[{height: height * 0.30}, styles.imageContainer]}>
                 <View style={styles.circle} />
                 <Image
                     source={NutritionistImage}
-                    style={[styles.nutritionistImage, {height: height * 0.42}]}
+                    style={[styles.nutritionistImage, {height: height * 0.33}]}
                 />
             </View>
-            <View style={[{height: height * 0.50}, styles.nutritionistInfoContainer]}>
+            <View style={[{height: height * 0.70}, styles.nutritionistInfoContainer]}>
                 <Text style={styles.nutriName}>{NUTRITIONIST_INFO.name}</Text>
 
                 <Text style={[styles.separationText, styles.nutriMajor]}>{NUTRITIONIST_INFO.major}</Text>
