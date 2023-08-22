@@ -18,30 +18,21 @@ interface Props extends StackScreenProps<any, any> {}
 const MyMealDetailsScreen = ({navigation}: Props) => {
 
   const [isModalVisible, setModalVisible] = useState(false);
-  const [nutritionalChartData, setNutritionalChartData] = useState(null);
 
-  const handleMarkCompleted = () => {
-    setModalVisible(true);
+    const handleMarkCompleted = () => {
+        setModalVisible(true);
 
-    const nutritionalData = {
-      progressCarbs: 0.5,
-      progressProtein: 0.3,
-      progressFat: 0.2,
-      gramsCarbs: 50,
-      gramsProtein: 32,
-      gramsFat: 12,
     };
-    setNutritionalChartData(nutritionalData);
 
-    setTimeout(() => {
+    const closeModal = () => {
       setModalVisible(false);
-    }, 3000);
-  };
+    };
 
 
   const imgRecipe = {
     breakfast: require('../../assets/img/Breakfast.png'),
   };
+
   return (
     <View style={style.container}>
 
@@ -52,7 +43,7 @@ const MyMealDetailsScreen = ({navigation}: Props) => {
         title="Well done"
         subtitle="Check the report section to know your progress"
         isSuccessful={true}
-        nutritionalChartData={nutritionalChartData}
+        onClose={closeModal}
       />
 
 
