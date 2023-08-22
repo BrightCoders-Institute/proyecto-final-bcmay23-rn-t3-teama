@@ -48,9 +48,15 @@ const BookAppointment = () => {
     );
 
     const confirmAppointment = () => {
-        setTimeout(() => {
+
+        if ( !selectedDate || !selectedTime ) {
             setModalVisible(true);
-        }, 2000);
+            setAppointmentSuccessful(false);
+        } else {
+            setModalVisible(true);
+            setAppointmentSuccessful(true);
+        }
+
     };
 
     const closeModal = () => {
