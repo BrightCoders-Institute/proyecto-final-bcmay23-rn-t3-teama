@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 import { Title } from '../../components/Title/Title';
 import { RecipeImg } from '../../components/RecipeImg/RecipeImg';
@@ -9,16 +9,44 @@ import MealInfoBadge from '../../components/MealInfoBadge/MealInfoBadge';
 import NutritionalChart from '../../components/NutritionalChart/NutritionalChart';
 import { ButtonSecondary } from '../../components/ButtonSecondary/ButtonSecondary';
 import { ScrollView } from 'react-native-gesture-handler';
+import LoadingModal from '../../components/LoadingModal/LoadingModal';
+
+const successCompletedModalImg = require('../../assets/img/successDoctorModal.png');
 
 interface Props extends StackScreenProps<any, any> {}
 
 const MyMealDetailsScreen = ({navigation}: Props) => {
 
+  const [isModalVisible, setModalVisible] = useState(false);
+
+    const handleMarkCompleted = () => {
+        setModalVisible(true);
+
+    };
+
+    const closeModal = () => {
+      setModalVisible(false);
+    };
+
+
   const imgRecipe = {
     breakfast: require('../../assets/img/Breakfast.png'),
   };
+
   return (
     <View style={style.container}>
+
+      <LoadingModal
+        isVisible={isModalVisible}
+        isLoading={false}
+        successImageUrl={successCompletedModalImg}
+        title="Well done"
+        subtitle="Check the report section to know your progress"
+        isSuccessful={true}
+        onClose={closeModal}
+      />
+
+
       <ScrollView>
         <RecipeImg imgSource={imgRecipe.breakfast}/>
         <View style={style.titleContainer}>
@@ -43,7 +71,7 @@ const MyMealDetailsScreen = ({navigation}: Props) => {
             />
         </View>
         <View style={style.btnCompleted}>
-            <ButtonSecondary title={'Mark as completed'} onPress={() => navigation.navigate('Recipe')} color={'#58D164'}/>
+            <ButtonSecondary title={'Mark as completed'} onPress={handleMarkCompleted} color={'#58D164'}/>
         </View>
       </ScrollView>
     </View>
