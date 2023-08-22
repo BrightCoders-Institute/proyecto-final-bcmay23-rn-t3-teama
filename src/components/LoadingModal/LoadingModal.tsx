@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Modal, ActivityIndicator, Image } from 'react-native';
+import { View, Text, Modal, ActivityIndicator, Image, TouchableWithoutFeedback } from 'react-native';
 import { LoadingModalProps } from '../../interfaces/interfaces';
 import styles from './styles';
 
@@ -10,7 +10,8 @@ const LoadingModal = ({
     errorImageUrl,
     title,
     subtitle,
-    isSuccessful
+    isSuccessful,
+    onClose,
 }: LoadingModalProps) => {
 
     const textColor = isSuccessful ? styles.infoTextSuccess : styles.infoTextError;
@@ -18,6 +19,9 @@ const LoadingModal = ({
 
     return (
         <Modal visible={isVisible} transparent>
+            <TouchableWithoutFeedback onPress={onClose}>
+
+
             <View style={styles.modalContainer}>
                 <View style={styles.modalContent}>
                     {isLoading ? (
@@ -43,6 +47,7 @@ const LoadingModal = ({
                     )}
                 </View>
             </View>
+            </TouchableWithoutFeedback>
         </Modal>
     );
 };

@@ -8,6 +8,7 @@ export interface LoadingModalProps {
   title: string;
   subtitle: string;
   isSuccessful: boolean;
+  onClose: boolean;
 }
 
 export interface SubTitleProps {
