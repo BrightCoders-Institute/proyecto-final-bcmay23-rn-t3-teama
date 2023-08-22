@@ -13,11 +13,11 @@ export const styles = StyleSheet.create({
       },
       centerContainer: {
         flex: 1,
-        padding: 15,
+        padding: 30,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        width: '95%',
+        width: '93%',
         backgroundColor: '#FFFF',
         borderRadius:20,
         shadowColor: '#000',
@@ -30,20 +30,22 @@ export const styles = StyleSheet.create({
         elevation: 4,
       },
       bottomContainer: {
-        // flex: -1,
         justifyContent: 'flex-end',
         alignItems: 'center',
         marginBottom: 20,
+        width: '93%',
+        // padding: 5,
       },
       titleContainer:{
         alignSelf: 'flex-start',
-        marginLeft: 15,
-        marginBottom: 10,
+        marginLeft: 20,
+        marginVertical: '3%',
       },
       titleContainer2:{
         alignSelf: 'flex-start',
-        marginLeft: 15,
-        marginTop: 20,
-        marginBottom: 10,
+        marginLeft: 20,
+        // marginTop: 20,
+        // marginBottom: 10,
+        marginVertical: 10,
       }
 })

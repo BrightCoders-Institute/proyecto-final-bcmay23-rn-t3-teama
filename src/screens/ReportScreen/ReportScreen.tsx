@@ -23,7 +23,7 @@ export const ReportScreen = () => {
       </View>
 
       <View style={styles.centerContainer} >
-        <CircularProgressBar  radius={100}  progress={50} color="#58D164" />
+        <CircularProgressBar  radius={110}  progress={50} color="#58D164" />
         <View style={{flexDirection: 'column', marginLeft: 15}}>
           <Title text='Goal per day' fontSize={20} />
           <SubTitle text='  3200 Cal' color='gray' fontSize={18}/>
