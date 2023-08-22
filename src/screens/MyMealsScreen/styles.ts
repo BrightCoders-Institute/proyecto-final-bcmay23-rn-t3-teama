@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
         height: 180,
         elevation: 5,
         shadowColor: 'black',
+        marginBottom: 10,
     },
     dayTitle: {
         fontWeight: 'bold',

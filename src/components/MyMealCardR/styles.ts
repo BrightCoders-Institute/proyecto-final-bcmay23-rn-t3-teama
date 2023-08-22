@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
 
@@ -29,17 +29,16 @@ export const styles = StyleSheet.create({
     },
     textContainer: {
         flex: 1,
-        justifyContent: 'flex-end',
-        alignItems: 'flex-start',
         marginTop: 50,
-        marginRight: 10
-      },
-      titleContainer: {
-        position: 'absolute', 
+        marginRight: 10,
+    },
+    titleContainer: {
+        position: 'absolute',
         top: 0,
         left: 10,
-        padding: 10, 
-      },
+        padding: 10,
+        marginTop: 5,
+    },
     buttonImage: {
         width: 120,
         height: 160,
@@ -48,4 +47,4 @@ export const styles = StyleSheet.create({
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 20,
     },
-})
+});
