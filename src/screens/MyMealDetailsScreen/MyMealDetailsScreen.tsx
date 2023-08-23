@@ -46,22 +46,24 @@ const MyMealDetailsScreen = ({navigation}: Props) => {
       />
       <ScrollView>
           <RecipeImg imgSource={imgRecipe.breakfast}/>
+
           <View style={style.titleContainer}>
-          <View style={style.title}>
-            <Title text="Fruit Bowl" fontSize={26}/>
+            <View style={style.title}>
+              <Title text="Fruit Bowl" fontSize={26}/>
+            </View>
+            <View style={style.subtitle}>
+              <SubTitle text="Bowl with fruits, some fruits and more fruits. You can add toppings" fontSize={17} color={'#615f5f'}/>
+            </View>
           </View>
-          <View style={style.subtitle}>
-            <SubTitle text="Bowl with fruits, some fruits and more fruits. You can add toppings" fontSize={17} color={'#A9A8A8'}/>
+
+          <View style={style.btnRecipe}>
+            <ButtonSecondary title="View Recipe" onPress={() => navigation.navigate('Recipe')} color={'#795DEA'} />
           </View>
-        </View>
-        <View style={style.btnRecipe}>
-          <ButtonSecondary title="View Recipe" onPress={() => navigation.navigate('Recipe')} color={'#795DEA'} />
-        </View>
-        <View>
-          <MealInfoBadge minutes={'10-20'} level={'Easy'} kcal={'970'} />
-        </View>
-        <View style={style.percentagesTitle}>
-            <Title text="Per Serving" fontSize={20}/>
+            <MealInfoBadge minutes={'10-20'} level={'Easy'} kcal={'970'} />
+          <View>
+            <View style={style.perServingTitle}>
+              <Title text="Per Serving" fontSize={20}/>
+            </View>
             <NutritionalChart
               progressCarbs={0.5}
               progressProtein={0.3}
@@ -70,7 +72,7 @@ const MyMealDetailsScreen = ({navigation}: Props) => {
               gramsProtein={32}
               gramsFat={12}
             />
-        </View>
+          </View>
         <View style={style.btnCompleted}>
             <ButtonSecondary title={'Mark as completed'} onPress={handleMarkCompleted} color={'#58D164'}/>
         </View>

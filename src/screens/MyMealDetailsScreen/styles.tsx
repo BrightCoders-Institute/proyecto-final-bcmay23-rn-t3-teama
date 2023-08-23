@@ -4,7 +4,7 @@ export const style = StyleSheet.create({
     container:{
         backgroundColor: 'white',
         flexGrow: 1,
-        paddingVertical: '5%',
+        paddingVertical: '2%',
     },
     titleContainer:{
         alignItems: 'center',
@@ -13,19 +13,19 @@ export const style = StyleSheet.create({
     title: {
         padding: '2%',
     },
-      subtitle: {
+    subtitle: {
+        width: '60%',
         fontSize: 17,
-        width: '75%',
-        alignItems: 'center',
-        justifyContent: 'center',
     },
     btnRecipe: {
         marginVertical: '2%',
+        marginBottom: '-2%',
     },
-    percentagesTitle: {
-        marginLeft: '2%',
-    },
+
     btnCompleted: {
         marginBottom: 10,
+    },
+    perServingTitle: {
+        marginStart: '7%',
     },
 });
