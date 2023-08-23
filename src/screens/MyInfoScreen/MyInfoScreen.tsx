@@ -22,13 +22,13 @@ const NUTRITION_COUNSELLING_DATA: NutritionInfoProps = {
 
 const MyInfoScreen = ({}: NutritionInfoProps) => {
   return (
-    <ScrollView>
-      <View style={[styles.mainContainer, {}]}>
+    <View style={{flex: 1, paddingHorizontal: '5%', justifyContent: 'space-around'}}>
+      <View style={[styles.mainContainer, {flex: 0.40, backgroundColor: 'orange'}]}>
         <View style={styles.clientKey}>
           <Text style={styles.keyText}>Client Key: 2840389</Text>
         </View>
         <View style={styles.patientName}>
-          <Title text="Patient Jonh Needham" fontSize={20} />
+          <Title text="Patient: Jonh Needham" fontSize={20} />
         </View>
         <View style={styles.container}>
           <View style={styles.generalInfo}>
@@ -46,12 +46,13 @@ const MyInfoScreen = ({}: NutritionInfoProps) => {
               <Title text={'182'} fontSize={19} />
             </View>
             <SubTitle text={'(cm)'} fontSize={17} color={'black'} />
-            <SubTitle text={'hight'} fontSize={16} />
+            <SubTitle text={'height'} fontSize={16} />
           </View>
         </View>
       </View>
 
-      <View>
+
+      <View style={[{flex: 0.40, backgroundColor: 'red'}]}>
         <View style={styles.titleCards}>
           <Title text={'Monthly Metrics'} fontSize={18} />
         </View>
@@ -61,17 +62,18 @@ const MyInfoScreen = ({}: NutritionInfoProps) => {
               <Image source={iconType.weightScale} style={styles.smallIcons} />
               <View style={styles.imcContainer}>
                 <Title text={'IMC'} fontSize={17} color={'#939191'} />
-                <Title text={'29.40'} fontSize={19} />
+                <Title text={'29.40'} fontSize={17} />
               </View>
             </View>
             <View style={[styles.containerImc, {marginBottom: 0}]}>
               <Image source={iconType.calendar} style={styles.smallIcons} />
               <View style={styles.ageContainer}>
                 <Title text={'Age'} fontSize={17} color={'#939191'} />
-                <Title text={'28 years'} fontSize={19} />
+                <Title text={'28 years'} fontSize={17} />
               </View>
             </View>
           </View>
+
           <View style={styles.singleViewContainer}>
             <View style={styles.metricscontainer}>
               <View style={styles.metrics}>
@@ -92,13 +94,10 @@ const MyInfoScreen = ({}: NutritionInfoProps) => {
             </View>
           </View>
         </View>
-
       </View>
 
 
-
-
-      <View style={{padding: 15}}>
+      <View style={{padding: 15, flex: 0.20, backgroundColor: 'green'}}>
         <Text
           style={{
             color: '#010101',
@@ -152,7 +151,7 @@ const MyInfoScreen = ({}: NutritionInfoProps) => {
           </View>
         </View>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
