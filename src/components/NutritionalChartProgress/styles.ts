@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export const style = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        width: 125,
+        width: 105,
         height: 130,
         alignItems: 'center',
         justifyContent: 'center',
@@ -13,9 +13,11 @@ export const style = StyleSheet.create({
     },
     mainContainer: {
         flexDirection: 'row',
+        paddingVertical: 10,
+        paddingHorizontal: 21,
         backgroundColor: '#FFFF',
         alignSelf: 'center',
-        maxWidth: '98%',
+        width: '100%',
         borderRadius:20,
         shadowColor: '#000',
         shadowOffset: {
