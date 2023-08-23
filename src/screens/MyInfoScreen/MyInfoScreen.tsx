@@ -5,11 +5,11 @@ import {Title} from '../../components/Title/Title';
 import {WellcomeAvatar} from '../../components/WellcomeAvatar/WellcomeAvatar';
 import {NutritionInfoProps} from '../../interfaces/interfaces';
 import {styles} from './styles';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const iconType = {
-  weightScale: require('../../assets/img/scale-sharp.png'),
-  calendar: require('../../assets/img/calendar.png'),
+  weightScale: require('../../assets/img/weight-scale.png'),
+  calendar: require('../../assets/img/calendar2.png'),
   man: require('../../assets/img/man.png'),
 };
 
@@ -24,7 +24,7 @@ const NUTRITION_COUNSELLING_DATA: NutritionInfoProps = {
 const MyInfoScreen = ({}: NutritionInfoProps) => {
   return (
     <View style={{flex: 1, paddingHorizontal: '5%', justifyContent: 'space-around'}}>
-      <View style={[styles.mainContainer, {flex: 0.38, backgroundColor: 'orange'}]}>
+      <View style={[styles.mainContainer, {flex: 0.38}]}>
         <View style={styles.clientKey}>
           <Text style={styles.keyText}>Client Key: 2840389</Text>
         </View>
@@ -53,7 +53,7 @@ const MyInfoScreen = ({}: NutritionInfoProps) => {
       </View>
 
 
-      <View style={[{flex: 0.42, backgroundColor: 'red'}]}>
+      <View style={[{flex: 0.42}]}>
         <View style={styles.titleCards}>
           <Title text={'Monthly Metrics'} fontSize={18} />
         </View>
@@ -80,15 +80,15 @@ const MyInfoScreen = ({}: NutritionInfoProps) => {
               <View style={styles.metricscontainer}>
                 <View style={styles.metrics}>
                   <Title text={'Waist'} fontSize={17} color={'#939191'} />
-                  <Title text={'70.50 cm'} fontSize={16} />
+                  <Title text={'70.5 cm'} fontSize={16} />
                 </View>
                 <View style={styles.metrics}>
                   <Title text={'Hips'} fontSize={17} color={'#939191'} />
-                  <Title text={'100.50 cm'} fontSize={16} />
+                  <Title text={'100.5 cm'} fontSize={16} />
                 </View>
                 <View style={styles.metrics}>
                   <Title text={'Bust'} fontSize={17} color={'#939191'} />
-                  <Title text={'110.20 cm'} fontSize={16} />
+                  <Title text={'110.2 cm'} fontSize={16} />
                 </View>
               </View>
               <View style={styles.imageContainer}>
@@ -101,7 +101,11 @@ const MyInfoScreen = ({}: NutritionInfoProps) => {
       </View>
 
 
-      <View style={{padding: 15, flex: 0.20, backgroundColor: 'green'}}>
+      <View style={{flex: 0.20}}>
+        {/* <View style={styles.titleCards}>
+          <Title text={'Nutrition Counselling'} fontSize={18} />
+        </View> */}
+
         <Text
           style={{
             color: '#010101',

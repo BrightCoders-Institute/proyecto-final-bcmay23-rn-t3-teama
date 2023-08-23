@@ -81,7 +81,7 @@ export const styles = StyleSheet.create({
     metricsContainer: {
         flexDirection: 'row',
         height: '85%', // porque el título tiene 15%
-        backgroundColor: 'yellow',
+        // backgroundColor: 'yellow',
         // alignContent: 'space-evenly',
         // justifyContent: 'center',
         // alignContent: 'space-between',
@@ -101,7 +101,7 @@ export const styles = StyleSheet.create({
     containerImc: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        // justifyContent: 'flex-start',
         // marginVertical: 50,
         marginBottom: 12,
         backgroundColor: 'white',
@@ -111,8 +111,9 @@ export const styles = StyleSheet.create({
 
         // marginTop: 2,
 
-        paddingVertical: 16,
-        paddingHorizontal: 10,
+        padding: 15,
+        // paddingVertical: 16,
+        // paddingHorizontal: 10,
         // width: '100%',
 
         shadowColor: '#000',
@@ -156,15 +157,16 @@ export const styles = StyleSheet.create({
         // marginBottom: 4,
     },
     smallIcons: {
-        width: '30%',
+        width: '25%',
         // marginRight: 3,
         marginRight: '2%',
         height: '60%',
         resizeMode: 'contain',
+        // resizeMode: 'center',
         // marginBottom: 3,
     },
     imageContainer: {
-        backgroundColor: 'blue',
+        // backgroundColor: 'blue',
         width: '50%',
         justifyContent: 'center',
         // alignItems: 'center',
@@ -172,7 +174,7 @@ export const styles = StyleSheet.create({
     },
     bodyIcon: {
         // width: '90%',
-        height: '85%',
+        height: '80%',
 
         // width: 140,
         // height: 160,
@@ -188,11 +190,13 @@ export const styles = StyleSheet.create({
     },
     metricscontainer: {
         flex: 1,
-        backgroundColor: 'red',
+        // backgroundColor: 'red',
         flexDirection: 'column',
         // justifyContent: 'space-around',
         justifyContent: 'space-evenly',
         alignItems: 'center',
+        paddingLeft: '5%',
+        // marginLeft: '8%',
         // width: '100%',
         // justifyContent: 'space-between',
         // alignContent: 'center',
@@ -203,10 +207,12 @@ export const styles = StyleSheet.create({
         // marginTop: 18,
     },
     imcContainer: {
-        marginStart: 8,
+        // marginStart: 8,
+        marginStart: '10%',
     },
     ageContainer: {
-        marginStart: 8,
+        // marginStart: 10,
+        marginStart: '10%',
     },
     counsellingContainer: {
         backgroundColor: 'white',
