@@ -30,11 +30,9 @@ export const styles = StyleSheet.create({
         elevation: 4,
       },
       bottomContainer: {
-        justifyContent: 'flex-end',
         alignItems: 'center',
         marginBottom: 20,
         width: '93%',
-        // padding: 5,
       },
       titleContainer:{
         alignSelf: 'flex-start',
@@ -44,8 +42,6 @@ export const styles = StyleSheet.create({
       titleContainer2:{
         alignSelf: 'flex-start',
         marginLeft: 20,
-        // marginTop: 20,
-        // marginBottom: 10,
         marginVertical: 10,
       }
 })
