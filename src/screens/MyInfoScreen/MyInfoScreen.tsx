@@ -5,6 +5,7 @@ import {Title} from '../../components/Title/Title';
 import {WellcomeAvatar} from '../../components/WellcomeAvatar/WellcomeAvatar';
 import {NutritionInfoProps} from '../../interfaces/interfaces';
 import {styles} from './styles';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const iconType = {
   weightScale: require('../../assets/img/scale-sharp.png'),
@@ -79,19 +80,20 @@ const MyInfoScreen = ({}: NutritionInfoProps) => {
               <View style={styles.metricscontainer}>
                 <View style={styles.metrics}>
                   <Title text={'Waist'} fontSize={17} color={'#939191'} />
-                  <Title text={'70.50'} fontSize={19} />
+                  <Title text={'70.50 cm'} fontSize={16} />
                 </View>
                 <View style={styles.metrics}>
                   <Title text={'Hips'} fontSize={17} color={'#939191'} />
-                  <Title text={'100.50'} fontSize={19} />
+                  <Title text={'100.50 cm'} fontSize={16} />
                 </View>
                 <View style={styles.metrics}>
                   <Title text={'Bust'} fontSize={17} color={'#939191'} />
-                  <Title text={'110.20'} fontSize={19} />
+                  <Title text={'110.20 cm'} fontSize={16} />
                 </View>
               </View>
-              <View>
+              <View style={styles.imageContainer}>
                 <Image source={iconType.man} style={styles.bodyIcon} />
+                {/* <Icon name={'man'} size={145} color="orange" style={styles.bodyIcon} /> */}
               </View>
             </View>
           </View>
