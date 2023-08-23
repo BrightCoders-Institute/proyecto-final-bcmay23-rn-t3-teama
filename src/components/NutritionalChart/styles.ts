@@ -3,10 +3,10 @@ import { StyleSheet } from 'react-native';
 const style = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        width: 120,
+        width: '32.5%',
         height: 80,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-evenly',
         paddingVertical: 10,
         marginHorizontal: 2,
         marginVertical: 10,
@@ -28,13 +28,13 @@ const style = StyleSheet.create({
         width: 80,
         marginTop: 2,
         marginRight: 15,
-        marginLeft: -5,
     },
-    titlenutrition:{
+    titlenutrition: {
         paddingTop: 10,
         fontSize: 15,
         fontWeight: 'bold',
         paddingBottom: 6,
+        color: 'black',
     },
     percentage: {
         fontSize: 13,
