@@ -24,9 +24,6 @@ export const style = StyleSheet.create({
         marginBottom: '-2%',
     },
 
-    btnCompleted: {
-        marginBottom: 10,
-    },
     perServingTitle: {
         marginStart: '7%',
     },
