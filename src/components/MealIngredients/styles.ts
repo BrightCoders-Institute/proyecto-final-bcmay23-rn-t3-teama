@@ -7,5 +7,6 @@ export const styles = StyleSheet.create({
     ingredientsText: {
       fontSize: 16,
       marginTop: -15,
+      color: 'black',
     },
   });

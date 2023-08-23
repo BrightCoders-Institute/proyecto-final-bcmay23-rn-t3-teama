@@ -8,7 +8,7 @@ export const MealIngredients = () => {
   
     return (
         <View style={ styles.container }>
-            <SubTitle text='Ingredients' color='gray' fontSize={20} />
+            <SubTitle text='Ingredients' color='black' fontSize={20} />
             <Text style={styles.ingredientsText}>
                 {recipeData.ingredients.map((ingredient, index) => (
                    <Text key={index}>
