@@ -23,7 +23,7 @@ const NUTRITION_COUNSELLING_DATA: NutritionInfoProps = {
 const MyInfoScreen = ({}: NutritionInfoProps) => {
   return (
     <View style={{flex: 1, paddingHorizontal: '5%', justifyContent: 'space-around'}}>
-      <View style={[styles.mainContainer, {flex: 0.40, backgroundColor: 'orange'}]}>
+      <View style={[styles.mainContainer, {flex: 0.38, backgroundColor: 'orange'}]}>
         <View style={styles.clientKey}>
           <Text style={styles.keyText}>Client Key: 2840389</Text>
         </View>
@@ -52,7 +52,7 @@ const MyInfoScreen = ({}: NutritionInfoProps) => {
       </View>
 
 
-      <View style={[{flex: 0.40, backgroundColor: 'red'}]}>
+      <View style={[{flex: 0.42, backgroundColor: 'red'}]}>
         <View style={styles.titleCards}>
           <Title text={'Monthly Metrics'} fontSize={18} />
         </View>
@@ -74,25 +74,27 @@ const MyInfoScreen = ({}: NutritionInfoProps) => {
             </View>
           </View>
 
-          <View style={styles.singleViewContainer}>
-            <View style={styles.metricscontainer}>
-              <View style={styles.metrics}>
-                <Title text={'Waist'} fontSize={17} color={'#939191'} />
-                <Title text={'70.50'} fontSize={19} />
+          {/* <View style={{display: 'flex', height: '90%',}}> */}
+            <View style={styles.singleViewContainer}>
+              <View style={styles.metricscontainer}>
+                <View style={styles.metrics}>
+                  <Title text={'Waist'} fontSize={17} color={'#939191'} />
+                  <Title text={'70.50'} fontSize={19} />
+                </View>
+                <View style={styles.metrics}>
+                  <Title text={'Hips'} fontSize={17} color={'#939191'} />
+                  <Title text={'100.50'} fontSize={19} />
+                </View>
+                <View style={styles.metrics}>
+                  <Title text={'Bust'} fontSize={17} color={'#939191'} />
+                  <Title text={'110.20'} fontSize={19} />
+                </View>
               </View>
-              <View style={styles.metrics}>
-                <Title text={'Hips'} fontSize={17} color={'#939191'} />
-                <Title text={'100.50'} fontSize={19} />
-              </View>
-              <View style={styles.metrics}>
-                <Title text={'Bust'} fontSize={17} color={'#939191'} />
-                <Title text={'110.20'} fontSize={19} />
+              <View>
+                <Image source={iconType.man} style={styles.bodyIcon} />
               </View>
             </View>
-            <View>
-              <Image source={iconType.man} style={styles.bodyIcon} />
-            </View>
-          </View>
+          {/* </View> */}
         </View>
       </View>
 

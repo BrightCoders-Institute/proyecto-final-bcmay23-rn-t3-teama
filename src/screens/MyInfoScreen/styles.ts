@@ -76,17 +76,25 @@ export const styles = StyleSheet.create({
     titleCards: {
         // marginLeft: 12,
         paddingTop: 12,
+        height: '15%',
     },
     metricsContainer: {
         flexDirection: 'row',
-        height: '100%'
+        height: '85%', // porque el título tiene 15%
+        backgroundColor: 'yellow',
+        // alignContent: 'space-evenly',
+        // justifyContent: 'center',
+        // alignContent: 'space-between',
         // padding: 12,
     },
     column: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
         // width: 160,
         width: '40%',
         // flex: 1,
-        backgroundColor: 'blue',
+        // backgroundColor: 'blue',
         // height: '100%',
         // paddingHorizontal: 5,
     },
@@ -98,6 +106,7 @@ export const styles = StyleSheet.create({
         marginBottom: 12,
         backgroundColor: 'white',
         borderRadius: 11,
+        height: '40%',
         // paddingLeft: 7,
 
         // marginTop: 2,
@@ -105,7 +114,6 @@ export const styles = StyleSheet.create({
         paddingVertical: 16,
         paddingHorizontal: 10,
         // width: '100%',
-        // height: 90,
 
         shadowColor: '#000',
         shadowOffset: {
@@ -118,14 +126,15 @@ export const styles = StyleSheet.create({
     },
     singleViewContainer: {
         flex: 1,
-        // width: '60%',
         flexDirection: 'row',
+        justifyContent: 'center',
+        backgroundColor: 'white',
+        height: '90%',
+        // width: '60%',
         borderRadius: 8,
         marginStart: 10,
-        backgroundColor: 'white',
         // marginVertical: 2,
-        paddingHorizontal: 10,
-        justifyContent: 'center',
+
         shadowColor: '#000',
         shadowOffset: {
             width: 0,
