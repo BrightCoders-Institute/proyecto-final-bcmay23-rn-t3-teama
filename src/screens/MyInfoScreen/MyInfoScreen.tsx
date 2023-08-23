@@ -74,8 +74,8 @@ const MyInfoScreen = ({}: NutritionInfoProps) => {
             </View>
           </View>
 
-          {/* <View style={{display: 'flex', height: '90%',}}> */}
-            <View style={styles.singleViewContainer}>
+          <View style={styles.singleViewContainer}>
+            <View style={styles.singleViewContent}>
               <View style={styles.metricscontainer}>
                 <View style={styles.metrics}>
                   <Title text={'Waist'} fontSize={17} color={'#939191'} />
@@ -94,7 +94,7 @@ const MyInfoScreen = ({}: NutritionInfoProps) => {
                 <Image source={iconType.man} style={styles.bodyIcon} />
               </View>
             </View>
-          {/* </View> */}
+          </View>
         </View>
       </View>
 

@@ -124,12 +124,12 @@ export const styles = StyleSheet.create({
         shadowRadius: 3,
         elevation: 4,
     },
-    singleViewContainer: {
+    singleViewContent: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
         backgroundColor: 'white',
-        height: '90%',
+        // height: '90%',
         // width: '60%',
         borderRadius: 8,
         marginStart: 10,
@@ -143,6 +143,12 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 3,
         elevation: 4,
+    },
+    singleViewContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        alignSelf: 'center',
+        height: '90%',
     },
     metrics:{
         paddingBottom: 10,
