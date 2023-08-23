@@ -8,14 +8,13 @@ const style = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: 10,
-        marginHorizontal: 5,
+        marginHorizontal: 2,
         marginVertical: 10,
     },
     mainContainer: {
         flexDirection: 'row',
         alignSelf: 'center',
-        maxWidth: '100%',
-        paddingBottom: -50,
+        maxWidth: '90%',
     },
     progressBar: {
         transform: [{ rotate: '-90deg' }],
@@ -33,7 +32,6 @@ const style = StyleSheet.create({
     },
     titlenutrition:{
         paddingTop: 10,
-        margin: 1,
         fontSize: 15,
         fontWeight: 'bold',
         paddingBottom: 6,

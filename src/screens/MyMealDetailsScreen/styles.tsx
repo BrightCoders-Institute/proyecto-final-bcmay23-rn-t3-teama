@@ -14,8 +14,10 @@ export const style = StyleSheet.create({
         padding: '2%',
     },
     subtitle: {
-        width: '60%',
+        width: '80%',
         fontSize: 17,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     btnRecipe: {
         marginVertical: '2%',
