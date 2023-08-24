@@ -268,16 +268,23 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingHorizontal: 20,
         marginBottom: 20,
-      },
-      column2: {
+    },
+    column2: {
         flex: 1,
         paddingHorizontal: 10,
-      },
-      title: {
+    },
+    title: {
         fontWeight: 'bold',
         marginBottom: 5,
-      },
-      value: {
+    },
+    value: {
         marginBottom: 10,
-      },
+    },
+    nutritionTitle: {
+        color: '#010101',
+        fontSize: 18,
+        marginBottom: '2%',
+        marginTop: 5,
+        fontWeight: 'bold',
+    },
 });
