@@ -75,12 +75,16 @@ export const styles = StyleSheet.create({
     },
     titleCards: {
         // marginLeft: 12,
-        paddingTop: 12,
-        height: '15%',
+        // paddingTop: 12,
+        height: '10%',
+        marginTop: 12,
+        marginBottom: -5,
+        // backgroundColor: 'yellow',
+        justifyContent: 'center',
     },
     metricsContainer: {
         flexDirection: 'row',
-        height: '85%', // porque el título tiene 15%
+        height: '88%', // porque el título tiene 15%
         // backgroundColor: 'yellow',
         // alignContent: 'space-evenly',
         // justifyContent: 'center',
@@ -90,7 +94,7 @@ export const styles = StyleSheet.create({
     column: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-around',
         // width: 160,
         width: '40%',
         // flex: 1,
@@ -99,11 +103,12 @@ export const styles = StyleSheet.create({
         // paddingHorizontal: 5,
     },
     containerImc: {
+        // flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
         // justifyContent: 'flex-start',
         // marginVertical: 50,
-        marginBottom: 12,
+        // marginBottom: 12,
         backgroundColor: 'white',
         borderRadius: 11,
         height: '40%',
@@ -216,9 +221,10 @@ export const styles = StyleSheet.create({
     },
     counsellingContainer: {
         backgroundColor: 'white',
+        height: '70%',
         borderRadius: 13,
         paddingHorizontal: 20,
-        paddingVertical: 15,
+        paddingVertical: 8,
         elevation: 10,
         shadowColor: '#000',
         shadowOffset: {
@@ -231,7 +237,7 @@ export const styles = StyleSheet.create({
     topSection: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: 15,
+        // marginBottom: 15,
     },
     middleSection: {
         flexDirection: 'row',

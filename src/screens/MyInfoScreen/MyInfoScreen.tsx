@@ -24,7 +24,7 @@ const NUTRITION_COUNSELLING_DATA: NutritionInfoProps = {
 const MyInfoScreen = ({}: NutritionInfoProps) => {
   return (
     <View style={{flex: 1, paddingHorizontal: '5%', justifyContent: 'space-around'}}>
-      <View style={[styles.mainContainer, {flex: 0.38}]}>
+      <View style={[styles.mainContainer, {flex: 0.33,}]}>
         <View style={styles.clientKey}>
           <Text style={styles.keyText}>Client Key: 2840389</Text>
         </View>
@@ -53,7 +53,7 @@ const MyInfoScreen = ({}: NutritionInfoProps) => {
       </View>
 
 
-      <View style={[{flex: 0.42}]}>
+      <View style={[{flex: 0.42,}]}>
         <View style={styles.titleCards}>
           <Title text={'Monthly Metrics'} fontSize={18} />
         </View>
@@ -66,7 +66,7 @@ const MyInfoScreen = ({}: NutritionInfoProps) => {
                 <Title text={'29.40'} fontSize={17} />
               </View>
             </View>
-            <View style={[styles.containerImc, {marginBottom: 0}]}>
+            <View style={[styles.containerImc,]}>
               <Image source={iconType.calendar} style={styles.smallIcons} />
               <View style={styles.ageContainer}>
                 <Title text={'Age'} fontSize={17} color={'#939191'} />
@@ -101,7 +101,7 @@ const MyInfoScreen = ({}: NutritionInfoProps) => {
       </View>
 
 
-      <View style={{flex: 0.20}}>
+      <View style={{flex: 0.25,}}>
         {/* <View style={styles.titleCards}>
           <Title text={'Nutrition Counselling'} fontSize={18} />
         </View> */}
@@ -110,7 +110,8 @@ const MyInfoScreen = ({}: NutritionInfoProps) => {
           style={{
             color: '#010101',
             fontSize: 18,
-            marginBottom: 10,
+            marginBottom: '2%',
+            marginTop: 5,
             fontWeight: 'bold',
           }}>
           Nutrition Counselling
@@ -135,7 +136,7 @@ const MyInfoScreen = ({}: NutritionInfoProps) => {
             </View>
           </View>
           <View style={styles.middleSection}>
-            <View style={styles.section}>
+            <View style={[styles.section, {top: '-5%'}]}>
               <Title text="Date" color="#A69C9C" fontSize={13} />
               <SubTitle
                 text={`${NUTRITION_COUNSELLING_DATA.date},`}
