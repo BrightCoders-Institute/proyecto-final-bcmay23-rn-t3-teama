@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingVertical: 10,
         marginHorizontal: 5,
-        marginVertical: 30,
+        marginVertical: 26,
         backgroundColor: '#F3A939',
     },
     badgeIcon: {

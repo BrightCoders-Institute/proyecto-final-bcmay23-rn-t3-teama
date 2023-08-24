@@ -44,7 +44,6 @@ const MyMealDetailsScreen = ({navigation}: Props) => {
         isSuccessful={true}
         onClose={closeModal}
       />
-      <ScrollView>
           <RecipeImg imgSource={imgRecipe.breakfast}/>
 
           <View style={style.titleContainer}>
@@ -60,7 +59,6 @@ const MyMealDetailsScreen = ({navigation}: Props) => {
             <ButtonSecondary title="View Recipe" onPress={() => navigation.navigate('Recipe')} color={'#795DEA'} />
           </View>
             <MealInfoBadge minutes={'10-20'} level={'Easy'} kcal={'970'} />
-          <View>
             <View style={style.perServingTitle}>
               <Title text="Per Serving" fontSize={20}/>
             </View>
@@ -72,11 +70,7 @@ const MyMealDetailsScreen = ({navigation}: Props) => {
               gramsProtein={32}
               gramsFat={12}
             />
-          </View>
-        <View style={style.btnCompleted}>
             <ButtonSecondary title={'Mark as completed'} onPress={handleMarkCompleted} color={'#58D164'}/>
-        </View>
-      </ScrollView>
     </View>
   );
 };
