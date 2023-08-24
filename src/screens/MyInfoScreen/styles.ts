@@ -165,6 +165,13 @@ export const styles = StyleSheet.create({
         // paddingBottom: 10,
         // justifyContent: 'space-between',
         // marginBottom: 4,
+        // backgroundColor: 'red',
+        // height: '3%',
+        width: '100%',
+        paddingLeft: '10%',
+        // paddingLeft: 10,
+        // flex: 1,
+        // textAlign: 'left',
     },
     smallIcons: {
         width: '25%',
