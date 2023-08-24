@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, useWindowDimensions, Image, Text, ScrollView } from 'react-native';
+import { View, useWindowDimensions, Image, Text, SafeAreaView } from 'react-native';
 import { styles } from './styles';
 import NutritionistImage from '../../assets/img/nutritionist-profile.png';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -52,35 +52,37 @@ export const MySpecialistScreen = ({navigation}: Props) => {
     };
 
     return (
-        <ScrollView style={styles.container}>
-            <View style={[{height: height * 0.40}, styles.imageContainer]}>
+        <SafeAreaView style={styles.container}>
+            <View style={styles.imageContainer}>
                 <View style={styles.circle} />
                 <Image
                     source={NutritionistImage}
-                    style={[styles.nutritionistImage, {height: height * 0.42}]}
+                    style={[styles.nutritionistImage, {height: height * 0.29}]}
                 />
             </View>
-            <View style={[{height: height * 0.50}, styles.nutritionistInfoContainer]}>
-                <Text style={styles.nutriName}>{NUTRITIONIST_INFO.name}</Text>
+            <View style={styles.nutritionistInfoContainer}>
+                <View>
+                    <Text style={styles.nutriName}>{NUTRITIONIST_INFO.name}</Text>
 
-                <Text style={[styles.separationText, styles.nutriMajor]}>{NUTRITIONIST_INFO.major}</Text>
-                <View style={styles.starRatingContainer}>
-                    <View style={styles.stars}>{renderStars()}</View>
-                    <Text style={styles.nutriRating}>{`${NUTRITIONIST_INFO.rating}`}</Text>
-                </View>
-                <View style={[styles.locationContainer, styles.separationText]}>
-                    <Icon name={'location-sharp'} size={22} color={'#795DEA'}/>
-                    <Text style={styles.nutriCityCountry}>{`${NUTRITIONIST_INFO.cityAndCountry}`}</Text>
+                    <Text style={[styles.separationText, styles.nutriMajor]}>{NUTRITIONIST_INFO.major}</Text>
+                    <View style={styles.starRatingContainer}>
+                        <View style={styles.stars}>{renderStars()}</View>
+                        <Text style={styles.nutriRating}>{`${NUTRITIONIST_INFO.rating}`}</Text>
+                    </View>
+                    <View style={[styles.locationContainer, styles.separationText]}>
+                        <Icon name={'location-sharp'} size={22} color={'#795DEA'}/>
+                        <Text style={styles.nutriCityCountry}>{`${NUTRITIONIST_INFO.cityAndCountry}`}</Text>
+                    </View>
                 </View>
                 <View style={{ marginTop: 5 }}>
                     <Text style={styles.biographyTitle}>Biography</Text>
                     <Text style={styles.biographyText}>{NUTRITIONIST_INFO.biography}</Text>
                 </View>
-                <View style={{left: 40}}>
+                <View style={{ left: 40 }}>
                     <WhatsAppButton />
                 </View>
                 <ButtonSecondary title="Book Appointment →" color="#795DEA" fontSize={15} onPress={() => navigation.navigate('Book Appointment')} />
             </View>
-        </ScrollView>
+        </SafeAreaView>
     );
 };

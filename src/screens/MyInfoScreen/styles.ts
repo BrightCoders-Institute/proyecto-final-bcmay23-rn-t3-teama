@@ -1,16 +1,14 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-
     mainContainer: {
         backgroundColor: 'white',
         alignSelf: 'center',
         borderRadius: 10,
         marginTop: 16,
-        paddingVertical: 10,
-        paddingHorizontal: 20,
-        width: '95%',
-        height: 250,
+        paddingVertical: '6%',
+        paddingHorizontal: '5%',
+        width: '100%',
         justifyContent: 'center',
         shadowColor: '#000',
         shadowOffset: {
@@ -23,22 +21,20 @@ export const styles = StyleSheet.create({
     },
     container:{
         flexDirection: 'row',
-        alignSelf: 'center',
-        maxWidth: '100%',
-        paddingBottom: 30,
+        justifyContent: 'space-around',
+        paddingBottom: '10%',
         paddingTop: 10,
     },
     clientKey: {
         alignSelf: 'center',
         alignItems:'center',
+        justifyContent: 'center',
         backgroundColor: 'white',
         borderColor:'#58D164',
         borderWidth: 3,
         borderRadius: 11,
-        height: 45,
-        marginTop: 20,
-        paddingVertical: 8,
-        paddingHorizontal: 10,
+        height: '20%',
+        marginTop: '6%',
         width: '90%',
         shadowOffset: {
             width: 0,
@@ -49,11 +45,11 @@ export const styles = StyleSheet.create({
         elevation: 4,
     },
     keyText: {
-        fontSize: 20,
+        fontSize: 18,
+        color: '#000000',
     },
     patientName: {
         paddingVertical: 15,
-        paddingHorizontal: 10,
         alignItems:'center',
     },
     generalInfo: {
@@ -70,31 +66,44 @@ export const styles = StyleSheet.create({
         paddingTop: 20,
     },
     titleCards: {
-        marginLeft: 12,
-        paddingTop: 12,
+        height: '10%',
+        marginTop: 12,
+        marginBottom: -5,
+        justifyContent: 'center',
     },
     metricsContainer: {
         flexDirection: 'row',
-        padding: 12,
+        height: '88%', // porque el título tiene 15%
     },
     column: {
-        width: 160,
-        paddingHorizontal: 5,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+        width: '40%',
     },
     containerImc: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginVertical: 2,
-        marginBottom: 12,
         backgroundColor: 'white',
         borderRadius: 11,
-        paddingLeft: 7,
-        marginTop: 2,
-        paddingVertical: 16,
-        paddingHorizontal: 10,
-        width: '100%',
-        height: 90,
+        height: '40%',
+        padding: 15,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 4,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
+        elevation: 4,
+    },
+    singleViewContent: {
+        flex: 1,
+        flexDirection: 'row',
         justifyContent: 'center',
+        backgroundColor: 'white',
+        borderRadius: 8,
+        marginStart: 10,
         shadowColor: '#000',
         shadowOffset: {
             width: 0,
@@ -107,57 +116,48 @@ export const styles = StyleSheet.create({
     singleViewContainer: {
         flex: 1,
         flexDirection: 'row',
-        borderRadius: 8,
-        marginStart: 10,
-        backgroundColor: 'white',
-        marginVertical: 2,
-        paddingHorizontal: 10,
-        justifyContent: 'center',
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 4,
-        },
-        shadowOpacity: 0.3,
-        shadowRadius: 3,
-        elevation: 4,
+        alignSelf: 'center',
+        height: '90%',
     },
     metrics:{
-        paddingBottom: 10,
-        justifyContent: 'space-between',
-        marginBottom: 4,
+        width: '100%',
+        paddingLeft: '10%',
     },
     smallIcons: {
-        width: '30%',
-        marginRight: 3,
+        width: '25%',
+        marginRight: '2%',
         height: '60%',
         resizeMode: 'contain',
-        marginBottom: 3,
+    },
+    imageContainer: {
+        width: '50%',
+        justifyContent: 'center',
     },
     bodyIcon: {
-        width: 140,
-        height: 160,
-        resizeMode: 'cover',
-        marginTop: 18,
+        height: '80%',
+        resizeMode: 'contain',
+        alignSelf: 'center',
     },
     metricscontainer: {
-        marginLeft: 15,
-        alignItems: 'flex-start',
-        height: 40,
-        width: 70,
-        marginTop: 18,
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        paddingLeft: '5%',
     },
     imcContainer: {
-        marginStart: 8,
+        marginStart: '10%',
     },
     ageContainer: {
-        marginStart: 3,
+        marginStart: '10%',
     },
     counsellingContainer: {
         backgroundColor: 'white',
+        height: '70%',
+        justifyContent: 'space-between',
         borderRadius: 13,
         paddingHorizontal: 20,
-        paddingVertical: 15,
+        paddingVertical: '2%',
         elevation: 10,
         shadowColor: '#000',
         shadowOffset: {
@@ -170,7 +170,6 @@ export const styles = StyleSheet.create({
     topSection: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: 15,
     },
     middleSection: {
         flexDirection: 'row',
@@ -179,5 +178,30 @@ export const styles = StyleSheet.create({
     section: {
         flex: 1,
         marginRight: 10,
+    },
+
+    container2: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingHorizontal: 20,
+        marginBottom: 20,
+    },
+    column2: {
+        flex: 1,
+        paddingHorizontal: 10,
+    },
+    title: {
+        fontWeight: 'bold',
+        marginBottom: 5,
+    },
+    value: {
+        marginBottom: 10,
+    },
+    nutritionTitle: {
+        color: '#010101',
+        fontSize: 18,
+        marginBottom: '2%',
+        marginTop: 5,
+        fontWeight: 'bold',
     },
 });

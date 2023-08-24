@@ -82,3 +82,19 @@ export interface NutritionInfoProps {
   time: string;
   price: string;
 }
+export interface UserInfoProps {
+  userKey: string;
+  userName: string;
+  userLastName: string;
+  age: number;
+  image: string;
+  weight: number;
+  height: number;
+  bmi: number;
+  waist: number;
+  hips: number;
+  bust: number;
+  fatPercentage: number;
+  goal: string;
+  caloriesPerDay: number;
+}
