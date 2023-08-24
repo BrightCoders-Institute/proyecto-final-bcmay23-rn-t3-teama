@@ -222,6 +222,7 @@ export const styles = StyleSheet.create({
     counsellingContainer: {
         backgroundColor: 'white',
         height: '70%',
+        justifyContent: 'space-between',
         borderRadius: 13,
         paddingHorizontal: 20,
         paddingVertical: 8,
@@ -247,4 +248,22 @@ export const styles = StyleSheet.create({
         flex: 1,
         marginRight: 10,
     },
+
+    container2: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingHorizontal: 20,
+        marginBottom: 20,
+      },
+      column2: {
+        flex: 1,
+        paddingHorizontal: 10,
+      },
+      title: {
+        fontWeight: 'bold',
+        marginBottom: 5,
+      },
+      value: {
+        marginBottom: 10,
+      },
 });
