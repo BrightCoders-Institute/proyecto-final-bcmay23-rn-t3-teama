@@ -18,9 +18,9 @@ interface DayObject {
   month: string;
   year: number;
 }
-interface Props extends StackScreenProps<any, any> {}
+interface Props extends StackScreenProps<any, any> { }
 
-const MyMealsScreen = ({navigation}: Props) => {
+const MyMealsScreen = ({ navigation }: Props) => {
   const [weekDays, setWeekDays] = useState<DayObject[]>([]);
   const [selectedDay, setSelectedDay] = useState<DayObject | undefined>();
 
@@ -48,28 +48,28 @@ const MyMealsScreen = ({navigation}: Props) => {
       const date = new Date(todaysDate);
       date.setDate(todaysDate.getDate() + i);
       const nameDay = namesDays[(dayCurrWeek + i + 7) % 7].slice(0, 3).toUpperCase();
-      const dayObject = { isSelectedDay: i === 0, weekName: nameDay, completeDay: (namesDays[(dayCurrWeek + i + 7) % 7]), day: date.getDate(), month: months[date.getMonth()], year: date.getFullYear() }
+      const dayObject = { isSelectedDay: i === 0, weekName: nameDay, completeDay: (namesDays[(dayCurrWeek + i + 7) % 7]), day: date.getDate(), month: months[date.getMonth()], year: date.getFullYear() };
       results.push(dayObject);
-      if (i === 0) setSelectedDay(dayObject);
+      if (i === 0) { setSelectedDay(dayObject); }
     }
     setWeekDays(results);
     return results;
   }
 
   return (
-    <View style={ styles.container }>
+    <View style={styles.container}>
       <ScrollView
         contentContainerStyle={{ paddingBottom: 20 }}
         stickyHeaderIndices={[0]}
       >
-        <View style={ styles.calendarContainer }>
-          <Text style={ styles.dayTitle }>
-            <Text style={{color:'#68A76E'}}>{`${ namesDays[new Date().getDay()] === selectedDay?.completeDay ? 'Today' : selectedDay?.completeDay}`}</Text>
-            <Text style={{color:'#000000'}}>{`, ${selectedDay?.day} ${selectedDay?.month} ${selectedDay?.year}`}</Text>
+        <View style={styles.calendarContainer}>
+          <Text style={styles.dayTitle}>
+            <Text style={{ color: '#68A76E' }}>{`${namesDays[new Date().getDay()] === selectedDay?.completeDay ? 'Today' : selectedDay?.completeDay}`}</Text>
+            <Text style={{ color: '#000000' }}>{`, ${selectedDay?.day} ${selectedDay?.month} ${selectedDay?.year}`}</Text>
           </Text>
           <FlatList
             data={weekDays}
-            style={{marginLeft: 25}}
+            style={{ marginLeft: 25 }}
             renderItem={({ item }) => <CallendarWeekday days={item} setSelectedDay={setSelectedDay} weekdays={weekDays} setWeekDays={setWeekDays} />}
             horizontal
           />
