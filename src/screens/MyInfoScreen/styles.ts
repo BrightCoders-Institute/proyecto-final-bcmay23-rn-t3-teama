@@ -24,7 +24,9 @@ export const styles = StyleSheet.create({
     },
     container:{
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
+        // justifyContent: 'center',
+        // paddingHorizontal: '50%',
         // backgroundColor: 'red',
         // alignSelf: 'center',
         // maxWidth: '100%',
@@ -57,6 +59,7 @@ export const styles = StyleSheet.create({
     },
     keyText: {
         fontSize: 18,
+        color: '#000000',
     },
     patientName: {
         paddingVertical: 15,

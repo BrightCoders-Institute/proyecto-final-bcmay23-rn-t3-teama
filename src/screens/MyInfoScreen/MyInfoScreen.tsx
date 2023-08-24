@@ -142,12 +142,13 @@ const MyInfoScreen = ({}: NutritionInfoProps) => {
                 text={`${NUTRITION_COUNSELLING_DATA.date},`}
                 color="#000000"
                 fontSize={12}
-              />
-              <SubTitle
+                />
+              <Text style={{color:"#000000", fontSize: 12, marginTop: '-5%'}}>{NUTRITION_COUNSELLING_DATA.time}</Text>
+              {/* <SubTitle
                 text={NUTRITION_COUNSELLING_DATA.time}
                 color="#000000"
                 fontSize={12}
-              />
+              /> */}
             </View>
             <View style={styles.section}>
               <Title text="Price" color="#A69C9C" fontSize={13} />
