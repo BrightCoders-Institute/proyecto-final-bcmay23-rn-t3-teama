@@ -4,17 +4,17 @@ export const styles = StyleSheet.create({
     mainContainer: {
         flexDirection: 'row',
         alignSelf: 'center',
-        maxWidth: '95%',
+        maxWidth: '90%',
     },
     badgeContainer: {
-        width: 115,
+        width: '30%',
         height: 115,
         borderRadius: 20,
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: 10,
         marginHorizontal: 5,
-        marginVertical: 30,
+        marginVertical: 26,
         backgroundColor: '#F3A939',
     },
     badgeIcon: {
