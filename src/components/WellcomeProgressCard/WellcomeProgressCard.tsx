@@ -7,7 +7,7 @@ import { calculateProgress } from '../../helpers/progressBar';
 
 
 export const WellcomeProgressCard = ({ title, onPress, imgSource }: WellcomeProgressCardProps) => {
-    const consumedValue = '100';
+    const consumedValue = '400';
     const totalValue = '3, 100';
 
     return (

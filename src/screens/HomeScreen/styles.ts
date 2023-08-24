@@ -4,9 +4,9 @@ export const styles = StyleSheet.create({
 
     titleContainar: {
         marginHorizontal: 10,
-        marginTop: 7,
+        marginTop: 8,
     },
     mainContainer: {
-        marginTop: 15,
+        marginTop: 17,
     },
 });

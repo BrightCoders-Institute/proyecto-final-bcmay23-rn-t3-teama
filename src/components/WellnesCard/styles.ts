@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
     },
     buttonText: {
         color: 'white',
-        fontSize: 20,
+        fontSize: 19,
         fontWeight: 'bold',
     },
     textContainer: {
@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
         alignItems: 'flex-start',
         paddingBottom: 8,
         marginTop: 50,
-        marginRight: '7%',
+        marginRight: '19%',
       },
       icon: {
         position: 'absolute',
@@ -42,7 +42,7 @@ export const styles = StyleSheet.create({
         padding: 10,
       },
     buttonImage: {
-        width: '50%',
+        width: '40%',
         height: '115%',
     },
 });

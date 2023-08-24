@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
     },
     titleText: {
         color: '#A69C9C',
-        fontSize: 18,
+        fontSize: 20,
         marginBottom: 5,
     },
     buttonImage: {

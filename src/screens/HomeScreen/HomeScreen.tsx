@@ -20,21 +20,21 @@ const HomeScreen = () => {
       <WellcomeProgressCard title="Consumed today" />
       <View style={styles.mainContainer}>
         <View style={styles.titleContainar}>
-          <Title text="Nutrition Tips" fontSize={20} />
+          <Title text="Nutrition Tips" fontSize={18} />
         </View>
         <WellnesCard
           title="Healthy habits today"
           backgroundColor="#83C8FB"
           imgSource={iconType.fruitsImage} />
         <View style={styles.titleContainar}>
-          <Title text="Workout tips" fontSize={20} />
+          <Title text="Workout tips" fontSize={18} />
         </View>
         <WellnesCard
           title="Workout at Home"
           backgroundColor="#7B5FEC"
           imgSource={iconType.anloImage} />
         <View style={styles.titleContainar}>
-          <Title text="Mindfulness" fontSize={20} />
+          <Title text="Mindfulness" fontSize={18} />
         </View>
         <WellnesCard
           title="Take Care of your mind"
