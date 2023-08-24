@@ -5,12 +5,15 @@ import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import MyMealsScreen from '../screens/MyMealsScreen/MyMealsScreen';
 import { ReportScreen } from '../screens/ReportScreen/ReportScreen';
 import TopTab from './TopTab';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const Tab = createBottomTabNavigator();
 
 export const BottomTab = () => {
+  const { top } = useSafeAreaInsets();
   return (
     <Tab.Navigator
+    sceneContainerStyle = {{ paddingTop: top, backgroundColor: '#FFFF'}}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color, focused }) => {
 

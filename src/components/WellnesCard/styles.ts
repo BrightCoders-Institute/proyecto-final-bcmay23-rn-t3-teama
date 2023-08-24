@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 20,
         width: '95%',
-        height: 120,
+        height: '22.5%',
         flexDirection: 'row',
         justifyContent: 'space-between',
         shadowColor: '#000',
@@ -33,15 +33,16 @@ export const styles = StyleSheet.create({
         alignItems: 'flex-start',
         paddingBottom: 8,
         marginTop: 50,
+        marginRight: '7%',
       },
       icon: {
-        position: 'absolute', 
+        position: 'absolute',
         top: 0,
         left: 0,
-        padding: 10, 
+        padding: 10,
       },
     buttonImage: {
-        width: 80,
-        height: 100,
+        width: '50%',
+        height: '115%',
     },
-})
+});
