@@ -90,7 +90,7 @@ const BookAppointment = () => {
 
             {selectedDate && (
                 <View>
-                    <Text style={styles.subTitle}>Choose the time</Text>
+                    <Text style={{ ...styles.subTitle, marginBottom: 0 }}>Choose the time</Text>
                     {filteredAvailableTimes.length === 0 ? (
                         <Text style={styles.unavailableDate}>Sorry! There are no available appointments on this date.</Text>
                     ) : (

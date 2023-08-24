@@ -8,8 +8,8 @@ export const style = StyleSheet.create({
     marginTop: 5,
     paddingVertical: 10,
     paddingHorizontal: 20,
-    width: '80%',
-    height: 59,
+    width: '70%',
+    height: 55,
     flexDirection: 'row',
     justifyContent: 'center',
     shadowColor: '#000',
@@ -25,13 +25,7 @@ export const style = StyleSheet.create({
 
   buttonText: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
-  },
-  buttonImage: {
-    position: 'absolute',
-    left: '10%',
-    width: 25,
-    height: 25,
   },
 });
