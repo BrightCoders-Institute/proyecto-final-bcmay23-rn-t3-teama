@@ -35,13 +35,13 @@ export const StackNavigator = () => {
       <Stack.Screen
         name="BottomTab"
         options={{
-          headerShown: false
+          headerShown: false,
         }}
         component={BottomTab}
       />
       <Stack.Screen
-      name="Recipe"
-      component={RecipeScreen}
+        name="Recipe"
+        component={RecipeScreen}
       />
       <Stack.Screen
         name="Meals Details"
@@ -50,6 +50,7 @@ export const StackNavigator = () => {
       <Stack.Screen
         name="Book Appointment"
         component={BookAppointment}
+        options={{ cardStyle: { backgroundColor: 'white' } }}
       />
     </Stack.Navigator>
   );

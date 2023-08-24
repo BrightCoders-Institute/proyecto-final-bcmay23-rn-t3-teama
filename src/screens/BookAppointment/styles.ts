@@ -45,6 +45,7 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 2,
         overflow: 'visible',
+        marginVertical: 10,
     },
     flatListItemText: {
         marginHorizontal: 10,
