@@ -8,5 +8,6 @@ export const RecipeImg = ( { imgSource }: RecipeImgProps ) => {
     <View>
         {imgSource && <Image source={imgSource} style={styles.image} />}
     </View>
-  )
-}
+  );
+};
+
