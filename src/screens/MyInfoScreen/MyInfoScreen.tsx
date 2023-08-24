@@ -24,7 +24,7 @@ const NUTRITION_COUNSELLING_DATA: NutritionInfoProps = {
 const MyInfoScreen = ({}: NutritionInfoProps) => {
   return (
     <View style={{flex: 1, paddingHorizontal: '5%', justifyContent: 'space-around'}}>
-      <View style={[styles.mainContainer, {flex: 0.33,}]}>
+      <View style={[styles.mainContainer, {flex: 0.35,}]}>
         <View style={styles.clientKey}>
           <Text style={styles.keyText}>Client Key: 2840389</Text>
         </View>
@@ -53,7 +53,7 @@ const MyInfoScreen = ({}: NutritionInfoProps) => {
       </View>
 
 
-      <View style={[{flex: 0.42,}]}>
+      <View style={[{flex: 0.40,}]}>
         <View style={styles.titleCards}>
           <Title text={'Monthly Metrics'} fontSize={18} />
         </View>
