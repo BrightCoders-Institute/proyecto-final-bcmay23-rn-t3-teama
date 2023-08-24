@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 20,
         width: '95%',
-        height: '20.9%',
+        height: '20.5%',
         flexDirection: 'row',
         justifyContent: 'space-between',
         shadowColor: '#000',
@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
         alignItems: 'flex-start',
         paddingBottom: 8,
         marginTop: 50,
-        marginRight: '6%',
+        marginRight: '2%',
       },
       icon: {
         position: 'absolute',
