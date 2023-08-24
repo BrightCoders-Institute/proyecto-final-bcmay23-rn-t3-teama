@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { screenWidth } from "./ReportScreen";
 
 export const styles = StyleSheet.create({
     container: {
@@ -13,7 +14,7 @@ export const styles = StyleSheet.create({
       },
       centerContainer: {
         flex: 1,
-        padding: 30,
+        padding: screenWidth * 0.08,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',

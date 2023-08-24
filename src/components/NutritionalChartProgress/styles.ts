@@ -43,6 +43,7 @@ export const style = StyleSheet.create({
         marginLeft: -18,
     },
     titlenutrition:{
+        color: 'gray',
         paddingTop: 10,
         margin: 0,
         fontSize: 15,

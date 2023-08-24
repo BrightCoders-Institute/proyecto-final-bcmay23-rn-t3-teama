@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { Dimensions, View } from 'react-native';
 import { ShowCalendar } from '../../components/ShowCalendar/ShowCalendar';
 import { NutritionalChartProgress } from '../../components/NutritionalChartProgress/NutritionalChartProgress';
 import { CircularProgressBar } from '../../components/CircularProgressBar/CircularProgressBar';
@@ -7,6 +7,8 @@ import { styles } from './styles';
 import { Title } from '../../components/Title/Title';
 import { SubTitle } from '../../components/SubTitle/SubTitle';
 import { WhatsAppButton } from '../../components/WhatsAppButton/WhatsAppButton';
+
+export const screenWidth = Dimensions.get('window').width;
 
 export const ReportScreen = () => {
   return (
@@ -23,7 +25,7 @@ export const ReportScreen = () => {
       </View>
 
       <View style={styles.centerContainer} >
-        <CircularProgressBar  radius={110}  progress={50} color="#58D164" />
+        <CircularProgressBar  radius={screenWidth * 0.25}  progress={50} color="#58D164" />
         <View style={{flexDirection: 'column', marginLeft: 15}}>
           <Title text='Goal per day' fontSize={20} />
           <SubTitle text='  3200 Cal' color='gray' fontSize={18}/>
