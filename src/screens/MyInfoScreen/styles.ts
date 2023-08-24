@@ -223,9 +223,11 @@ export const styles = StyleSheet.create({
         backgroundColor: 'white',
         height: '70%',
         justifyContent: 'space-between',
+        // alignContent: 'space-between',
         borderRadius: 13,
         paddingHorizontal: 20,
-        paddingVertical: 8,
+        // paddingVertical: 8,
+        paddingVertical: '2%',
         elevation: 10,
         shadowColor: '#000',
         shadowOffset: {
