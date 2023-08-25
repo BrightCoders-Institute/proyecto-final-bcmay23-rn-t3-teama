@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 20,
         width: '95%',
-        height: '19.5%',
+        height: '19.2%',
         flexDirection: 'row',
         justifyContent: 'space-between',
         shadowColor: '#000',

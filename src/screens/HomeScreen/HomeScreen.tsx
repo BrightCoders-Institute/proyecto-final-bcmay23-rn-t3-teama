@@ -1,4 +1,4 @@
-import { View, ScrollView } from 'react-native';
+import { View } from 'react-native';
 import React from 'react';
 import { WellcomeCard } from '../../components/WellcomeCard/WellcomeCard';
 import { WellcomeProgressCard } from '../../components/WellcomeProgressCard/WellcomeProgressCard';
