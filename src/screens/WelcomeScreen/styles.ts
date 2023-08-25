@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     margin: -30,
     padding: 10,
     opacity: 0.5,
-    fontSize: 23,
+    fontSize: 20,
   },
   welcomeTextContainer: {
     flex: 1,

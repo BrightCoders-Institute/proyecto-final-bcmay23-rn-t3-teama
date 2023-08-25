@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
         paddingStart: 7,
         width: '80%',
         height: 55,
+        color: '#000000',
     },
     focus: {
         borderColor: '#B6B6B6',
