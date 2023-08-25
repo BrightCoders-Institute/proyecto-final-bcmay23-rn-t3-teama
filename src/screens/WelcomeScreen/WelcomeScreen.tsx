@@ -18,7 +18,7 @@ const WelcomeScreen = ({navigation}: Props) => {
   const {height} = useWindowDimensions();
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{paddingHorizontal: '10%'}}>
       <View style={{height: height * 0.27}}>
         <Image
           source={Logo}
