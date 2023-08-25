@@ -20,8 +20,6 @@ const LoadingModal = ({
     return (
         <Modal visible={isVisible} transparent>
             <TouchableWithoutFeedback onPress={onClose}>
-
-
             <View style={styles.modalContainer}>
                 <View style={styles.modalContent}>
                     {isLoading ? (

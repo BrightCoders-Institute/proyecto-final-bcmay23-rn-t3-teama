@@ -8,10 +8,8 @@ import Map from '../../components/Map/Map';
 import { ButtonSecondary } from '../../components/ButtonSecondary/ButtonSecondary';
 import LoadingModal from '../../components/LoadingModal/LoadingModal';
 
-
 const successCompleted = require('../../assets/img/successDoctorModal.png');
 const errorImage = require('../../assets/img/errorDoctorModal.png');
-
 
 const BookAppointment = () => {
     const [selectedDate, setSelectedDate] = useState<string | null>(null);

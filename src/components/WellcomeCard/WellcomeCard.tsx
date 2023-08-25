@@ -13,8 +13,9 @@ export const WellcomeCard = () => {
         <Title text='Welcome' />
       </View>
       <View style={styles.avatarContainer}>
-        <WellcomeAvatar />
+        <WellcomeAvatar size={50} />
       </View>
     </View>
-  )
-}
+  );
+};
+

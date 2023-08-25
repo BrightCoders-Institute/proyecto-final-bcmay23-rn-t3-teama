@@ -1,27 +1,11 @@
 import React from 'react';
 import { styles } from './styles';
 import { TouchableOpacity, Text, View } from 'react-native';
-
-interface DayObject {
-  isSelectedDay: boolean;
-  weekName: string;
-  completeDay: string;
-  day: number;
-  month: string;
-  year: number;
-}
-
-interface CallendarWeekdayProps {
-  days: DayObject;
-  setSelectedDay: React.Dispatch<React.SetStateAction<DayObject | undefined>>;
-  weekdays: DayObject[];
-  setWeekDays: React.Dispatch<React.SetStateAction<DayObject[]>>;
-}
+import { CallendarWeekdayProps } from '../../interfaces/interfaces';
 
 export const CallendarWeekday: React.FC<CallendarWeekdayProps> = ({ days, setSelectedDay, weekdays, setWeekDays }) => {
 
   const handleOnDayPress = () => {
-    // console.log(`${days.completeDay}, ${days.day} ${days.month} ${days.year}`);
 
     const newWeekdays = [ ...weekdays ];
     const weekDaysInFalse = newWeekdays.map(day => {

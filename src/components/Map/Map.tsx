@@ -20,7 +20,7 @@ const Map = () => {
                     latitude: 19.243798803708895,
                     longitude: -103.72873328431236,
                 }}
-                title="Your nutritionist location"
+                title="Your nutritionist's location"
             />
         </MapView>
     );

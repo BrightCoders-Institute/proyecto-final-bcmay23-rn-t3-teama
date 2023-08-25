@@ -1,7 +1,6 @@
 import { StyleSheet } from "react-native"
 
 export const styles = StyleSheet.create({
-
     buttonContainer: {
         alignItems: 'center',
         alignSelf: 'center',
@@ -10,7 +9,7 @@ export const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 20,
         width: '95%',
-        height: '19.2%',
+        height: '19.3%',
         flexDirection: 'row',
         justifyContent: 'space-between',
         shadowColor: '#000',
@@ -28,20 +27,20 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     textContainer: {
-        flex: 1,
-        justifyContent: 'flex-end',
-        alignItems: 'flex-start',
-        paddingBottom: 8,
-        marginTop: 50,
-      },
-      icon: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        padding: 10,
-      },
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'flex-start',
+    paddingBottom: 8,
+    marginTop: 50,
+    },
+    icon: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    padding: 10,
+    },
     buttonImage: {
-        width: '33%',
-        height: '105%',
+        width: '34%',
+        height: '109%',
     },
 });

@@ -12,7 +12,7 @@ export const Title = ({ text, fontSize, color } : SubTitleProps) => {
       };
     
   return (
-    <View style={styles.containerTitle}>
+    <View>
         <Text style={titleStyle}>{ text }</Text>
     </View>
   )

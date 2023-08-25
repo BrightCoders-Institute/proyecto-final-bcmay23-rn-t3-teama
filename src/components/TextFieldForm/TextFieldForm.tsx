@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {View, TextInput, Text} from 'react-native';
 import { styles } from './styles';
-
-interface TextFieldFormProps {
-  placeholder: string;
-  inputValue: string;
-  onInputChange: (value: string) => void;
-  invalidText: string;
-  isInputValid?: boolean;
-  setInputValid?: React.Dispatch<React.SetStateAction<boolean>> | undefined;
-}
+import { TextFieldFormProps } from '../../interfaces/interfaces'
 
 export const TextFieldForm: React.FC<TextFieldFormProps> = ({
   placeholder,
