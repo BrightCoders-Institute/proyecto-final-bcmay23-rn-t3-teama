@@ -5,19 +5,16 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { MyMealCardR } from '../../components/MyMealCardR/MyMealCardR';
 import { MyMealCardL } from '../../components/MyMealCardL/MyMealCardL';
 import { CallendarWeekday } from '../../components/CallendarWeekday/CallendarWeekday';
-import BreakfastImg from '../../assets/img/Breakfast.png';
-import SnackImg from '../../assets/img/helty-snack.png';
-import LunchImg from '../../assets/img/grilledChiken.jpg';
-import DinnerImg from '../../assets/img/dinner.jpeg';
+import { getCurrentWeekdays, namesDays } from '../../helpers/getCurrentWeekdays'
+import { DayObject } from '../../interfaces/interfaces';
 
-interface DayObject {
-  isSelectedDay: boolean;
-  weekName: string;
-  completeDay: string;
-  day: number;
-  month: string;
-  year: number;
-}
+const imgType = {
+  BreakfastImg: require('../../assets/img/Breakfast.png'),
+  SnackImg: require('../../assets/img/helty-snack.png'),
+  LunchImg: require('../../assets/img/grilledChiken.jpg'),
+  DinnerImg: require('../../assets/img/dinner.jpeg'),
+};
+
 interface Props extends StackScreenProps<any, any> { }
 
 const MyMealsScreen = ({ navigation }: Props) => {
@@ -26,35 +23,10 @@ const MyMealsScreen = ({ navigation }: Props) => {
 
   const descriptionMeal = 'Bowl whit fruit, some fruit and more fruit. You can add fruit.';
   const calories = 'Recomended 830 - 1170Cal';
-  const namesDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   useEffect(() => {
-    getCurrentWeekdays();
+    setWeekDays( getCurrentWeekdays(namesDays, setSelectedDay));
   }, []);
-
-  function getCurrentWeekdays() {
-    const results: DayObject[] = [];
-
-    // const todaysDate = new Date("2023-12-31T00:00:00");
-    const todaysDate = new Date();
-
-    const dayCurrWeek = todaysDate.getDay();
-
-    const firstWeekDay = -dayCurrWeek;
-    const lastWeekDay = 6 - dayCurrWeek;
-
-    for (let i = firstWeekDay; i <= lastWeekDay; i++) {
-      const date = new Date(todaysDate);
-      date.setDate(todaysDate.getDate() + i);
-      const nameDay = namesDays[(dayCurrWeek + i + 7) % 7].slice(0, 3).toUpperCase();
-      const dayObject = { isSelectedDay: i === 0, weekName: nameDay, completeDay: (namesDays[(dayCurrWeek + i + 7) % 7]), day: date.getDate(), month: months[date.getMonth()], year: date.getFullYear() };
-      results.push(dayObject);
-      if (i === 0) { setSelectedDay(dayObject); }
-    }
-    setWeekDays(results);
-    return results;
-  }
 
   return (
     <View style={styles.container}>
@@ -78,28 +50,28 @@ const MyMealsScreen = ({ navigation }: Props) => {
           title="Breakfast"
           caloriesRecomended={calories}
           description={descriptionMeal}
-          imgSource={BreakfastImg}
+          imgSource={imgType.BreakfastImg}
           onPress={() => navigation.navigate('Meals Details')}
         />
         <MyMealCardL
           title="Snack"
           caloriesRecomended={calories}
           description={descriptionMeal}
-          imgSource={SnackImg}
+          imgSource={imgType.SnackImg}
           onPress={() => navigation.navigate('Meals Details')}
         />
         <MyMealCardR
           title="Lunch"
           caloriesRecomended={calories}
           description={descriptionMeal}
-          imgSource={LunchImg}
+          imgSource={imgType.LunchImg}
           onPress={() => navigation.navigate('Meals Details')}
         />
         <MyMealCardL
           title="Dinner"
           caloriesRecomended={calories}
           description={descriptionMeal}
-          imgSource={DinnerImg}
+          imgSource={imgType.DinnerImg}
           onPress={() => navigation.navigate('Meals Details')}
         />
       </ScrollView>

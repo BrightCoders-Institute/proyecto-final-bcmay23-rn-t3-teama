@@ -23,7 +23,6 @@ export const style = StyleSheet.create({
         marginVertical: '2%',
         marginBottom: '-2%',
     },
-
     perServingTitle: {
         marginStart: '7%',
     },

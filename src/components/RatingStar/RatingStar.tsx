@@ -1,11 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-
-interface RatingStarProps {
-    filled: 'full' | 'half' | 'empty';
-    size: number;
-}
+import { RatingStarProps } from '../../interfaces/interfaces';
 
 export const RatingStar: React.FC<RatingStarProps> = ({ filled, size }) => {
 

@@ -8,9 +8,12 @@ import {
 } from 'react-native';
 import {ButtonPrimary} from '../../components/ButtonPrimary/ButtonPrimary';
 import {StackScreenProps} from '@react-navigation/stack';
-import Logo from '../../assets/img/logo.png';
-import Nutritionist from '../../assets/img/nutritionist.png';
 import {styles} from './styles';
+
+const imgType = {
+  Logo: require('../../assets/img/logo.png'),
+  Nutritionist: require('../../assets/img/nutritionist.png'),
+}
 
 interface Props extends StackScreenProps<any, any> {}
 
@@ -21,7 +24,7 @@ const WelcomeScreen = ({navigation}: Props) => {
     <SafeAreaView style={{paddingHorizontal: '10%'}}>
       <View style={{height: height * 0.27}}>
         <Image
-          source={Logo}
+          source={imgType.Logo}
           style={[styles.imageLogo, {height: height * 0.25}]}
           resizeMode="contain"
         />
@@ -31,7 +34,7 @@ const WelcomeScreen = ({navigation}: Props) => {
       </View>
       <View>
         <Image
-          source={Nutritionist}
+          source={imgType.Nutritionist}
           style={[styles.imageLogo, {height: height * 0.42}]}
           resizeMode="contain"
         />

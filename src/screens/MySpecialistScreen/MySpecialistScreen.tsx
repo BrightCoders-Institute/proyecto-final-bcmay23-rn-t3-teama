@@ -1,19 +1,15 @@
 import React from 'react';
 import { View, useWindowDimensions, Image, Text, SafeAreaView } from 'react-native';
 import { styles } from './styles';
-import NutritionistImage from '../../assets/img/nutritionist-profile.png';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { ButtonSecondary } from '../../components/ButtonSecondary/ButtonSecondary';
 import { RatingStar } from '../../components/RatingStar/RatingStar';
 import { WhatsAppButton } from '../../components/WhatsAppButton/WhatsAppButton';
 import { StackScreenProps } from '@react-navigation/stack';
+import { NutritionistInfo } from '../../interfaces/interfaces';
 
-interface NutritionistInfo {
-    name: string;
-    major: string;
-    cityAndCountry: string;
-    biography: string;
-    rating: string;
+const imgType = {
+    NutritionistImage: require('../../assets/img/nutritionist-profile.png'),
 }
 
 const NUTRITIONIST_INFO: NutritionistInfo = {
@@ -21,7 +17,7 @@ const NUTRITIONIST_INFO: NutritionistInfo = {
     major: 'Ph.D. in Nutrition',
     cityAndCountry: 'Colima, Mx.',
     biography: 'Harvard-educated nutritionist empowering healthier lives. Personalized meal plans, engaging workshops, and evidence-based guidance for weight management, sports nutrition, and overall well-being. Join our app for a transformative wellness journey today!',
-    rating: '5.0',
+    rating: '3.5',
 };
 
 interface Props extends StackScreenProps<any, any> {}
@@ -56,7 +52,7 @@ export const MySpecialistScreen = ({navigation}: Props) => {
             <View style={styles.imageContainer}>
                 <View style={styles.circle} />
                 <Image
-                    source={NutritionistImage}
+                    source={imgType.NutritionistImage}
                     style={[styles.nutritionistImage, {height: height * 0.29}]}
                 />
             </View>

@@ -73,7 +73,7 @@ export const styles = StyleSheet.create({
     },
     metricsContainer: {
         flexDirection: 'row',
-        height: '88%', // porque el título tiene 15%
+        height: '88%',
     },
     column: {
         display: 'flex',

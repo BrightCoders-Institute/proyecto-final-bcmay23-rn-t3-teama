@@ -1,15 +1,9 @@
 import React from 'react';
 import {Text, TouchableOpacity, ViewStyle} from 'react-native';
 import {style} from './styles';
+import {ButtonSecondaryProps} from '../../interfaces/interfaces';
 
-interface ButtonProps {
-  title: string;
-  onPress?: () => void;
-  color?: string;
-  fontSize?: number;
-}
-
-export const ButtonSecondary = ({title, onPress, color, fontSize = 20}: ButtonProps) => {
+export const ButtonSecondary = ({title, onPress, color, fontSize = 20}: ButtonSecondaryProps) => {
   const buttonStyle: ViewStyle = {
     backgroundColor: color || '#007bff',
   };
