@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
     padding: 10,
     opacity: 0.5,
     fontSize: 20,
+    color: '#686E73',
   },
   welcomeTextContainer: {
     flex: 1,
@@ -26,5 +27,6 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 16,
     opacity: 0.5,
+    color: '#686E73',
   },
 });
