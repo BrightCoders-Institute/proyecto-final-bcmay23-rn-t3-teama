@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export const style = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        width: 120,
+        width: 105,
         height: 130,
         alignItems: 'center',
         justifyContent: 'center',
@@ -13,9 +13,11 @@ export const style = StyleSheet.create({
     },
     mainContainer: {
         flexDirection: 'row',
+        paddingVertical: 10,
+        paddingHorizontal: 21,
         backgroundColor: '#FFFF',
         alignSelf: 'center',
-        maxWidth: '98%',
+        width: '100%',
         borderRadius:20,
         shadowColor: '#000',
         shadowOffset: {
@@ -41,8 +43,9 @@ export const style = StyleSheet.create({
         marginLeft: -18,
     },
     titlenutrition:{
+        color: 'gray',
         paddingTop: 10,
-        margin: 1,
+        margin: 0,
         fontSize: 15,
         fontWeight: 'bold',
         paddingBottom: 6,
@@ -57,5 +60,8 @@ export const style = StyleSheet.create({
         fontWeight: 'bold',
         color: '#818181',
     },
+    porcentGrams: {
+        left: -10,
+    }
 });
 
