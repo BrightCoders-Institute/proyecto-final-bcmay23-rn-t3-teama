@@ -10,7 +10,7 @@ export const WellcomeCard = () => {
     <View style={styles.container}>
       <View>
         <SubTitle text='Hello, John' color='black'/>
-        <Title text='Wellcome' />
+        <Title text='Welcome' />
       </View>
       <View style={styles.avatarContainer}>
         <WellcomeAvatar />

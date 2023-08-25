@@ -2,8 +2,11 @@ import { StyleSheet } from "react-native"
 
 export const styles = StyleSheet.create({
 
-    titleContainar:{
+    titleContainar: {
         marginHorizontal: 10,
-        marginTop:5,
-    }
-})
+        marginTop: 8,
+    },
+    mainContainer: {
+        marginTop: 17,
+    },
+});

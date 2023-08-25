@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 20,
         width: '95%',
-        height: 120,
+        height: 105,
         justifyContent: 'center',
         shadowColor: '#000',
         shadowOffset: {
@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
     },
     titleText: {
         color: '#A69C9C',
-        fontSize: 18,
+        fontSize: 20,
         marginBottom: 5,
     },
     buttonImage: {

@@ -5,11 +5,11 @@ import { WellnesCardProps } from '../../interfaces/interfaces';
 import { styles } from './styles';
 
 export const WellnesCard = ({ title, onPress, imgSource, backgroundColor }: WellnesCardProps) => {
-    const buttonContainerStyle =[
+    const buttonContainerStyle = [
         styles.buttonContainer,
         { backgroundColor: backgroundColor ? backgroundColor : '#FFFF' },
-    ]
-    
+    ];
+
     return (
         <TouchableOpacity style={ buttonContainerStyle } onPress={onPress}>
             <Icon name={ 'play-circle-outline' } size={35} color={'white'} style={ styles.icon } />
