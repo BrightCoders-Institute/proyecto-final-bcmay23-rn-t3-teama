@@ -5,10 +5,6 @@ require Pod::Executable.execute_command('node', ['-p',
     {paths: [process.argv[1]]},
   )', __dir__]).strip
 
-<<<<<<< HEAD
-# platform :ios, min_ios_version_supported
-=======
->>>>>>> 2b3883ec37eaee0b114d2c603093efe6e8205b33
 platform :ios, '13.0'
 prepare_react_native_project!
 
