@@ -4,7 +4,7 @@ import { ProgressBar } from 'react-native-paper';
 import { NutritionalChartProps } from '../../interfaces/interfaces';
 import { style } from './styles';
 
-export const NutritionalChartProgress = ({progressCarbs, progressProtein, progressFat, grams}: NutritionalChartProps) => {
+export const NutritionalChartProgress = ({progressCarbs, progressProtein, progressFat, gramsCarbs, gramsProtein, gramsFat }: NutritionalChartProps) => {
     const backgroundMacros = {
         carb: '#56ADEC',
         protein: '#F3A939',
@@ -21,9 +21,9 @@ export const NutritionalChartProgress = ({progressCarbs, progressProtein, progre
         />
         <View style={style.infoContainer}>
         <Text style={style.titlenutrition}>Carbs</Text>
-            <Text>
+            <Text style={style.porcentGrams}>
               <Text style={[style.percentage, { color: backgroundMacros.carb }]}>{(progressCarbs * 100).toFixed(0)}%</Text>
-              <Text style={style.gramsText}> ({grams})g</Text>
+              <Text style={style.gramsText}> ({gramsCarbs})g</Text>
             </Text>
         </View>
       </View>
@@ -36,9 +36,9 @@ export const NutritionalChartProgress = ({progressCarbs, progressProtein, progre
         />
         <View style={style.infoContainer}>
         <Text style={style.titlenutrition}>Protein</Text>
-            <Text>
+            <Text style={style.porcentGrams}>
               <Text style={[style.percentage, { color: backgroundMacros.protein }]}>{(progressProtein * 100).toFixed(0)}%</Text>
-              <Text style={style.gramsText}> ({grams})g</Text>
+              <Text style={style.gramsText}> ({gramsProtein})g</Text>
             </Text>
         </View>
       </View>
@@ -51,9 +51,9 @@ export const NutritionalChartProgress = ({progressCarbs, progressProtein, progre
             />
         <View style={style.infoContainer}>
           <Text style={style.titlenutrition}>Fat</Text>
-            <Text>
+            <Text style={style.porcentGrams}>
               <Text style={[style.percentage, { color: backgroundMacros.fat }]}>{(progressFat * 100).toFixed(0)}%</Text>
-              <Text style={style.gramsText}> ({grams})g</Text>
+              <Text style={style.gramsText}> ({gramsFat})g</Text>
             </Text>
         </View>
       </View>

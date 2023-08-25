@@ -10,10 +10,10 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 const Tab = createBottomTabNavigator();
 
 export const BottomTab = () => {
-  const { top } = useSafeAreaInsets();
+  const { top } = useSafeAreaInsets()
   return (
     <Tab.Navigator
-    sceneContainerStyle = {{ paddingTop: top, backgroundColor: '#FFFF'}}
+      sceneContainerStyle= {{paddingTop: top, backgroundColor: '#FFFF'}}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color, focused }) => {
 
@@ -53,12 +53,13 @@ export const BottomTab = () => {
           fontSize: 17,
         },
         headerTitleAlign: 'center',
+        
       })
       }>
       <Tab.Screen name="HomeScreen" options={{ headerShown: false, title: 'Home' }} component={HomeScreen} />
       <Tab.Screen name="MyMealsScreen" options={{ headerShown: false, title: 'Diet' }} component={MyMealsScreen} />
       <Tab.Screen name="ReportScreen" options={{ headerShown: false, title: 'Report' }} component={ReportScreen} />
-      <Tab.Screen name="TopTab" options={{ title: 'About', headerStyle: { borderColor: 'white' } }} component={TopTab} />
+      <Tab.Screen name="TopTab" options={{ title: 'About', headerShown: false, headerStyle: { borderColor: 'white' } }} component={TopTab} />
     </Tab.Navigator>
   );
 };

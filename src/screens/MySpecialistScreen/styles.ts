@@ -2,34 +2,40 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     container: {
+        flex: 1,
         backgroundColor: '#795DEA',
         marginTop: 5,
     },
     nutritionistInfoContainer: {
+        flex: 2,
         backgroundColor: '#ffffff',
         borderTopRightRadius: 20,
         borderTopLeftRadius: 20,
         paddingHorizontal: 35,
         paddingTop: 25,
-        display: 'flex',
+        // justifyContent: 'space-between',
+        // justifyContent: 'space-evenly',
+        justifyContent: 'space-around',
+        paddingBottom: 40,
     },
     imageContainer: {
+        flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
     circle: {
-        width: '91%',
+        width: '80%',
         aspectRatio: 1,
         borderRadius: 999,
         backgroundColor: '#8E7BD7',
         position: 'absolute',
-        left: '-24%',
-        bottom: '-30%',
+        left: '-20%',
+        bottom: '-65%',
     },
     nutritionistImage: {
         resizeMode: 'contain',
         position: 'absolute',
-        left: '-25%',
+        left: '-32%',
     },
     locationContainer: {
         display: 'flex',
