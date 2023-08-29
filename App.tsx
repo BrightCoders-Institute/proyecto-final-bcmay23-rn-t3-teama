@@ -6,6 +6,7 @@ import { StackNavigator } from './src/navigation/StackNavigator';
 import firestore from '@react-native-firebase/firestore';
 import { PaperProvider } from 'react-native-paper';
 import { enableLatestRenderer } from 'react-native-maps';
+import { AuthProvider } from './src/context/AuthContext';
 
 enableLatestRenderer();
 
@@ -25,10 +26,21 @@ function App(): JSX.Element {
 
   return (
     <NavigationContainer>
-      <PaperProvider >
-        <StackNavigator />
-      </PaperProvider>
+      <AppState>
+        <PaperProvider >
+          <StackNavigator />
+        </PaperProvider>
+      </AppState>
     </NavigationContainer>
   );
 }
+
+const AppState = ({ children }: any ) => {
+  return (
+    <AuthProvider>
+      { children }
+    </AuthProvider>
+  );
+};
+
 export default App;

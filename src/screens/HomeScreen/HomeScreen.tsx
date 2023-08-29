@@ -1,10 +1,11 @@
-import { View } from 'react-native';
-import React from 'react';
+import { View, Text } from 'react-native';
+import React, { useContext } from 'react';
 import { WellcomeCard } from '../../components/WellcomeCard/WellcomeCard';
 import { WellcomeProgressCard } from '../../components/WellcomeProgressCard/WellcomeProgressCard';
 import { WellnesCard } from '../../components/WellnesCard/WellnesCard';
 import { Title } from '../../components/Title/Title';
 import { styles } from './styles';
+import { AuthContext } from '../../context/AuthContext';
 
 const iconType = {
   fruitsImage: require('../../assets/img/stack-of-three-red-apples-hc-studio-removebg-preview.png'),
@@ -14,8 +15,12 @@ const iconType = {
 };
 
 const HomeScreen = () => {
+
+  const { authState } = useContext( AuthContext );
+
   return (
     <View>
+      <Text>{ JSON.stringify( authState, null, 4 ) }</Text>
       <WellcomeCard />
       <WellcomeProgressCard title="Consumed today" />
       <View style={styles.mainContainer}>
