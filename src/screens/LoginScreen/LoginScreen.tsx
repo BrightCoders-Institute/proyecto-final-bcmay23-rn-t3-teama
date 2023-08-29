@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   SafeAreaView,
   View,
@@ -18,6 +18,7 @@ import { useFieldValidation } from '../../hooks/useFieldValidation';
 import { StackScreenProps } from '@react-navigation/stack';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
+import { AppContext } from '../../context/AppContext';
 const successLoginModalImg = require('../../assets/img/successLoginModal.png');
 const errorLoginModalImg = require('../../assets/img/errorLoginModal.png');
 
@@ -48,6 +49,7 @@ const LoginScreen = ({navigation}: Props) => {
   const [isLoaderVisile, setIsLoaderVisile] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const { signIn } = useContext( AppContext );
   const {height} = useWindowDimensions();
 
   useEffect(() => {
@@ -98,6 +100,7 @@ const LoginScreen = ({navigation}: Props) => {
           .then(() => {
             console.log('User account created & signed in!');
             setIsSuccess(true);
+            signIn();
           })
           .then(() => {
             setIsLoading(false);

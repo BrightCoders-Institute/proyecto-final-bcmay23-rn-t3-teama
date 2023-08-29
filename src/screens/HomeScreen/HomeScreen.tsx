@@ -5,7 +5,7 @@ import { WellcomeProgressCard } from '../../components/WellcomeProgressCard/Well
 import { WellnesCard } from '../../components/WellnesCard/WellnesCard';
 import { Title } from '../../components/Title/Title';
 import { styles } from './styles';
-import { AuthContext } from '../../context/AuthContext';
+import { AppContext } from '../../context/AppContext';
 
 const iconType = {
   fruitsImage: require('../../assets/img/stack-of-three-red-apples-hc-studio-removebg-preview.png'),
@@ -16,11 +16,11 @@ const iconType = {
 
 const HomeScreen = () => {
 
-  const { authState } = useContext( AuthContext );
+  const { appState } = useContext( AppContext );
 
   return (
     <View>
-      <Text>{ JSON.stringify( authState, null, 4 ) }</Text>
+      <Text>{ JSON.stringify( appState, null, 4 ) }</Text>
       <WellcomeCard />
       <WellcomeProgressCard title="Consumed today" />
       <View style={styles.mainContainer}>

@@ -13,7 +13,7 @@ import {styles} from './styles';
 const imgType = {
   Logo: require('../../assets/img/logo.png'),
   Nutritionist: require('../../assets/img/nutritionist.png'),
-}
+};
 
 interface Props extends StackScreenProps<any, any> {}
 

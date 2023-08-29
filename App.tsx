@@ -6,7 +6,7 @@ import { StackNavigator } from './src/navigation/StackNavigator';
 import firestore from '@react-native-firebase/firestore';
 import { PaperProvider } from 'react-native-paper';
 import { enableLatestRenderer } from 'react-native-maps';
-import { AuthProvider } from './src/context/AuthContext';
+import { AppProvider } from './src/context/AppContext';
 
 enableLatestRenderer();
 
@@ -37,9 +37,9 @@ function App(): JSX.Element {
 
 const AppState = ({ children }: any ) => {
   return (
-    <AuthProvider>
+    <AppProvider>
       { children }
-    </AuthProvider>
+    </AppProvider>
   );
 };
 
