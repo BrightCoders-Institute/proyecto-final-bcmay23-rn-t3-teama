@@ -17,6 +17,7 @@ const iconType = {
 const HomeScreen = () => {
 
   const { appState } = useContext( AppContext );
+  console.log(appState);
 
   return (
     <View>

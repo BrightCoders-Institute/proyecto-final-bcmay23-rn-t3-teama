@@ -24,7 +24,7 @@ const WelcomeScreen = ({navigation}: Props) => {
 
   return (
     <SafeAreaView style={{paddingHorizontal: '10%'}}>
-      <Text>{ JSON.stringify( appState, null, 4 ) }</Text>
+      {/* <Text>{ JSON.stringify( appState, null, 4 ) }</Text> */}
       <View style={{height: height * 0.27}}>
         <Image
           source={imgType.Logo}

@@ -1,18 +1,30 @@
 import React, { createContext, useReducer } from 'react';
 import { appReducer } from './appReducer';
 
-// Interfaz del context
-/* export interface AuthState {
-    isLoggedIn: boolean;
-    username?: string;
-} */
 export interface AppContextState {
     isLoggedIn: boolean;
     consumedCalories: number;
     caloriesPerDay: number;
     patientMetaData: PacientMetaDataProps;
-    // dayOfWeek: string;
+    userData: UserDataInfo;
     // otras cosas para almacenar
+}
+export interface UserDataInfo {
+    bmi: string;
+    age: number;
+    email: string;
+    lastName: string;
+    caloriesPerDay: number;
+    bust: number;
+    height: number;
+    name: string;
+    fatPercentage: number;
+    waist: number;
+    hips: number;
+    userKey: string;
+    goal: string;
+    weight: number;
+    image: string;
 }
 
 interface PacientMetaDataProps {
@@ -29,9 +41,25 @@ export const appInitialState: AppContextState = {
   patientMetaData: {
     profilePhotoUrl: 'https://www.pasala.com.mx/wp-content/uploads/2020/06/PAS200623-MEDIO-MAMADO-01.jpg',
     name: 'Jhon',
-    lastName: 'Needham'
+    lastName: 'Needham',
   },
-//   dayOfWeek: '',
+  userData: {
+    name: '',
+    lastName: '',
+    userKey: '',
+    height: 0,
+    weight: 0,
+    age: 0,
+    bmi: '',
+    email: '',
+    caloriesPerDay: 0,
+    bust: 0,
+    fatPercentage: 0,
+    waist: 0,
+    hips: 0,
+    goal: '',
+    image: '',
+  },
 //   futuros valores para almacenar
 };
 
@@ -42,6 +70,7 @@ export interface AppContextProps {
     logout?: () => void;
     updateCalories?: (calories: number) => void;
     updateDayOfWeek?: (day: string) => void;
+    getContextUserData: (userData: UserDataInfo) => void;
     // futuras acciones
 }
 
@@ -57,10 +86,15 @@ export const AppProvider = ({ children }: any) => {
         dispatch({type: 'signIn'});
     };
 
+    const getContextUserData = (userData: UserDataInfo) => {
+        dispatch({type: 'getContextUserData', payload: userData});
+    };
+
     return (
         <AppContext.Provider value={{
             appState,
             signIn,
+            getContextUserData,
         }}>
             { children }
         </AppContext.Provider>
