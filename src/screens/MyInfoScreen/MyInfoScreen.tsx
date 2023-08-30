@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, Text, Image} from 'react-native';
 import {SubTitle} from '../../components/SubTitle/SubTitle';
 import {Title} from '../../components/Title/Title';
@@ -6,6 +6,7 @@ import {WellcomeAvatar} from '../../components/WellcomeAvatar/WellcomeAvatar';
 import {NutritionInfoProps} from '../../interfaces/interfaces';
 import {UserInfoProps} from '../../interfaces/interfaces';
 import {styles} from './styles';
+import {AppContext} from '../../context/AppContext';
 
 const iconType = {
   weightScale: require('../../assets/img/weight-scale.png'),
@@ -39,14 +40,26 @@ const USER_DATA: UserInfoProps = {
 };
 
 const MyInfoScreen = ( {}: NutritionInfoProps, {}: UserInfoProps ) => {
+
+  const {appState} = useContext(AppContext);
+
   return (
-    <View style={{ flex: 1, paddingHorizontal: '5%', justifyContent: 'space-around' }}>
-      <View style={[styles.mainContainer, { flex: 0.35 }]}>
+    <View
+      style={{
+        flex: 1,
+        paddingHorizontal: '5%',
+        justifyContent: 'space-around',
+      }}>
+      <View style={[styles.mainContainer, {flex: 0.35}]}>
         <View style={styles.clientKey}>
-          <Text style={styles.keyText}>{`Client Key: ${USER_DATA.userKey}`}</Text>
+          <Text
+            style={styles.keyText}>{`Client Key: ${USER_DATA.userKey}`}</Text>
         </View>
         <View style={styles.patientName}>
-          <Title text={`${USER_DATA.userName} ${USER_DATA.userLastName}`} fontSize={20} />
+          <Title
+            text={`${appState.patientMetaData.name} ${appState.patientMetaData.lastName}`}
+            fontSize={20}
+          />
         </View>
         <View style={styles.container}>
           <View style={styles.generalInfo}>
@@ -69,7 +82,7 @@ const MyInfoScreen = ( {}: NutritionInfoProps, {}: UserInfoProps ) => {
         </View>
       </View>
 
-      <View style={[{ flex: 0.40 }]}>
+      <View style={[{flex: 0.4}]}>
         <View style={styles.titleCards}>
           <Title text={'Monthly Metrics'} fontSize={18} />
         </View>
@@ -114,7 +127,7 @@ const MyInfoScreen = ( {}: NutritionInfoProps, {}: UserInfoProps ) => {
         </View>
       </View>
 
-      <View style={{ flex: 0.25 }}>
+      <View style={{flex: 0.25}}>
         <Text style={styles.nutritionTitle}>Nutrition Counselling</Text>
         <View style={styles.counsellingContainer}>
           <View style={styles.topSection}>
@@ -142,8 +155,10 @@ const MyInfoScreen = ( {}: NutritionInfoProps, {}: UserInfoProps ) => {
                 text={`${NUTRITION_COUNSELLING_DATA.date},`}
                 color="#000000"
                 fontSize={12}
-                />
-              <Text style={{color:"#000000", fontSize: 12, marginTop: '-5%'}}>{NUTRITION_COUNSELLING_DATA.time}</Text>
+              />
+              <Text style={{color: '#000000', fontSize: 12, marginTop: '-5%'}}>
+                {NUTRITION_COUNSELLING_DATA.time}
+              </Text>
             </View>
             <View style={styles.section}>
               <Title text="Price" color="#A69C9C" fontSize={13} />

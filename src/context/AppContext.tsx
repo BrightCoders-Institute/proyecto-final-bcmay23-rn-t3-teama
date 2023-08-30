@@ -9,16 +9,30 @@ import { appReducer } from './appReducer';
 export interface AppContextState {
     isLoggedIn: boolean;
     consumedCalories: number;
-    dayOfWeek: string;
+    caloriesPerDay: number;
+    patientMetaData: PacientMetaDataProps;
+    // dayOfWeek: string;
     // otras cosas para almacenar
+}
+
+interface PacientMetaDataProps {
+    profilePhoto: string;
+    name: string;
+    lastName: string;
 }
 
 // estado inicial del context
 export const appInitialState: AppContextState = {
-    isLoggedIn: false,
-    consumedCalories: 0,
-    dayOfWeek: '',
-    // futuros valores para almacenar
+  isLoggedIn: false,
+  consumedCalories: 0,
+  caloriesPerDay: 2500,
+  patientMetaData: {
+    profilePhoto: 'https://www.pasala.com.mx/wp-content/uploads/2020/06/PAS200623-MEDIO-MAMADO-01.jpg',
+    name: 'Jhon',
+    lastName: 'Needham'
+  },
+//   dayOfWeek: '',
+//   futuros valores para almacenar
 };
 
 // todo lo que queremos que se exponga en el context (data y métodos)

@@ -20,7 +20,7 @@ const HomeScreen = () => {
 
   return (
     <View>
-      <Text>{ JSON.stringify( appState, null, 4 ) }</Text>
+      {/* <Text>{ JSON.stringify( appState, null, 4 ) }</Text> */}
       <WellcomeCard />
       <WellcomeProgressCard title="Consumed today" />
       <View style={styles.mainContainer}>
