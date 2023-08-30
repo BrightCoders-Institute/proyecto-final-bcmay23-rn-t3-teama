@@ -22,26 +22,27 @@ const NUTRITION_COUNSELLING_DATA: NutritionInfoProps = {
   price: '600.00',
 };
 
-const USER_DATA: UserInfoProps = {
-  userKey: '2840389',
-  userName: 'Jonh',
-  userLastName: 'Needham',
-  age: 28,
-  image: '',
-  weight: 120.20,
-  height: 182,
-  bmi: 29.40,
-  waist: 70.5,
-  hips: 100.5,
-  bust: 110.2,
-  fatPercentage: 0,
-  goal: '',
-  caloriesPerDay: 0,
-};
+// const USER_DATA: UserInfoProps = {
+//   userKey: '2840389',
+//   userName: 'Jonh',
+//   userLastName: 'Needham',
+//   age: 28,
+//   image: '',
+//   weight: 120.20,
+//   height: 182,
+//   bmi: 29.40,
+//   waist: 70.5,
+//   hips: 100.5,
+//   bust: 110.2,
+//   fatPercentage: 0,
+//   goal: '',
+//   caloriesPerDay: 0,
+// };
 
 const MyInfoScreen = ( {}: NutritionInfoProps, {}: UserInfoProps ) => {
 
-  const {appState} = useContext(AppContext);
+  // const {appState} = useContext(AppContext);
+  const { appState: { userData } } = useContext(AppContext);
 
   return (
     <View
@@ -53,18 +54,18 @@ const MyInfoScreen = ( {}: NutritionInfoProps, {}: UserInfoProps ) => {
       <View style={[styles.mainContainer, {flex: 0.35}]}>
         <View style={styles.clientKey}>
           <Text
-            style={styles.keyText}>{`Client Key: ${USER_DATA.userKey}`}</Text>
+            style={styles.keyText}>{`Client Key: ${userData.userKey}`}</Text>
         </View>
         <View style={styles.patientName}>
           <Title
-            text={`${appState.patientMetaData.name} ${appState.patientMetaData.lastName}`}
+            text={`${userData.name} ${userData.lastName}`}
             fontSize={20}
           />
         </View>
         <View style={styles.container}>
           <View style={styles.generalInfo}>
             <View style={styles.recordMeasures}>
-              <Title text={USER_DATA.weight.toFixed(2)} fontSize={19} />
+              <Title text={userData.weight.toFixed(2)} fontSize={19} />
             </View>
             <SubTitle text={'(kg)'} fontSize={17} color={'black'} />
             <SubTitle text={'weight'} fontSize={16} />
@@ -74,7 +75,7 @@ const MyInfoScreen = ( {}: NutritionInfoProps, {}: UserInfoProps ) => {
           </View>
           <View style={styles.generalInfo}>
             <View style={styles.recordMeasures}>
-              <Title text={USER_DATA.height.toFixed(1)} fontSize={19} />
+              <Title text={userData.height.toFixed(2)} fontSize={19} />
             </View>
             <SubTitle text={'(cm)'} fontSize={17} color={'black'} />
             <SubTitle text={'height'} fontSize={16} />
@@ -92,14 +93,14 @@ const MyInfoScreen = ( {}: NutritionInfoProps, {}: UserInfoProps ) => {
               <Image source={iconType.weightScale} style={styles.smallIcons} />
               <View style={styles.imcContainer}>
                 <Title text={'BMI'} fontSize={17} color={'#939191'} />
-                <Title text={USER_DATA.bmi.toFixed(2)} fontSize={17} />
+                <Title text={userData.bmi.toFixed(2)} fontSize={17} />
               </View>
             </View>
             <View style={styles.containerImc}>
               <Image source={iconType.calendar} style={styles.smallIcons} />
               <View style={styles.ageContainer}>
                 <Title text={'Age'} fontSize={17} color={'#939191'} />
-                <Title text={`${USER_DATA.age} years`} fontSize={17} />
+                <Title text={`${userData.age} years`} fontSize={17} />
               </View>
             </View>
           </View>
@@ -108,15 +109,15 @@ const MyInfoScreen = ( {}: NutritionInfoProps, {}: UserInfoProps ) => {
               <View style={styles.metricscontainer}>
                 <View style={styles.metrics}>
                   <Title text={'Waist'} fontSize={17} color={'#939191'} />
-                  <Title text={`${USER_DATA.waist} cm`} fontSize={16} />
+                  <Title text={`${userData.waist} cm`} fontSize={16} />
                 </View>
                 <View style={styles.metrics}>
                   <Title text={'Hips'} fontSize={17} color={'#939191'} />
-                  <Title text={`${USER_DATA.hips} cm`} fontSize={16} />
+                  <Title text={`${userData.hips} cm`} fontSize={16} />
                 </View>
                 <View style={styles.metrics}>
                   <Title text={'Bust'} fontSize={17} color={'#939191'} />
-                  <Title text={`${USER_DATA.bust} cm`} fontSize={16} />
+                  <Title text={`${userData.bust} cm`} fontSize={16} />
                 </View>
               </View>
               <View style={styles.imageContainer}>

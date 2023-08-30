@@ -8,12 +8,12 @@ import {AppContext} from '../../context/AppContext';
 
 export const WellcomeCard = () => {
 
-  const {appState} = useContext(AppContext)
+  const { appState: { userData } } = useContext(AppContext);
 
   return (
     <View style={styles.container}>
       <View>
-        <SubTitle text={`Hello, ${appState.patientMetaData.name}`} color='black'/>
+        <SubTitle text={`Hello, ${userData.name}`} color='black'/>
         <Title text='Welcome' />
       </View>
       <View style={styles.avatarContainer}>

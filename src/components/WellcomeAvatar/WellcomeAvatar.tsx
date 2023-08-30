@@ -6,7 +6,8 @@ import {AppContext} from '../../context/AppContext';
 
 export const WellcomeAvatar = ({size}: wellcomeAvatarProps) => {
 
-  const {appState: {patientMetaData}} = useContext(AppContext)
+  // const {appState: {patientMetaData}} = useContext(AppContext);
+  const { appState: { userData } } = useContext(AppContext);
 
   const imageSize = size || 50;
 
@@ -14,7 +15,7 @@ export const WellcomeAvatar = ({size}: wellcomeAvatarProps) => {
     <View style={[styles.avatarContainer, { width: imageSize, height: imageSize }]}>
     <Image
       source={{
-        uri: patientMetaData.profilePhotoUrl,
+        uri: userData.image,
       }}
       style={[styles.avatar, { width: imageSize, height: imageSize }]}
     />
