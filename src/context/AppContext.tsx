@@ -10,7 +10,7 @@ export interface AppContextState {
     // otras cosas para almacenar
 }
 export interface UserDataInfo {
-    bmi: string;
+    bmi: number;
     age: number;
     email: string;
     lastName: string;
@@ -44,21 +44,21 @@ export const appInitialState: AppContextState = {
     lastName: 'Needham',
   },
   userData: {
-    name: '',
-    lastName: '',
-    userKey: '',
-    height: 0,
-    weight: 0,
-    age: 0,
-    bmi: '',
+    name: 'Jhon',
+    lastName: 'Needham',
+    userKey: '123456',
+    height: 1.80,
+    weight: 110.5,
+    age: 12,
+    bmi: 80.2,
     email: '',
     caloriesPerDay: 0,
-    bust: 0,
+    bust: 520.5,
     fatPercentage: 0,
-    waist: 0,
-    hips: 0,
+    waist: 12.8,
+    hips: 80.4,
     goal: '',
-    image: '',
+    image: 'https://www.pasala.com.mx/wp-content/uploads/2020/06/PAS200623-MEDIO-MAMADO-01.jpg',
   },
 //   futuros valores para almacenar
 };
