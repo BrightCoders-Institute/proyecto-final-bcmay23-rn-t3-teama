@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   SafeAreaView,
   Text,
@@ -9,6 +9,7 @@ import {
 import {ButtonPrimary} from '../../components/ButtonPrimary/ButtonPrimary';
 import {StackScreenProps} from '@react-navigation/stack';
 import {styles} from './styles';
+import { AppContext } from '../../context/AppContext';
 
 const imgType = {
   Logo: require('../../assets/img/logo.png'),
@@ -19,9 +20,11 @@ interface Props extends StackScreenProps<any, any> {}
 
 const WelcomeScreen = ({navigation}: Props) => {
   const {height} = useWindowDimensions();
+  const { appState } = useContext( AppContext );
 
   return (
     <SafeAreaView style={{paddingHorizontal: '10%'}}>
+      <Text>{ JSON.stringify( appState, null, 4 ) }</Text>
       <View style={{height: height * 0.27}}>
         <Image
           source={imgType.Logo}
