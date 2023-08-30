@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Image, View } from 'react-native';
 import { wellcomeAvatarProps } from '../../interfaces/interfaces';
 import { styles } from './styles';
+import {AppContext} from '../../context/AppContext';
 
 export const WellcomeAvatar = ({size}: wellcomeAvatarProps) => {
+
+  const {appState: {patientMetaData}} = useContext(AppContext)
 
   const imageSize = size || 50;
 
@@ -11,7 +14,7 @@ export const WellcomeAvatar = ({size}: wellcomeAvatarProps) => {
     <View style={[styles.avatarContainer, { width: imageSize, height: imageSize }]}>
     <Image
       source={{
-        uri: 'https://datepsychology.com/wp-content/uploads/2022/09/gigachad.jpg',
+        uri: patientMetaData.profilePhotoUrl,
       }}
       style={[styles.avatar, { width: imageSize, height: imageSize }]}
     />

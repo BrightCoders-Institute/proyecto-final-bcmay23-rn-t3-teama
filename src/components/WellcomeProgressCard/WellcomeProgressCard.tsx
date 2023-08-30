@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { WellcomeProgressCardProps } from '../../interfaces/interfaces';
 import { styles } from './styles';
 import { ProgressBar } from 'react-native-paper';
 import { calculateProgress } from '../../helpers/progressBar';
+import { AppContext } from '../../context/AppContext';
 
 
 export const WellcomeProgressCard = ({ title, onPress, imgSource }: WellcomeProgressCardProps) => {
-    const consumedValue = '400';
-    const totalValue = '3, 100';
+
+    const {appState} = useContext(AppContext);
+
+    const consumedValue = appState.consumedCalories;
+    const totalValue = appState.caloriesPerDay;
 
     return (
         <TouchableOpacity
@@ -25,7 +29,7 @@ export const WellcomeProgressCard = ({ title, onPress, imgSource }: WellcomeProg
                 </View>
                 <ProgressBar
                     color="#58D164"
-                    progress={calculateProgress(consumedValue, totalValue)}
+                    progress={appState.consumedCalories / appState.caloriesPerDay}
                     style={styles.progressBar}
                 />
             </View>

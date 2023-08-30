@@ -16,7 +16,7 @@ export interface AppContextState {
 }
 
 interface PacientMetaDataProps {
-    profilePhoto: string;
+    profilePhotoUrl: string;
     name: string;
     lastName: string;
 }
@@ -24,10 +24,10 @@ interface PacientMetaDataProps {
 // estado inicial del context
 export const appInitialState: AppContextState = {
   isLoggedIn: false,
-  consumedCalories: 0,
-  caloriesPerDay: 2500,
+  consumedCalories: 1600,
+  caloriesPerDay: 3200,
   patientMetaData: {
-    profilePhoto: 'https://www.pasala.com.mx/wp-content/uploads/2020/06/PAS200623-MEDIO-MAMADO-01.jpg',
+    profilePhotoUrl: 'https://www.pasala.com.mx/wp-content/uploads/2020/06/PAS200623-MEDIO-MAMADO-01.jpg',
     name: 'Jhon',
     lastName: 'Needham'
   },
