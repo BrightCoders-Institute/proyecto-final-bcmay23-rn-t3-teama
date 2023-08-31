@@ -2,7 +2,8 @@ const meals = {
     userKey: '987654',
     breakfast: {
       name: "Oatmeal with Berries",
-      image: "",
+      description: "A wholesome and comforting dish featuring cooked oats topped with a medley of fresh berries." ,
+      image: "https://www.halfbakedharvest.com/wp-content/uploads/2017/03/Earl-Grey-Blueberry-Oatmeal-4.jpg",
       calories: 300,
       difficulty: "easy",
       prepTime: "10 minutes",
@@ -27,7 +28,8 @@ const meals = {
     },
     snack: {
       name: "Greek Yogurt with Nuts",
-      image: "",
+      description: "Creamy Greek yogurt topped with a mix of nutritious nuts and a drizzle of honey.",
+      image: "https://www.eatingwell.com/thmb/3eaS-Lou95--Eij49lCnfPZ5tA4=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/4582993-200eb606454f44a1af76979da4d7cebe.jpg",
       calories: 200,
       difficulty: "easy",
       prepTime: "5 minutes",
@@ -51,7 +53,8 @@ const meals = {
     },
     lunch: {
       name: "Grilled Chicken Salad",
-      image: "",
+      description: "A a satisfying blend of sliced grilled chicken, mixed salad greens, cherry tomatoes, cucumber, and a balsamic vinaigrette dressing.",
+      image: "https://cafedelites.com/wp-content/uploads/2016/07/Lemon-Herb-Mediterranean-Chicken-Salad-208.jpg",
       calories: 400,
       difficulty: "medium",
       prepTime: "20 minutes",
@@ -77,7 +80,8 @@ const meals = {
     },
     dinner: {
       name: "Salmon with Roasted Veggies",
-      image: "",
+      description: "Salmon fillet paired with roasted broccoli, bell pepper strips, red onion, and lemon slices, seasoned to perfection.",
+      image: "https://thegardeningcook.com/wp-content/uploads/2013/07/salmon-roast-vegetables-720x720.jpg",
       calories: 450,
       difficulty: "medium",
       prepTime: "30 minutes",
