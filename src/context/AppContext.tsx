@@ -1,5 +1,6 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useReducer, useEffect } from 'react';
 import { appReducer } from './appReducer';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export interface AppContextState {
     isLoggedIn: boolean;
@@ -54,7 +55,7 @@ export const appInitialState: AppContextState = {
 export interface AppContextProps {
     appState: AppContextState;
     signIn?: () => void;
-    logout?: () => void;
+    logOut?: () => void;
     updateCalories?: (calories: number) => void;
     updateDayOfWeek?: (day: string) => void;
     getContextUserData: (userData: UserDataInfo) => void;
@@ -69,8 +70,28 @@ export const AppProvider = ({ children }: any) => {
 
     const [appState, dispatch] = useReducer( appReducer, appInitialState );
 
-    const signIn = () => {
+    useEffect(() => {
+        const loadLoggedInState = async () => {
+          try {
+            const savedIsLoggedIn = await AsyncStorage.getItem('isLoggedIn');
+            if (savedIsLoggedIn !== null) {
+              dispatch({ type: 'loadLoggedInState', payload: JSON.parse(savedIsLoggedIn) });
+            }
+          } catch (error) {
+            console.error('Error loading isLoggedIn from AsyncStorage:', error);
+          }
+        };
+        loadLoggedInState();
+    }, []);
+
+    const signIn = async () => {
+        await AsyncStorage.setItem('isLoggedIn', 'true');
         dispatch({type: 'signIn'});
+    };
+
+    const logOut = async () => {
+        await AsyncStorage.removeItem('isLoggedIn');
+        dispatch({ type: 'logOut' });
     };
 
     const getContextUserData = (userData: UserDataInfo) => {
@@ -81,6 +102,7 @@ export const AppProvider = ({ children }: any) => {
         <AppContext.Provider value={{
             appState,
             signIn,
+            logOut,
             getContextUserData,
         }}>
             { children }
