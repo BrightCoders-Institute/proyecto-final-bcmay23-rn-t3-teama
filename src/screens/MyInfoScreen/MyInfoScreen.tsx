@@ -22,26 +22,8 @@ const NUTRITION_COUNSELLING_DATA: NutritionInfoProps = {
   price: '600.00',
 };
 
-// const USER_DATA: UserInfoProps = {
-//   userKey: '2840389',
-//   userName: 'Jonh',
-//   userLastName: 'Needham',
-//   age: 28,
-//   image: '',
-//   weight: 120.20,
-//   height: 182,
-//   bmi: 29.40,
-//   waist: 70.5,
-//   hips: 100.5,
-//   bust: 110.2,
-//   fatPercentage: 0,
-//   goal: '',
-//   caloriesPerDay: 0,
-// };
-
 const MyInfoScreen = ( {}: NutritionInfoProps, {}: UserInfoProps ) => {
 
-  // const {appState} = useContext(AppContext);
   const { appState: { userData } } = useContext(AppContext);
 
   return (

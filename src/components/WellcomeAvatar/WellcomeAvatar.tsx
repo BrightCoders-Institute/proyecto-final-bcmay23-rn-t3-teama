@@ -5,8 +5,6 @@ import { styles } from './styles';
 import {AppContext} from '../../context/AppContext';
 
 export const WellcomeAvatar = ({size}: wellcomeAvatarProps) => {
-
-  // const {appState: {patientMetaData}} = useContext(AppContext);
   const { appState: { userData } } = useContext(AppContext);
 
   const imageSize = size || 50;

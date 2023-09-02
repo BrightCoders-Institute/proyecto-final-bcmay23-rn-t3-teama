@@ -25,7 +25,6 @@ const HomeScreen = () => {
       .signOut()
       .then(() => {
         logOut();
-        // navigation.navigate('Login');
         console.log('User signed out!');
       });
   };
