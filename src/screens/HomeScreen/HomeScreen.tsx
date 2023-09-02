@@ -1,10 +1,12 @@
-import { View } from 'react-native';
-import React from 'react';
+import { View, Text, Button } from 'react-native';
+import React, { useContext } from 'react';
 import { WellcomeCard } from '../../components/WellcomeCard/WellcomeCard';
 import { WellcomeProgressCard } from '../../components/WellcomeProgressCard/WellcomeProgressCard';
 import { WellnesCard } from '../../components/WellnesCard/WellnesCard';
 import { Title } from '../../components/Title/Title';
 import { styles } from './styles';
+import { AppContext } from '../../context/AppContext';
+import auth from '@react-native-firebase/auth';
 
 const iconType = {
   fruitsImage: require('../../assets/img/stack-of-three-red-apples-hc-studio-removebg-preview.png'),
@@ -14,8 +16,22 @@ const iconType = {
 };
 
 const HomeScreen = () => {
+
+  const { appState, logOut } = useContext( AppContext );
+  console.log(appState);
+
+  const logout = () => {
+    auth()
+      .signOut()
+      .then(() => {
+        logOut();
+        console.log('User signed out!');
+      });
+  };
+
   return (
     <View>
+      <Button title='Cerrar' onPress={logout} />
       <WellcomeCard />
       <WellcomeProgressCard title="Consumed today" />
       <View style={styles.mainContainer}>
