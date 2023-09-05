@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, ScrollView, FlatList, TouchableOpacity } from 'react-native';
 import { calendarTheme, styles } from './styles';
 import { availableAppointmentTimes } from '../../testData/availableAppointmentTimes';
@@ -7,6 +7,9 @@ import moment from 'moment';
 import Map from '../../components/Map/Map';
 import { ButtonSecondary } from '../../components/ButtonSecondary/ButtonSecondary';
 import LoadingModal from '../../components/LoadingModal/LoadingModal';
+import { AppContext } from '../../context/AppContext';
+import { sendToFirestore } from '../../helpers/sendToFirestore';
+import { useNavigation } from '@react-navigation/native';
 
 const successCompleted = require('../../assets/img/successDoctorModal.png');
 const errorImage = require('../../assets/img/errorDoctorModal.png');
@@ -17,6 +20,9 @@ const BookAppointment = () => {
     const [isModalVisible, setModalVisible] = useState(false);
     const [isAppointmentSuccessful, setAppointmentSuccessful] = useState(false);
 
+    const { appState: { userData: { userKey } } } = useContext(AppContext);
+    const navigation = useNavigation();
+
     const currentDate = moment().format('YYYY-MM-DD');
 
     const filteredAvailableTimes = selectedDate ? availableAppointmentTimes[selectedDate] || [] : [];
@@ -24,11 +30,6 @@ const BookAppointment = () => {
     const onDayPress = (day: DateData) => {
         setSelectedDate(day.dateString);
         setSelectedTime(null);
-    };
-    console.log('Fecha seleccionada: ', selectedDate);
-
-    const selectTime = (time: string) => {
-        setSelectedTime(time);
     };
 
     const markedDates = {
@@ -38,7 +39,7 @@ const BookAppointment = () => {
     const renderTimeItem = ({ item }: { item: string }) => (
         <TouchableOpacity
             activeOpacity={0.5}
-            onPress={() => selectTime(item)}
+            onPress={() => setSelectedTime(item)}
             style={[styles.flatListItemTouchable, { backgroundColor: selectedTime === item ? '#795DEA' : '#f5f5f5' }]}
         >
             <Text style={{ ...styles.flatListItemText, color: selectedTime === item ? 'white' : 'black' }}>{item}</Text>
@@ -47,19 +48,35 @@ const BookAppointment = () => {
 
     const confirmAppointment = () => {
 
-        if ( !selectedDate || !selectedTime ) {
+        if (!selectedDate || !selectedTime) {
             setModalVisible(true);
             setAppointmentSuccessful(false);
         } else {
-            setModalVisible(true);
-            setAppointmentSuccessful(true);
-        }
 
+            const appointmentDetails = {
+                date: selectedDate,
+                time: selectedTime,
+                userKey,
+                nutritionistKey: '123456', // Obtener desde el context cuando se tengan datos del nutriologo en firestore
+            };
+
+            sendToFirestore(appointmentDetails)
+                .then((success) => {
+                    if (success) {
+                        setModalVisible(true);
+                        setAppointmentSuccessful(true);
+                    } else {
+                        setModalVisible(true);
+                        setAppointmentSuccessful(false);
+                    }
+                });
+        }
     };
 
     const closeModal = () => {
         setModalVisible(false);
         setAppointmentSuccessful(true);
+        navigation.goBack();
     };
 
     return (
@@ -110,7 +127,7 @@ const BookAppointment = () => {
             </View>
 
             <View style={styles.buttonView}>
-                <ButtonSecondary title="Confirm Appointment" color="#795DEA" onPress={confirmAppointment} />
+                <ButtonSecondary title="Confirm Appointment" color="#795DEA" onPress={confirmAppointment} isDisabled={!selectedDate || !selectedTime} />
             </View>
         </ScrollView>
     );

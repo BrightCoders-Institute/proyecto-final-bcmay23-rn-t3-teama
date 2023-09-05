@@ -11,6 +11,7 @@ export interface ButtonSecondaryProps {
   onPress?: () => void;
   color?: string;
   fontSize?: number;
+  isDisabled?: boolean;
 }
 
 export interface DayObjectProps {
