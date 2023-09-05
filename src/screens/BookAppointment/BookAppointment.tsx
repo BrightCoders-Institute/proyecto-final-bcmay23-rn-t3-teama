@@ -8,8 +8,9 @@ import Map from '../../components/Map/Map';
 import { ButtonSecondary } from '../../components/ButtonSecondary/ButtonSecondary';
 import LoadingModal from '../../components/LoadingModal/LoadingModal';
 import { AppContext } from '../../context/AppContext';
-import { sendToFirestore } from '../../helpers/sendToFirestore';
+import firestore from '@react-native-firebase/firestore';
 import { useNavigation } from '@react-navigation/native';
+import { AppointmentData } from '../../interfaces/interfaces';
 
 const successCompleted = require('../../assets/img/successDoctorModal.png');
 const errorImage = require('../../assets/img/errorDoctorModal.png');
@@ -46,6 +47,22 @@ const BookAppointment = () => {
         </TouchableOpacity>
     );
 
+    const sendToFirestore = async (appointmentToSave: AppointmentData) => {
+        try {
+            const db = firestore();
+
+            const appointmentsRef = db.collection('appointments');
+
+            await appointmentsRef.add(appointmentToSave);
+
+            console.log('Datos enviados con éxito');
+            return true;
+        } catch (error) {
+            console.error('Error al enviar los datos:', error);
+            return false;
+        }
+    };
+
     const confirmAppointment = () => {
 
         if (!selectedDate || !selectedTime) {
@@ -62,13 +79,8 @@ const BookAppointment = () => {
 
             sendToFirestore(appointmentDetails)
                 .then((success) => {
-                    if (success) {
-                        setModalVisible(true);
-                        setAppointmentSuccessful(true);
-                    } else {
-                        setModalVisible(true);
-                        setAppointmentSuccessful(false);
-                    }
+                    setModalVisible(true);
+                    setAppointmentSuccessful(success);
                 });
         }
     };

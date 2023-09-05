@@ -144,3 +144,12 @@ export interface NutritionistInfo {
   biography: string;
   rating: string;
 }
+
+
+export interface AppointmentData {
+  date: string;
+  id?: string;
+  nutritionistKey: string,
+  time: string,
+  userKey: string;
+}
