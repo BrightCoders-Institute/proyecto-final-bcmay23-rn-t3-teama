@@ -148,7 +148,7 @@ export interface NutritionistInfo {
 
 export interface AppointmentData {
   date: string;
-  id?: string;
+  appointmentId?: string;
   nutritionistKey: string,
   time: string,
   userKey: string;

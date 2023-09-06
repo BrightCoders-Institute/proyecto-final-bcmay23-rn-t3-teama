@@ -20,6 +20,7 @@ const BookAppointment = () => {
     const [selectedTime, setSelectedTime] = useState<string | null>(null);
     const [isModalVisible, setModalVisible] = useState(false);
     const [isAppointmentSuccessful, setAppointmentSuccessful] = useState(false);
+    const [modalErrorMessage, setModalErrorMessage] = useState('Sorry, the appointment could not be scheduled, please try again later.');
 
     const { appState: { userData: { userKey } } } = useContext(AppContext);
     const navigation = useNavigation();
@@ -53,8 +54,17 @@ const BookAppointment = () => {
 
             const appointmentsRef = db.collection('appointments');
 
-            await appointmentsRef.add(appointmentToSave);
+            const existingAppointments = await appointmentsRef
+                .where('userKey', '==', appointmentToSave.userKey)
+                .get();
 
+            if (existingAppointments.size >= 2) {
+                console.error('You can not add more than two appointments on the same month');
+                setModalErrorMessage('You can not add more than two appointments in the same month.');
+                return false;
+            }
+
+            await appointmentsRef.add(appointmentToSave);
             console.log('Datos enviados con éxito');
             return true;
         } catch (error) {
@@ -80,6 +90,7 @@ const BookAppointment = () => {
             sendToFirestore(appointmentDetails)
                 .then((success) => {
                     setModalVisible(true);
+                    if (!success) { setModalErrorMessage('Sorry, the appointment could not be scheduled, please try again later.'); }
                     setAppointmentSuccessful(success);
                 });
         }
@@ -99,7 +110,7 @@ const BookAppointment = () => {
                 successImageUrl={successCompleted}
                 errorImageUrl={errorImage}
                 title={isAppointmentSuccessful ? 'Booking confirmed' : 'Oops! something went wrong'}
-                subtitle={isAppointmentSuccessful ? 'Please atteng your appointment on the agreed day and time' : 'Sorry, the appointment could not be scheduled, please try again later.'}
+                subtitle={isAppointmentSuccessful ? 'Please atteng your appointment on the agreed day and time' : modalErrorMessage}
                 isSuccessful={isAppointmentSuccessful}
                 onClose={closeModal}
             />
