@@ -64,6 +64,7 @@ export interface MyMealCardProps {
   title: string;
   caloriesRecomended: string;
   description: string;
+  mealId: object;
   onPress?: () => void;
   imgSource?: ImageSourcePropType;
 }

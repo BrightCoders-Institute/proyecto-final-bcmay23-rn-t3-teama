@@ -5,7 +5,7 @@ import { styles } from './styles';
 import { Title } from '../Title/Title';
 import { SubTitle } from '../SubTitle/SubTitle';
 
-export const MyMealCardR = ({ title, caloriesRecomended, description, onPress, imgSource }: MyMealCardProps) => {
+export const MyMealCardR = ({ title, caloriesRecomended, description, onPress, imgSource, mealId }: MyMealCardProps) => {
 
     return (
         <TouchableOpacity style={styles.buttonContainer} onPress={onPress}>

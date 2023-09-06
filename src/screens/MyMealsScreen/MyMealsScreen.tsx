@@ -22,7 +22,11 @@ interface Props extends StackScreenProps<any, any> { }
 const MyMealsScreen = ({ navigation }: Props) => {
   const [weekDays, setWeekDays] = useState<DayObject[]>([]);
   const [selectedDay, setSelectedDay] = useState<DayObject | undefined>();
-  const [recipeBookData, setRecipeBookData ] = useState([]);
+  const [recipeBookData, setRecipeBookData ] = useState(null);
+  const [currBreakfastObj, setCurrBreakfastObj] = useState([]);
+  const [currLunchObj, setCurrLunchObj] = useState([]);
+  const [currDinnerObj, setCurrDinnerObj] = useState([]);
+  const [currSnackObj, setCurrSnackObj] = useState([]);
   const { appState: { userData: { userKey } } } = useContext(AppContext);
 
   const descriptionMeal = 'Bowl whit fruit, some fruit and more fruit. You can add fruit.';
@@ -34,8 +38,10 @@ const MyMealsScreen = ({ navigation }: Props) => {
   }, []);
 
   useEffect( () => {
-    console.log('día seleccionado: ', `${selectedDay?.day}-${selectedDay?.month}-${selectedDay?.year}`);
-  }, [selectedDay]);
+    // console.log('día seleccionado: ', `${selectedDay?.day}-${selectedDay?.month}-${selectedDay?.year}`);
+    // if (recipeBookData === undefined) return;
+    if (recipeBookData) getMealsIds();
+  }, [selectedDay, recipeBookData]);
 
   const getRecipeBook = () => {
     const userRef = firestore()
@@ -47,7 +53,7 @@ const MyMealsScreen = ({ navigation }: Props) => {
       if (!querySnapshot.empty) {
         const data = querySnapshot.docs[0].data();
         setRecipeBookData(data);
-        // console.log(data);
+        // console.log(data.breakfast);
       } else {
         console.log(`No se encontraron resultados para id_user: ${userKey}`);
       }
@@ -55,6 +61,27 @@ const MyMealsScreen = ({ navigation }: Props) => {
     .catch((error) => {
       console.error('Error al obtener datos:', error);
     });
+  };
+
+  const getMealsIds = () => {
+    // if (recipeBookData === null) return;
+
+    // console.log('entró');
+
+    const currSelectedDate = `${selectedDay?.day}-${selectedDay?.month}-${selectedDay?.year}`;
+    // const currBreakfast = recipeBookData.breakfast.filter(obj => obj.date === currSelectedDate);
+    // const currLunch = recipeBookData.lunch.filter(obj => obj.date === currSelectedDate);
+    // const currDinner = recipeBookData.dinner.filter(obj => obj.date === currSelectedDate);
+    // const currSnack = recipeBookData.snack.filter(obj => obj.date === currSelectedDate);
+
+    setCurrBreakfastObj( recipeBookData.breakfast.filter(obj => obj.date === currSelectedDate) );
+    setCurrLunchObj( recipeBookData.lunch.filter(obj => obj.date === currSelectedDate) );
+    setCurrDinnerObj( recipeBookData.dinner.filter(obj => obj.date === currSelectedDate) );
+    setCurrSnackObj( recipeBookData.snack.filter(obj => obj.date === currSelectedDate) );
+    // console.log('currBreakfast: ', currBreakfast);
+    // console.log('currLunch: ', currLunch);
+    // console.log('currDinner: ', currDinner);
+    // console.log('currSnack: ', currSnack);
   };
 
   return (
@@ -80,6 +107,7 @@ const MyMealsScreen = ({ navigation }: Props) => {
           caloriesRecomended={calories}
           description={descriptionMeal}
           imgSource={imgType.BreakfastImg}
+          mealId={currBreakfastObj}
           onPress={() => navigation.navigate('Meals Details')}
         />
         <MyMealCardL
@@ -87,6 +115,7 @@ const MyMealsScreen = ({ navigation }: Props) => {
           caloriesRecomended={calories}
           description={descriptionMeal}
           imgSource={imgType.SnackImg}
+          mealId={currSnackObj}
           onPress={() => navigation.navigate('Meals Details')}
         />
         <MyMealCardR
@@ -94,6 +123,7 @@ const MyMealsScreen = ({ navigation }: Props) => {
           caloriesRecomended={calories}
           description={descriptionMeal}
           imgSource={imgType.LunchImg}
+          mealId={currLunchObj}
           onPress={() => navigation.navigate('Meals Details')}
         />
         <MyMealCardL
@@ -101,6 +131,7 @@ const MyMealsScreen = ({ navigation }: Props) => {
           caloriesRecomended={calories}
           description={descriptionMeal}
           imgSource={imgType.DinnerImg}
+          mealId={currDinnerObj}
           onPress={() => navigation.navigate('Meals Details')}
         />
       </ScrollView>
