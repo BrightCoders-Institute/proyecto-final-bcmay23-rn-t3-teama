@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FlatList, View, Text, ScrollView } from 'react-native';
 import { styles } from './styles';
 import { StackScreenProps } from '@react-navigation/stack';
@@ -7,6 +7,8 @@ import { MyMealCardL } from '../../components/MyMealCardL/MyMealCardL';
 import { CallendarWeekday } from '../../components/CallendarWeekday/CallendarWeekday';
 import { getCurrentWeekdays, namesDays } from '../../helpers/getCurrentWeekdays'
 import { DayObject } from '../../interfaces/interfaces';
+import { AppContext } from '../../context/AppContext';
+import firestore from '@react-native-firebase/firestore';
 
 const imgType = {
   BreakfastImg: require('../../assets/img/Breakfast.png'),
@@ -20,13 +22,40 @@ interface Props extends StackScreenProps<any, any> { }
 const MyMealsScreen = ({ navigation }: Props) => {
   const [weekDays, setWeekDays] = useState<DayObject[]>([]);
   const [selectedDay, setSelectedDay] = useState<DayObject | undefined>();
+  const [recipeBookData, setRecipeBookData ] = useState([]);
+  const { appState: { userData: { userKey } } } = useContext(AppContext);
 
   const descriptionMeal = 'Bowl whit fruit, some fruit and more fruit. You can add fruit.';
   const calories = 'Recomended 830 - 1170Cal';
 
   useEffect(() => {
     setWeekDays( getCurrentWeekdays(namesDays, setSelectedDay));
+    getRecipeBook();
   }, []);
+
+  useEffect( () => {
+    console.log('día seleccionado: ', `${selectedDay?.day}-${selectedDay?.month}-${selectedDay?.year}`);
+  }, [selectedDay]);
+
+  const getRecipeBook = () => {
+    const userRef = firestore()
+    .collection('recipeBook')
+    .where('id_user', '==', userKey);
+
+    userRef.get()
+    .then((querySnapshot) => {
+      if (!querySnapshot.empty) {
+        const data = querySnapshot.docs[0].data();
+        setRecipeBookData(data);
+        // console.log(data);
+      } else {
+        console.log(`No se encontraron resultados para id_user: ${userKey}`);
+      }
+    })
+    .catch((error) => {
+      console.error('Error al obtener datos:', error);
+    });
+  };
 
   return (
     <View style={styles.container}>
