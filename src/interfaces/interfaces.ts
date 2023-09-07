@@ -72,6 +72,7 @@ export interface MyMealCardProps {
 export interface MealDataIdProps {
   date: string;
   meal_id: string;
+  isCompleted: boolean;
 }
 
 export interface MealDataProps {
