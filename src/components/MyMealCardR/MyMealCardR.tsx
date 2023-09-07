@@ -8,13 +8,15 @@ import firestore from '@react-native-firebase/firestore';
 
 export const MyMealCardR = ({ title, caloriesRecomended, description, onPress, imgSource, mealId }: MyMealCardProps) => {
     const [mealData, setMealData] = useState<MealDataProps | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         if (mealId) getMealData();
-        console.log(mealId);
+        // console.log(mealId);
     }, [mealId]);
 
     const getMealData = () => {
+        setIsLoading(true);
         firestore()
             .collection('meal')
             .doc(mealId[0].meal_id)
@@ -23,6 +25,7 @@ export const MyMealCardR = ({ title, caloriesRecomended, description, onPress, i
                 if (mealDoc.exists) {
                   const mealInfo = mealDoc.data();
                   setMealData(mealInfo);
+                  setIsLoading(false);
                 } else {
                   console.log('No se encontró el documento');
                 }
@@ -34,15 +37,21 @@ export const MyMealCardR = ({ title, caloriesRecomended, description, onPress, i
 
     return (
         <TouchableOpacity style={styles.buttonContainer} onPress={onPress}>
-            <View style={styles.titleContainer}>
-                <Title text={`${mealData?.name}`} fontSize={18} />
-                <SubTitle text={`${mealData?.calories} calories`} fontSize={14} color="gray" />
-            </View>
-            <View style={styles.textContainer}>
-                <Text style={styles.buttonText}>{`${mealData?.description}`}</Text>
-            </View>
-            {/* {imgSource && <Image source={imgSource} style={styles.buttonImage} />} */}
-            <Image source={{uri: mealData?.image}} style={styles.buttonImage} />
+            { (isLoading === false && mealData !== null) ? (
+                <>
+                    <View style={styles.titleContainer}>
+                        <Title text={`${mealData?.name}`} fontSize={18} />
+                        <SubTitle text={`${mealData?.calories} calories`} fontSize={14} color="gray" />
+                    </View>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.buttonText}>{`${mealData?.description}`}</Text>
+                    </View>
+                    {/* {imgSource && <Image source={imgSource} style={styles.buttonImage} />} */}
+                    <Image source={{uri: mealData?.image}} style={styles.buttonImage} />
+                </>
+            ) : (
+                <Text>Loading...</Text>
+            ) }
         </TouchableOpacity>
     );
 };
