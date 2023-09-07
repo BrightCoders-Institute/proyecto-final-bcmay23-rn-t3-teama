@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { AppContext } from '../../context/AppContext';
-import { FlatList, View, Text, ScrollView } from 'react-native';
+import { AppContext, appInitialState } from '../../context/AppContext';
+import { FlatList, View, Text, ScrollView, Alert } from 'react-native';
 import { styles } from './styles';
 import { StackScreenProps } from '@react-navigation/stack';
 import { MyMealCardR } from '../../components/MyMealCardR/MyMealCardR';
@@ -32,6 +32,25 @@ const MyMealsScreen = ({ navigation }: Props) => {
     setWeekDays( getCurrentWeekdays(namesDays, setSelectedDay));
   }, []);
 
+  const handelCardPress = ( title: string) => {
+    if (!appState.isCardDisabled[title]) {
+    navigation.navigate('Meals Details', { title });
+  } else {
+    Alert.alert(
+      'Meal Completed',
+      'This meal is already complete, want to see the recipe?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => {},
+          style: 'destructive',
+        },
+        { text: 'OK', onPress: () => navigation.navigate('Recipe') },
+      ]
+    );
+  }
+  }
+ 
   return (
     <View style={styles.container}>
       <ScrollView
@@ -55,15 +74,15 @@ const MyMealsScreen = ({ navigation }: Props) => {
           caloriesRecomended={calories}
           description={descriptionMeal}
           imgSource={imgType.BreakfastImg}
-          onPress={() => navigation.navigate('Meals Details', {title: 'Breakfast'})}
+          onPress={ () => handelCardPress( 'Breakfast' )}
           disable={appState.isCardDisabled['Breakfast']}
-        />
+          />
         <MyMealCardL
           title="Snack"
           caloriesRecomended={calories}
           description={descriptionMeal}
           imgSource={imgType.SnackImg}
-          onPress={() => navigation.navigate('Meals Details', {title: 'Snack'})}
+          onPress={ () => handelCardPress( 'Snack')}
           disable={appState.isCardDisabled['Snack']}
         />
         <MyMealCardR
@@ -71,7 +90,7 @@ const MyMealsScreen = ({ navigation }: Props) => {
           caloriesRecomended={calories}
           description={descriptionMeal}
           imgSource={imgType.LunchImg}
-          onPress={() => navigation.navigate('Meals Details', {title: 'Lunch'})}
+          onPress={ () => handelCardPress( 'Lunch' )}
           disable={appState.isCardDisabled['Lunch']}
         />
         <MyMealCardL
@@ -79,7 +98,7 @@ const MyMealsScreen = ({ navigation }: Props) => {
           caloriesRecomended={calories}
           description={descriptionMeal}
           imgSource={imgType.DinnerImg}
-          onPress={() => navigation.navigate('Meals Details', {title: 'Dinner'})}
+          onPress={ () => handelCardPress( 'Dinner')}
           disable={appState.isCardDisabled['Dinner']}
         />
       </ScrollView>
