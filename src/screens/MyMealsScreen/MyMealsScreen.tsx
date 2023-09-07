@@ -23,10 +23,10 @@ const MyMealsScreen = ({ navigation }: Props) => {
   const [weekDays, setWeekDays] = useState<DayObject[]>([]);
   const [selectedDay, setSelectedDay] = useState<DayObject | undefined>();
   const [recipeBookData, setRecipeBookData ] = useState(null);
-  const [currBreakfastObj, setCurrBreakfastObj] = useState([]);
-  const [currLunchObj, setCurrLunchObj] = useState([]);
-  const [currDinnerObj, setCurrDinnerObj] = useState([]);
-  const [currSnackObj, setCurrSnackObj] = useState([]);
+  const [currBreakfastObj, setCurrBreakfastObj] = useState(null);
+  const [currLunchObj, setCurrLunchObj] = useState(null);
+  const [currDinnerObj, setCurrDinnerObj] = useState(null);
+  const [currSnackObj, setCurrSnackObj] = useState(null);
   const { appState: { userData: { userKey } } } = useContext(AppContext);
 
   const descriptionMeal = 'Bowl whit fruit, some fruit and more fruit. You can add fruit.';
@@ -38,8 +38,6 @@ const MyMealsScreen = ({ navigation }: Props) => {
   }, []);
 
   useEffect( () => {
-    // console.log('día seleccionado: ', `${selectedDay?.day}-${selectedDay?.month}-${selectedDay?.year}`);
-    // if (recipeBookData === undefined) return;
     if (recipeBookData) getMealsIds();
   }, [selectedDay, recipeBookData]);
 
@@ -64,24 +62,13 @@ const MyMealsScreen = ({ navigation }: Props) => {
   };
 
   const getMealsIds = () => {
-    // if (recipeBookData === null) return;
-
-    // console.log('entró');
-
     const currSelectedDate = `${selectedDay?.day}-${selectedDay?.month}-${selectedDay?.year}`;
     // const currBreakfast = recipeBookData.breakfast.filter(obj => obj.date === currSelectedDate);
-    // const currLunch = recipeBookData.lunch.filter(obj => obj.date === currSelectedDate);
-    // const currDinner = recipeBookData.dinner.filter(obj => obj.date === currSelectedDate);
-    // const currSnack = recipeBookData.snack.filter(obj => obj.date === currSelectedDate);
 
     setCurrBreakfastObj( recipeBookData.breakfast.filter(obj => obj.date === currSelectedDate) );
     setCurrLunchObj( recipeBookData.lunch.filter(obj => obj.date === currSelectedDate) );
     setCurrDinnerObj( recipeBookData.dinner.filter(obj => obj.date === currSelectedDate) );
     setCurrSnackObj( recipeBookData.snack.filter(obj => obj.date === currSelectedDate) );
-    // console.log('currBreakfast: ', currBreakfast);
-    // console.log('currLunch: ', currLunch);
-    // console.log('currDinner: ', currDinner);
-    // console.log('currSnack: ', currSnack);
   };
 
   return (

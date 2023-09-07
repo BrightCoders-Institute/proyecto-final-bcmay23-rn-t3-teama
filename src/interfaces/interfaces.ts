@@ -61,12 +61,36 @@ export interface WellnesCardProps {
 }
 
 export interface MyMealCardProps {
-  title: string;
+  title?: string;
   caloriesRecomended: string;
   description: string;
-  mealId: object;
+  mealId: MealDataIdProps;
   onPress?: () => void;
   imgSource?: ImageSourcePropType;
+}
+
+export interface MealDataIdProps {
+  date: string;
+  meal_id: string;
+}
+
+export interface MealDataProps {
+  calories: number;
+  carbohydrateGrams: number;
+  carbohydratePercentage: number;
+  description: string;
+  difficulty: string;
+  fatGrams: number;
+  fatPercentage: number;
+  image?: string;
+  ingredients: string[];
+  instructions: string[];
+  name: string;
+  prepTime: number;
+  proteinGrams: number;
+  proteinPercentage: number;
+  totalGrams: number;
+  type: string;
 }
 
 export interface MealInfoBadgeProps {

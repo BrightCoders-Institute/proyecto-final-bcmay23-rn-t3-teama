@@ -25,7 +25,8 @@ export const styles = StyleSheet.create({
     },
     buttonText: {
         color: 'gray',
-        fontSize: 15,
+        fontSize: 14,
+        textAlign: 'right',
     },
     textContainer: {
         flex: 1,

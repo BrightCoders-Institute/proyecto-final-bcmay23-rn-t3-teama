@@ -1,21 +1,47 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
-import { MyMealCardProps } from '../../interfaces/interfaces';
+import { MealDataProps, MyMealCardProps } from '../../interfaces/interfaces';
 import { styles } from './styles';
 import { Title } from '../Title/Title';
 import { SubTitle } from '../SubTitle/SubTitle';
+import firestore from '@react-native-firebase/firestore';
 
-export const MyMealCardL = ({ title, caloriesRecomended, description, onPress, imgSource }: MyMealCardProps) => {
+export const MyMealCardL = ({ title, caloriesRecomended, description, onPress, imgSource, mealId }: MyMealCardProps) => {
+    const [mealData, setMealData] = useState<MealDataProps | null>(null);
+
+    useEffect(() => {
+        if (mealId) getMealData();
+        console.log(mealId);
+    }, [mealId]);
+
+    const getMealData = () => {
+        firestore()
+            .collection('meal')
+            .doc(mealId[0].meal_id)
+            .get()
+            .then((mealDoc) => {
+                if (mealDoc.exists) {
+                  const mealInfo = mealDoc.data();
+                  setMealData(mealInfo);
+                } else {
+                  console.log('No se encontró el documento');
+                }
+            })
+            .catch((error) => {
+                console.error('Error al obtener los datos:', error);
+            });
+    };
 
     return (
         <TouchableOpacity style={styles.buttonContainer} onPress={onPress}>
-            {imgSource && <Image source={imgSource} style={styles.buttonImage} />}
+            {/* {imgSource && <Image source={imgSource} style={styles.buttonImage} />} */}
+            <Image source={{uri: mealData?.image}} style={styles.buttonImage} />
             <View style={styles.titleContainer}>
-                <Title text={title} fontSize={22} />
-                <SubTitle text={caloriesRecomended} fontSize={15} color="gray" />
+                <Title text={`${mealData?.name}`} fontSize={18} />
+                <SubTitle text={`${mealData?.calories} calories`} fontSize={14} color="gray" />
             </View>
             <View style={styles.textContainer}>
-                <Text style={styles.buttonText}>{description}</Text>
+                <Text style={styles.buttonText}>{`${mealData?.description}`}</Text>
             </View>
         </TouchableOpacity>
     );
