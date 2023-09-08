@@ -95,7 +95,6 @@ const MyMealsScreen = ({ navigation }: Props) => {
           description={descriptionMeal}
           imgSource={imgType.BreakfastImg}
           mealId={currBreakfastObj}
-          onPress={() => navigation.navigate('Meals Details')}
         />
         <MyMealCardL
           title="Snack"
@@ -103,7 +102,6 @@ const MyMealsScreen = ({ navigation }: Props) => {
           description={descriptionMeal}
           imgSource={imgType.SnackImg}
           mealId={currSnackObj}
-          onPress={() => navigation.navigate('Meals Details')}
         />
         <MyMealCardR
           title="Lunch"
@@ -111,7 +109,6 @@ const MyMealsScreen = ({ navigation }: Props) => {
           description={descriptionMeal}
           imgSource={imgType.LunchImg}
           mealId={currLunchObj}
-          onPress={() => navigation.navigate('Meals Details')}
         />
         <MyMealCardL
           title="Dinner"
@@ -119,7 +116,6 @@ const MyMealsScreen = ({ navigation }: Props) => {
           description={descriptionMeal}
           imgSource={imgType.DinnerImg}
           mealId={currDinnerObj}
-          onPress={() => navigation.navigate('Meals Details')}
         />
       </ScrollView>
     </View>

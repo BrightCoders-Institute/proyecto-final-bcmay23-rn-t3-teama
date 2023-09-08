@@ -5,8 +5,10 @@ import { styles } from './styles';
 import { Title } from '../Title/Title';
 import { SubTitle } from '../SubTitle/SubTitle';
 import firestore from '@react-native-firebase/firestore';
+import { useNavigation } from '@react-navigation/native';
 
-export const MyMealCardR = ({ title, caloriesRecomended, description, onPress, imgSource, mealId }: MyMealCardProps) => {
+export const MyMealCardR = ({ title, caloriesRecomended, description, onPress, imgSource, mealId }: MyMealCardProps ) => {
+    const navigation = useNavigation();
     const [mealData, setMealData] = useState<MealDataProps | null>(null);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -36,7 +38,7 @@ export const MyMealCardR = ({ title, caloriesRecomended, description, onPress, i
     };
 
     return (
-        <TouchableOpacity style={styles.buttonContainer} onPress={onPress}>
+        <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Meals Details', { mealData })}>
             { (isLoading === false && mealData !== null) ? (
                 <>
                     <View style={styles.titleContainer}>

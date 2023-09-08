@@ -7,17 +7,21 @@ import BreakfastImg from '../../assets/img/Breakfast.png';
 import { MealIngredients } from '../../components/MealIngredients/MealIngredients';
 import { MealInstructions } from '../../components/MealInstructions/MealInstructions';
 import { ScrollView } from 'react-native-gesture-handler';
+import { useRoute } from '@react-navigation/native';
 
 export const RecipeScreen = () => {
+  const route = useRoute();
+  const { mealData } = route.params;
+
   return (
     <View style={ styles.container }>
-        <RecipeImg imgSource={BreakfastImg}/>
+        <RecipeImg imgSource={mealData.image}/>
         <View style={styles.titleContainer}>
-          <Title text='Fruit Bowl' />
+          <Title text={mealData.name} />
         </View>
         <ScrollView>
-        <MealIngredients />
-        <MealInstructions />
+        <MealIngredients ingredients={mealData.ingredients} />
+        <MealInstructions instructions={mealData.instructions} />
         </ScrollView>
     </View>
   )

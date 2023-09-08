@@ -9,14 +9,18 @@ import MealInfoBadge from '../../components/MealInfoBadge/MealInfoBadge';
 import NutritionalChart from '../../components/NutritionalChart/NutritionalChart';
 import { ButtonSecondary } from '../../components/ButtonSecondary/ButtonSecondary';
 import LoadingModal from '../../components/LoadingModal/LoadingModal';
+import { useRoute } from '@react-navigation/native';
 
 const successCompletedModalImg = require('../../assets/img/successDoctorModal.png');
 
 interface Props extends StackScreenProps<any, any> {}
 
 const MyMealDetailsScreen = ({navigation}: Props) => {
-
+  const route = useRoute();
+  const { mealData } = route.params;
   const [isModalVisible, setModalVisible] = useState(false);
+
+  console.log(mealData);
 
   const handleMarkCompleted = () => {
     setModalVisible(true);
@@ -41,31 +45,31 @@ const MyMealDetailsScreen = ({navigation}: Props) => {
         isSuccessful={true}
         onClose={closeModal}
       />
-      <RecipeImg imgSource={imgRecipe.breakfast}/>
+      <RecipeImg imgSource={mealData?.image}/>
 
       <View style={style.titleContainer}>
         <View style={style.title}>
-          <Title text="Fruit Bowl" fontSize={26}/>
+          <Title text={mealData?.name} fontSize={26}/>
         </View>
         <View style={style.subtitle}>
-          <SubTitle text="Bowl with fruits, some fruits and more fruits. You can add toppings" fontSize={17} color={'#615f5f'}/>
+          <SubTitle text={mealData?.description} fontSize={17} color={'#615f5f'}/>
         </View>
       </View>
 
       <View style={style.btnRecipe}>
-        <ButtonSecondary title="View Recipe" onPress={() => navigation.navigate('Recipe')} color={'#795DEA'} />
+        <ButtonSecondary title="View Recipe" onPress={() => navigation.navigate('Recipe', { mealData })} color={'#795DEA'} />
       </View>
-      <MealInfoBadge minutes={'10-20'} level={'Easy'} kcal={'970'} />
+      <MealInfoBadge minutes={mealData?.prepTime} level={mealData?.difficulty} kcal={mealData?.calories} />
       <View style={style.perServingTitle}>
         <Title text="Per Serving" fontSize={20}/>
       </View>
       <NutritionalChart
-        progressCarbs={0.5}
-        progressProtein={0.3}
-        progressFat={0.2}
-        gramsCarbs={50}
-        gramsProtein={32}
-        gramsFat={12}
+        progressCarbs={mealData?.carbohydratePercentage}
+        progressProtein={mealData?.proteinPercentage}
+        progressFat={mealData?.fatPercentage}
+        gramsCarbs={mealData?.carbohydrateGrams}
+        gramsProtein={mealData?.proteinGrams}
+        gramsFat={mealData?.fatGrams}
       />
       <ButtonSecondary title={'Mark as completed'} onPress={handleMarkCompleted} color={'#58D164'}/>
     </View>
