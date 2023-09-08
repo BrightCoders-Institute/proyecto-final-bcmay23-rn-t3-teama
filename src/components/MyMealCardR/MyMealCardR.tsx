@@ -40,8 +40,8 @@ export const MyMealCardR = ({ title, caloriesRecomended, description, onPress, i
             { (isLoading === false && mealData !== null) ? (
                 <>
                     <View style={styles.titleContainer}>
-                        <Title text={`${mealData?.name}`} fontSize={18} />
-                        <SubTitle text={`${mealData?.calories} calories`} fontSize={14} color="gray" />
+                        <Title text={title} fontSize={22} />
+                        <SubTitle text={`${mealData?.name}`} fontSize={15} color="#7B5FEC" />
                     </View>
                     <View style={styles.textContainer}>
                         <Text style={styles.buttonText}>{`${mealData?.description}`}</Text>
