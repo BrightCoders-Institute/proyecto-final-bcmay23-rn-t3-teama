@@ -1,29 +1,53 @@
-import React, { useState } from 'react';
-import { View } from 'react-native';
-import { Title } from '../../components/Title/Title';
-import { RecipeImg } from '../../components/RecipeImg/RecipeImg';
-import { style } from './styles';
-import { SubTitle } from '../../components/SubTitle/SubTitle';
-import { StackScreenProps } from '@react-navigation/stack';
+import React, {useContext, useState} from 'react';
+import {AppContext} from '../../context/AppContext';
+import {View} from 'react-native';
+import {Title} from '../../components/Title/Title';
+import {RecipeImg} from '../../components/RecipeImg/RecipeImg';
+import {style} from './styles';
+import {SubTitle} from '../../components/SubTitle/SubTitle';
+import {StackScreenProps} from '@react-navigation/stack';
 import MealInfoBadge from '../../components/MealInfoBadge/MealInfoBadge';
 import NutritionalChart from '../../components/NutritionalChart/NutritionalChart';
-import { ButtonSecondary } from '../../components/ButtonSecondary/ButtonSecondary';
+import {ButtonSecondary} from '../../components/ButtonSecondary/ButtonSecondary';
 import LoadingModal from '../../components/LoadingModal/LoadingModal';
-import { useRoute } from '@react-navigation/native';
+import {RouteProp} from '@react-navigation/native';
 
 const successCompletedModalImg = require('../../assets/img/successDoctorModal.png');
 
-interface Props extends StackScreenProps<any, any> {}
+interface Props extends StackScreenProps<any, any> {
+  route: RouteProp<any, any>;
+}
 
-const MyMealDetailsScreen = ({navigation}: Props) => {
-  const route = useRoute();
-  const { mealData } = route.params;
+const MyMealDetailsScreen = ({navigation, route}: Props) => {
+  const {toggleCardDisable} = useContext(AppContext);
   const [isModalVisible, setModalVisible] = useState(false);
-
-  console.log(mealData);
+  const { mealData } = route.params;
 
   const handleMarkCompleted = () => {
-    setModalVisible(true);
+    if (route && route.params) {
+      const {title} = route.params;
+
+      switch (title) {
+        case 'Breakfast':
+          toggleCardDisable('Breakfast', true);
+          break;
+        case 'Lunch':
+          toggleCardDisable('Lunch', true);
+          break;
+        case 'Snack':
+          toggleCardDisable('Snack', true);
+          break;
+        case 'Dinner':
+          toggleCardDisable('Dinner', true);
+          break;
+        default:
+          break;
+      }
+      setModalVisible(true);
+      setTimeout(() => {
+        navigation.navigate('MyMealsScreen');
+      }, 1500);
+    }
   };
 
   const closeModal = () => {
@@ -45,23 +69,35 @@ const MyMealDetailsScreen = ({navigation}: Props) => {
         isSuccessful={true}
         onClose={closeModal}
       />
-      <RecipeImg imgSource={mealData?.image}/>
+      <RecipeImg imgSource={mealData?.image} />
 
       <View style={style.titleContainer}>
         <View style={style.title}>
-          <Title text={mealData?.name} fontSize={26}/>
+          <Title text={mealData?.name} fontSize={26} />
         </View>
         <View style={style.subtitle}>
-          <SubTitle text={mealData?.description} fontSize={17} color={'#615f5f'}/>
+          <SubTitle
+            text={mealData?.description}
+            fontSize={17}
+            color={'#615f5f'}
+          />
         </View>
       </View>
 
       <View style={style.btnRecipe}>
-        <ButtonSecondary title="View Recipe" onPress={() => navigation.navigate('Recipe', { mealData })} color={'#795DEA'} />
+        <ButtonSecondary
+          title="View Recipe"
+          onPress={() => navigation.navigate('Recipe', {mealData})}
+          color={'#795DEA'}
+        />
       </View>
-      <MealInfoBadge minutes={mealData?.prepTime} level={mealData?.difficulty} kcal={mealData?.calories} />
+      <MealInfoBadge
+        minutes={mealData?.prepTime}
+        level={mealData?.difficulty}
+        kcal={mealData?.calories}
+      />
       <View style={style.perServingTitle}>
-        <Title text="Per Serving" fontSize={20}/>
+        <Title text="Per Serving" fontSize={20} />
       </View>
       <NutritionalChart
         progressCarbs={mealData?.carbohydratePercentage}
@@ -71,7 +107,11 @@ const MyMealDetailsScreen = ({navigation}: Props) => {
         gramsProtein={mealData?.proteinGrams}
         gramsFat={mealData?.fatGrams}
       />
-      <ButtonSecondary title={'Mark as completed'} onPress={handleMarkCompleted} color={'#58D164'}/>
+      <ButtonSecondary
+        title={'Mark as completed'}
+        onPress={handleMarkCompleted}
+        color={'#58D164'}
+      />
     </View>
   );
 };

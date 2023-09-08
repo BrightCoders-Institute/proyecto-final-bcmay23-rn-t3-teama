@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { FlatList, View, Text, ScrollView } from 'react-native';
+import { AppContext, appInitialState } from '../../context/AppContext';
+import { FlatList, View, Text, ScrollView, Alert } from 'react-native';
 import { styles } from './styles';
 import { StackScreenProps } from '@react-navigation/stack';
 import { MyMealCardR } from '../../components/MyMealCardR/MyMealCardR';
@@ -7,7 +8,6 @@ import { MyMealCardL } from '../../components/MyMealCardL/MyMealCardL';
 import { CallendarWeekday } from '../../components/CallendarWeekday/CallendarWeekday';
 import { getCurrentWeekdays, namesDays } from '../../helpers/getCurrentWeekdays'
 import { DayObject } from '../../interfaces/interfaces';
-import { AppContext } from '../../context/AppContext';
 import firestore from '@react-native-firebase/firestore';
 
 const imgType = {
@@ -20,6 +20,9 @@ const imgType = {
 interface Props extends StackScreenProps<any, any> { }
 
 const MyMealsScreen = ({ navigation }: Props) => {
+  
+  const { appState } = useContext(AppContext);
+
   const [weekDays, setWeekDays] = useState<DayObject[]>([]);
   const [selectedDay, setSelectedDay] = useState<DayObject | undefined>();
   const [recipeBookData, setRecipeBookData ] = useState(null);
@@ -71,6 +74,25 @@ const MyMealsScreen = ({ navigation }: Props) => {
     setCurrSnackObj( recipeBookData.snack.filter(obj => obj.date === currSelectedDate) );
   };
 
+  const handelCardPress = ( title: string) => {
+    if (!appState.isCardDisabled[title]) {
+    navigation.navigate('Meals Details', { title });
+  } else {
+    Alert.alert(
+      'Meal Completed',
+      'This meal is already complete, want to see the recipe?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => {},
+          style: 'destructive',
+        },
+        { text: 'OK', onPress: () => navigation.navigate('Recipe') },
+      ]
+    );
+  }
+  }
+ 
   return (
     <View style={styles.container}>
       <ScrollView
@@ -90,18 +112,22 @@ const MyMealsScreen = ({ navigation }: Props) => {
           />
         </View>
         <MyMealCardR
-          title="Breakfast"
+          title='Breakfast'
           caloriesRecomended={calories}
           description={descriptionMeal}
           imgSource={imgType.BreakfastImg}
           mealId={currBreakfastObj}
-        />
+          onPress={ () => handelCardPress( 'Breakfast' )}
+          disable={appState.isCardDisabled['Breakfast']}
+          />
         <MyMealCardL
           title="Snack"
           caloriesRecomended={calories}
           description={descriptionMeal}
           imgSource={imgType.SnackImg}
           mealId={currSnackObj}
+          onPress={ () => handelCardPress( 'Snack')}
+          disable={appState.isCardDisabled['Snack']}
         />
         <MyMealCardR
           title="Lunch"
@@ -109,6 +135,8 @@ const MyMealsScreen = ({ navigation }: Props) => {
           description={descriptionMeal}
           imgSource={imgType.LunchImg}
           mealId={currLunchObj}
+          onPress={ () => handelCardPress( 'Lunch' )}
+          disable={appState.isCardDisabled['Lunch']}
         />
         <MyMealCardL
           title="Dinner"
@@ -116,6 +144,8 @@ const MyMealsScreen = ({ navigation }: Props) => {
           description={descriptionMeal}
           imgSource={imgType.DinnerImg}
           mealId={currDinnerObj}
+          onPress={ () => handelCardPress( 'Dinner')}
+          disable={appState.isCardDisabled['Dinner']}
         />
       </ScrollView>
     </View>

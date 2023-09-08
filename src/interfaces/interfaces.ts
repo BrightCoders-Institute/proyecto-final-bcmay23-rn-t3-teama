@@ -11,6 +11,7 @@ export interface ButtonSecondaryProps {
   onPress?: () => void;
   color?: string;
   fontSize?: number;
+  isDisabled?: boolean;
 }
 
 export interface DayObjectProps {
@@ -67,6 +68,7 @@ export interface MyMealCardProps {
   mealId: MealDataIdProps;
   onPress?: () => void;
   imgSource?: ImageSourcePropType;
+  disable: boolean;
 }
 
 export interface MealDataIdProps {
@@ -168,4 +170,13 @@ export interface NutritionistInfo {
   cityAndCountry: string;
   biography: string;
   rating: string;
+}
+
+
+export interface AppointmentData {
+  date: string;
+  appointmentId?: string;
+  nutritionistKey: string,
+  time: string,
+  userKey: string;
 }
