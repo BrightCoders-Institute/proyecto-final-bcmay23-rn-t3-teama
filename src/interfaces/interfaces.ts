@@ -143,6 +143,7 @@ export interface NutritionistInfo {
   cityAndCountry: string;
   biography: string;
   rating: string;
+  NutritionistImage: ImageSourcePropType;
 }
 
 

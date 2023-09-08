@@ -7,10 +7,7 @@ import { RatingStar } from '../../components/RatingStar/RatingStar';
 import { WhatsAppButton } from '../../components/WhatsAppButton/WhatsAppButton';
 import { StackScreenProps } from '@react-navigation/stack';
 import { NutritionistInfo } from '../../interfaces/interfaces';
-
-const imgType = {
-    NutritionistImage: require('../../assets/img/nutritionist-profile.png'),
-}
+import firestore from '@react-native-firebase/firestore';
 
 const NUTRITIONIST_INFO: NutritionistInfo = {
     name: 'Dr. Aimep3 Fischer',
@@ -18,6 +15,7 @@ const NUTRITIONIST_INFO: NutritionistInfo = {
     cityAndCountry: 'Colima, Mx.',
     biography: 'Harvard-educated nutritionist empowering healthier lives. Personalized meal plans, engaging workshops, and evidence-based guidance for weight management, sports nutrition, and overall well-being. Join our app for a transformative wellness journey today!',
     rating: '3.5',
+    NutritionistImage: require('../../assets/img/nutritionist-profile.png'),
 };
 
 interface Props extends StackScreenProps<any, any> {}
@@ -52,7 +50,7 @@ export const MySpecialistScreen = ({navigation}: Props) => {
             <View style={styles.imageContainer}>
                 <View style={styles.circle} />
                 <Image
-                    source={imgType.NutritionistImage}
+                    source={NUTRITIONIST_INFO.NutritionistImage}
                     style={[styles.nutritionistImage, {height: height * 0.29}]}
                 />
             </View>
