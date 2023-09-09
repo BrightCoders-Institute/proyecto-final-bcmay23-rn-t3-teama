@@ -7,6 +7,7 @@ import { PaperProvider } from 'react-native-paper';
 import { enableLatestRenderer } from 'react-native-maps';
 import { AppProvider } from './src/context/AppContext';
 import auth from '@react-native-firebase/auth';
+import SideMenu from './src/navigation/SideMenu';
 
 enableLatestRenderer();
 
@@ -16,7 +17,7 @@ function App(): JSX.Element {
 
   function onAuthStateChanged(user) {
     setUser(user);
-    if (initializing) setInitializing(false);
+    if (initializing) { setInitializing(false); }
   }
 
   useEffect(() => {
@@ -24,13 +25,13 @@ function App(): JSX.Element {
     return subscriber;
   }, []);
 
-  if (initializing) return null;
+  if (initializing) { return null; }
 
   if (!user) {
     return (
       <NavigationContainer>
         <AppState>
-          <StackNavigator />
+          <SideMenu />
         </AppState>
       </NavigationContainer>
     );
@@ -40,17 +41,17 @@ function App(): JSX.Element {
     <NavigationContainer>
       <AppState>
         <PaperProvider >
-          <StackNavigator />
+          <SideMenu />
         </PaperProvider>
       </AppState>
     </NavigationContainer>
   );
 }
 
-const AppState = ({ children }: any ) => {
+const AppState = ({ children }: any) => {
   return (
     <AppProvider>
-      { children }
+      {children}
     </AppProvider>
   );
 };
