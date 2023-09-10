@@ -47,4 +47,11 @@ export const styles = StyleSheet.create({
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 20,
     },
+    mealNotFound: {
+        display: 'flex',
+        justifyContent:'center',
+        alignItems: 'center',
+        marginVertical: '13%',
+        paddingHorizontal: 20,
+    },
 });

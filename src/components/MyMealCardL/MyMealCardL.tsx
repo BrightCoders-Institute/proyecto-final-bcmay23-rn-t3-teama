@@ -30,16 +30,18 @@ export const MyMealCardL = ({ title, caloriesRecomended, description, onPress, i
                   setIsLoading(false);
                 } else {
                     console.log('No se encontró el documento');
+                    setIsLoading(false);
                 }
             })
             .catch((error) => {
                 console.error('Error al obtener los datos:', error);
+                setIsLoading(false);
             });
     };
 
     return (
         <>
-            { (isLoading === false && mealData !== null) ? (
+            { (!isLoading && mealData && mealId) ? (
                 <TouchableOpacity
                     style={[
                         styles.buttonContainer,
@@ -56,10 +58,18 @@ export const MyMealCardL = ({ title, caloriesRecomended, description, onPress, i
                         <Text style={styles.buttonText}>{`${mealData?.description}`}</Text>
                     </View>
                 </TouchableOpacity>
-            ) : (
-                <TouchableOpacity style={ styles.buttonContainer }>
-                    <Text>Loading...</Text>
-                </TouchableOpacity>
+            ) : ( isLoading && !mealData ? (
+                    <TouchableOpacity style={ styles.buttonContainer }>
+                        <Text>Loading...</Text>
+                    </TouchableOpacity>
+                ) : (
+                    <View style={styles.mealNotFound}>
+                        <Text style={{ textAlign: 'center' }}>
+                            <Text style={{ fontWeight: 'bold' }}>{title?.toUpperCase()}</Text>
+                            {' not found. Please contact your nutritionist.'}
+                        </Text>
+                    </View>
+                )
             ) }
         </>
     );
