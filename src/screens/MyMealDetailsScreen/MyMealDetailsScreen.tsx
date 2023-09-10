@@ -9,6 +9,7 @@ import MealInfoBadge from '../../components/MealInfoBadge/MealInfoBadge';
 import NutritionalChart from '../../components/NutritionalChart/NutritionalChart';
 import { ButtonSecondary } from '../../components/ButtonSecondary/ButtonSecondary';
 import LoadingModal from '../../components/LoadingModal/LoadingModal';
+import firestore from '@react-native-firebase/firestore';
 import { useRoute } from '@react-navigation/native';
 
 const successCompletedModalImg = require('../../assets/img/successDoctorModal.png');
@@ -17,13 +18,34 @@ interface Props extends StackScreenProps<any, any> {}
 
 const MyMealDetailsScreen = ({navigation}: Props) => {
   const route = useRoute();
-  const { mealData } = route.params;
+  const { mealData, mealId } = route.params;
   const [isModalVisible, setModalVisible] = useState(false);
-
-  console.log(mealData);
 
   const handleMarkCompleted = () => {
     setModalVisible(true);
+
+    const mealType = mealData.type.trim();
+    const recipeBookRef = firestore().collection('recipeBook');
+    const docRef = recipeBookRef.doc(mealId[0].recipeBook_id);
+
+    docRef
+      .get()
+      .then(docSnapshot => {
+        const data = docSnapshot.data();
+        const index = data[mealType].findIndex(item => item.id === mealId[0].id);
+        data[mealType][index].isCompleted = true;
+
+        const updateData = {};
+        updateData[mealType] = data[mealType];
+
+        return docRef.update(updateData);
+      })
+      .then(() => {
+        console.log('Campo isCompleted actualizado con éxito');
+      })
+      .catch(error => {
+        console.error('Error al actualizar el campo isCompleted:', error);
+      });
   };
 
   const closeModal = () => {

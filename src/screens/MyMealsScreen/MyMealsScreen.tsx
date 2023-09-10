@@ -47,28 +47,49 @@ const MyMealsScreen = ({ navigation }: Props) => {
     .where('id_user', '==', userKey);
 
     userRef.get()
-    .then((querySnapshot) => {
-      if (!querySnapshot.empty) {
-        const data = querySnapshot.docs[0].data();
-        setRecipeBookData(data);
-        // console.log(data.breakfast);
-      } else {
-        console.log(`No se encontraron resultados para id_user: ${userKey}`);
-      }
-    })
-    .catch((error) => {
-      console.error('Error al obtener datos:', error);
-    });
+      .then((querySnapshot) => {
+        if (!querySnapshot.empty) {
+          const docSnapshot = querySnapshot.docs[0];
+          // id del doc
+          const docId = docSnapshot.id;
+          const data = docSnapshot.data();
+          data.id = docId;
+
+          setRecipeBookData(data);
+          // console.log(data);
+        } else {
+          console.log(`No se encontraron resultados para id_user: ${userKey}`);
+        }
+      })
+      .catch((error) => {
+        console.error('Error al obtener datos:', error);
+      });
   };
 
   const getMealsIds = () => {
     const currSelectedDate = `${selectedDay?.day}-${selectedDay?.month}-${selectedDay?.year}`;
     // const currBreakfast = recipeBookData.breakfast.filter(obj => obj.date === currSelectedDate);
 
-    setCurrBreakfastObj( recipeBookData.breakfast.filter(obj => obj.date === currSelectedDate) );
-    setCurrLunchObj( recipeBookData.lunch.filter(obj => obj.date === currSelectedDate) );
-    setCurrDinnerObj( recipeBookData.dinner.filter(obj => obj.date === currSelectedDate) );
-    setCurrSnackObj( recipeBookData.snack.filter(obj => obj.date === currSelectedDate) );
+    const filteredBreakfast = recipeBookData.breakfast
+      .filter(obj => obj.date === currSelectedDate)
+      .map(obj => ({ ...obj, recipeBook_id: recipeBookData.id }));
+
+    const filteredLunch = recipeBookData.lunch
+      .filter(obj => obj.date === currSelectedDate)
+      .map(obj => ({ ...obj, recipeBook_id: recipeBookData.id }));
+
+    const filteredDinner = recipeBookData.dinner
+      .filter(obj => obj.date === currSelectedDate)
+      .map(obj => ({ ...obj, recipeBook_id: recipeBookData.id }));
+
+    const filteredSnack = recipeBookData.snack
+      .filter(obj => obj.date === currSelectedDate)
+      .map(obj => ({ ...obj, recipeBook_id: recipeBookData.id }));
+
+    setCurrBreakfastObj(filteredBreakfast);
+    setCurrLunchObj(filteredLunch);
+    setCurrDinnerObj(filteredDinner);
+    setCurrSnackObj(filteredSnack);
   };
 
   return (

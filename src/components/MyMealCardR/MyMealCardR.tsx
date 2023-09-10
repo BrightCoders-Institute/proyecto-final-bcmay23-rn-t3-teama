@@ -45,7 +45,7 @@ export const MyMealCardR = ({ title, caloriesRecomended, description, onPress, i
                         styles.buttonContainer,
                         mealId[0].isCompleted ? { opacity: 0.6 } : null,
                     ]}
-                    onPress={() => navigation.navigate('Meals Details', { mealData })}
+                    onPress={() => navigation.navigate('Meals Details', { mealData, mealId })}
                 >
                     <View style={styles.titleContainer}>
                         <Title text={title} fontSize={22} />
