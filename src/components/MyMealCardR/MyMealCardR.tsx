@@ -38,9 +38,15 @@ export const MyMealCardR = ({ title, caloriesRecomended, description, onPress, i
     };
 
     return (
-        <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Meals Details', { mealData })}>
+        <>
             { (isLoading === false && mealData !== null) ? (
-                <>
+                <TouchableOpacity
+                    style={[
+                        styles.buttonContainer,
+                        mealId[0].isCompleted ? { opacity: 0.6 } : null,
+                    ]}
+                    onPress={() => navigation.navigate('Meals Details', { mealData })}
+                >
                     <View style={styles.titleContainer}>
                         <Title text={title} fontSize={22} />
                         <SubTitle text={`${mealData?.name}`} fontSize={15} color="#7B5FEC" />
@@ -48,12 +54,13 @@ export const MyMealCardR = ({ title, caloriesRecomended, description, onPress, i
                     <View style={styles.textContainer}>
                         <Text style={styles.buttonText}>{`${mealData?.description}`}</Text>
                     </View>
-                    {/* {imgSource && <Image source={imgSource} style={styles.buttonImage} />} */}
                     <Image source={{uri: mealData?.image}} style={styles.buttonImage} />
-                </>
+                </TouchableOpacity>
             ) : (
-                <Text>Loading...</Text>
+                <TouchableOpacity style={ styles.buttonContainer }>
+                    <Text>Loading...</Text>
+                </TouchableOpacity>
             ) }
-        </TouchableOpacity>
+        </>
     );
 };

@@ -40,10 +40,15 @@ export const MyMealCardL = ({ title, caloriesRecomended, description, onPress, i
     };
 
     return (
-        <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Meals Details', { mealData })}>
+        <>
             { (isLoading === false && mealData !== null) ? (
-                <>
-                    {/* {imgSource && <Image source={imgSource} style={styles.buttonImage} />} */}
+                <TouchableOpacity
+                    style={[
+                        styles.buttonContainer,
+                        mealId[0].isCompleted ? { opacity: 0.6 } : null,
+                    ]}
+                    onPress={() => navigation.navigate('Meals Details', { mealData })}
+                >
                     <Image source={{uri: mealData?.image}} style={styles.buttonImage} />
                     <View style={styles.titleContainer}>
                         <Title text={title} fontSize={22} />
@@ -52,10 +57,12 @@ export const MyMealCardL = ({ title, caloriesRecomended, description, onPress, i
                     <View style={styles.textContainer}>
                         <Text style={styles.buttonText}>{`${mealData?.description}`}</Text>
                     </View>
-                </>
+                </TouchableOpacity>
             ) : (
-                <Text>Loading...</Text>
+                <TouchableOpacity style={ styles.buttonContainer }>
+                    <Text>Loading...</Text>
+                </TouchableOpacity>
             ) }
-        </TouchableOpacity>
+        </>
     );
 };
