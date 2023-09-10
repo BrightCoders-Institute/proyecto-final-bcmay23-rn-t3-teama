@@ -32,11 +32,15 @@ const MyMealDetailsScreen = ({navigation}: Props) => {
             onPress: () => {},
             style: 'destructive',
           },
-          { text: 'OK', onPress: () => console.log('Cambiando estado...') },
+          { text: 'OK', onPress: () => updateIsCompletedValue(false) },
         ]
       );
       return;
     }
+    updateIsCompletedValue(true);
+  };
+
+  const updateIsCompletedValue = (isCompleteValue) => {
     setModalVisible(true);
 
     const mealType = mealData.type.trim();
@@ -48,7 +52,7 @@ const MyMealDetailsScreen = ({navigation}: Props) => {
       .then(docSnapshot => {
         const data = docSnapshot.data();
         const index = data[mealType].findIndex(item => item.id === mealId[0].id);
-        data[mealType][index].isCompleted = true;
+        data[mealType][index].isCompleted = isCompleteValue;
 
         const updateData = {};
         updateData[mealType] = data[mealType];
