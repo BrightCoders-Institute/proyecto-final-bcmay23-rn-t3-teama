@@ -42,6 +42,10 @@ const MyMealDetailsScreen = ({navigation}: Props) => {
       })
       .then(() => {
         console.log('Campo isCompleted actualizado con éxito');
+        setModalVisible(true);
+        setTimeout(() => {
+          navigation.navigate('MyMealsScreen');
+        }, 1500);
       })
       .catch(error => {
         console.error('Error al actualizar el campo isCompleted:', error);

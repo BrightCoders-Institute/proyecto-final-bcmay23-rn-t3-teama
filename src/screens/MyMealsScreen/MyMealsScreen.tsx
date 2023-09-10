@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useCallback } from 'react';
 import { FlatList, View, Text, ScrollView } from 'react-native';
 import { styles } from './styles';
 import { StackScreenProps } from '@react-navigation/stack';
@@ -9,6 +9,7 @@ import { getCurrentWeekdays, namesDays } from '../../helpers/getCurrentWeekdays'
 import { DayObject } from '../../interfaces/interfaces';
 import { AppContext } from '../../context/AppContext';
 import firestore from '@react-native-firebase/firestore';
+import { useFocusEffect } from '@react-navigation/native';
 
 const imgType = {
   BreakfastImg: require('../../assets/img/Breakfast.png'),
@@ -36,6 +37,13 @@ const MyMealsScreen = ({ navigation }: Props) => {
     setWeekDays( getCurrentWeekdays(namesDays, setSelectedDay));
     getRecipeBook();
   }, []);
+
+  // no estoy muy seguro de esto
+  useFocusEffect(
+    useCallback(() => {
+      getRecipeBook();
+    }, [])
+  );
 
   useEffect( () => {
     if (recipeBookData) getMealsIds();

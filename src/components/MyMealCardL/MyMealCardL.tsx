@@ -27,12 +27,10 @@ export const MyMealCardL = ({ title, caloriesRecomended, description, onPress, i
                 if (mealDoc.exists) {
                   const mealInfo = mealDoc.data();
                   setMealData(mealInfo);
+                  setIsLoading(false);
                 } else {
                     console.log('No se encontró el documento');
                 }
-            })
-            .then( () => {
-                setIsLoading(false);
             })
             .catch((error) => {
                 console.error('Error al obtener los datos:', error);
@@ -47,7 +45,7 @@ export const MyMealCardL = ({ title, caloriesRecomended, description, onPress, i
                         styles.buttonContainer,
                         mealId[0].isCompleted ? { opacity: 0.6 } : null,
                     ]}
-                    onPress={() => navigation.navigate('Meals Details', { mealData })}
+                    onPress={() => navigation.navigate('Meals Details', { mealData, mealId })}
                 >
                     <Image source={{uri: mealData?.image}} style={styles.buttonImage} />
                     <View style={styles.titleContainer}>
