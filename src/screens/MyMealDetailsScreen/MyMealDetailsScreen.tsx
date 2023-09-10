@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { View, Alert } from 'react-native';
 import { Title } from '../../components/Title/Title';
 import { RecipeImg } from '../../components/RecipeImg/RecipeImg';
 import { style } from './styles';
@@ -22,6 +22,21 @@ const MyMealDetailsScreen = ({navigation}: Props) => {
   const [isModalVisible, setModalVisible] = useState(false);
 
   const handleMarkCompleted = () => {
+    if (mealId[0].isCompleted) {
+      Alert.alert(
+        'Meal Completed',
+        'This meal is already complete, do you want to go change it to incompleted?',
+        [
+          {
+            text: 'Cancel',
+            onPress: () => {},
+            style: 'destructive',
+          },
+          { text: 'OK', onPress: () => console.log('Cambiando estado...') },
+        ]
+      );
+      return;
+    }
     setModalVisible(true);
 
     const mealType = mealData.type.trim();
@@ -51,6 +66,7 @@ const MyMealDetailsScreen = ({navigation}: Props) => {
         console.error('Error al actualizar el campo isCompleted:', error);
       });
   };
+
 
   const closeModal = () => {
     setModalVisible(false);
