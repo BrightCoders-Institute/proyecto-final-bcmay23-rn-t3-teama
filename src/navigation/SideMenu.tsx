@@ -5,7 +5,6 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { StackNavigator } from './StackNavigator';
 import { AppContext } from '../context/AppContext';
 import auth from '@react-native-firebase/auth';
-import TopTab from './TopTab';
 import { colors, styles } from '../appTheme/appTheme';
 import { BottomTab } from './BottomTab';
 
@@ -26,7 +25,6 @@ const SideMenu = () => {
         >
             <Drawer.Screen name="StackNavigator" component={StackNavigator} />
             <Drawer.Screen name="BottomTab" component={BottomTab} />
-            <Drawer.Screen name="TopTab" component={TopTab} />
         </Drawer.Navigator>
     );
 };
@@ -74,7 +72,12 @@ const MenuInterno = ({ navigation }: DrawerContentComponentProps) => {
                 <TouchableOpacity
                     style={styles.menuButton}
                     onPress={() => {
-                        navigation.navigate('StackNavigator');
+                        navigation.navigate('StackNavigator', {
+                            screen: 'BottomTab',
+                            params: {
+                                screen: 'HomeScreen',
+                            },
+                        });
                     }}
                 >
                     <Icon name="home" size={25} color={colors.primary} />
@@ -92,8 +95,11 @@ const MenuInterno = ({ navigation }: DrawerContentComponentProps) => {
                 <TouchableOpacity
                     style={styles.menuButton}
                     onPress={() => {
-                        navigation.navigate('TopTab', {
-                            screen: 'MyInfoScreen',
+                        navigation.navigate('BottomTab', {
+                            screen: 'TopTab',
+                            params: {
+                                screen: 'MyInfoScreen',
+                            },
                         });
                     }}
                 >
