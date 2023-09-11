@@ -7,6 +7,7 @@ import { AppContext } from '../context/AppContext';
 import auth from '@react-native-firebase/auth';
 import TopTab from './TopTab';
 import { colors, styles } from '../appTheme/appTheme';
+import { BottomTab } from './BottomTab';
 
 const Drawer = createDrawerNavigator();
 
@@ -24,6 +25,7 @@ const SideMenu = () => {
 
         >
             <Drawer.Screen name="StackNavigator" component={StackNavigator} />
+            <Drawer.Screen name="BottomTab" component={BottomTab} />
             <Drawer.Screen name="TopTab" component={TopTab} />
         </Drawer.Navigator>
     );
