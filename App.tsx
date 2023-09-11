@@ -1,13 +1,11 @@
 import 'react-native-gesture-handler';
 import React, { useEffect, useState } from 'react';
-import { Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { StackNavigator } from './src/navigation/StackNavigator';
 import { PaperProvider } from 'react-native-paper';
 import { enableLatestRenderer } from 'react-native-maps';
 import { AppProvider } from './src/context/AppContext';
 import auth from '@react-native-firebase/auth';
-import SideMenu from './src/navigation/SideMenu';
+import { MainNavigator } from './src/navigation/MainNavigator';
 
 enableLatestRenderer();
 
@@ -31,7 +29,7 @@ function App(): JSX.Element {
     return (
       <NavigationContainer>
         <AppState>
-          <SideMenu />
+          <MainNavigator />
         </AppState>
       </NavigationContainer>
     );
@@ -41,7 +39,7 @@ function App(): JSX.Element {
     <NavigationContainer>
       <AppState>
         <PaperProvider >
-          <SideMenu />
+          <MainNavigator />
         </PaperProvider>
       </AppState>
     </NavigationContainer>
