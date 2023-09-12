@@ -1,5 +1,4 @@
-import React, { useContext, useState } from 'react';
-import { AppContext } from '../../context/AppContext';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 import { Title } from '../../components/Title/Title';
 import { RecipeImg } from '../../components/RecipeImg/RecipeImg';
@@ -10,47 +9,17 @@ import MealInfoBadge from '../../components/MealInfoBadge/MealInfoBadge';
 import NutritionalChart from '../../components/NutritionalChart/NutritionalChart';
 import { ButtonSecondary } from '../../components/ButtonSecondary/ButtonSecondary';
 import LoadingModal from '../../components/LoadingModal/LoadingModal';
-import { RouteProp } from '@react-navigation/native';
 
 const successCompletedModalImg = require('../../assets/img/successDoctorModal.png');
 
-interface Props extends StackScreenProps<any, any> {
-  route: RouteProp<any, any>;
-};
+interface Props extends StackScreenProps<any, any> {}
 
+const MyMealDetailsScreen = ({navigation}: Props) => {
 
-const MyMealDetailsScreen = ({navigation, route}: Props) => {
-  
-  const { toggleCardDisable } = useContext(AppContext);
-  
   const [isModalVisible, setModalVisible] = useState(false);
 
   const handleMarkCompleted = () => {
-
-    if ( route && route.params ) { 
-      const { title } = route.params; 
-
-      switch (title) {
-        case 'Breakfast':
-          toggleCardDisable('Breakfast', true);
-          break;
-        case 'Lunch':
-          toggleCardDisable('Lunch', true);
-          break;
-        case 'Snack':
-          toggleCardDisable('Snack', true);
-          break;
-        case 'Dinner':
-          toggleCardDisable('Dinner', true);
-          break;
-        default:
-          break;
-      }
-      setModalVisible(true);
-      setTimeout(() => {
-        navigation.navigate('MyMealsScreen');
-      }, 1500);
-    }
+    setModalVisible(true);
   };
 
   const closeModal = () => {

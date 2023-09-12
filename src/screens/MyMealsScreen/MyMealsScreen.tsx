@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { AppContext } from '../../context/AppContext';
+import React, { useEffect, useState } from 'react';
 import { FlatList, View, Text, ScrollView } from 'react-native';
 import { styles } from './styles';
 import { StackScreenProps } from '@react-navigation/stack';
@@ -19,9 +18,6 @@ const imgType = {
 interface Props extends StackScreenProps<any, any> { }
 
 const MyMealsScreen = ({ navigation }: Props) => {
-  
-  const { appState } = useContext(AppContext);
-
   const [weekDays, setWeekDays] = useState<DayObject[]>([]);
   const [selectedDay, setSelectedDay] = useState<DayObject | undefined>();
 
@@ -51,36 +47,32 @@ const MyMealsScreen = ({ navigation }: Props) => {
           />
         </View>
         <MyMealCardR
-          title='Breakfast'
+          title="Breakfast"
           caloriesRecomended={calories}
           description={descriptionMeal}
           imgSource={imgType.BreakfastImg}
-          onPress={() => navigation.navigate('Meals Details', {title: 'Breakfast'})}
-          disable={appState.isCardDisabled['Breakfast']}
+          onPress={() => navigation.navigate('Meals Details')}
         />
         <MyMealCardL
           title="Snack"
           caloriesRecomended={calories}
           description={descriptionMeal}
           imgSource={imgType.SnackImg}
-          onPress={() => navigation.navigate('Meals Details', {title: 'Snack'})}
-          disable={appState.isCardDisabled['Snack']}
+          onPress={() => navigation.navigate('Meals Details')}
         />
         <MyMealCardR
           title="Lunch"
           caloriesRecomended={calories}
           description={descriptionMeal}
           imgSource={imgType.LunchImg}
-          onPress={() => navigation.navigate('Meals Details', {title: 'Lunch'})}
-          disable={appState.isCardDisabled['Lunch']}
+          onPress={() => navigation.navigate('Meals Details')}
         />
         <MyMealCardL
           title="Dinner"
           caloriesRecomended={calories}
           description={descriptionMeal}
           imgSource={imgType.DinnerImg}
-          onPress={() => navigation.navigate('Meals Details', {title: 'Dinner'})}
-          disable={appState.isCardDisabled['Dinner']}
+          onPress={() => navigation.navigate('Meals Details')}
         />
       </ScrollView>
     </View>

@@ -66,7 +66,6 @@ export interface MyMealCardProps {
   description: string;
   onPress?: () => void;
   imgSource?: ImageSourcePropType;
-  disable: boolean;
 }
 
 export interface MealInfoBadgeProps {
