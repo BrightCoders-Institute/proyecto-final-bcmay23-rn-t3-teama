@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { View, Text, ScrollView, FlatList, TouchableOpacity } from 'react-native';
 import { calendarTheme, styles } from './styles';
 import { availableAppointmentTimes } from '../../testData/availableAppointmentTimes';
@@ -7,10 +7,6 @@ import moment from 'moment';
 import Map from '../../components/Map/Map';
 import { ButtonSecondary } from '../../components/ButtonSecondary/ButtonSecondary';
 import LoadingModal from '../../components/LoadingModal/LoadingModal';
-import { AppContext } from '../../context/AppContext';
-import firestore from '@react-native-firebase/firestore';
-import { useNavigation } from '@react-navigation/native';
-import { AppointmentData } from '../../interfaces/interfaces';
 
 const successCompleted = require('../../assets/img/successDoctorModal.png');
 const errorImage = require('../../assets/img/errorDoctorModal.png');
@@ -20,10 +16,6 @@ const BookAppointment = () => {
     const [selectedTime, setSelectedTime] = useState<string | null>(null);
     const [isModalVisible, setModalVisible] = useState(false);
     const [isAppointmentSuccessful, setAppointmentSuccessful] = useState(false);
-    const [modalErrorMessage, setModalErrorMessage] = useState('Sorry, the appointment could not be scheduled, please try again later.');
-
-    const { appState: { userData: { userKey } } } = useContext(AppContext);
-    const navigation = useNavigation();
 
     const currentDate = moment().format('YYYY-MM-DD');
 
@@ -33,6 +25,11 @@ const BookAppointment = () => {
         setSelectedDate(day.dateString);
         setSelectedTime(null);
     };
+    console.log('Fecha seleccionada: ', selectedDate);
+
+    const selectTime = (time: string) => {
+        setSelectedTime(time);
+    };
 
     const markedDates = {
         [selectedDate || '']: { selected: true },
@@ -41,65 +38,28 @@ const BookAppointment = () => {
     const renderTimeItem = ({ item }: { item: string }) => (
         <TouchableOpacity
             activeOpacity={0.5}
-            onPress={() => setSelectedTime(item)}
+            onPress={() => selectTime(item)}
             style={[styles.flatListItemTouchable, { backgroundColor: selectedTime === item ? '#795DEA' : '#f5f5f5' }]}
         >
             <Text style={{ ...styles.flatListItemText, color: selectedTime === item ? 'white' : 'black' }}>{item}</Text>
         </TouchableOpacity>
     );
 
-    const sendToFirestore = async (appointmentToSave: AppointmentData) => {
-        try {
-            const db = firestore();
-
-            const appointmentsRef = db.collection('appointments');
-
-            const existingAppointments = await appointmentsRef
-                .where('userKey', '==', appointmentToSave.userKey)
-                .get();
-
-            if (existingAppointments.size >= 2) {
-                console.error('You can not add more than two appointments on the same month');
-                setModalErrorMessage('You can not add more than two appointments in the same month.');
-                return false;
-            }
-
-            await appointmentsRef.add(appointmentToSave);
-            console.log('Datos enviados con éxito');
-            return true;
-        } catch (error) {
-            console.error('Error al enviar los datos:', error);
-            return false;
-        }
-    };
-
     const confirmAppointment = () => {
 
-        if (!selectedDate || !selectedTime) {
+        if ( !selectedDate || !selectedTime ) {
             setModalVisible(true);
             setAppointmentSuccessful(false);
         } else {
-
-            const appointmentDetails = {
-                date: selectedDate,
-                time: selectedTime,
-                userKey,
-                nutritionistKey: '123456', // Obtener desde el context cuando se tengan datos del nutriologo en firestore
-            };
-
-            sendToFirestore(appointmentDetails)
-                .then((success) => {
-                    setModalVisible(true);
-                    if (!success) { setModalErrorMessage('Sorry, the appointment could not be scheduled, please try again later.'); }
-                    setAppointmentSuccessful(success);
-                });
+            setModalVisible(true);
+            setAppointmentSuccessful(true);
         }
+
     };
 
     const closeModal = () => {
         setModalVisible(false);
         setAppointmentSuccessful(true);
-        navigation.goBack();
     };
 
     return (
@@ -110,7 +70,7 @@ const BookAppointment = () => {
                 successImageUrl={successCompleted}
                 errorImageUrl={errorImage}
                 title={isAppointmentSuccessful ? 'Booking confirmed' : 'Oops! something went wrong'}
-                subtitle={isAppointmentSuccessful ? 'Please atteng your appointment on the agreed day and time' : modalErrorMessage}
+                subtitle={isAppointmentSuccessful ? 'Please atteng your appointment on the agreed day and time' : 'Sorry, the appointment could not be scheduled, please try again later.'}
                 isSuccessful={isAppointmentSuccessful}
                 onClose={closeModal}
             />
@@ -150,7 +110,7 @@ const BookAppointment = () => {
             </View>
 
             <View style={styles.buttonView}>
-                <ButtonSecondary title="Confirm Appointment" color="#795DEA" onPress={confirmAppointment} isDisabled={!selectedDate || !selectedTime} />
+                <ButtonSecondary title="Confirm Appointment" color="#795DEA" onPress={confirmAppointment} />
             </View>
         </ScrollView>
     );

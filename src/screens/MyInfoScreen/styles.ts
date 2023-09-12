@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
         shadowRadius: 3,
         elevation: 4,
     },
-    container: {
+    container:{
         flexDirection: 'row',
         justifyContent: 'space-around',
         paddingBottom: '10%',
@@ -27,10 +27,10 @@ export const styles = StyleSheet.create({
     },
     clientKey: {
         alignSelf: 'center',
-        alignItems: 'center',
+        alignItems:'center',
         justifyContent: 'center',
         backgroundColor: 'white',
-        borderColor: '#58D164',
+        borderColor:'#58D164',
         borderWidth: 3,
         borderRadius: 11,
         height: '20%',
@@ -50,7 +50,7 @@ export const styles = StyleSheet.create({
     },
     patientName: {
         paddingVertical: 15,
-        alignItems: 'center',
+        alignItems:'center',
     },
     generalInfo: {
         width: 120,
@@ -119,7 +119,7 @@ export const styles = StyleSheet.create({
         alignSelf: 'center',
         height: '90%',
     },
-    metrics: {
+    metrics:{
         width: '100%',
         paddingLeft: '10%',
     },
@@ -153,13 +153,12 @@ export const styles = StyleSheet.create({
     },
     counsellingContainer: {
         backgroundColor: 'white',
-        // height: '70%',
+        height: '70%',
         justifyContent: 'space-between',
-        marginBottom: 10,
         borderRadius: 13,
         paddingHorizontal: 20,
         paddingVertical: '2%',
-        elevation: 2,
+        elevation: 10,
         shadowColor: '#000',
         shadowOffset: {
             width: 0,
