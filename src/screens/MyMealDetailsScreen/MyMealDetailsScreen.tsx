@@ -117,7 +117,7 @@ const MyMealDetailsScreen = ({navigation}: Props) => {
         gramsProtein={mealData?.proteinGrams}
         gramsFat={mealData?.fatGrams}
       />
-      <ButtonSecondary title={'Mark as completed'} onPress={handleMarkCompleted} color={'#58D164'}/>
+      <ButtonSecondary title={`Mark as ${mealId[0].isCompleted ? 'incomplete' : 'completed'}`} onPress={handleMarkCompleted} color={mealId[0].isCompleted ? '#B9B9B9' : '#58D164'}/>
     </View>
   );
 };
