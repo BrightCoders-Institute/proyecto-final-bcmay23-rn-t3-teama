@@ -67,7 +67,6 @@ export interface MyMealCardProps {
   description: string;
   onPress?: () => void;
   imgSource?: ImageSourcePropType;
-  disable: boolean;
 }
 
 export interface MealInfoBadgeProps {
@@ -145,7 +144,6 @@ export interface NutritionistInfo {
   biography: string;
   rating: string;
 }
-
 
 export interface AppointmentData {
   date: string;

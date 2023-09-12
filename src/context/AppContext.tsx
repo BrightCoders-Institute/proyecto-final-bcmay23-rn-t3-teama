@@ -7,7 +7,6 @@ export interface AppContextState {
   consumedCalories: number;
   caloriesPerDay: number;
   userData: UserDataInfo;
-  isCardDisabled: Record<string, boolean>;
 }
 export interface UserDataInfo {
   bmi: number;
@@ -50,12 +49,6 @@ export const appInitialState: AppContextState = {
     image:
       'https://www.pasala.com.mx/wp-content/uploads/2020/06/PAS200623-MEDIO-MAMADO-01.jpg',
   },
-  isCardDisabled: {
-    Breakfast: false,
-    Snack: false,
-    Lunch: false,
-    Dinner: false,
-  },
   //   futuros valores para almacenar
 };
 
@@ -67,7 +60,6 @@ export interface AppContextProps {
   updateCalories?: (calories: number) => void;
   updateDayOfWeek?: (day: string) => void;
   getContextUserData: (userData: UserDataInfo) => void;
-  toggleCardDisable: (cardId: string, disable: boolean) => void;
   // futuras acciones
 }
 
@@ -118,14 +110,6 @@ export const AppProvider = ({children}: any) => {
     dispatch({type: 'getContextUserData', payload: userData});
   };
 
-  const toggleCardDisable = (cardId: string, disable: boolean) => {
-    dispatch({
-      type: 'updateCardDisable',
-      payload: { cardId, disable },
-    });
-  };
-  
-
   return (
     <AppContext.Provider
       value={{
@@ -133,7 +117,6 @@ export const AppProvider = ({children}: any) => {
         signIn,
         logOut,
         getContextUserData,
-        toggleCardDisable,
       }}>
       {children}
     </AppContext.Provider>

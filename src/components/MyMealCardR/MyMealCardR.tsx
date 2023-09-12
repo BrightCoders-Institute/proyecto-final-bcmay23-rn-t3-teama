@@ -1,22 +1,14 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../../context/AppContext';
+import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { MyMealCardProps } from '../../interfaces/interfaces';
 import { styles } from './styles';
 import { Title } from '../Title/Title';
 import { SubTitle } from '../SubTitle/SubTitle';
 
-export const MyMealCardR = ({ title, caloriesRecomended, description, onPress, imgSource, disable }: MyMealCardProps) => {
+export const MyMealCardR = ({ title, caloriesRecomended, description, onPress, imgSource }: MyMealCardProps) => {
 
-    const { appState } = useContext(AppContext);
     return (
-        <TouchableOpacity 
-            style={ 
-                appState.isCardDisabled[title] 
-                ? [ styles.buttonContainer,{ opacity: .6 } ] 
-                : styles.buttonContainer 
-            } 
-            onPress={onPress}  >
+        <TouchableOpacity style={styles.buttonContainer} onPress={onPress}>
             <View style={styles.titleContainer}>
                 <Title text={title} fontSize={22} />
                 <SubTitle text={caloriesRecomended} fontSize={15} color="gray" />
