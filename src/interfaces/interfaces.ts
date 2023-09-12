@@ -11,6 +11,7 @@ export interface ButtonSecondaryProps {
   onPress?: () => void;
   color?: string;
   fontSize?: number;
+  isDisabled?: boolean;
 }
 
 export interface DayObjectProps {
@@ -148,4 +149,12 @@ export interface NutritionistInfo {
   cityAndCountry: string;
   biography: string;
   rating: string;
+}
+
+export interface AppointmentData {
+  date: string;
+  appointmentId?: string;
+  nutritionistKey: string,
+  time: string,
+  userKey: string;
 }
