@@ -1,12 +1,13 @@
 import { View, Text, Button } from 'react-native';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { WellcomeCard } from '../../components/WellcomeCard/WellcomeCard';
 import { WellcomeProgressCard } from '../../components/WellcomeProgressCard/WellcomeProgressCard';
 import { WellnesCard } from '../../components/WellnesCard/WellnesCard';
 import { Title } from '../../components/Title/Title';
 import { styles } from './styles';
-import { AppContext } from '../../context/AppContext';
+import { AppContext, UserDataInfo } from '../../context/AppContext';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 const iconType = {
   fruitsImage: require('../../assets/img/stack-of-three-red-apples-hc-studio-removebg-preview.png'),
@@ -16,9 +17,34 @@ const iconType = {
 };
 
 const HomeScreen = () => {
+  const { appState: { userData: { userKey } }, logOut, getContextUserData } = useContext( AppContext );
+  // console.log(appState);
 
-  const { appState, logOut } = useContext( AppContext );
-  console.log(appState);
+  useEffect( () => {
+    // getUserData();
+  }, [] );
+  
+  const getUserData = () => {
+    firestore()
+      .collection('userData')
+      .where('userKey', '==', userKey)
+      .get()
+      .then((querySnapshot) => {
+        const data = [];
+        querySnapshot.forEach((documentSnapshot) => {
+          data.push({
+            id: documentSnapshot.id,
+            ...documentSnapshot.data(),
+          });
+        });
+        // setUserData(data);
+        // getContextUserData(data);
+        console.log('a', data);
+      })
+      .catch((error) => {
+        console.error('Error al consultar Firestore:', error);
+      });
+  };
 
   const logout = () => {
     auth()
