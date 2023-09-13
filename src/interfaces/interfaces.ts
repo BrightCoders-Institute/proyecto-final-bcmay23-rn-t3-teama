@@ -128,12 +128,18 @@ export interface RatingStarProps {
   size: number;
 }
 
+export interface PasswordProps {
+  showPassword: boolean;
+  handleShowPassword: () => void;
+}
+
 export interface TextFieldFormProps {
   placeholder: string;
   inputValue: string;
   onInputChange: (value: string) => void;
   invalidText: string;
   isInputValid?: boolean;
+  extraData?: PasswordProps,
   setInputValid?: React.Dispatch<React.SetStateAction<boolean>> | undefined;
 }
 
@@ -145,7 +151,6 @@ export interface NutritionistInfo {
   rating: string;
   NutritionistImage: ImageSourcePropType;
 }
-
 
 export interface AppointmentData {
   date: string;
