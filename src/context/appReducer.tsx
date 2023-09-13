@@ -1,6 +1,6 @@
-import { AppContextState, UserDataInfo } from './AppContext';
+import { AppContextState, NutriologistDataInfo, UserDataInfo } from './AppContext';
 
-type AppAction = { type: 'signIn' } | { type: 'logOut' } | { type: 'getContextUserData', payload: UserDataInfo } | { type: 'loadLoggedInState', payload: boolean } | { type: 'loadUserDataState', payload: UserDataInfo };
+type AppAction = { type: 'signIn' } | { type: 'logOut' } | { type: 'getContextNutritionistData', payload: NutriologistDataInfo } | { type: 'getContextUserData', payload: UserDataInfo } | { type: 'loadLoggedInState', payload: boolean } | { type: 'loadUserDataState', payload: UserDataInfo };
 
 
 export const appReducer = ( state: AppContextState, action: AppAction ): AppContextState => {
@@ -30,6 +30,11 @@ export const appReducer = ( state: AppContextState, action: AppAction ): AppCont
             return {
                 ...state,
                 userData: action.payload,
+            };
+        case 'getContextNutritionistData':
+            return {
+                ...state,
+                nutriologistData: action.payload,
             };
 
         default:
