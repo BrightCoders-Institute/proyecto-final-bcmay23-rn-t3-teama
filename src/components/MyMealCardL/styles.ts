@@ -50,4 +50,11 @@ export const styles = StyleSheet.create({
         borderBottomLeftRadius: 20,
         borderBottomRightRadius: 0,
     },
+    mealNotFound: {
+        display: 'flex',
+        justifyContent:'center',
+        alignItems: 'center',
+        marginVertical: '13%',
+        paddingHorizontal: 20,
+    },
 });

@@ -1,16 +1,16 @@
-import React, {useContext, useState} from 'react';
-import {AppContext} from '../../context/AppContext';
-import {View} from 'react-native';
-import {Title} from '../../components/Title/Title';
-import {RecipeImg} from '../../components/RecipeImg/RecipeImg';
-import {style} from './styles';
-import {SubTitle} from '../../components/SubTitle/SubTitle';
-import {StackScreenProps} from '@react-navigation/stack';
+import React, { useState } from 'react';
+import { View, Alert } from 'react-native';
+import { Title } from '../../components/Title/Title';
+import { RecipeImg } from '../../components/RecipeImg/RecipeImg';
+import { style } from './styles';
+import { SubTitle } from '../../components/SubTitle/SubTitle';
+import { StackScreenProps } from '@react-navigation/stack';
 import MealInfoBadge from '../../components/MealInfoBadge/MealInfoBadge';
 import NutritionalChart from '../../components/NutritionalChart/NutritionalChart';
 import {ButtonSecondary} from '../../components/ButtonSecondary/ButtonSecondary';
 import LoadingModal from '../../components/LoadingModal/LoadingModal';
-import {RouteProp} from '@react-navigation/native';
+import firestore from '@react-native-firebase/firestore';
+import { useRoute } from '@react-navigation/native';
 
 const successCompletedModalImg = require('../../assets/img/successDoctorModal.png');
 
@@ -18,14 +18,61 @@ interface Props extends StackScreenProps<any, any> {
   route: RouteProp<any, any>;
 }
 
-const MyMealDetailsScreen = ({navigation, route}: Props) => {
-  const {toggleCardDisable} = useContext(AppContext);
+const MyMealDetailsScreen = ({navigation}: Props) => {
+  const route = useRoute();
+  const { mealData, mealId } = route.params;
   const [isModalVisible, setModalVisible] = useState(false);
-  const { mealData } = route.params;
 
   const handleMarkCompleted = () => {
-    setModalVisible(true);
+    if (mealId[0].isCompleted) {
+      Alert.alert(
+        'Meal Completed',
+        'This meal is already complete, do you want to go change it to incompleted?',
+        [
+          {
+            text: 'Cancel',
+            onPress: () => {},
+            style: 'destructive',
+          },
+          { text: 'OK', onPress: () => updateIsCompletedValue(false) },
+        ]
+      );
+      return;
+    }
+    updateIsCompletedValue(true);
   };
+
+  const updateIsCompletedValue = (isCompleteValue) => {
+    setModalVisible(true);
+
+    const mealType = mealData.type.trim();
+    const recipeBookRef = firestore().collection('recipeBook');
+    const docRef = recipeBookRef.doc(mealId[0].recipeBook_id);
+
+    docRef
+      .get()
+      .then(docSnapshot => {
+        const data = docSnapshot.data();
+        const index = data[mealType].findIndex(item => item.id === mealId[0].id);
+        data[mealType][index].isCompleted = isCompleteValue;
+
+        const updateData = {};
+        updateData[mealType] = data[mealType];
+
+        return docRef.update(updateData);
+      })
+      .then(() => {
+        console.log('Campo isCompleted actualizado con éxito');
+        setModalVisible(true);
+        setTimeout(() => {
+          navigation.navigate('MyMealsScreen');
+        }, 1500);
+      })
+      .catch(error => {
+        console.error('Error al actualizar el campo isCompleted:', error);
+      });
+  };
+
 
   const closeModal = () => {
     setModalVisible(false);
@@ -85,9 +132,8 @@ const MyMealDetailsScreen = ({navigation, route}: Props) => {
         gramsFat={mealData?.fatGrams}
       />
       <ButtonSecondary
-        title={'Mark as completed'}
-        onPress={handleMarkCompleted}
-        color={'#58D164'}
+        title={`Mark as ${mealId[0].isCompleted ? 'incomplete' : 'completed'}`}
+        onPress={handleMarkCompleted} color={mealId[0].isCompleted ? '#B9B9B9' : '#58D164'}
       />
     </View>
   );

@@ -18,55 +18,60 @@ export const MyMealCardL = ({title, mealId}: MyMealCardProps) => {
     // console.log(mealId);
   }, [mealId]);
 
-  const getMealData = () => {
-    setIsLoading(true);
-    firestore()
-      .collection('meal')
-      .doc(mealId[0].meal_id)
-      .get()
-      .then(mealDoc => {
-        if (mealDoc.exists) {
-          const mealInfo = mealDoc.data();
-          setMealData(mealInfo);
-        } else {
-          console.log('No se encontró el documento');
-        }
-      })
-      .then(() => {
-        setIsLoading(false);
-      })
-      .catch(error => {
-        console.error('Error al obtener los datos:', error);
-      });
-  };
+    const getMealData = () => {
+        setIsLoading(true);
+        firestore()
+            .collection('meal')
+            .doc(mealId[0].meal_id)
+            .get()
+            .then((mealDoc) => {
+                if (mealDoc.exists) {
+                  const mealInfo = mealDoc.data();
+                  setMealData(mealInfo);
+                  setIsLoading(false);
+                } else {
+                    console.log('No se encontró el documento');
+                    setIsLoading(false);
+                }
+            })
+            .catch((error) => {
+                console.error('Error al obtener los datos:', error);
+                setIsLoading(false);
+            });
+    };
 
-  const {appState} = useContext(AppContext);
-  return (
-    <TouchableOpacity
-      style={
-        appState.isCardDisabled[title]
-          ? [styles.buttonContainer, {opacity: 0.6}]
-          : styles.buttonContainer
-      }
-      onPress={() => navigation.navigate('Meals Details', {mealData})}>
-      {isLoading === false && mealData !== null ? (
+    return (
         <>
-          <Image source={{uri: mealData?.image}} style={styles.buttonImage} />
-          <View style={styles.titleContainer}>
-            <Title text={title} fontSize={22} />
-            <SubTitle
-              text={`${mealData?.name}`}
-              fontSize={15}
-              color="#7B5FEC"
-            />
-          </View>
-          <View style={styles.textContainer}>
-            <Text style={styles.buttonText}>{`${mealData?.description}`}</Text>
-          </View>
+            { (!isLoading && mealData && mealId) ? (
+                <TouchableOpacity
+                    style={[
+                        styles.buttonContainer,
+                        mealId[0].isCompleted ? { opacity: 0.6 } : null,
+                    ]}
+                    onPress={() => navigation.navigate('Meals Details', { mealData, mealId })}
+                >
+                    <Image source={{uri: mealData?.image}} style={styles.buttonImage} />
+                    <View style={styles.titleContainer}>
+                        <Title text={title} fontSize={22} />
+                        <SubTitle text={`${mealData?.name}`} fontSize={15} color="#7B5FEC" />
+                    </View>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.buttonText}>{`${mealData?.description}`}</Text>
+                    </View>
+                </TouchableOpacity>
+            ) : ( isLoading && !mealData ? (
+                    <TouchableOpacity style={ styles.buttonContainer }>
+                        <Text>Loading...</Text>
+                    </TouchableOpacity>
+                ) : (
+                    <View style={styles.mealNotFound}>
+                        <Text style={{ textAlign: 'center' }}>
+                            <Text style={{ fontWeight: 'bold' }}>{title?.toUpperCase()}</Text>
+                            {' not found. Please contact your nutritionist.'}
+                        </Text>
+                    </View>
+                )
+            ) }
         </>
-      ) : (
-        <Text>Loading...</Text>
-      )}
-    </TouchableOpacity>
-  );
+    );
 };
