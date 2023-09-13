@@ -19,6 +19,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import { AppContext, UserDataInfo } from '../../context/AppContext';
+import { useShowHidePassword } from '../../hooks/useShowHidePassword';
 const successLoginModalImg = require('../../assets/img/successLoginModal.png');
 const errorLoginModalImg = require('../../assets/img/errorLoginModal.png');
 
@@ -50,6 +51,7 @@ const LoginScreen = ({navigation}: Props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { signIn, getContextUserData } = useContext( AppContext );
+  const {showPassword, handleShowPassword} = useShowHidePassword();
   const {height} = useWindowDimensions();
 
   useEffect(() => {
@@ -64,6 +66,7 @@ const LoginScreen = ({navigation}: Props) => {
   const handleDisabledLoginButton = () => {
     if (
       isEmailValid &&
+      email.trim() !== '' &&
       isPasswordValid &&
       password.trim() !== '' &&
       isClientKeyValid &&
@@ -174,6 +177,10 @@ const LoginScreen = ({navigation}: Props) => {
               invalidText={errorPwText}
               isInputValid={isPasswordValid}
               setInputValid={setIsPasswordValid}
+              extraData={{
+                showPassword,
+                handleShowPassword,
+              }}
             />
             <TextFieldForm
               placeholder="Client Key"
