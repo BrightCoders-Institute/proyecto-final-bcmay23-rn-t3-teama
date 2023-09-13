@@ -7,6 +7,8 @@ import { AppContext } from '../context/AppContext';
 import auth from '@react-native-firebase/auth';
 import { colors, styles } from '../appTheme/appTheme';
 import { BottomTab } from './BottomTab';
+import { ButtonSecondary } from '../components/ButtonSecondary/ButtonSecondary';
+import style from '../screens/MyMealDetailsScreen/styles';
 
 const Drawer = createDrawerNavigator();
 
@@ -109,10 +111,15 @@ const MenuInterno = ({ navigation }: DrawerContentComponentProps) => {
 
             </ View>
 
+
             <View style={styles.buttonContainer} >
-                <TouchableOpacity onPress={logout} >
-                    <Text style={styles.logoutButton}>Log Out</Text>
-                </TouchableOpacity>
+            <ButtonSecondary 
+                title='Log Out' 
+                color='red' 
+                onPress={logOut} 
+                width='90%' 
+                height={40} 
+                fontSize={15}/>
             </View>
         </DrawerContentScrollView >
     );
