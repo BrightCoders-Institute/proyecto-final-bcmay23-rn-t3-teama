@@ -68,7 +68,6 @@ export interface MyMealCardProps {
   mealId: MealDataIdProps;
   onPress?: () => void;
   imgSource?: ImageSourcePropType;
-  disable: boolean;
 }
 
 export interface MealDataIdProps {
@@ -155,12 +154,18 @@ export interface RatingStarProps {
   size: number;
 }
 
+export interface PasswordProps {
+  showPassword: boolean;
+  handleShowPassword: () => void;
+}
+
 export interface TextFieldFormProps {
   placeholder: string;
   inputValue: string;
   onInputChange: (value: string) => void;
   invalidText: string;
   isInputValid?: boolean;
+  extraData?: PasswordProps,
   setInputValid?: React.Dispatch<React.SetStateAction<boolean>> | undefined;
 }
 
@@ -171,7 +176,6 @@ export interface NutritionistInfo {
   biography: string;
   rating: string;
 }
-
 
 export interface AppointmentData {
   date: string;

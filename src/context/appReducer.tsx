@@ -1,12 +1,6 @@
 import { AppContextState, UserDataInfo } from './AppContext';
 
-type AppAction = 
-{ type: 'signIn' } 
-| { type: 'logOut' } 
-| { type: 'getContextUserData', payload: UserDataInfo } 
-| { type: 'loadLoggedInState', payload: boolean } 
-| { type: 'loadUserDataState', payload: UserDataInfo } 
-| { type: 'updateCardDisable'; payload: { cardId: string; disable: boolean } };
+type AppAction = { type: 'signIn' } | { type: 'logOut' } | { type: 'getContextUserData', payload: UserDataInfo } | { type: 'loadLoggedInState', payload: boolean } | { type: 'loadUserDataState', payload: UserDataInfo };
 
 
 export const appReducer = ( state: AppContextState, action: AppAction ): AppContextState => {
@@ -36,14 +30,6 @@ export const appReducer = ( state: AppContextState, action: AppAction ): AppCont
             return {
                 ...state,
                 userData: action.payload,
-            };
-        case 'updateCardDisable':
-            return {
-                ...state,
-                isCardDisabled: {
-                ...state.isCardDisabled,
-                [action.payload.cardId]: action.payload.disable,
-                },
             };
 
         default:

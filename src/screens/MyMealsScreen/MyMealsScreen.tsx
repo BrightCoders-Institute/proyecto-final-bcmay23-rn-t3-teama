@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { AppContext, appInitialState } from '../../context/AppContext';
-import { FlatList, View, Text, ScrollView, Alert } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { FlatList, View, Text, ScrollView } from 'react-native';
 import { styles } from './styles';
 import { StackScreenProps } from '@react-navigation/stack';
 import { MyMealCardR } from '../../components/MyMealCardR/MyMealCardR';
@@ -20,9 +19,6 @@ const imgType = {
 interface Props extends StackScreenProps<any, any> { }
 
 const MyMealsScreen = ({ navigation }: Props) => {
-  
-  const { appState } = useContext(AppContext);
-
   const [weekDays, setWeekDays] = useState<DayObject[]>([]);
   const [selectedDay, setSelectedDay] = useState<DayObject | undefined>();
   const [recipeBookData, setRecipeBookData ] = useState(null);
@@ -112,7 +108,7 @@ const MyMealsScreen = ({ navigation }: Props) => {
           />
         </View>
         <MyMealCardR
-          title='Breakfast'
+          title="Breakfast"
           caloriesRecomended={calories}
           description={descriptionMeal}
           imgSource={imgType.BreakfastImg}

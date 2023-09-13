@@ -24,30 +24,7 @@ const MyMealDetailsScreen = ({navigation, route}: Props) => {
   const { mealData } = route.params;
 
   const handleMarkCompleted = () => {
-    if (route && route.params) {
-      const {title} = route.params;
-
-      switch (title) {
-        case 'Breakfast':
-          toggleCardDisable('Breakfast', true);
-          break;
-        case 'Lunch':
-          toggleCardDisable('Lunch', true);
-          break;
-        case 'Snack':
-          toggleCardDisable('Snack', true);
-          break;
-        case 'Dinner':
-          toggleCardDisable('Dinner', true);
-          break;
-        default:
-          break;
-      }
-      setModalVisible(true);
-      setTimeout(() => {
-        navigation.navigate('MyMealsScreen');
-      }, 1500);
-    }
+    setModalVisible(true);
   };
 
   const closeModal = () => {
