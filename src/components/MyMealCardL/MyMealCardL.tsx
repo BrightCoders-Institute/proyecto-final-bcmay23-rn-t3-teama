@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
-import { MealDataProps, MyMealCardProps } from '../../interfaces/interfaces';
-import { styles } from './styles';
-import { Title } from '../Title/Title';
-import { SubTitle } from '../SubTitle/SubTitle';
+import React, {useEffect, useState, useContext} from 'react';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
+import {MealDataProps, MyMealCardProps} from '../../interfaces/interfaces';
+import {styles} from './styles';
+import {Title} from '../Title/Title';
+import {SubTitle} from '../SubTitle/SubTitle';
 import firestore from '@react-native-firebase/firestore';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
+import { AppContext } from '../../context/AppContext';
 
-export const MyMealCardL = ({ title, caloriesRecomended, description, onPress, imgSource, mealId }: MyMealCardProps) => {
-    const navigation = useNavigation();
-    const [mealData, setMealData] = useState<MealDataProps | null>(null);
-    const [isLoading, setIsLoading] = useState(false);
+export const MyMealCardL = ({title, mealId}: MyMealCardProps) => {
+  const navigation = useNavigation();
+  const [mealData, setMealData] = useState<MealDataProps | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-    useEffect(() => {
-        if (mealId) getMealData();
-        // console.log(mealId);
-    }, [mealId]);
+  useEffect(() => {
+    if (mealId) getMealData();
+    // console.log(mealId);
+  }, [mealId]);
 
     const getMealData = () => {
         setIsLoading(true);

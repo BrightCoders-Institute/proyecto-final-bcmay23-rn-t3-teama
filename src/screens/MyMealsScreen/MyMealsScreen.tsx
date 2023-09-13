@@ -5,11 +5,11 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { MyMealCardR } from '../../components/MyMealCardR/MyMealCardR';
 import { MyMealCardL } from '../../components/MyMealCardL/MyMealCardL';
 import { CallendarWeekday } from '../../components/CallendarWeekday/CallendarWeekday';
-import { getCurrentWeekdays, namesDays } from '../../helpers/getCurrentWeekdays'
+import { getCurrentWeekdays, namesDays } from '../../helpers/getCurrentWeekdays';
 import { DayObject } from '../../interfaces/interfaces';
-import { AppContext } from '../../context/AppContext';
 import firestore from '@react-native-firebase/firestore';
 import { useFocusEffect } from '@react-navigation/native';
+import { AppContext } from '../../context/AppContext';
 
 const imgType = {
   BreakfastImg: require('../../assets/img/Breakfast.png'),
@@ -105,6 +105,25 @@ const MyMealsScreen = ({ navigation }: Props) => {
     setCurrSnackObj(filteredSnack.length > 0 ? filteredSnack : null);
   };
 
+  const handelCardPress = ( title: string) => {
+    if (!appState.isCardDisabled[title]) {
+    navigation.navigate('Meals Details', { title });
+  } else {
+    Alert.alert(
+      'Meal Completed',
+      'This meal is already complete, want to see the recipe?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => {},
+          style: 'destructive',
+        },
+        { text: 'OK', onPress: () => navigation.navigate('Recipe') },
+      ]
+    );
+  }
+  }
+ 
   return (
     <View style={styles.container}>
       <ScrollView
