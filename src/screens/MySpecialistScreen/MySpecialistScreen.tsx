@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext} from 'react';
+import React, { useEffect, useContext} from 'react';
 import { View, useWindowDimensions, Image, Text, SafeAreaView } from 'react-native';
 import { styles } from './styles';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -9,16 +9,6 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { NutritionistInfo } from '../../interfaces/interfaces';
 import firestore from '@react-native-firebase/firestore';
 import { AppContext } from '../../context/AppContext';
-
-
-// const NUTRITIONIST_INFO: NutritionistInfo = {
-//     name: 'Dr. Aimep3 Fischer',
-//     major: 'Ph.D. in Nutrition',
-//     cityAndCountry: 'Colima, Mx.',
-//     biography: 'Harvard-educated nutritionist empowering healthier lives. Personalized meal plans, engaging workshops, and evidence-based guidance for weight management, sports nutrition, and overall well-being. Join our app for a transformative wellness journey today!',
-//     rating: '3.5',
-//     NutritionistImage: require('../../assets/img/nutritionist-profile.png'),
-// };
 
 interface Props extends StackScreenProps<any, any> {}
 
@@ -50,12 +40,35 @@ export const MySpecialistScreen = ({navigation}: Props, { }: NutritionistInfo) =
         return starElements;
     };
 
+    useEffect(() => {
+        const fetchNutritionistData = async () => {
+          try {
+            const nutritionistDoc = await firestore()
+              .collection('nutritionistData')
+              .doc('1')
+              .get();
+
+            if (nutritionistDoc.exists) {
+              const data = nutritionistDoc.data();
+              getContextNutritionistData(data);
+            } else {
+              console.log('The document does not exist');
+            }
+          } catch (error) {
+            console.error('Error in obtaining data from the specialist:', error);
+          }
+        };
+
+        fetchNutritionistData();
+      }, []);
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.imageContainer}>
                 <View style={styles.circle} />
                 <Image
-                    source={{ uri: nutriologistData.NutritionistImage }}
+                    source={ nutriologistData.NutritionistImage ||
+                        require('../../assets/img/nutritionist-profile.png')}
                     style={[styles.nutritionistImage, { height: height * 0.29 }]}
                     onError={(error) => console.error('Image Error:', error)}
                 />
