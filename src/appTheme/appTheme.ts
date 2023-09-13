@@ -42,7 +42,7 @@ export const styles = StyleSheet.create({
         color: 'grey',
     },
     buttonContainer: {
-        marginTop: '85%',
+        marginTop: '80%',
         paddingVertical: 10,
     },
     logoutButton: {
@@ -56,6 +56,6 @@ export const styles = StyleSheet.create({
         color: 'white',
         padding: 10,
         borderRadius: 15,
-        
+
     },
 });
