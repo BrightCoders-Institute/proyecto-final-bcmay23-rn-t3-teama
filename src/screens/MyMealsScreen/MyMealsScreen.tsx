@@ -7,6 +7,7 @@ import { MyMealCardL } from '../../components/MyMealCardL/MyMealCardL';
 import { CallendarWeekday } from '../../components/CallendarWeekday/CallendarWeekday';
 import { getCurrentWeekdays, namesDays } from '../../helpers/getCurrentWeekdays'
 import { DayObject } from '../../interfaces/interfaces';
+import firestore from '@react-native-firebase/firestore';
 
 const imgType = {
   BreakfastImg: require('../../assets/img/Breakfast.png'),
@@ -20,14 +21,74 @@ interface Props extends StackScreenProps<any, any> { }
 const MyMealsScreen = ({ navigation }: Props) => {
   const [weekDays, setWeekDays] = useState<DayObject[]>([]);
   const [selectedDay, setSelectedDay] = useState<DayObject | undefined>();
+  const [recipeBookData, setRecipeBookData ] = useState(null);
+  const [currBreakfastObj, setCurrBreakfastObj] = useState(null);
+  const [currLunchObj, setCurrLunchObj] = useState(null);
+  const [currDinnerObj, setCurrDinnerObj] = useState(null);
+  const [currSnackObj, setCurrSnackObj] = useState(null);
+  const { appState: { userData: { userKey } } } = useContext(AppContext);
 
   const descriptionMeal = 'Bowl whit fruit, some fruit and more fruit. You can add fruit.';
   const calories = 'Recomended 830 - 1170Cal';
 
   useEffect(() => {
     setWeekDays( getCurrentWeekdays(namesDays, setSelectedDay));
+    getRecipeBook();
   }, []);
 
+  useEffect( () => {
+    if (recipeBookData) getMealsIds();
+  }, [selectedDay, recipeBookData]);
+
+  const getRecipeBook = () => {
+    const userRef = firestore()
+    .collection('recipeBook')
+    .where('id_user', '==', userKey);
+
+    userRef.get()
+    .then((querySnapshot) => {
+      if (!querySnapshot.empty) {
+        const data = querySnapshot.docs[0].data();
+        setRecipeBookData(data);
+        // console.log(data.breakfast);
+      } else {
+        console.log(`No se encontraron resultados para id_user: ${userKey}`);
+      }
+    })
+    .catch((error) => {
+      console.error('Error al obtener datos:', error);
+    });
+  };
+
+  const getMealsIds = () => {
+    const currSelectedDate = `${selectedDay?.day}-${selectedDay?.month}-${selectedDay?.year}`;
+    // const currBreakfast = recipeBookData.breakfast.filter(obj => obj.date === currSelectedDate);
+
+    setCurrBreakfastObj( recipeBookData.breakfast.filter(obj => obj.date === currSelectedDate) );
+    setCurrLunchObj( recipeBookData.lunch.filter(obj => obj.date === currSelectedDate) );
+    setCurrDinnerObj( recipeBookData.dinner.filter(obj => obj.date === currSelectedDate) );
+    setCurrSnackObj( recipeBookData.snack.filter(obj => obj.date === currSelectedDate) );
+  };
+
+  const handelCardPress = ( title: string) => {
+    if (!appState.isCardDisabled[title]) {
+    navigation.navigate('Meals Details', { title });
+  } else {
+    Alert.alert(
+      'Meal Completed',
+      'This meal is already complete, want to see the recipe?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => {},
+          style: 'destructive',
+        },
+        { text: 'OK', onPress: () => navigation.navigate('Recipe') },
+      ]
+    );
+  }
+  }
+ 
   return (
     <View style={styles.container}>
       <ScrollView
@@ -51,28 +112,36 @@ const MyMealsScreen = ({ navigation }: Props) => {
           caloriesRecomended={calories}
           description={descriptionMeal}
           imgSource={imgType.BreakfastImg}
-          onPress={() => navigation.navigate('Meals Details')}
-        />
+          mealId={currBreakfastObj}
+          onPress={ () => handelCardPress( 'Breakfast' )}
+          disable={appState.isCardDisabled['Breakfast']}
+          />
         <MyMealCardL
           title="Snack"
           caloriesRecomended={calories}
           description={descriptionMeal}
           imgSource={imgType.SnackImg}
-          onPress={() => navigation.navigate('Meals Details')}
+          mealId={currSnackObj}
+          onPress={ () => handelCardPress( 'Snack')}
+          disable={appState.isCardDisabled['Snack']}
         />
         <MyMealCardR
           title="Lunch"
           caloriesRecomended={calories}
           description={descriptionMeal}
           imgSource={imgType.LunchImg}
-          onPress={() => navigation.navigate('Meals Details')}
+          mealId={currLunchObj}
+          onPress={ () => handelCardPress( 'Lunch' )}
+          disable={appState.isCardDisabled['Lunch']}
         />
         <MyMealCardL
           title="Dinner"
           caloriesRecomended={calories}
           description={descriptionMeal}
           imgSource={imgType.DinnerImg}
-          onPress={() => navigation.navigate('Meals Details')}
+          mealId={currDinnerObj}
+          onPress={ () => handelCardPress( 'Dinner')}
+          disable={appState.isCardDisabled['Dinner']}
         />
       </ScrollView>
     </View>

@@ -6,7 +6,7 @@ import { styles } from './styles';
 export const RecipeImg = ( { imgSource }: RecipeImgProps ) => {
   return (
     <View>
-        {imgSource && <Image source={imgSource} style={styles.image} />}
+      <Image source={{uri: imgSource}} style={styles.image} />
     </View>
   );
 };
