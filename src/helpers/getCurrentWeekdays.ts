@@ -7,8 +7,8 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 export const getCurrentWeekdays = (namesDays: any[], setSelectedDay: { (value: any): void; (value: SetStateAction<DayObjectProps | undefined>): void; (arg0: { isSelectedDay: boolean; weekName: any; completeDay: any; day: number; month: string; year: number; }): void; }) => {
   const results = [];
 
-  const todaysDate = new Date("2023-09-09T00:00:00"); // NO BORRAR!!!!!!!
-  // const todaysDate = new Date(); // ESTO TAMPOCO
+  // const todaysDate = new Date("2023-09-09T00:00:00"); // NO BORRAR!!!!!!!
+  const todaysDate = new Date(); // ESTO TAMPOCO
 
   const dayCurrWeek = todaysDate.getDay();
 

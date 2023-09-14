@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import { Dimensions, View, Text, FlatList } from 'react-native';
 import { NutritionalChartProgress } from '../../components/NutritionalChartProgress/NutritionalChartProgress';
 import { CircularProgressBar } from '../../components/CircularProgressBar/CircularProgressBar';
@@ -7,7 +7,7 @@ import { Title } from '../../components/Title/Title';
 import { SubTitle } from '../../components/SubTitle/SubTitle';
 import { WhatsAppButton } from '../../components/WhatsAppButton/WhatsAppButton';
 import { AppContext } from '../../context/AppContext';
-import { namesDays } from '../../helpers/getCurrentWeekdays';
+import { getCurrentWeekdays, namesDays } from '../../helpers/getCurrentWeekdays';
 import { DayObject } from '../../interfaces/interfaces';
 import { CallendarWeekday } from '../../components/CallendarWeekday/CallendarWeekday';
 import firestore from '@react-native-firebase/firestore';
@@ -18,6 +18,11 @@ export const ReportScreen = () => {
   const [weekDays, setWeekDays] = useState<DayObject[]>([]);
   const [selectedDay, setSelectedDay] = useState<DayObject | undefined>();
   const { appState } = useContext(AppContext);
+
+  useEffect(() => {
+    setWeekDays( getCurrentWeekdays(namesDays, setSelectedDay));
+    // getRecipeBook();
+  }, []);
 
   return (
     <View style={styles.container}>
