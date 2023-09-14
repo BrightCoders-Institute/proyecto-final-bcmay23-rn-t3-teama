@@ -105,25 +105,6 @@ const MyMealsScreen = ({ navigation }: Props) => {
     setCurrSnackObj(filteredSnack.length > 0 ? filteredSnack : null);
   };
 
-  const handelCardPress = ( title: string) => {
-    if (!appState.isCardDisabled[title]) {
-    navigation.navigate('Meals Details', { title });
-  } else {
-    Alert.alert(
-      'Meal Completed',
-      'This meal is already complete, want to see the recipe?',
-      [
-        {
-          text: 'Cancel',
-          onPress: () => {},
-          style: 'destructive',
-        },
-        { text: 'OK', onPress: () => navigation.navigate('Recipe') },
-      ]
-    );
-  }
-  }
- 
   return (
     <View style={styles.container}>
       <ScrollView

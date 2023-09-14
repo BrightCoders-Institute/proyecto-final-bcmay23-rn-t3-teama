@@ -44,5 +44,18 @@ export const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     marginLeft: 20,
     marginVertical: 10,
-  }
+  },
+  calendarContainer: {
+    backgroundColor: 'white',
+    height: 180,
+    elevation: 5,
+    shadowColor: 'black',
+    marginBottom: 10,
+  },
+  dayTitle: {
+    fontWeight: 'bold',
+    marginTop: 15,
+    fontSize: 22,
+    marginLeft: 25,
+  },
 });
