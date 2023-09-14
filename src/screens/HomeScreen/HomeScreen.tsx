@@ -9,6 +9,7 @@ import { AppContext, UserDataInfo } from '../../context/AppContext';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
+
 const iconType = {
   fruitsImage: require('../../assets/img/stack-of-three-red-apples-hc-studio-removebg-preview.png'),
   anloImage: require('../../assets/img/anlo.png'),
@@ -16,14 +17,16 @@ const iconType = {
   FlameBadgeIcon: require('../../assets/img/FlameBadgeIcon.png'),
 };
 
-const HomeScreen = () => {
-  const { appState: { userData: { userKey } }, logOut, getContextUserData } = useContext( AppContext );
+interface Props extends StackScreenProps<any, any> { }
+
+const HomeScreen = ({ navigation }: Props) => {
+  const { appState: { userData: { userKey } }, logOut, getContextUserData } = useContext(AppContext);
   // console.log(appState);
 
-  useEffect( () => {
+  useEffect(() => {
     // getUserData();
-  }, [] );
-  
+  }, []);
+
   const getUserData = () => {
     firestore()
       .collection('userData')
@@ -57,7 +60,7 @@ const HomeScreen = () => {
 
   return (
     <View>
-      <Button title='Cerrar' onPress={logout} />
+      <Button title="Cerrar" onPress={logout} />
       <WellcomeCard />
       <WellcomeProgressCard title="Consumed today" />
       <View style={styles.mainContainer}>
@@ -74,7 +77,8 @@ const HomeScreen = () => {
         <WellnesCard
           title="Workout at Home"
           backgroundColor="#7B5FEC"
-          imgSource={iconType.anloImage} />
+          imgSource={iconType.anloImage}
+          onPress={() => navigation.navigate('Workout Tips')} />
         <View style={styles.titleContainar}>
           <Title text="Mindfulness" fontSize={20} />
         </View>

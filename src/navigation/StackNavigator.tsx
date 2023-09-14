@@ -7,11 +7,12 @@ import { RecipeScreen } from '../screens/RecipeScreen/RecipeScreen';
 import MyMealDetailsScreen from '../screens/MyMealDetailsScreen/MyMealDetailsScreen';
 import BookAppointment from '../screens/BookAppointment/BookAppointment';
 import { AppContext } from '../context/AppContext';
+import WorkoutScreen from '../screens/WorkoutScreen/Workout';
 
 const Stack = createStackNavigator();
 
 export const StackNavigator = () => {
-  const { appState: { isLoggedIn } } = useContext( AppContext );
+  const { appState: { isLoggedIn } } = useContext(AppContext);
   console.log(isLoggedIn);
   return (
     <Stack.Navigator>
@@ -35,6 +36,11 @@ export const StackNavigator = () => {
           <Stack.Screen
             name="Book Appointment"
             component={BookAppointment}
+            options={{ cardStyle: { backgroundColor: 'white' } }}
+          />
+          <Stack.Screen
+            name="Workout Tips"
+            component={WorkoutScreen}
             options={{ cardStyle: { backgroundColor: 'white' } }}
           />
         </>
