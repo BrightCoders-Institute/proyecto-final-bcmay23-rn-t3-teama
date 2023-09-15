@@ -120,6 +120,8 @@ export interface CircularProgressBarProps {
   radius: number;
   progress: number;
   color: string;
+  caloriesPerDay: number;
+  caloriesConsumed: number;
 }
 
 export interface wellcomeAvatarProps {
