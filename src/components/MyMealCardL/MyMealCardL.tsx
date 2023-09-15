@@ -8,7 +8,7 @@ import firestore from '@react-native-firebase/firestore';
 import {useNavigation} from '@react-navigation/native';
 import { AppContext } from '../../context/AppContext';
 
-export const MyMealCardL = ({title, mealId}: MyMealCardProps) => {
+export const MyMealCardL = ({title, mealId, currSelectedDate}: MyMealCardProps) => {
   const navigation = useNavigation();
   const [mealData, setMealData] = useState<MealDataProps | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -48,7 +48,7 @@ export const MyMealCardL = ({title, mealId}: MyMealCardProps) => {
                         styles.buttonContainer,
                         mealId[0].isCompleted ? { opacity: 0.6 } : null,
                     ]}
-                    onPress={() => navigation.navigate('Meals Details', { mealData, mealId })}
+                    onPress={() => navigation.navigate('Meals Details', { mealData, mealId, currSelectedDate })}
                 >
                     <Image source={{uri: mealData?.image}} style={styles.buttonImage} />
                     <View style={styles.titleContainer}>

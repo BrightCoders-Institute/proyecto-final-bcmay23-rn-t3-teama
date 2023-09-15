@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Alert } from 'react-native';
 import { Title } from '../../components/Title/Title';
 import { RecipeImg } from '../../components/RecipeImg/RecipeImg';
@@ -11,6 +11,7 @@ import {ButtonSecondary} from '../../components/ButtonSecondary/ButtonSecondary'
 import LoadingModal from '../../components/LoadingModal/LoadingModal';
 import firestore from '@react-native-firebase/firestore';
 import { useRoute } from '@react-navigation/native';
+import { AppContext } from '../../context/AppContext';
 
 const successCompletedModalImg = require('../../assets/img/successDoctorModal.png');
 
@@ -19,9 +20,10 @@ interface Props extends StackScreenProps<any, any> {
 }
 
 const MyMealDetailsScreen = ({navigation}: Props) => {
-  const route = useRoute();
-  const { mealData, mealId } = route.params;
   const [isModalVisible, setModalVisible] = useState(false);
+  const route = useRoute();
+  const { appState: { userData: { userKey } } } = useContext( AppContext );
+  const { mealData, mealId, currSelectedDate } = route.params;
 
   const handleMarkCompleted = () => {
     if (mealId[0].isCompleted) {
@@ -63,13 +65,67 @@ const MyMealDetailsScreen = ({navigation}: Props) => {
       })
       .then(() => {
         console.log('Campo isCompleted actualizado con éxito');
-        setModalVisible(true);
+        updateNutritionalContribution(isCompleteValue);
+      })
+      .then(() => {
         setTimeout(() => {
           navigation.navigate('MyMealsScreen');
         }, 1500);
+        setModalVisible(true);
       })
       .catch(error => {
         console.error('Error al actualizar el campo isCompleted:', error);
+      });
+  };
+
+  const updateNutritionalContribution = (isCompleteValue) => {
+    const nutritionalContributionRef = firestore().collection('nutritionalContribution');
+
+    nutritionalContributionRef
+      .where('userKey', '==', userKey)
+      .get()
+      .then((querySnapshot) => {
+        if (querySnapshot.empty) {
+          console.error('No se encontró el documento de nutritionalContribution para el usuario.');
+          return;
+        }
+
+        const docRef = querySnapshot.docs[0].ref;
+        const data = querySnapshot.docs[0].data();
+
+        const currentDayData = data[currSelectedDate] || {
+          currentCaloriesConsumed: 0,
+          currentCarbsConsumed: 0,
+          currentFatConsumed: 0,
+          currentProteinConsumed: 0,
+          totalCarbs: 0,
+          totalFat: 0,
+          totalProtein: 0,
+        };
+
+        if (isCompleteValue) {
+          currentDayData.currentCaloriesConsumed += mealData.calories;
+          currentDayData.currentCarbsConsumed += mealData.carbohydrateGrams;
+          currentDayData.currentFatConsumed += mealData.fatGrams;
+          currentDayData.currentProteinConsumed += mealData.proteinGrams;
+        } else {
+          currentDayData.currentCaloriesConsumed -= mealData.calories;
+          currentDayData.currentCarbsConsumed -= mealData.carbohydrateGrams;
+          currentDayData.currentFatConsumed -= mealData.fatGrams;
+          currentDayData.currentProteinConsumed -= mealData.proteinGrams;
+        }
+
+        const updateData = {
+          [currSelectedDate]: currentDayData,
+        };
+
+        return docRef.update(updateData);
+      })
+      .then(() => {
+        console.log('Actualización de nutritionalContribution exitosa.');
+      })
+      .catch((error) => {
+        console.error('Error al actualizar nutritionalContribution:', error);
       });
   };
 

@@ -29,6 +29,7 @@ const MyMealsScreen = ({ navigation }: Props) => {
   const [currLunchObj, setCurrLunchObj] = useState(null);
   const [currDinnerObj, setCurrDinnerObj] = useState(null);
   const [currSnackObj, setCurrSnackObj] = useState(null);
+  const [currSelectedDate, setCurrSelectedDate] = useState('');
   const { appState: { userData: { userKey } } } = useContext(AppContext);
 
   const descriptionMeal = 'Bowl whit fruit, some fruit and more fruit. You can add fruit.';
@@ -103,6 +104,7 @@ const MyMealsScreen = ({ navigation }: Props) => {
     setCurrLunchObj(filteredLunch.length > 0 ? filteredLunch : null);
     setCurrDinnerObj(filteredDinner.length > 0 ? filteredDinner : null);
     setCurrSnackObj(filteredSnack.length > 0 ? filteredSnack : null);
+    setCurrSelectedDate(currSelectedDate);
   };
 
   return (
@@ -135,6 +137,7 @@ const MyMealsScreen = ({ navigation }: Props) => {
               description={descriptionMeal}
               imgSource={imgType.BreakfastImg}
               mealId={currBreakfastObj}
+              currSelectedDate={currSelectedDate}
             />
             <MyMealCardL
               title="Snack"
@@ -142,6 +145,7 @@ const MyMealsScreen = ({ navigation }: Props) => {
               description={descriptionMeal}
               imgSource={imgType.SnackImg}
               mealId={currSnackObj}
+              currSelectedDate={currSelectedDate}
             />
             <MyMealCardR
               title="Lunch"
@@ -149,6 +153,7 @@ const MyMealsScreen = ({ navigation }: Props) => {
               description={descriptionMeal}
               imgSource={imgType.LunchImg}
               mealId={currLunchObj}
+              currSelectedDate={currSelectedDate}
             />
             <MyMealCardL
               title="Dinner"
@@ -156,6 +161,7 @@ const MyMealsScreen = ({ navigation }: Props) => {
               description={descriptionMeal}
               imgSource={imgType.DinnerImg}
               mealId={currDinnerObj}
+              currSelectedDate={currSelectedDate}
             />
           </>
         ) }
