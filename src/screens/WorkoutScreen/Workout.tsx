@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
+import FastImage from 'react-native-fast-image';
 import { styles } from './styles';
-interface Excercise {
-    bodyPart: string;
-    equipment: string;
-    gifUrl: string;
-    id: string;
-    name: string;
-    target: string;
-}
+import { Excercise } from '../../interfaces/interfaces';
+
 
 const WorkoutScreen = () => {
     const [exercises, setExercises] = useState<Excercise[]>([]);
@@ -36,6 +31,7 @@ const WorkoutScreen = () => {
 
                     const limitedExercises = data.slice(0, 200);
                     setExercises(limitedExercises);
+                    console.log(limitedExercises[0]);
 
                 } else {
                     console.error('Error al obtener datos de la API');
@@ -102,9 +98,15 @@ const WorkoutScreen = () => {
                             renderItem={({ item }) => (
                                 <View style={styles.exerciseItem}>
                                     <View style={styles.itemImageContainer}>
-                                        <Image
+                                        <FastImage
                                             style={styles.itemImage}
-                                            source={{ uri: item.gifUrl }} />
+                                            source={{
+                                                uri: item.gifUrl,
+                                                priority: FastImage.priority.normal,
+                                            }}
+                                            resizeMode="contain"
+                                        // onError={(error) => console.log('Error de carga de imagen', error)}
+                                        />
                                     </View>
                                     <View style={styles.itemInfo}>
                                         <Text style={styles.exerciseText}>{item.name}</Text>

@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
         elevation: 5,
     },
     selectedButton: {
-        backgroundColor: '#F3A939',
+        backgroundColor: '#795DEA',
     },
     buttonText: {
         fontSize: 15,
