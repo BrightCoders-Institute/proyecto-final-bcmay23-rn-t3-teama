@@ -75,7 +75,7 @@ const HomeScreen = ({ navigation }: Props) => {
           <Title text="Workout tips" fontSize={20} />
         </View>
         <WellnesCard
-          title="Workout at Home"
+          title="Workout exercises"
           backgroundColor="#7B5FEC"
           imgSource={iconType.anloImage}
           onPress={() => navigation.navigate('Workout Tips')} />

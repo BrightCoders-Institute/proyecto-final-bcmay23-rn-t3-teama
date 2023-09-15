@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
+import { styles } from './styles';
+interface Excercise {
+    bodyPart: string;
+    equipment: string;
+    gifUrl: string;
+    id: string;
+    name: string;
+    target: string;
+}
 
 const WorkoutScreen = () => {
-    const [exercises, setExercises] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [exercises, setExercises] = useState<Excercise[]>([]);
+    const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
+            setIsLoading(true);
+
             const url = 'https://exercisedb.p.rapidapi.com/exercises';
 
             const options = {
@@ -24,12 +36,14 @@ const WorkoutScreen = () => {
 
                     const limitedExercises = data.slice(0, 200);
                     setExercises(limitedExercises);
-                    console.log(limitedExercises.length);
+
                 } else {
                     console.error('Error al obtener datos de la API');
                 }
             } catch (error) {
                 console.error('Error de red:', error);
+            } finally {
+                setIsLoading(false);
             }
         };
 
@@ -38,7 +52,7 @@ const WorkoutScreen = () => {
 
     const categories = [...new Set(exercises.map((exercise) => exercise.target))];
 
-    const filterExercisesByCategory = (category) => {
+    const filterExercisesByCategory = (category: string) => {
         if (selectedCategory === category) {
             setSelectedCategory(null);
         } else {
@@ -51,72 +65,63 @@ const WorkoutScreen = () => {
         : exercises;
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.header}>EJERCICIOS</Text>
-            <FlatList
-                data={categories}
-                keyExtractor={(item) => item}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                renderItem={({ item }) => (
-                    <TouchableOpacity
-                        style={[
-                            styles.button,
-                            selectedCategory === item && styles.selectedButton,
-                        ]}
-                        onPress={() => filterExercisesByCategory(item)}
-                    >
-                        <Text>{item}</Text>
-                    </TouchableOpacity>
-                )}
+        <>
+            <Image
+                style={styles.backgroungImage}
+                source={require('../../assets/img/exercise.png')}
             />
-            <FlatList
-                data={filteredExercises}
-                keyExtractor={(item) => item.id.toString()}
-                renderItem={({ item }) => (
-                    <View style={styles.exerciseItem}>
-                        <Text>Nombre: {item.name}</Text>
-                        <Text style={{ color: 'red' }}>Target: {item.target}</Text>
-                        <Text>Parte del cuerpo: {item.target}</Text>
-                    </View>
+            <View style={styles.container}>
+                {isLoading ? (
+                    <ActivityIndicator size="large" color="#F3A939" style={styles.loadingIndicator} />
+                ) : (
+                    <>
+                        <FlatList
+                            style={styles.categoriesFlatlist}
+                            data={categories}
+                            keyExtractor={(item) => item}
+                            horizontal
+                            showsHorizontalScrollIndicator={false}
+                            renderItem={({ item }) => (
+                                <TouchableOpacity
+                                    style={[
+                                        styles.button,
+                                        selectedCategory === item && styles.selectedButton,
+                                    ]}
+                                    onPress={() => filterExercisesByCategory(item)}
+                                >
+                                    <Text style={[
+                                        styles.buttonText,
+                                        selectedCategory === item && styles.selectedButtonText,
+                                    ]}>{item}</Text>
+                                </TouchableOpacity>
+                            )}
+                        />
+                        <FlatList
+                            data={filteredExercises}
+                            keyExtractor={(item) => item.id.toString()}
+                            renderItem={({ item }) => (
+                                <View style={styles.exerciseItem}>
+                                    <View style={styles.itemImageContainer}>
+                                        <Image
+                                            style={styles.itemImage}
+                                            source={{ uri: item.gifUrl }} />
+                                    </View>
+                                    <View style={styles.itemInfo}>
+                                        <Text style={styles.exerciseText}>{item.name}</Text>
+                                        <Text style={styles.targetText}>Target: {item.target}</Text>
+                                        <Text style={styles.targetText}>Equipment: {item.equipment}</Text>
+                                    </View>
+                                </View>
+                            )
+                            }
+                            initialNumToRender={20}
+                            removeClippedSubviews={true}
+                        />
+                    </>
                 )}
-                initialNumToRender={20} // Controla cuántos elementos se renderizan inicialmente
-                removeClippedSubviews={true}
-            />
-        </View>
+            </View >
+        </>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 16,
-    },
-    header: {
-        fontSize: 24,
-        fontWeight: 'bold',
-    },
-    categoryContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginVertical: 16,
-    },
-    button: {
-        padding: 5,
-        margin: 5,
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 5,
-        height: 40,
-        justifyContent: 'center',
-    },
-    selectedButton: {
-        backgroundColor: 'blue',
-        borderColor: 'blue',
-    },
-    exerciseItem: {
-        marginBottom: 16,
-    },
-});
 
 export default WorkoutScreen;
