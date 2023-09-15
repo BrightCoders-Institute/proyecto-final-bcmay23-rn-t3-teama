@@ -3,7 +3,7 @@ import { View, Text, FlatList, TouchableOpacity, Image, ActivityIndicator } from
 import FastImage from 'react-native-fast-image';
 import { styles } from './styles';
 import { Excercise } from '../../interfaces/interfaces';
-
+import { RAPID_API_EXERCISES_KEY, RAPID_API_EXERCISES_HOST } from '@env';
 
 const WorkoutScreen = () => {
     const [exercises, setExercises] = useState<Excercise[]>([]);
@@ -19,8 +19,8 @@ const WorkoutScreen = () => {
             const options = {
                 method: 'GET',
                 headers: {
-                    'X-RapidAPI-Key': '7b3312ea82mshf4b3c1ed8aba512p100579jsna7827a0961e4',
-                    'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com',
+                    'X-RapidAPI-Key': RAPID_API_EXERCISES_KEY,
+                    'X-RapidAPI-Host': RAPID_API_EXERCISES_HOST,
                 },
             };
 
@@ -31,10 +31,8 @@ const WorkoutScreen = () => {
 
                     const limitedExercises = data.slice(0, 200);
                     setExercises(limitedExercises);
-                    console.log(limitedExercises[0]);
-
                 } else {
-                    console.error('Error al obtener datos de la API');
+                    console.error('Error al obtener datos de la API', response.status);
                 }
             } catch (error) {
                 console.error('Error de red:', error);
