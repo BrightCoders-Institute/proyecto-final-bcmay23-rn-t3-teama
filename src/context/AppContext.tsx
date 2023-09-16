@@ -62,13 +62,13 @@ export const appInitialState: AppContextState = {
     idNutritionist: 'ZdYONcMSnbn',
   },
   nutriologistData: {
-    name: 'Dr. Aimep3 Fischer',
-    major: 'Ph.D. in Nutrition',
-    cityAndCountry: 'Colima, Mx.',
-    biography: 'Harvard-educated nutritionist empowering healthier lives. Personalized meal plans, engaging workshops, and evidence-based guidance for weight management, sports nutrition, and overall well-being. Join our app for a transformative wellness journey today!',
-    rating: '4.5',
+    name: '',
+    major: '',
+    cityAndCountry: '',
+    biography: '',
+    rating: '',
     NutritionistImage:
-      'https://www.fitactiva.com/wp-content/uploads/2022/10/nutricionista-fitactiva.png',
+      '',
   },
   //   futuros valores para almacenar
 };

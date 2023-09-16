@@ -27,8 +27,6 @@ const HomeScreen = ({ navigation }: Props) => {
     // getUserData();
   }, [] );
 
-  }, []);
-
   const getUserData = () => {
     firestore()
       .collection('userData')

@@ -33,7 +33,8 @@ export const styles = StyleSheet.create({
     nutritionistImage: {
         resizeMode: 'contain',
         position: 'absolute',
-        left: '-32%',
+        left: '5%',
+        top: '0%',
     },
     locationContainer: {
         display: 'flex',
