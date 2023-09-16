@@ -23,7 +23,7 @@ const HomeScreen = () => {
   useEffect( () => {
     // getUserData();
   }, [] );
-  
+
   const getUserData = () => {
     firestore()
       .collection('userData')

@@ -25,6 +25,7 @@ export interface UserDataInfo {
   goal: string;
   weight: number;
   image: string;
+  idNutritionist: string;
 }
 
 export interface NutriologistDataInfo {
@@ -58,6 +59,7 @@ export const appInitialState: AppContextState = {
     goal: '',
     image:
       'https://www.pasala.com.mx/wp-content/uploads/2020/06/PAS200623-MEDIO-MAMADO-01.jpg',
+    idNutritionist: 'ZdYONcMSnbn',
   },
   nutriologistData: {
     name: 'Dr. Aimep3 Fischer',
