@@ -1,5 +1,5 @@
-import { View, Text, Button } from 'react-native';
-import React, { useContext, useEffect } from 'react';
+import { View, Button } from 'react-native';
+import React, { useContext, useEffect, useState } from 'react';
 import { WellcomeCard } from '../../components/WellcomeCard/WellcomeCard';
 import { WellcomeProgressCard } from '../../components/WellcomeProgressCard/WellcomeProgressCard';
 import { WellnesCard } from '../../components/WellnesCard/WellnesCard';
@@ -8,6 +8,7 @@ import { styles } from './styles';
 import { AppContext, UserDataInfo } from '../../context/AppContext';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import { AdviceModal } from '../../components/AdviceModal/AdviceModal';
 
 
 const iconType = {
@@ -15,12 +16,14 @@ const iconType = {
   anloImage: require('../../assets/img/anlo.png'),
   arnoldImage: require('../../assets/img/arnold.png'),
   FlameBadgeIcon: require('../../assets/img/FlameBadgeIcon.png'),
+  successCompletedModalImg: require('../../assets/img/successDoctorModal.png'),
 };
 
 interface Props extends StackScreenProps<any, any> { }
 
 const HomeScreen = ({ navigation }: Props) => {
   const { appState: { userData: { userKey } }, logOut, getContextUserData } = useContext(AppContext);
+  const [isModalVisible, setModalVisible] = useState(false);
   // console.log(appState);
 
   useEffect(() => {
@@ -58,8 +61,44 @@ const HomeScreen = ({ navigation }: Props) => {
       });
   };
 
+  const [ advice, setAdvice ] = useState('');
+  const [ author, setAuthor ] = useState('');
+  const viewAdvice = async() => {
+    setModalVisible(true);
+    try {
+      const resp = await fetch('https://favqs.com/api/qotd');
+      const data = await resp.json();
+  
+      if (data && data.quote) {
+        const fetchedAdvice = data.quote.body;
+        setAdvice(fetchedAdvice);
+        const fetchedAuthor = data.quote.author;
+        setAuthor(fetchedAuthor);
+      } else {
+        console.error('No se pudo obtener un consejo aleatorio.');
+        return null;
+      }
+    } catch (error) {
+      console.error('Error al obtener consejo:', error);
+      return null;
+    }
+  };
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
   return (
     <View>
+      <AdviceModal 
+         isVisible={isModalVisible}
+         isLoading={false}
+         imgSource={iconType.successCompletedModalImg}
+         title="Take care your mind"
+         advice={advice}
+         author={author}
+         isSuccessful={true}
+         onClose={closeModal}
+      />
       <Button title="Cerrar" onPress={logout} />
       <WellcomeCard />
       <WellcomeProgressCard title="Consumed today" />
@@ -85,7 +124,9 @@ const HomeScreen = ({ navigation }: Props) => {
         <WellnesCard
           title="Take Care of your mind"
           backgroundColor="#58D164"
-          imgSource={iconType.arnoldImage} />
+          imgSource={iconType.arnoldImage} 
+          onPress={viewAdvice}
+        />
       </View>
     </View>
 
