@@ -186,3 +186,12 @@ export interface AppointmentData {
   time: string,
   userKey: string;
 }
+
+export interface Excercise {
+  bodyPart: string;
+  equipment: string;
+  gifUrl: string;
+  id: string;
+  name: string;
+  target: string;
+}
