@@ -62,7 +62,7 @@ const HomeScreen = () => {
   return (
     <View>
       { isLoading || !userData ? (
-        <ActivityIndicator style={{marginTop: '80%'}} size={60} color="#7B5FEC" />
+        <ActivityIndicator style={{marginTop: '80%'}} size={70} color="#7B5FEC" />
       ) : (
         <>
           <Button title='Cerrar' onPress={logout} />

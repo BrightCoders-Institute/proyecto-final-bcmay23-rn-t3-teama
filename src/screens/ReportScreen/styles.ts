@@ -58,4 +58,9 @@ export const styles = StyleSheet.create({
     fontSize: 22,
     marginLeft: 25,
   },
+  noDataFound: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
 });

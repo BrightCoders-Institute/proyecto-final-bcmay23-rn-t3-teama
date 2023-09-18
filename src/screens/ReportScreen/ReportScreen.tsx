@@ -1,5 +1,5 @@
 import React, {useContext, useState, useEffect, useCallback} from 'react';
-import { Dimensions, View, Text, FlatList } from 'react-native';
+import { Dimensions, View, Text, FlatList, ActivityIndicator } from 'react-native';
 import { NutritionalChartProgress } from '../../components/NutritionalChartProgress/NutritionalChartProgress';
 import { CircularProgressBar } from '../../components/CircularProgressBar/CircularProgressBar';
 import { styles } from './styles';
@@ -20,6 +20,7 @@ export const ReportScreen = () => {
   const [selectedDay, setSelectedDay] = useState<DayObject | undefined>();
   const [nutritionalData, setNutritionalData] = useState(null);
   const [currStatistics, setCurrStatistics] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const { appState: { userData: {userKey} } } = useContext(AppContext);
 
   useEffect(() => {
@@ -38,6 +39,7 @@ export const ReportScreen = () => {
   }, [selectedDay, nutritionalData]);
 
   const getNutritionalContributionData = async () => {
+    setIsLoading(true);
     try {
       const snapshot = await firestore()
         .collection('nutritionalContribution')
@@ -48,8 +50,10 @@ export const ReportScreen = () => {
         const data = snapshot.docs[0].data();
         setNutritionalData(data);
         console.log(data);
+        setIsLoading(false);
       }
     } catch (error) {
+      setIsLoading(false);
       console.error('Error fetching nutritional data:', error);
     }
   };
@@ -79,9 +83,7 @@ export const ReportScreen = () => {
         </View>
       </View>
 
-      { !currStatistics ? (
-        <Text>Loading</Text>
-      ) : (
+      { currStatistics && !isLoading ? (
         <>
           <WhatsAppButton />
 
@@ -114,9 +116,19 @@ export const ReportScreen = () => {
               gramsCarbs={currStatistics?.currentCarbsConsumed}
               gramsProtein={currStatistics?.currentProteinConsumed}
               gramsFat={currStatistics?.currentFatConsumed}
-              />
-            </View>
+            />
+          </View>
         </>
+      ) : ( isLoading && !currStatistics ? (
+          <View style={{flex: 1}}>
+            <ActivityIndicator size={70} color="#7B5FEC" />
+          </View>
+        ) : (
+          <View style={styles.noDataFound}>
+            <Text>No data found</Text>
+            <Text>Please contact your nutritionist</Text>
+          </View>
+        )
       ) }
     </View>
   );
