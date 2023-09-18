@@ -13,7 +13,7 @@ export const WellcomeCard = () => {
   return (
     <View style={styles.container}>
       <View>
-        <SubTitle text={`Hello, ${userData.name}`} color='black'/>
+        <SubTitle text={`Hello, ${userData?.name}`} color='black'/>
         <Title text='Welcome' />
       </View>
       <View style={styles.avatarContainer}>

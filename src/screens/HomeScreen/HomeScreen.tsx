@@ -1,5 +1,5 @@
-import { View, Text, Button } from 'react-native';
-import React, { useContext, useEffect } from 'react';
+import { View, Text, Button, ActivityIndicator } from 'react-native';
+import React, { useContext, useEffect, useState } from 'react';
 import { WellcomeCard } from '../../components/WellcomeCard/WellcomeCard';
 import { WellcomeProgressCard } from '../../components/WellcomeProgressCard/WellcomeProgressCard';
 import { WellnesCard } from '../../components/WellnesCard/WellnesCard';
@@ -17,14 +17,17 @@ const iconType = {
 };
 
 const HomeScreen = () => {
-  const { appState: { userData: { userKey } }, logOut, getContextUserData } = useContext( AppContext );
-  // console.log(appState);
+  const [isLoading, setIsLoading] = useState(false);
+  const { logOut, getContextUserData, appState: { userKey, userData } } = useContext( AppContext );
 
-  useEffect( () => {
-    // getUserData();
-  }, [] );
-  
+  useEffect(() => {
+    if (userKey) {
+      getUserData();
+    }
+  }, [userKey]);
+
   const getUserData = () => {
+    setIsLoading(true);
     firestore()
       .collection('userData')
       .where('userKey', '==', userKey)
@@ -37,12 +40,13 @@ const HomeScreen = () => {
             ...documentSnapshot.data(),
           });
         });
-        // setUserData(data);
-        // getContextUserData(data);
-        console.log('a', data);
+        setIsLoading(false);
+        getContextUserData(data[0]);
+        // console.log('a', data[0]);
       })
       .catch((error) => {
         console.error('Error al consultar Firestore:', error);
+        setIsLoading(false);
       });
   };
 
@@ -57,34 +61,39 @@ const HomeScreen = () => {
 
   return (
     <View>
-      <Button title='Cerrar' onPress={logout} />
-      <WellcomeCard />
-      <WellcomeProgressCard title="Consumed today" />
-      <View style={styles.mainContainer}>
-        <View style={styles.titleContainar}>
-          <Title text="Nutrition Tips" fontSize={20} />
-        </View>
-        <WellnesCard
-          title="Healthy habits today"
-          backgroundColor="#83C8FB"
-          imgSource={iconType.fruitsImage} />
-        <View style={styles.titleContainar}>
-          <Title text="Workout tips" fontSize={20} />
-        </View>
-        <WellnesCard
-          title="Workout at Home"
-          backgroundColor="#7B5FEC"
-          imgSource={iconType.anloImage} />
-        <View style={styles.titleContainar}>
-          <Title text="Mindfulness" fontSize={20} />
-        </View>
-        <WellnesCard
-          title="Take Care of your mind"
-          backgroundColor="#58D164"
-          imgSource={iconType.arnoldImage} />
-      </View>
+      { isLoading || !userData ? (
+        <ActivityIndicator style={{marginTop: '80%'}} size={60} color="#7B5FEC" />
+      ) : (
+        <>
+          <Button title='Cerrar' onPress={logout} />
+          <WellcomeCard />
+          <WellcomeProgressCard title="Consumed today" />
+          <View style={styles.mainContainer}>
+            <View style={styles.titleContainar}>
+              <Title text="Nutrition Tips" fontSize={20} />
+            </View>
+            <WellnesCard
+              title="Healthy habits today"
+              backgroundColor="#83C8FB"
+              imgSource={iconType.fruitsImage} />
+            <View style={styles.titleContainar}>
+              <Title text="Workout tips" fontSize={20} />
+            </View>
+            <WellnesCard
+              title="Workout at Home"
+              backgroundColor="#7B5FEC"
+              imgSource={iconType.anloImage} />
+            <View style={styles.titleContainar}>
+              <Title text="Mindfulness" fontSize={20} />
+            </View>
+            <WellnesCard
+              title="Take Care of your mind"
+              backgroundColor="#58D164"
+              imgSource={iconType.arnoldImage} />
+          </View>
+        </>
+      ) }
     </View>
-
   );
 };
 

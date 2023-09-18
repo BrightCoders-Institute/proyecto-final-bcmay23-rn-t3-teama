@@ -50,7 +50,7 @@ const LoginScreen = ({navigation}: Props) => {
   const [isLoaderVisile, setIsLoaderVisile] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const { signIn, getContextUserData } = useContext( AppContext );
+  const { signIn, getContextUserKey } = useContext( AppContext );
   const {showPassword, handleShowPassword} = useShowHidePassword();
   const {height} = useWindowDimensions();
 
@@ -105,7 +105,8 @@ const LoginScreen = ({navigation}: Props) => {
             console.log('User account created & signed in!');
             setIsSuccess(true);
             signIn();
-            getContextUserData(userDataInfo);
+            // getContextUserData(userDataInfo);
+            getContextUserKey(userDataInfo.userKey);
           })
           .then(() => {
             setIsLoading(false);
