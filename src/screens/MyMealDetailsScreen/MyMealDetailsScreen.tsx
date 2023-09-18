@@ -71,7 +71,7 @@ const MyMealDetailsScreen = ({navigation}: Props) => {
         setTimeout(() => {
           navigation.navigate('MyMealsScreen');
         }, 1500);
-        setModalVisible(true);
+        // setModalVisible(true);
       })
       .catch(error => {
         console.error('Error al actualizar el campo isCompleted:', error);
@@ -123,6 +123,7 @@ const MyMealDetailsScreen = ({navigation}: Props) => {
       })
       .then(() => {
         console.log('Actualización de nutritionalContribution exitosa.');
+        setModalVisible(true);
       })
       .catch((error) => {
         console.error('Error al actualizar nutritionalContribution:', error);
@@ -144,8 +145,8 @@ const MyMealDetailsScreen = ({navigation}: Props) => {
         isVisible={isModalVisible}
         isLoading={false}
         successImageUrl={successCompletedModalImg}
-        title="Well done"
-        subtitle="Check the report section to know your progress"
+        title="Updated data"
+        subtitle="Check the report section to know your progress."
         isSuccessful={true}
         onClose={closeModal}
       />
