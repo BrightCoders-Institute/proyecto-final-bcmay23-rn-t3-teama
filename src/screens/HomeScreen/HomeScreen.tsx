@@ -1,5 +1,5 @@
 import { View, Text, Button, ActivityIndicator } from 'react-native';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useCallback } from 'react';
 import { WellcomeCard } from '../../components/WellcomeCard/WellcomeCard';
 import { WellcomeProgressCard } from '../../components/WellcomeProgressCard/WellcomeProgressCard';
 import { WellnesCard } from '../../components/WellnesCard/WellnesCard';
@@ -8,6 +8,8 @@ import { styles } from './styles';
 import { AppContext, UserDataInfo } from '../../context/AppContext';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import { useFocusEffect } from '@react-navigation/native';
+import { months } from '../../helpers/getCurrentWeekdays';
 
 const iconType = {
   fruitsImage: require('../../assets/img/stack-of-three-red-apples-hc-studio-removebg-preview.png'),
@@ -18,7 +20,14 @@ const iconType = {
 
 const HomeScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const { logOut, getContextUserData, appState: { userKey, userData } } = useContext( AppContext );
+  const [consumedCaloriesData, setConsumedCaloriesData] = useState(null);
+  const { logOut, getContextUserData, getContextConsumedCalories, appState: { userKey, userData } } = useContext( AppContext );
+
+  useFocusEffect(
+    useCallback(() => {
+      getNutritionalData();
+    }, [])
+  );
 
   useEffect(() => {
     if (userKey) {
@@ -40,12 +49,57 @@ const HomeScreen = () => {
             ...documentSnapshot.data(),
           });
         });
-        setIsLoading(false);
+
+        if (data.length === 0) {
+          setIsLoading(false);
+          console.error('Usuario no encontrado');
+          return;
+        }
         getContextUserData(data[0]);
-        // console.log('a', data[0]);
+
+        getNutritionalData();
       })
       .catch((error) => {
         console.error('Error al consultar Firestore:', error);
+        setIsLoading(false);
+      });
+  };
+
+  const getNutritionalData = () => {
+    setIsLoading(true);
+    const fechaHoy = new Date();
+
+    const day = fechaHoy.getDate();
+    const month = months[fechaHoy.getMonth()];
+    const year = fechaHoy.getFullYear();
+
+    const formattedDate = `${day}-${month}-${year}`;
+    console.log(formattedDate);
+
+    const nutritionalRef = firestore()
+      .collection('nutritionalContribution')
+      .where('userKey', '==', userKey);
+
+    nutritionalRef
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          const nutritionalData = doc.data();
+          const todaysData = nutritionalData[formattedDate];
+
+          if (todaysData) {
+            console.log('Datos de hoy:', todaysData.currentCaloriesConsumed);
+            setConsumedCaloriesData(todaysData);
+            getContextConsumedCalories(todaysData.currentCaloriesConsumed);
+          } else {
+            console.error('Datos de hoy no encontrados');
+          }
+        });
+
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error al consultar nutritionalContribution:', error);
         setIsLoading(false);
       });
   };
@@ -61,8 +115,8 @@ const HomeScreen = () => {
 
   return (
     <View>
-      { isLoading || !userData ? (
-        <ActivityIndicator style={{marginTop: '100%'}} size={70} color="#7B5FEC" />
+      { isLoading || !userData || !consumedCaloriesData ? (
+        <ActivityIndicator style={{marginTop: '90%'}} size={70} color="#7B5FEC" />
       ) : (
         <>
           <Button title='Cerrar' onPress={logout} />

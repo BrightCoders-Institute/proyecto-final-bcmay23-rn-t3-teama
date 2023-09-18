@@ -7,7 +7,8 @@ type AppAction =
   | {type: 'loadLoggedInState'; payload: boolean}
   | {type: 'loadUserDataState'; payload: UserDataInfo}
   | {type: 'getUserKey', payload: string}
-  | {type: 'loadUserKeyState', payload: string};
+  | {type: 'loadUserKeyState', payload: string}
+  | {type: 'getConsumedCalories', payload: number};
 
 export const appReducer = ( state: AppContextState, action: AppAction ): AppContextState => {
 
@@ -36,6 +37,11 @@ export const appReducer = ( state: AppContextState, action: AppAction ): AppCont
             return {
                 ...state,
                 userKey: action.payload,
+            };
+        case 'getConsumedCalories':
+            return {
+                ...state,
+                consumedCalories: action.payload,
             };
         case 'getUserKey':
             return {

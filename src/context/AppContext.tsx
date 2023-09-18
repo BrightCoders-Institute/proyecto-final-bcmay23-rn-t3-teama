@@ -30,7 +30,7 @@ export interface UserDataInfo {
 // estado inicial del context
 export const appInitialState: AppContextState = {
   isLoggedIn: false,
-  consumedCalories: 1600,
+  consumedCalories: 0,
   caloriesPerDay: 3200,
   userData: {
     name: '',
@@ -63,6 +63,7 @@ export interface AppContextProps {
   updateDayOfWeek?: (day: string) => void;
   getContextUserData: (userData: UserDataInfo) => void;
   getContextUserKey: (userKey: string) => void;
+  getContextConsumedCalories: (calories: number) => void;
   // futuras acciones
 }
 
@@ -118,6 +119,10 @@ export const AppProvider = ({children}: any) => {
     dispatch({type: 'getContextUserData', payload: userData});
   };
 
+  const getContextConsumedCalories = (calories: number) => {
+    dispatch({type: 'getConsumedCalories', payload: calories});
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -126,6 +131,7 @@ export const AppProvider = ({children}: any) => {
         logOut,
         getContextUserKey,
         getContextUserData,
+        getContextConsumedCalories,
       }}>
       {children}
     </AppContext.Provider>

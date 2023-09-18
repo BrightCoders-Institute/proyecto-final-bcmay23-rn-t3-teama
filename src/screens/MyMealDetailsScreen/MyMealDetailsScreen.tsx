@@ -22,7 +22,7 @@ interface Props extends StackScreenProps<any, any> {
 const MyMealDetailsScreen = ({navigation}: Props) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const route = useRoute();
-  const { appState: { userData: { userKey } } } = useContext( AppContext );
+  const { appState: { userKey } } = useContext( AppContext );
   const { mealData, mealId, currSelectedDate } = route.params;
 
   const handleMarkCompleted = () => {

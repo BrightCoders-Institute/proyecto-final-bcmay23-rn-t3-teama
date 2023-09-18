@@ -2,7 +2,7 @@ import { SetStateAction } from "react";
 import { DayObjectProps } from "../interfaces/interfaces";
 
 export const namesDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+export const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 export const getCurrentWeekdays = (namesDays: any[], setSelectedDay: { (value: any): void; (value: SetStateAction<DayObjectProps | undefined>): void; (arg0: { isSelectedDay: boolean; weekName: any; completeDay: any; day: number; month: string; year: number; }): void; }) => {
   const results = [];

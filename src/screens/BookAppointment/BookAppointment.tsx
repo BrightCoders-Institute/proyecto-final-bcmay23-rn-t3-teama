@@ -22,7 +22,7 @@ const BookAppointment = () => {
     const [isAppointmentSuccessful, setAppointmentSuccessful] = useState(false);
     const [modalErrorMessage, setModalErrorMessage] = useState('Sorry, the appointment could not be scheduled, please try again later.');
 
-    const { appState: { userData: { userKey } } } = useContext(AppContext);
+    const { appState: { userKey } } = useContext(AppContext);
     const navigation = useNavigation();
 
     const currentDate = moment().format('YYYY-MM-DD');

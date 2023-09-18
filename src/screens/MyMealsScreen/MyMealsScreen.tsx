@@ -30,7 +30,7 @@ const MyMealsScreen = ({ navigation }: Props) => {
   const [currDinnerObj, setCurrDinnerObj] = useState(null);
   const [currSnackObj, setCurrSnackObj] = useState(null);
   const [currSelectedDate, setCurrSelectedDate] = useState('');
-  const { appState: { userData: { userKey } } } = useContext(AppContext);
+  const { appState: { userKey } } = useContext(AppContext);
 
   const descriptionMeal = 'Bowl whit fruit, some fruit and more fruit. You can add fruit.';
   const calories = 'Recomended 830 - 1170Cal';

@@ -21,7 +21,7 @@ export const ReportScreen = () => {
   const [nutritionalData, setNutritionalData] = useState(null);
   const [currStatistics, setCurrStatistics] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const { appState: { userData: {userKey} } } = useContext(AppContext);
+  const { appState: {userKey} } = useContext(AppContext);
 
   useEffect(() => {
     setWeekDays( getCurrentWeekdays(namesDays, setSelectedDay));
