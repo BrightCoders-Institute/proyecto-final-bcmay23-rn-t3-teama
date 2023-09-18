@@ -8,4 +8,4 @@ export const styles = StyleSheet.create({
     titleContainer:{
         marginLeft: 10,
     },
-})
+});
