@@ -1,11 +1,11 @@
-import { View, Text, Button } from 'react-native';
+import { View, Button } from 'react-native';
 import React, { useContext, useEffect } from 'react';
 import { WellcomeCard } from '../../components/WellcomeCard/WellcomeCard';
 import { WellcomeProgressCard } from '../../components/WellcomeProgressCard/WellcomeProgressCard';
 import { WellnesCard } from '../../components/WellnesCard/WellnesCard';
 import { Title } from '../../components/Title/Title';
 import { styles } from './styles';
-import { AppContext, UserDataInfo } from '../../context/AppContext';
+import { AppContext } from '../../context/AppContext';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
@@ -21,11 +21,6 @@ interface Props extends StackScreenProps<any, any> { }
 
 const HomeScreen = ({ navigation }: Props) => {
   const { appState: { userData: { userKey } }, logOut, getContextUserData } = useContext(AppContext);
-  // console.log(appState);
-
-  useEffect(() => {
-    // getUserData();
-  }, [] );
 
   const getUserData = () => {
     firestore()
@@ -40,8 +35,6 @@ const HomeScreen = ({ navigation }: Props) => {
             ...documentSnapshot.data(),
           });
         });
-        // setUserData(data);
-        // getContextUserData(data);
         console.log('a', data);
       })
       .catch((error) => {
@@ -70,7 +63,8 @@ const HomeScreen = ({ navigation }: Props) => {
         <WellnesCard
           title="Healthy habits today"
           backgroundColor="#83C8FB"
-          imgSource={iconType.fruitsImage} />
+          imgSource={iconType.fruitsImage}
+          onPress={() => navigation.navigate('Nutrition Tips')} />
         <View style={styles.titleContainar}>
           <Title text="Workout tips" fontSize={20} />
         </View>

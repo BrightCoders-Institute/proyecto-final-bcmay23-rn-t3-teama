@@ -10,7 +10,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 const Tab = createBottomTabNavigator();
 
 export const BottomTab = () => {
-  const { top } = useSafeAreaInsets()
+  const { top } = useSafeAreaInsets();
   return (
     <Tab.Navigator
       sceneContainerStyle= {{paddingTop: top, backgroundColor: '#FFFF'}}
