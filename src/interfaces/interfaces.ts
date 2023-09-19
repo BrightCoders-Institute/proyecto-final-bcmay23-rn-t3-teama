@@ -34,11 +34,14 @@ export interface CallendarWeekdayProps {
 export interface LoadingModalProps {
   isLoading: boolean;
   isVisible: boolean;
-  successImageUrl: ImageSourcePropType;
+  successImageUrl?: ImageSourcePropType;
   errorImageUrl?: ImageSourcePropType;
+  imgSource?: ImageSourcePropType;
   title: string;
-  subtitle: string;
+  subtitle?: string;
   isSuccessful: boolean;
+  advice?: string;
+  author?: string;
   onClose?: () => void;
 }
 
