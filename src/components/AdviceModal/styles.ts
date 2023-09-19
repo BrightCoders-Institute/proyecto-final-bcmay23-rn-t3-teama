@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     infoText: {
         marginVertical: '5%',
         textAlign: 'center',
-        fontSize: 25,
+        fontSize: 22,
         fontWeight: '700',
         color: '#17AB76',
     },
@@ -57,7 +57,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: 'gray',
         fontSize: 18,
-        // borderColor: '#F3A939',
         borderColor: '#17AB76',
         borderWidth: 2,
         borderRadius: 15,

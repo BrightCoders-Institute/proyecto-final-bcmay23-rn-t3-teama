@@ -60,7 +60,10 @@ const HomeScreen = ({ navigation }: Props) => {
 
   const [ advice, setAdvice ] = useState('');
   const [ author, setAuthor ] = useState('');
+  const [isLoadingAdvice, setIsLoadingAdvice] = useState(false);
+
   const viewAdvice = async() => {
+    setIsLoadingAdvice(true);
     setModalVisible(true);
     try {
       const resp = await fetch('https://favqs.com/api/qotd');
@@ -77,7 +80,8 @@ const HomeScreen = ({ navigation }: Props) => {
       }
     } catch (error) {
       console.error('Error al obtener consejo:', error);
-      return null;
+    } finally {
+      setIsLoadingAdvice(false);
     }
   };
   const closeModal = () => {
@@ -88,9 +92,9 @@ const HomeScreen = ({ navigation }: Props) => {
     <View>
       <AdviceModal 
          isVisible={isModalVisible}
-         isLoading={false}
+         isLoading={isLoadingAdvice}
          imgSource={iconType.modalImage}
-         title="Take care your mind"
+         title="Take care of your mind"
          advice={advice}
          author={author}
          isSuccessful={true}
