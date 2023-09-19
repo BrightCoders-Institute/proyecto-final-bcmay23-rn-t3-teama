@@ -12,10 +12,13 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         padding: 20,
         width: '70%',
-        height: '45%',
+        height: 'auto',
         justifyContent: 'flex-start',
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
+        shadowOffset: { 
+            width: 0,
+            height: 2 
+            },
         shadowOpacity: 0.3,
         shadowRadius: 4,
         elevation: 5,

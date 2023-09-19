@@ -17,6 +17,7 @@ const iconType = {
   arnoldImage: require('../../assets/img/arnold.png'),
   FlameBadgeIcon: require('../../assets/img/FlameBadgeIcon.png'),
   successCompletedModalImg: require('../../assets/img/successDoctorModal.png'),
+  guyMeditating: require('../../assets/img/meditantingGuy.png'),
 };
 
 interface Props extends StackScreenProps<any, any> { }
@@ -109,14 +110,14 @@ const HomeScreen = ({ navigation }: Props) => {
         <WellnesCard
           title="Healthy habits today"
           backgroundColor="#83C8FB"
-          imgSource={iconType.fruitsImage} />
+          imgSource={iconType.anloImage} />
         <View style={styles.titleContainar}>
           <Title text="Workout tips" fontSize={20} />
         </View>
         <WellnesCard
           title="Workout exercises"
           backgroundColor="#7B5FEC"
-          imgSource={iconType.anloImage}
+          imgSource={iconType.arnoldImage}
           onPress={() => navigation.navigate('Workout Tips')} />
         <View style={styles.titleContainar}>
           <Title text="Mindfulness" fontSize={20} />
@@ -124,7 +125,7 @@ const HomeScreen = ({ navigation }: Props) => {
         <WellnesCard
           title="Take Care of your mind"
           backgroundColor="#58D164"
-          imgSource={iconType.arnoldImage} 
+          imgSource={iconType.guyMeditating} 
           onPress={viewAdvice}
         />
       </View>
