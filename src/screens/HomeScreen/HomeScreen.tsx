@@ -27,7 +27,7 @@ const HomeScreen = () => {
   useFocusEffect(
     useCallback(() => {
       getNutritionalData();
-    }, [])
+    }, [consumedCalories])
   );
 
   useEffect(() => {

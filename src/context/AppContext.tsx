@@ -114,8 +114,7 @@ export const AppProvider = ({children}: any) => {
     dispatch({type: 'getUserKey', payload: userKey});
   };
 
-  const getContextUserData = async (userData: UserDataInfo) => {
-    // await AsyncStorage.setItem('userData', JSON.stringify(userData));
+  const getContextUserData = (userData: UserDataInfo) => {
     dispatch({type: 'getContextUserData', payload: userData});
   };
 
