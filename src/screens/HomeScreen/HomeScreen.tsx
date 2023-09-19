@@ -8,7 +8,7 @@ import { styles } from './styles';
 import { AppContext, UserDataInfo } from '../../context/AppContext';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { months } from '../../helpers/getCurrentWeekdays';
 
 const iconType = {
@@ -21,7 +21,8 @@ const iconType = {
 const HomeScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [consumedCaloriesData, setConsumedCaloriesData] = useState(null);
-  const { logOut, getContextUserData, getContextConsumedCalories, appState: { userKey, userData } } = useContext( AppContext );
+  const { logOut, getContextUserData, getContextConsumedCalories, appState: { userKey, userData, consumedCalories } } = useContext( AppContext );
+  const navigation = useNavigation();
 
   useFocusEffect(
     useCallback(() => {
@@ -121,7 +122,7 @@ const HomeScreen = () => {
         <>
           <Button title='Cerrar' onPress={logout} />
           <WellcomeCard />
-          <WellcomeProgressCard title="Consumed today" />
+          <WellcomeProgressCard title="Consumed today" onPress={() => navigation.navigate('ReportScreen')}/>
           <View style={styles.mainContainer}>
             <View style={styles.titleContainar}>
               <Title text="Nutrition Tips" fontSize={20} />
