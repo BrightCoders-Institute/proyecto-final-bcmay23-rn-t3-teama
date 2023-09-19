@@ -5,27 +5,25 @@ import { WellcomeProgressCard } from '../../components/WellcomeProgressCard/Well
 import { WellnesCard } from '../../components/WellnesCard/WellnesCard';
 import { Title } from '../../components/Title/Title';
 import { styles } from './styles';
-import { AppContext, UserDataInfo } from '../../context/AppContext';
+import { AppContext } from '../../context/AppContext';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import { AdviceModal } from '../../components/AdviceModal/AdviceModal';
 
 
 const iconType = {
-  fruitsImage: require('../../assets/img/stack-of-three-red-apples-hc-studio-removebg-preview.png'),
   anloImage: require('../../assets/img/anlo.png'),
   arnoldImage: require('../../assets/img/arnold.png'),
   FlameBadgeIcon: require('../../assets/img/FlameBadgeIcon.png'),
-  successCompletedModalImg: require('../../assets/img/successDoctorModal.png'),
   guyMeditating: require('../../assets/img/meditantingGuy.png'),
+  modalImage: require('../../assets/img/lotoFlower.png')
 };
 
 interface Props extends StackScreenProps<any, any> { }
 
 const HomeScreen = ({ navigation }: Props) => {
-  const { appState: { userData: { userKey } }, logOut, getContextUserData } = useContext(AppContext);
+  const { appState: { userData: { userKey } }, logOut } = useContext(AppContext);
   const [isModalVisible, setModalVisible] = useState(false);
-  // console.log(appState);
 
   useEffect(() => {
     // getUserData();
@@ -44,8 +42,6 @@ const HomeScreen = ({ navigation }: Props) => {
             ...documentSnapshot.data(),
           });
         });
-        // setUserData(data);
-        // getContextUserData(data);
         console.log('a', data);
       })
       .catch((error) => {
@@ -93,7 +89,7 @@ const HomeScreen = ({ navigation }: Props) => {
       <AdviceModal 
          isVisible={isModalVisible}
          isLoading={false}
-         imgSource={iconType.successCompletedModalImg}
+         imgSource={iconType.modalImage}
          title="Take care your mind"
          advice={advice}
          author={author}

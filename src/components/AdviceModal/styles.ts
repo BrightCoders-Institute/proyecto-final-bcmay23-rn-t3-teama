@@ -55,8 +55,22 @@ const styles = StyleSheet.create({
     },
     infoDetailText: {
         textAlign: 'center',
+        color: 'gray',
+        fontSize: 18,
+        // borderColor: '#F3A939',
+        borderColor: '#17AB76',
+        borderWidth: 2,
+        borderRadius: 15,
+        padding: '5%',
+        marginBottom: '5%',
+      
+    },
+    authorText: {
+        textAlign: 'center',
         color: 'black',
-        fontSize: 15,
+        fontSize: 18,
+        fontWeight: 'bold',
+        
     },
 });
 

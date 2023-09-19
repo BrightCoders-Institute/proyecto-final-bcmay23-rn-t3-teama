@@ -37,8 +37,8 @@ export const AdviceModal = ({
                             <Text style={styles.infoDetailText}>
                                 {advice}
                             </Text>
-                            <Text style={styles.infoDetailText}>
-                                -{author}
+                            <Text style={styles.authorText}>
+                                - {author} -
                             </Text>
                         </View>
                     )}
