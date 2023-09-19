@@ -24,49 +24,51 @@ const HomeScreen = () => {
   const { logOut, getContextUserData, getContextConsumedCalories, appState: { userKey, userData, consumedCalories } } = useContext( AppContext );
   const navigation = useNavigation();
 
-  useFocusEffect(
-    useCallback(() => {
-      getNutritionalData();
-    }, [consumedCalories])
-  );
-
   useEffect(() => {
     if (userKey) {
       getUserData();
     }
   }, [userKey]);
 
-  const getUserData = () => {
-    setIsLoading(true);
-    firestore()
-      .collection('userData')
-      .where('userKey', '==', userKey)
-      .get()
-      .then((querySnapshot) => {
-        const data = [];
-        querySnapshot.forEach((documentSnapshot) => {
-          data.push({
-            id: documentSnapshot.id,
-            ...documentSnapshot.data(),
-          });
+  useFocusEffect(
+    useCallback(() => {
+      getNutritionalData();
+    }, [userKey])
+  );
+
+  const getUserData = async () => {
+    try {
+      const querySnapshot = await firestore()
+        .collection('userData')
+        .where('userKey', '==', userKey)
+        .get();
+
+      const data = [];
+      querySnapshot.forEach((documentSnapshot) => {
+        data.push({
+          id: documentSnapshot.id,
+          ...documentSnapshot.data(),
         });
-
-        if (data.length === 0) {
-          setIsLoading(false);
-          console.error('Usuario no encontrado');
-          return;
-        }
-        getContextUserData(data[0]);
-
-        getNutritionalData();
-      })
-      .catch((error) => {
-        console.error('Error al consultar Firestore:', error);
-        setIsLoading(false);
       });
+
+      if (data.length === 0) {
+        setIsLoading(false);
+        console.error('Usuario no encontrado');
+        return;
+      }
+
+      getContextUserData(data[0]);
+
+      await getNutritionalData();
+
+    } catch (error) {
+      console.error('Error al consultar Firestore:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const getNutritionalData = () => {
+  const getNutritionalData = async () => {
     setIsLoading(true);
     const fechaHoy = new Date();
 
@@ -76,33 +78,33 @@ const HomeScreen = () => {
 
     const formattedDate = `${day}-${month}-${year}`;
     console.log(formattedDate);
+    console.log(userKey);
 
-    const nutritionalRef = firestore()
-      .collection('nutritionalContribution')
-      .where('userKey', '==', userKey);
+    try {
+      const nutritionalRef = firestore()
+        .collection('nutritionalContribution')
+        .where('userKey', '==', userKey);
 
-    nutritionalRef
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          const nutritionalData = doc.data();
-          const todaysData = nutritionalData[formattedDate];
+      const querySnapshot = await nutritionalRef.get();
 
-          if (todaysData) {
-            console.log('Datos de hoy:', todaysData.currentCaloriesConsumed);
-            setConsumedCaloriesData(todaysData);
-            getContextConsumedCalories(todaysData.currentCaloriesConsumed);
-          } else {
-            console.error('Datos de hoy no encontrados');
-          }
-        });
+      querySnapshot.forEach((doc) => {
+        const nutritionalData = doc.data();
+        const todaysData = nutritionalData[formattedDate];
 
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error al consultar nutritionalContribution:', error);
-        setIsLoading(false);
+        if (todaysData) {
+          console.log('Datos de hoy:', todaysData.currentCaloriesConsumed);
+          setConsumedCaloriesData(todaysData);
+          getContextConsumedCalories(todaysData.currentCaloriesConsumed);
+        } else {
+          console.error('Datos de hoy no encontrados');
+        }
       });
+
+    } catch (error) {
+      console.error('Error al consultar nutritionalContribution:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const logout = () => {
