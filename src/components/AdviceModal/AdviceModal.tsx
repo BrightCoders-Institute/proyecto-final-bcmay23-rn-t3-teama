@@ -16,34 +16,37 @@ export const AdviceModal = ({
     return (
         <Modal visible={isVisible} transparent>
             <TouchableWithoutFeedback onPress={onClose}>
-            <View style={styles.modalContainer}>
-                <View style={styles.modalContent}>
-                    {isLoading ? (
-                        <View style={styles.loadingContainer}>
-                            <ActivityIndicator
-                                style={styles.activityIndicator}
-                                size="large"
-                                color="#795DEA"
-                            />
-                        </View>
-                    ) : (
+                <View style={styles.modalContainer}>
+                    <View style={styles.modalContent}>
+
                         <View style={styles.modalInfoContainer}>
                             <View style={styles.iconContainer}>
-                            {imgSource && <Image source={imgSource} style={styles.icon} />}
+                                {imgSource && <Image source={imgSource} style={styles.icon} />}
                             </View>
                             <Text style={styles.infoText}>
                                 {title}
                             </Text>
-                            <Text style={styles.infoDetailText}>
-                                {advice}
-                            </Text>
-                            <Text style={styles.authorText}>
-                                - {author} -
-                            </Text>
+                            {isLoading ? (
+                                <View style={styles.loadingContainer}>
+                                    <ActivityIndicator
+                                        style={styles.activityIndicator}
+                                        size="small"
+                                        color="#795DEA"
+                                    />
+                                </View>
+                            ) : (
+                                <View>
+                                    <Text style={styles.infoDetailText}>
+                                        {advice}
+                                    </Text>
+                                    <Text style={styles.authorText}>
+                                        - {author} -
+                                    </Text>
+                                </View>
+                            )}
                         </View>
-                    )}
+                    </View>
                 </View>
-            </View>
             </TouchableWithoutFeedback>
         </Modal>
     );

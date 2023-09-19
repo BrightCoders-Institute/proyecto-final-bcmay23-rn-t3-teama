@@ -11,14 +11,15 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         backgroundColor: 'white',
         padding: 20,
+        paddingBottom: 30,
         width: '70%',
         height: 'auto',
         justifyContent: 'flex-start',
         shadowColor: '#000',
-        shadowOffset: { 
+        shadowOffset: {
             width: 0,
-            height: 2 
-            },
+            height: 2,
+        },
         shadowOpacity: 0.3,
         shadowRadius: 4,
         elevation: 5,
@@ -27,6 +28,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         flex: 1,
+        marginVertical: 20,
     },
     activityIndicator: {
         transform: [{ scale: 2 }],
@@ -47,7 +49,8 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
     },
     infoText: {
-        marginVertical: '5%',
+        marginTop: 10,
+        marginBottom: 20,
         textAlign: 'center',
         fontSize: 22,
         fontWeight: '700',
@@ -62,14 +65,14 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         padding: '5%',
         marginBottom: '5%',
-      
+
     },
     authorText: {
         textAlign: 'center',
         color: 'black',
         fontSize: 18,
         fontWeight: 'bold',
-        
+
     },
 });
 
