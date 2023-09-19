@@ -103,7 +103,6 @@ const WorkoutScreen = () => {
                                                 priority: FastImage.priority.normal,
                                             }}
                                             resizeMode="contain"
-                                        // onError={(error) => console.log('Error de carga de imagen', error)}
                                         />
                                     </View>
                                     <View style={styles.itemInfo}>
@@ -117,6 +116,7 @@ const WorkoutScreen = () => {
                             initialNumToRender={20}
                             removeClippedSubviews={true}
                         />
+
                     </>
                 )}
             </View >

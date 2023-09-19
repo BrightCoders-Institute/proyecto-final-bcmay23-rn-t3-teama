@@ -12,9 +12,9 @@ export const styles = StyleSheet.create({
         flex: 1,
         borderWidth: 0.5,
         borderColor: 'gray',
-        borderRadius: 12,
+        borderRadius: 10,
         paddingHorizontal: 10,
         marginRight: 20,
-        padding: 5,
+        padding: 6,
       },
 });

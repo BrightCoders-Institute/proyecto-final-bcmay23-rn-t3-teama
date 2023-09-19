@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button } from 'react-native';
+import { View, TextInput, Button, FlatList } from 'react-native';
 import { styles } from './styles';
 
 interface SearchBarProps {
@@ -14,16 +14,23 @@ const NutritionTips : React.FC<SearchBarProps> = ({ onSearch }) => {
     onSearch(query);
   };
 
+  const url = 'https://api.spoonacular.com/recipes/complexSearch';
+
     return (
-        <View style={styles.container}>
-        <TextInput
-          style={styles.input}
-          placeholder="Find a food..."
-          value={query}
-          onChangeText={(text) => setQuery(text)}
-        />
-        <Button title="Search" onPress={handleSearch} />
-        </View>
+        <>
+          <View style={styles.container}>
+          <TextInput
+            style={styles.input}
+            placeholder="Find a food or meal..."
+            value={query}
+            onChangeText={(text) => setQuery(text)}
+          />
+          <Button title="Search" onPress={handleSearch} />
+          </View>
+          <View>
+            <FlatList />
+          </View>
+        </>
       );
 };
 
