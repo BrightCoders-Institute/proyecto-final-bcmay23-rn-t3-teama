@@ -23,6 +23,7 @@ export const StackNavigator = () => {
             name="BottomTab"
             options={{
               headerShown: false,
+              headerBackTitle: ' ',
             }}
             component={BottomTab}
           />
@@ -37,17 +38,17 @@ export const StackNavigator = () => {
           <Stack.Screen
             name="Book Appointment"
             component={BookAppointment}
-            options={{ cardStyle: { backgroundColor: 'white' } }}
+            options={{ cardStyle: { backgroundColor: 'white' }, headerBackTitle: ' ' }}
           />
           <Stack.Screen
             name="Workout Tips"
             component={WorkoutScreen}
-            options={{ cardStyle: { backgroundColor: 'white' } }}
+            options={{ cardStyle: { backgroundColor: 'white' }, headerBackTitle: ' ' }}
           />
           <Stack.Screen
             name="Nutrition Tips"
             component={NutritionTips}
-            options={{ cardStyle: { backgroundColor: 'white' } }}
+            options={{ cardStyle: { backgroundColor: 'white' }, headerBackTitle: ' ' }}
           />
         </>
       ) : (
@@ -58,6 +59,7 @@ export const StackNavigator = () => {
               cardStyle: {
                 backgroundColor: 'white',
               },
+              headerBackTitle: ' ',
               headerShown: false,
             }}
             component={WelcomeScreen}
@@ -68,6 +70,7 @@ export const StackNavigator = () => {
               cardStyle: {
                 backgroundColor: 'white',
               },
+              headerBackTitle: ' ',
               headerShown: false,
             }}
             component={LoginScreen}
