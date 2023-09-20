@@ -29,7 +29,8 @@ const MyMealsScreen = ({ navigation }: Props) => {
   const [currLunchObj, setCurrLunchObj] = useState(null);
   const [currDinnerObj, setCurrDinnerObj] = useState(null);
   const [currSnackObj, setCurrSnackObj] = useState(null);
-  const { appState: { userData: { userKey } } } = useContext(AppContext);
+  const [currSelectedDate, setCurrSelectedDate] = useState('');
+  const { appState: { userKey } } = useContext(AppContext);
 
   const descriptionMeal = 'Bowl whit fruit, some fruit and more fruit. You can add fruit.';
   const calories = 'Recomended 830 - 1170Cal';
@@ -103,27 +104,9 @@ const MyMealsScreen = ({ navigation }: Props) => {
     setCurrLunchObj(filteredLunch.length > 0 ? filteredLunch : null);
     setCurrDinnerObj(filteredDinner.length > 0 ? filteredDinner : null);
     setCurrSnackObj(filteredSnack.length > 0 ? filteredSnack : null);
+    setCurrSelectedDate(currSelectedDate);
   };
 
-  const handelCardPress = ( title: string) => {
-    if (!appState.isCardDisabled[title]) {
-    navigation.navigate('Meals Details', { title });
-  } else {
-    Alert.alert(
-      'Meal Completed',
-      'This meal is already complete, want to see the recipe?',
-      [
-        {
-          text: 'Cancel',
-          onPress: () => {},
-          style: 'destructive',
-        },
-        { text: 'OK', onPress: () => navigation.navigate('Recipe') },
-      ]
-    );
-  }
-  }
- 
   return (
     <View style={styles.container}>
       <ScrollView
@@ -154,6 +137,7 @@ const MyMealsScreen = ({ navigation }: Props) => {
               description={descriptionMeal}
               imgSource={imgType.BreakfastImg}
               mealId={currBreakfastObj}
+              currSelectedDate={currSelectedDate}
             />
             <MyMealCardL
               title="Snack"
@@ -161,6 +145,7 @@ const MyMealsScreen = ({ navigation }: Props) => {
               description={descriptionMeal}
               imgSource={imgType.SnackImg}
               mealId={currSnackObj}
+              currSelectedDate={currSelectedDate}
             />
             <MyMealCardR
               title="Lunch"
@@ -168,6 +153,7 @@ const MyMealsScreen = ({ navigation }: Props) => {
               description={descriptionMeal}
               imgSource={imgType.LunchImg}
               mealId={currLunchObj}
+              currSelectedDate={currSelectedDate}
             />
             <MyMealCardL
               title="Dinner"
@@ -175,6 +161,7 @@ const MyMealsScreen = ({ navigation }: Props) => {
               description={descriptionMeal}
               imgSource={imgType.DinnerImg}
               mealId={currDinnerObj}
+              currSelectedDate={currSelectedDate}
             />
           </>
         ) }

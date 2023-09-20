@@ -8,7 +8,7 @@ import {SubTitle} from '../SubTitle/SubTitle';
 import firestore from '@react-native-firebase/firestore';
 import {useNavigation} from '@react-navigation/native';
 
-export const MyMealCardR = ({title, mealId}: MyMealCardProps) => {
+export const MyMealCardR = ({title, mealId, currSelectedDate}: MyMealCardProps) => {
   const navigation = useNavigation();
   const [mealData, setMealData] = useState<MealDataProps | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -48,7 +48,7 @@ export const MyMealCardR = ({title, mealId}: MyMealCardProps) => {
                         styles.buttonContainer,
                         mealId[0].isCompleted ? { opacity: 0.6 } : null,
                     ]}
-                    onPress={() => navigation.navigate('Meals Details', { mealData, mealId })}
+                    onPress={() => navigation.navigate('Meals Details', { mealData, mealId, currSelectedDate })}
                 >
                     <View style={styles.titleContainer}>
                         <Title text={title} fontSize={22} />

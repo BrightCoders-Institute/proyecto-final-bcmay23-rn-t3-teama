@@ -8,11 +8,11 @@ import { AppContext } from '../../context/AppContext';
 
 
 export const WellcomeProgressCard = ({ title, onPress, imgSource }: WellcomeProgressCardProps) => {
-
     const {appState} = useContext(AppContext);
 
     const consumedValue = appState.consumedCalories;
-    const totalValue = appState.caloriesPerDay;
+    // const totalValue = appState.caloriesPerDay;
+    const totalValue = appState.userData.caloriesPerDay;
 
     return (
         <TouchableOpacity
@@ -29,7 +29,7 @@ export const WellcomeProgressCard = ({ title, onPress, imgSource }: WellcomeProg
                 </View>
                 <ProgressBar
                     color="#58D164"
-                    progress={appState.consumedCalories / appState.caloriesPerDay}
+                    progress={appState.consumedCalories / totalValue}
                     style={styles.progressBar}
                 />
             </View>

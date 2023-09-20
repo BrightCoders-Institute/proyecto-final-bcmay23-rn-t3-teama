@@ -13,7 +13,7 @@ export const WellcomeAvatar = ({size}: wellcomeAvatarProps) => {
     <View style={[styles.avatarContainer, { width: imageSize, height: imageSize }]}>
     <Image
       source={{
-        uri: userData.image,
+        uri: userData?.image || '',
       }}
       style={[styles.avatar, { width: imageSize, height: imageSize }]}
     />
