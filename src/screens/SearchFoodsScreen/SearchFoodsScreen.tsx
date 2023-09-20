@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {View, Text, TextInput, Button, FlatList, Image, TouchableOpacity, StyleSheet, ActivityIndicator} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, TextInput, Keyboard, FlatList, Image, TouchableOpacity, ActivityIndicator} from 'react-native';
 import { styles } from './styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
@@ -16,6 +16,7 @@ export const SearchFoodsScreen = () => {
   async function searchForFood() {
     setSearchResults([]);
     setIsLoading(true);
+    Keyboard.dismiss();
     try {
       const response = await fetch(
         `https://api.edamam.com/api/food-database/v2/parser?ingr=${searchQuery}&app_id=${APP_ID}&app_key=${APP_KEY}`
@@ -27,7 +28,6 @@ export const SearchFoodsScreen = () => {
 
       const data = await response.json();
 
-      // Procesar la respuesta aquí y mostrar la información en tu aplicación
       setSearchResults(data.hints);
       console.log(data);
     } catch (error) {
@@ -40,17 +40,17 @@ export const SearchFoodsScreen = () => {
   return (
     <View style={{marginBottom: 120}}>
       {/* <Text style={styles2.intructions}>Ingresa una food que quieras saber su aporte calórico.</Text> */}
-      <View style={styles2.container}>
+      <View style={styles.container}>
         <TextInput
-          style={styles2.input}
+          style={styles.input}
           placeholder="Coca cola, burger king, etc."
           onChangeText={(text) => setSearchQuery(text)}
           value={searchQuery}
         />
-        <TouchableOpacity style={styles2.button} onPress={searchForFood}>
-          <View style={styles2.buttonContent}>
+        <TouchableOpacity style={styles.button} onPress={searchForFood}>
+          <View style={styles.buttonContent}>
             <Icon
-              style={styles2.buttonText}
+              style={styles.buttonText}
               name="search"
             />
           </View>
@@ -95,54 +95,3 @@ export const SearchFoodsScreen = () => {
   );
 };
 
-const styles2 = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 25,
-    marginVertical: 25,
-  },
-  intructions: {
-    // flexDirection: 'row',
-    // alignItems: 'center',
-    // justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    marginVertical: 25,
-  },
-  input: {
-    flex: 1,
-    height: '100%',
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 8,
-    paddingHorizontal: 12,
-    marginRight: 12,
-  },
-  button: {
-    backgroundColor: '#7B5FEC', // Color de fondo del botón
-    borderRadius: 15,
-    // paddingVertical: 10,
-
-    paddingHorizontal: 20,
-    height: '100%',
-    // display: 'flex',
-    flexDirection: 'row',
-  },
-  buttonContent: {
-    // alignItems: 'center', // Centra verticalmente dentro del botón
-    justifyContent: 'center',
-    // paddingHorizontal: 20,
-    // paddingVertical: 10,
-  },
-  buttonText: {
-    color: '#fff', // Color del texto del botón
-    fontSize: 20,
-    fontWeight: 'bold',
-    // justifyContent: 'center',
-    // alignSelf: 'center',
-    // textAlign: 'center',
-    // textAlignVertical: 'center',
-    // flex: 1,
-  },
-});

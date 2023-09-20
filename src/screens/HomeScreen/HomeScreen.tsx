@@ -170,10 +170,10 @@ const HomeScreen = () => {
           <WellcomeProgressCard title="Consumed today" onPress={() => navigation.navigate('ReportScreen')}/>
           <View style={styles.mainContainer}>
             <View style={styles.titleContainar}>
-              <Title text="Nutrition Tips" fontSize={20} />
+              <Title text="Nutritional Information" fontSize={20} />
             </View>
             <WellnesCard
-              title="Healthy habits today"
+              title="Search for foods"
               backgroundColor="#83C8FB"
               imgSource={iconType.anloImage}
               onPress={() => navigation.navigate('Search Foods')}
@@ -192,7 +192,7 @@ const HomeScreen = () => {
             <WellnesCard
               title="Take Care of your mind"
               backgroundColor="#58D164"
-              imgSource={iconType.guyMeditating} 
+              imgSource={iconType.guyMeditating}
               onPress={viewAdvice}
             />
           </View>
