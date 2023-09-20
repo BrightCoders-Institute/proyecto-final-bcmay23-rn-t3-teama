@@ -70,8 +70,8 @@ const MyMealDetailsScreen = ({navigation}: Props) => {
       .then(() => {
         setTimeout(() => {
           navigation.navigate('MyMealsScreen');
-        }, 1500);
-        // setModalVisible(true);
+          setModalVisible(false);
+        }, 2000);
       })
       .catch(error => {
         console.error('Error al actualizar el campo isCompleted:', error);
