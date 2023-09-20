@@ -198,3 +198,14 @@ export interface Excercise {
   name: string;
   target: string;
 }
+
+export interface NutriTips {
+  food_category_id: string;
+  food_id: string;
+  recipeImage: string;
+  calories: number;
+  carbohydrate: number;
+  protein: number;
+  id: string;
+  name: string;
+}
