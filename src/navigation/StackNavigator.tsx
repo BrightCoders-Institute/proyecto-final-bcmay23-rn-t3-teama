@@ -20,6 +20,7 @@ export const StackNavigator = () => {
           <Stack.Screen
             name="BottomTab"
             options={{
+              headerBackTitle: ' ',
               headerShown: false,
             }}
             component={BottomTab}
@@ -30,6 +31,9 @@ export const StackNavigator = () => {
           />
           <Stack.Screen
             name="Meals Details"
+            options={{
+              headerBackTitle: ' ',
+            }}
             component={MyMealDetailsScreen}
           />
           <Stack.Screen
