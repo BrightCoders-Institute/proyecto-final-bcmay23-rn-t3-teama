@@ -12,7 +12,6 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { months } from '../../helpers/getCurrentWeekdays';
 import { AdviceModal } from '../../components/AdviceModal/AdviceModal';
 
-
 const iconType = {
   anloImage: require('../../assets/img/anlo.png'),
   arnoldImage: require('../../assets/img/arnold.png'),
@@ -78,7 +77,6 @@ const HomeScreen = () => {
   const getNutritionalData = async () => {
     setIsLoading(true);
     const fechaHoy = new Date();
-
     const day = fechaHoy.getDate();
     const month = months[fechaHoy.getMonth()];
     const year = fechaHoy.getFullYear();
