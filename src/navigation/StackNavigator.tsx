@@ -8,6 +8,7 @@ import MyMealDetailsScreen from '../screens/MyMealDetailsScreen/MyMealDetailsScr
 import BookAppointment from '../screens/BookAppointment/BookAppointment';
 import { AppContext } from '../context/AppContext';
 import WorkoutScreen from '../screens/WorkoutScreen/Workout';
+import { SearchFoodsScreen } from '../screens/SearchFoodsScreen/SearchFoodsScreen';
 
 const Stack = createStackNavigator();
 
@@ -45,6 +46,11 @@ export const StackNavigator = () => {
           <Stack.Screen
             name="Workout Tips"
             component={WorkoutScreen}
+            options={{ cardStyle: { backgroundColor: 'white' } }}
+          />
+          <Stack.Screen
+            name="Search Foods"
+            component={SearchFoodsScreen}
             options={{ cardStyle: { backgroundColor: 'white' } }}
           />
         </>

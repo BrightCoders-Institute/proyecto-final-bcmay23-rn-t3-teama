@@ -175,7 +175,9 @@ const HomeScreen = () => {
             <WellnesCard
               title="Healthy habits today"
               backgroundColor="#83C8FB"
-              imgSource={iconType.anloImage} />
+              imgSource={iconType.anloImage}
+              onPress={() => navigation.navigate('Search Foods')}
+            />
             <View style={styles.titleContainar}>
               <Title text="Workout tips" fontSize={20} />
             </View>
