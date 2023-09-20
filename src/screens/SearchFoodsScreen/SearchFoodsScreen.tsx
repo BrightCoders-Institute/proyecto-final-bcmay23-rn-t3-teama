@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {View, Text, TextInput, Button, FlatList, Image, TouchableOpacity, StyleSheet, ActivityIndicator} from 'react-native';
 import { styles } from './styles';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';
 
 const APP_ID = '9692362d';
 const APP_KEY = 'afea0c5cbfb14f7bd4712611a6f664c2	';
@@ -10,6 +11,7 @@ export const SearchFoodsScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const navigation = useNavigation();
 
   async function searchForFood() {
     setSearchResults([]);
@@ -63,7 +65,7 @@ export const SearchFoodsScreen = () => {
           keyExtractor={(item, idx) => (`${item.food.foodId}-${idx}`)}
           renderItem={({ item }) => (
             <View style={styles.cardsContainer}>
-              <TouchableOpacity style={styles.foodItem} onPress={() => console.log(item.food.label)}>
+              <TouchableOpacity style={styles.foodItem} onPress={ () => navigation.navigate('Food Details', {item})}>
                 <View style={styles.itemImageContainer}>
                   <Image
                     style={styles.itemImage}
