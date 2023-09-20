@@ -65,7 +65,10 @@ export const SearchFoodsScreen = () => {
           keyExtractor={(item, idx) => (`${item.food.foodId}-${idx}`)}
           renderItem={({ item }) => (
             <View style={styles.cardsContainer}>
-              <TouchableOpacity style={styles.foodItem} onPress={ () => navigation.navigate('Food Details', {item})}>
+              <TouchableOpacity
+                style={styles.foodItem}
+                // onPress={ () => navigation.navigate('Food Details', {item})}
+              >
                 <View style={styles.itemImageContainer}>
                   <Image
                     style={styles.itemImage}
