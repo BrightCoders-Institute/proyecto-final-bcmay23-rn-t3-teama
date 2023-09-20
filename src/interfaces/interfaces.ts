@@ -34,11 +34,14 @@ export interface CallendarWeekdayProps {
 export interface LoadingModalProps {
   isLoading: boolean;
   isVisible: boolean;
-  successImageUrl: ImageSourcePropType;
+  successImageUrl?: ImageSourcePropType;
   errorImageUrl?: ImageSourcePropType;
+  imgSource?: ImageSourcePropType;
   title: string;
-  subtitle: string;
+  subtitle?: string;
   isSuccessful: boolean;
+  advice?: string;
+  author?: string;
   onClose?: () => void;
 }
 
@@ -179,6 +182,7 @@ export interface NutritionistInfo {
   cityAndCountry: string;
   biography: string;
   rating: string;
+  NutritionistImage: ImageSourcePropType;
 }
 
 export interface AppointmentData {
@@ -187,4 +191,13 @@ export interface AppointmentData {
   nutritionistKey: string,
   time: string,
   userKey: string;
+}
+
+export interface Excercise {
+  bodyPart: string;
+  equipment: string;
+  gifUrl: string;
+  id: string;
+  name: string;
+  target: string;
 }

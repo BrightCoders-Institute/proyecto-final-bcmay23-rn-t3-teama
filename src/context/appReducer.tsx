@@ -1,4 +1,4 @@
-import { AppContextState, UserDataInfo } from './AppContext';
+import { AppContextState, NutriologistDataInfo, UserDataInfo } from './AppContext';
 
 type AppAction =
   | {type: 'signIn'}
@@ -8,7 +8,9 @@ type AppAction =
   | {type: 'loadUserDataState'; payload: UserDataInfo}
   | {type: 'getUserKey', payload: string}
   | {type: 'loadUserKeyState', payload: string}
-  | {type: 'getConsumedCalories', payload: number};
+  | {type: 'getConsumedCalories', payload: number}
+  | {type: 'getContextNutritionistData', payload: NutriologistDataInfo};
+
 
 export const appReducer = ( state: AppContextState, action: AppAction ): AppContextState => {
 
@@ -52,6 +54,11 @@ export const appReducer = ( state: AppContextState, action: AppAction ): AppCont
             return {
                 ...state,
                 userData: action.payload,
+            };
+        case 'getContextNutritionistData':
+            return {
+                ...state,
+                nutriologistData: action.payload,
             };
 
         default:
