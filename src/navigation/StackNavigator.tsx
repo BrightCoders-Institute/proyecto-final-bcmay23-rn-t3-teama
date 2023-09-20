@@ -5,6 +5,8 @@ import { RecipeScreen } from '../screens/RecipeScreen/RecipeScreen';
 import MyMealDetailsScreen from '../screens/MyMealDetailsScreen/MyMealDetailsScreen';
 import BookAppointment from '../screens/BookAppointment/BookAppointment';
 import WorkoutScreen from '../screens/WorkoutScreen/Workout';
+import { SearchFoodsScreen } from '../screens/SearchFoodsScreen/SearchFoodsScreen';
+import { SearchFoodsDetailsScreen } from '../screens/SearchFoodsDetailsScreen/SearchFoodsDetailsScreen';
 
 
 const Stack = createStackNavigator();
@@ -46,7 +48,16 @@ export const StackNavigator = () => {
            cardStyle: { backgroundColor: 'white' },
           headerBackTitle: '' }}
       />
-     
+     <Stack.Screen
+            name="Search Foods"
+            component={SearchFoodsScreen}
+            options={{ cardStyle: { backgroundColor: 'white' } }}
+          />
+    <Stack.Screen
+      name="Food Details"
+      component={SearchFoodsDetailsScreen}
+      options={{ cardStyle: { backgroundColor: 'white' } }}
+    />
     </Stack.Navigator>
   );
 };

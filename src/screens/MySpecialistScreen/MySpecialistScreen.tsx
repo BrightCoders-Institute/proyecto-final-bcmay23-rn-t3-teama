@@ -67,7 +67,7 @@ export const MySpecialistScreen = ({navigation}: Props, { }: NutritionistInfo) =
             <View style={styles.imageContainer}>
                 <View style={styles.circle} />
                 <Image
-                    source={ nutriologistData.NutritionistImage ||
+                    source={
                         require('../../assets/img/nutritionist-profile.png')}
                     style={[styles.nutritionistImage, { height: height * 0.29 }]}
                     onError={(error) => console.error('Image Error:', error)}
