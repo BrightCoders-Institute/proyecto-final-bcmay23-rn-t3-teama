@@ -1,4 +1,4 @@
-import { View, Text, Button, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 import React, { useContext, useEffect, useState, useCallback } from 'react';
 import { WellcomeCard } from '../../components/WellcomeCard/WellcomeCard';
 import { WellcomeProgressCard } from '../../components/WellcomeProgressCard/WellcomeProgressCard';
@@ -6,7 +6,6 @@ import { WellnesCard } from '../../components/WellnesCard/WellnesCard';
 import { Title } from '../../components/Title/Title';
 import { styles } from './styles';
 import { AppContext } from '../../context/AppContext';
-import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { months } from '../../helpers/getCurrentWeekdays';
@@ -112,15 +111,6 @@ const HomeScreen = () => {
     }
   };
 
-  const logout = () => {
-    auth()
-      .signOut()
-      .then(() => {
-        logOut();
-        console.log('User signed out!');
-      });
-  };
-
   const viewAdvice = async() => {
     setIsLoadingAdvice(true);
     setModalVisible(true);
@@ -153,7 +143,6 @@ const HomeScreen = () => {
         <ActivityIndicator style={{marginTop: '90%'}} size={70} color="#7B5FEC" />
       ) : (
         <>
-          <Button title='Cerrar' onPress={logout} />
           <AdviceModal 
             isVisible={isModalVisible}
             isLoading={isLoadingAdvice}

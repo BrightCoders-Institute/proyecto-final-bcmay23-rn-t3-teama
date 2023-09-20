@@ -27,16 +27,24 @@ export const StackNavigator = () => {
       <Stack.Screen
         name="Meals Details"
         component={MyMealDetailsScreen}
+        options={{
+          headerBackTitle: 'Diet',
+        }}
       />
       <Stack.Screen
         name="Book Appointment"
         component={BookAppointment}
-        options={{ cardStyle: { backgroundColor: 'white' } }}
+        options={{ 
+          cardStyle: { backgroundColor: 'white' },
+          headerBackTitle: ''
+      }}
       />
       <Stack.Screen
         name="Workout Tips"
         component={WorkoutScreen}
-        options={{ cardStyle: { backgroundColor: 'white' } }}
+        options={{
+           cardStyle: { backgroundColor: 'white' },
+          headerBackTitle: '' }}
       />
      
     </Stack.Navigator>
