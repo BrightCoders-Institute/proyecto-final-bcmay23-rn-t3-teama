@@ -4,10 +4,13 @@ import { BottomTab } from './BottomTab';
 import { RecipeScreen } from '../screens/RecipeScreen/RecipeScreen';
 import MyMealDetailsScreen from '../screens/MyMealDetailsScreen/MyMealDetailsScreen';
 import BookAppointment from '../screens/BookAppointment/BookAppointment';
+import WorkoutScreen from '../screens/WorkoutScreen/Workout';
+
 
 const Stack = createStackNavigator();
 
 export const StackNavigator = () => {
+
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -30,6 +33,12 @@ export const StackNavigator = () => {
         component={BookAppointment}
         options={{ cardStyle: { backgroundColor: 'white' } }}
       />
+      <Stack.Screen
+        name="Workout Tips"
+        component={WorkoutScreen}
+        options={{ cardStyle: { backgroundColor: 'white' } }}
+      />
+     
     </Stack.Navigator>
   );
 };

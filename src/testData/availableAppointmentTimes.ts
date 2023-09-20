@@ -3,7 +3,7 @@ type AvailableAppointmentTimes = {
 };
 
 export const availableAppointmentTimes: AvailableAppointmentTimes = {
-    '2023-08-17': [
+    '2023-09-05': [
         '10:00 AM',
         '11:30 AM',
         '01:00 PM',
@@ -11,7 +11,7 @@ export const availableAppointmentTimes: AvailableAppointmentTimes = {
         '04:00 PM',
         '05:30 PM',
     ],
-    '2023-08-18': [
+    '2023-09-06': [
         '10:30 AM',
         '11:30 AM',
         '01:00 PM',
@@ -19,7 +19,7 @@ export const availableAppointmentTimes: AvailableAppointmentTimes = {
         '04:40 PM',
         '05:30 PM',
     ],
-    '2023-08-19': [
+    '2023-09-07': [
         '10:00 AM',
         '12:00 AM',
         '01:00 PM',
@@ -27,7 +27,7 @@ export const availableAppointmentTimes: AvailableAppointmentTimes = {
         '04:30 PM',
         '05:30 PM',
     ],
-    '2023-08-21': [
+    '2023-09-08': [
         '10:00 AM',
         '11:30 AM',
         '01:00 PM',
@@ -35,7 +35,7 @@ export const availableAppointmentTimes: AvailableAppointmentTimes = {
         '04:00 PM',
         '05:30 PM',
     ],
-    '2023-08-22': [
+    '2023-09-09': [
         '10:00 AM',
         '11:30 AM',
         '01:00 PM',
@@ -43,7 +43,7 @@ export const availableAppointmentTimes: AvailableAppointmentTimes = {
         '04:00 PM',
         '05:30 PM',
     ],
-    '2023-08-23': [
+    '2023-09-11': [
         '10:00 AM',
         '11:30 AM',
         '01:00 PM',
@@ -51,7 +51,7 @@ export const availableAppointmentTimes: AvailableAppointmentTimes = {
         '04:00 PM',
         '05:30 PM',
     ],
-    '2023-08-24': [
+    '2023-09-12': [
         '10:00 AM',
         '11:30 AM',
         '01:00 PM',
@@ -59,7 +59,7 @@ export const availableAppointmentTimes: AvailableAppointmentTimes = {
         '04:00 PM',
         '05:30 PM',
     ],
-    '2023-08-25': [
+    '2023-09-13': [
         '10:00 AM',
         '11:30 AM',
         '01:00 PM',
@@ -67,7 +67,7 @@ export const availableAppointmentTimes: AvailableAppointmentTimes = {
         '04:00 PM',
         '05:30 PM',
     ],
-    '2023-08-26': [
+    '2023-09-14': [
         '10:00 AM',
         '11:30 AM',
         '01:00 PM',
@@ -75,7 +75,7 @@ export const availableAppointmentTimes: AvailableAppointmentTimes = {
         '04:00 PM',
         '05:30 PM',
     ],
-    '2023-08-28': [
+    '2023-09-15': [
         '10:00 AM',
         '11:30 AM',
         '01:00 PM',
@@ -83,7 +83,7 @@ export const availableAppointmentTimes: AvailableAppointmentTimes = {
         '04:00 PM',
         '05:30 PM',
     ],
-    '2023-08-29': [
+    '2023-09-16': [
         '10:00 AM',
         '11:30 AM',
         '01:00 PM',
@@ -91,7 +91,7 @@ export const availableAppointmentTimes: AvailableAppointmentTimes = {
         '04:00 PM',
         '05:30 PM',
     ],
-    '2023-08-30': [
+    '2023-09-18': [
         '10:00 AM',
         '11:30 AM',
         '01:00 PM',
@@ -99,7 +99,7 @@ export const availableAppointmentTimes: AvailableAppointmentTimes = {
         '04:00 PM',
         '05:30 PM',
     ],
-    '2023-08-31': [
+    '2023-09-19': [
         '10:00 AM',
         '11:30 AM',
         '01:00 PM',

@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useCallback } from 'react';
 import { FlatList, View, Text, ScrollView } from 'react-native';
 import { styles } from './styles';
 import { StackScreenProps } from '@react-navigation/stack';
 import { MyMealCardR } from '../../components/MyMealCardR/MyMealCardR';
 import { MyMealCardL } from '../../components/MyMealCardL/MyMealCardL';
 import { CallendarWeekday } from '../../components/CallendarWeekday/CallendarWeekday';
-import { getCurrentWeekdays, namesDays } from '../../helpers/getCurrentWeekdays'
+import { getCurrentWeekdays, namesDays } from '../../helpers/getCurrentWeekdays';
 import { DayObject } from '../../interfaces/interfaces';
+import firestore from '@react-native-firebase/firestore';
+import { useFocusEffect } from '@react-navigation/native';
+import { AppContext } from '../../context/AppContext';
 
 const imgType = {
   BreakfastImg: require('../../assets/img/Breakfast.png'),
@@ -20,13 +23,89 @@ interface Props extends StackScreenProps<any, any> { }
 const MyMealsScreen = ({ navigation }: Props) => {
   const [weekDays, setWeekDays] = useState<DayObject[]>([]);
   const [selectedDay, setSelectedDay] = useState<DayObject | undefined>();
+  const [recipeBookData, setRecipeBookData ] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [currBreakfastObj, setCurrBreakfastObj] = useState(null);
+  const [currLunchObj, setCurrLunchObj] = useState(null);
+  const [currDinnerObj, setCurrDinnerObj] = useState(null);
+  const [currSnackObj, setCurrSnackObj] = useState(null);
+  const [currSelectedDate, setCurrSelectedDate] = useState('');
+  const { appState: { userKey } } = useContext(AppContext);
 
   const descriptionMeal = 'Bowl whit fruit, some fruit and more fruit. You can add fruit.';
   const calories = 'Recomended 830 - 1170Cal';
 
   useEffect(() => {
     setWeekDays( getCurrentWeekdays(namesDays, setSelectedDay));
+    getRecipeBook();
   }, []);
+
+  // no estoy muy seguro de esto
+  useFocusEffect(
+    useCallback(() => {
+      getRecipeBook();
+    }, [])
+  );
+
+  useEffect( () => {
+    if (recipeBookData) getMealsIds();
+  }, [selectedDay, recipeBookData]);
+
+  const getRecipeBook = () => {
+    setIsLoading(true);
+    const userRef = firestore()
+    .collection('recipeBook')
+    .where('id_user', '==', userKey);
+
+    userRef.get()
+      .then((querySnapshot) => {
+        if (!querySnapshot.empty) {
+          const docSnapshot = querySnapshot.docs[0];
+          // id del doc
+          const docId = docSnapshot.id;
+          const data = docSnapshot.data();
+          data.id = docId;
+
+          setRecipeBookData(data);
+          setIsLoading(false);
+          // console.log(data);
+        } else {
+          console.log(`No se encontraron resultados para id_user: ${userKey}`);
+          setIsLoading(false);
+        }
+      })
+      .catch((error) => {
+        console.error('Error al obtener datos:', error);
+        setIsLoading(false);
+      });
+  };
+
+  const getMealsIds = () => {
+    const currSelectedDate = `${selectedDay?.day}-${selectedDay?.month}-${selectedDay?.year}`;
+    // const currBreakfast = recipeBookData.breakfast.filter(obj => obj.date === currSelectedDate);
+
+    const filteredBreakfast = recipeBookData.breakfast
+      .filter(obj => obj.date === currSelectedDate)
+      .map(obj => ({ ...obj, recipeBook_id: recipeBookData.id }));
+
+    const filteredLunch = recipeBookData.lunch
+      .filter(obj => obj.date === currSelectedDate)
+      .map(obj => ({ ...obj, recipeBook_id: recipeBookData.id }));
+
+    const filteredDinner = recipeBookData.dinner
+      .filter(obj => obj.date === currSelectedDate)
+      .map(obj => ({ ...obj, recipeBook_id: recipeBookData.id }));
+
+    const filteredSnack = recipeBookData.snack
+      .filter(obj => obj.date === currSelectedDate)
+      .map(obj => ({ ...obj, recipeBook_id: recipeBookData.id }));
+
+    setCurrBreakfastObj(filteredBreakfast.length > 0 ? filteredBreakfast : null);
+    setCurrLunchObj(filteredLunch.length > 0 ? filteredLunch : null);
+    setCurrDinnerObj(filteredDinner.length > 0 ? filteredDinner : null);
+    setCurrSnackObj(filteredSnack.length > 0 ? filteredSnack : null);
+    setCurrSelectedDate(currSelectedDate);
+  };
 
   return (
     <View style={styles.container}>
@@ -46,34 +125,46 @@ const MyMealsScreen = ({ navigation }: Props) => {
             horizontal
           />
         </View>
-        <MyMealCardR
-          title="Breakfast"
-          caloriesRecomended={calories}
-          description={descriptionMeal}
-          imgSource={imgType.BreakfastImg}
-          onPress={() => navigation.navigate('Meals Details')}
-        />
-        <MyMealCardL
-          title="Snack"
-          caloriesRecomended={calories}
-          description={descriptionMeal}
-          imgSource={imgType.SnackImg}
-          onPress={() => navigation.navigate('Meals Details')}
-        />
-        <MyMealCardR
-          title="Lunch"
-          caloriesRecomended={calories}
-          description={descriptionMeal}
-          imgSource={imgType.LunchImg}
-          onPress={() => navigation.navigate('Meals Details')}
-        />
-        <MyMealCardL
-          title="Dinner"
-          caloriesRecomended={calories}
-          description={descriptionMeal}
-          imgSource={imgType.DinnerImg}
-          onPress={() => navigation.navigate('Meals Details')}
-        />
+        { !recipeBookData ? (
+          <View style={{ display: 'flex', justifyContent:'center', alignItems: 'center' }}>
+            <Text>Meals not found. Please contact your nutritionist.</Text>
+          </View>
+        ) : (
+          <>
+            <MyMealCardR
+              title="Breakfast"
+              caloriesRecomended={calories}
+              description={descriptionMeal}
+              imgSource={imgType.BreakfastImg}
+              mealId={currBreakfastObj}
+              currSelectedDate={currSelectedDate}
+            />
+            <MyMealCardL
+              title="Snack"
+              caloriesRecomended={calories}
+              description={descriptionMeal}
+              imgSource={imgType.SnackImg}
+              mealId={currSnackObj}
+              currSelectedDate={currSelectedDate}
+            />
+            <MyMealCardR
+              title="Lunch"
+              caloriesRecomended={calories}
+              description={descriptionMeal}
+              imgSource={imgType.LunchImg}
+              mealId={currLunchObj}
+              currSelectedDate={currSelectedDate}
+            />
+            <MyMealCardL
+              title="Dinner"
+              caloriesRecomended={calories}
+              description={descriptionMeal}
+              imgSource={imgType.DinnerImg}
+              mealId={currDinnerObj}
+              currSelectedDate={currSelectedDate}
+            />
+          </>
+        ) }
       </ScrollView>
     </View>
   );

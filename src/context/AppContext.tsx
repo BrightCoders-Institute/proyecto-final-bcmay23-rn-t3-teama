@@ -7,6 +7,8 @@ export interface AppContextState {
   consumedCalories: number;
   caloriesPerDay: number;
   userData: UserDataInfo;
+  userKey: string;
+  nutriologistData: NutriologistDataInfo;
 }
 export interface UserDataInfo {
   bmi: number;
@@ -26,28 +28,47 @@ export interface UserDataInfo {
   image: string;
 }
 
+export interface NutriologistDataInfo {
+  name: string;
+  major: string;
+  cityAndCountry: string;
+  biography: string;
+  rating: string;
+  NutritionistImage: string;
+}
+
 // estado inicial del context
 export const appInitialState: AppContextState = {
   isLoggedIn: false,
-  consumedCalories: 1600,
+  consumedCalories: 0,
   caloriesPerDay: 3200,
   userData: {
-    name: 'Jhon',
-    lastName: 'Needham',
-    userKey: '123456',
-    height: 1.8,
-    weight: 110.5,
-    age: 12,
-    bmi: 80.2,
+    name: '',
+    lastName: '',
+    userKey: '',
+    height: 0,
+    weight: 0,
+    age: 0,
+    bmi: 0,
     email: '',
     caloriesPerDay: 0,
-    bust: 520.5,
+    bust: 0,
     fatPercentage: 0,
-    waist: 12.8,
-    hips: 80.4,
+    waist: 0,
+    hips: 0,
     goal: '',
     image:
-      'https://www.pasala.com.mx/wp-content/uploads/2020/06/PAS200623-MEDIO-MAMADO-01.jpg',
+      'https://cdn-icons-png.flaticon.com/512/149/149071.png',
+  },
+  userKey: '',
+  nutriologistData: {
+    name: 'Dr. Aimep3 Fischer',
+    major: 'Ph.D. in Nutrition',
+    cityAndCountry: 'Colima, Mx.',
+    biography: 'Harvard-educated nutritionist empowering healthier lives. Personalized meal plans, engaging workshops, and evidence-based guidance for weight management, sports nutrition, and overall well-being. Join our app for a transformative wellness journey today!',
+    rating: '4.5',
+    NutritionistImage:
+      'https://www.fitactiva.com/wp-content/uploads/2022/10/nutricionista-fitactiva.png',
   },
   //   futuros valores para almacenar
 };
@@ -60,6 +81,9 @@ export interface AppContextProps {
   updateCalories?: (calories: number) => void;
   updateDayOfWeek?: (day: string) => void;
   getContextUserData: (userData: UserDataInfo) => void;
+  getContextUserKey: (userKey: string) => void;
+  getContextConsumedCalories: (calories: number) => void;
+  getContextNutritionistData: (nutriologistData: NutriologistDataInfo) => void;
   // futuras acciones
 }
 
@@ -74,17 +98,17 @@ export const AppProvider = ({children}: any) => {
     const loadLoggedInState = async () => {
       try {
         const savedIsLoggedIn = await AsyncStorage.getItem('isLoggedIn');
-        const savedUserData = await AsyncStorage.getItem('userData');
+        const savedUserKey = await AsyncStorage.getItem('userKey');
         if (savedIsLoggedIn !== null) {
           dispatch({
             type: 'loadLoggedInState',
             payload: JSON.parse(savedIsLoggedIn),
           });
         }
-        if (savedUserData !== null) {
+        if (savedUserKey !== null) {
           dispatch({
-            type: 'loadUserDataState',
-            payload: JSON.parse(savedUserData),
+            type: 'loadUserKeyState',
+            payload: savedUserKey,
           });
         }
       } catch (error) {
@@ -101,13 +125,26 @@ export const AppProvider = ({children}: any) => {
 
   const logOut = async () => {
     await AsyncStorage.removeItem('isLoggedIn');
-    await AsyncStorage.removeItem('userData');
+    await AsyncStorage.removeItem('userKey');
     dispatch({type: 'logOut'});
   };
 
-  const getContextUserData = async (userData: UserDataInfo) => {
-    await AsyncStorage.setItem('userData', JSON.stringify(userData));
+  const getContextUserKey = async (userKey: string) => {
+    await AsyncStorage.setItem('userKey', userKey);
+    dispatch({type: 'getUserKey', payload: userKey});
+  };
+
+  const getContextUserData = (userData: UserDataInfo) => {
     dispatch({type: 'getContextUserData', payload: userData});
+  };
+
+  const getContextConsumedCalories = (calories: number) => {
+    dispatch({type: 'getConsumedCalories', payload: calories});
+  };
+
+  const getContextNutritionistData = async (nutriologistData: NutriologistDataInfo) => {
+    await AsyncStorage.setItem('nutriologistData', JSON.stringify(nutriologistData));
+    dispatch({type: 'getContextNutritionistData', payload: nutriologistData});
   };
 
   return (
@@ -116,7 +153,10 @@ export const AppProvider = ({children}: any) => {
         appState,
         signIn,
         logOut,
+        getContextUserKey,
         getContextUserData,
+        getContextConsumedCalories,
+        getContextNutritionistData,
       }}>
       {children}
     </AppContext.Provider>

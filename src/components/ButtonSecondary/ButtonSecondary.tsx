@@ -1,20 +1,21 @@
 import React from 'react';
-import {Text, TouchableOpacity, ViewStyle} from 'react-native';
-import {style} from './styles';
-import {ButtonSecondaryProps} from '../../interfaces/interfaces';
+import { Text, TouchableOpacity, ViewStyle } from 'react-native';
+import { style } from './styles';
+import { ButtonSecondaryProps } from '../../interfaces/interfaces';
 
-export const ButtonSecondary = ({title, onPress, color, fontSize = 20, width, height }: ButtonSecondaryProps) => {
+export const ButtonSecondary = ({title, onPress, color, fontSize = 20, width, height, isDisabled }: ButtonSecondaryProps) => {
   const buttonStyle: ViewStyle = {
-    backgroundColor: color || '#007bff',
+    backgroundColor: isDisabled ? '#A0A0A0' : color || '#007bff',
     width: width || '70%',
     height: height || 55,
   };
 
   return (
     <TouchableOpacity
-      style={[style.buttonContainer, buttonStyle, ]} 
+      disabled={isDisabled}
+      style={[style.buttonContainer, buttonStyle]}
       onPress={onPress}>
-      <Text style={[style.buttonText, {fontSize: fontSize}]}>{title}</Text>
+      <Text style={[style.buttonText, { fontSize: fontSize }]}>{title}</Text>
     </TouchableOpacity>
   );
 };

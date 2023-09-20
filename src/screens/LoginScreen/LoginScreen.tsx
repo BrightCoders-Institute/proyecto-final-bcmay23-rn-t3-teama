@@ -19,6 +19,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import { AppContext, UserDataInfo } from '../../context/AppContext';
+import { useShowHidePassword } from '../../hooks/useShowHidePassword';
 const successLoginModalImg = require('../../assets/img/successLoginModal.png');
 const errorLoginModalImg = require('../../assets/img/errorLoginModal.png');
 
@@ -49,7 +50,8 @@ const LoginScreen = ({navigation}: Props) => {
   const [isLoaderVisile, setIsLoaderVisile] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const { signIn, getContextUserData } = useContext( AppContext );
+  const { signIn, getContextUserKey } = useContext( AppContext );
+  const {showPassword, handleShowPassword} = useShowHidePassword();
   const {height} = useWindowDimensions();
 
   useEffect(() => {
@@ -64,6 +66,7 @@ const LoginScreen = ({navigation}: Props) => {
   const handleDisabledLoginButton = () => {
     if (
       isEmailValid &&
+      email.trim() !== '' &&
       isPasswordValid &&
       password.trim() !== '' &&
       isClientKeyValid &&
@@ -102,7 +105,8 @@ const LoginScreen = ({navigation}: Props) => {
             console.log('User account created & signed in!');
             setIsSuccess(true);
             signIn();
-            getContextUserData(userDataInfo);
+            // getContextUserData(userDataInfo);
+            getContextUserKey(userDataInfo.userKey);
           })
           .then(() => {
             setIsLoading(false);
@@ -152,13 +156,13 @@ const LoginScreen = ({navigation}: Props) => {
         isSuccessful={isSuccess}
       />
       <KeyboardAvoidingView behavior="height">
-        <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
+        <ScrollView contentContainerStyle={{ flexGrow: 1, top: -35 }} keyboardShouldPersistTaps="handled">
           <View style={{ height: height * 0.5 }}>
             <Image source={logo} style={[styles.logo, { height: height * 0.2 }]} resizeMode="contain" />
             <Image source={fruits} style={[styles.logo, { height: height * 0.28 }]} resizeMode="contain" />
           </View>
 
-          <View style={{ height: height * 0.3, flexDirection: 'column', justifyContent: 'space-between' }}>
+          <View style={{ height: height * 0.3, flexDirection: 'column', justifyContent: 'space-between', top: -20 }}>
             <TextFieldForm
               placeholder="Email"
               inputValue={email}
@@ -174,6 +178,10 @@ const LoginScreen = ({navigation}: Props) => {
               invalidText={errorPwText}
               isInputValid={isPasswordValid}
               setInputValid={setIsPasswordValid}
+              extraData={{
+                showPassword,
+                handleShowPassword,
+              }}
             />
             <TextFieldForm
               placeholder="Client Key"
@@ -185,7 +193,7 @@ const LoginScreen = ({navigation}: Props) => {
             />
           </View>
 
-          <View style={{ height: height * 0.2, justifyContent: 'center' }}>
+          <View style={{ height: height * 0.2, justifyContent: 'center', top: -30 }}>
             <ButtonPrimary title="LogIn" isDisabled={isDisabledLogInBtn} onPress={logInUser} />
           </View>
         </ScrollView>

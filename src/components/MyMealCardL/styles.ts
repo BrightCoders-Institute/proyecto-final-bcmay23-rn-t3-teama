@@ -25,7 +25,8 @@ export const styles = StyleSheet.create({
     },
     buttonText: {
         color: 'gray',
-        fontSize: 15,
+        fontSize: 14,
+        textAlign: 'right',
     },
     textContainer: {
         flex: 1,
@@ -48,5 +49,12 @@ export const styles = StyleSheet.create({
         borderTopRightRadius: 50,
         borderBottomLeftRadius: 20,
         borderBottomRightRadius: 0,
+    },
+    mealNotFound: {
+        display: 'flex',
+        justifyContent:'center',
+        alignItems: 'center',
+        marginVertical: '13%',
+        paddingHorizontal: 20,
     },
 });

@@ -13,6 +13,7 @@ export interface ButtonSecondaryProps {
   fontSize?: number;
   width?: string;
   height?: number;
+  isDisabled?: boolean;
 }
 
 export interface DayObjectProps {
@@ -35,11 +36,14 @@ export interface CallendarWeekdayProps {
 export interface LoadingModalProps {
   isLoading: boolean;
   isVisible: boolean;
-  successImageUrl: ImageSourcePropType;
+  successImageUrl?: ImageSourcePropType;
   errorImageUrl?: ImageSourcePropType;
+  imgSource?: ImageSourcePropType;
   title: string;
-  subtitle: string;
+  subtitle?: string;
   isSuccessful: boolean;
+  advice?: string;
+  author?: string;
   onClose?: () => void;
 }
 
@@ -63,11 +67,39 @@ export interface WellnesCardProps {
 }
 
 export interface MyMealCardProps {
-  title: string;
+  title?: string;
   caloriesRecomended: string;
   description: string;
+  mealId: MealDataIdProps;
+  currSelectedDate: string;
   onPress?: () => void;
   imgSource?: ImageSourcePropType;
+}
+
+export interface MealDataIdProps {
+  id: string,
+  date: string;
+  meal_id: string;
+  isCompleted: boolean;
+}
+
+export interface MealDataProps {
+  calories: number;
+  carbohydrateGrams: number;
+  carbohydratePercentage: number;
+  description: string;
+  difficulty: string;
+  fatGrams: number;
+  fatPercentage: number;
+  image?: string;
+  ingredients: string[];
+  instructions: string[];
+  name: string;
+  prepTime: number;
+  proteinGrams: number;
+  proteinPercentage: number;
+  totalGrams: number;
+  type: string;
 }
 
 export interface MealInfoBadgeProps {
@@ -93,6 +125,8 @@ export interface CircularProgressBarProps {
   radius: number;
   progress: number;
   color: string;
+  caloriesPerDay: number;
+  caloriesConsumed: number;
 }
 
 export interface wellcomeAvatarProps {
@@ -129,12 +163,18 @@ export interface RatingStarProps {
   size: number;
 }
 
+export interface PasswordProps {
+  showPassword: boolean;
+  handleShowPassword: () => void;
+}
+
 export interface TextFieldFormProps {
   placeholder: string;
   inputValue: string;
   onInputChange: (value: string) => void;
   invalidText: string;
   isInputValid?: boolean;
+  extraData?: PasswordProps,
   setInputValid?: React.Dispatch<React.SetStateAction<boolean>> | undefined;
 }
 
@@ -144,4 +184,22 @@ export interface NutritionistInfo {
   cityAndCountry: string;
   biography: string;
   rating: string;
+  NutritionistImage: ImageSourcePropType;
+}
+
+export interface AppointmentData {
+  date: string;
+  appointmentId?: string;
+  nutritionistKey: string,
+  time: string,
+  userKey: string;
+}
+
+export interface Excercise {
+  bodyPart: string;
+  equipment: string;
+  gifUrl: string;
+  id: string;
+  name: string;
+  target: string;
 }
