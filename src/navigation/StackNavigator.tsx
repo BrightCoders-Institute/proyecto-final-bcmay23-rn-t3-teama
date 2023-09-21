@@ -22,6 +22,14 @@ export const StackNavigator = () => {
         }}
         component={BottomTab}
       />
+        <Stack.Screen
+          name="Book Appointment"
+          component={BookAppointment}
+          options={{ 
+            cardStyle: { backgroundColor: 'white' },
+            headerBackTitle: ''
+        }}
+        />
       <Stack.Screen
         name="Recipe"
         component={RecipeScreen}
@@ -34,14 +42,6 @@ export const StackNavigator = () => {
         }}
       />
       <Stack.Screen
-        name="Book Appointment"
-        component={BookAppointment}
-        options={{ 
-          cardStyle: { backgroundColor: 'white' },
-          headerBackTitle: ''
-      }}
-      />
-      <Stack.Screen
         name="Workout Tips"
         component={WorkoutScreen}
         options={{
@@ -51,7 +51,7 @@ export const StackNavigator = () => {
      <Stack.Screen
             name="Search Foods"
             component={SearchFoodsScreen}
-            options={{ cardStyle: { backgroundColor: 'white' } }}
+            options={{ cardStyle: { backgroundColor: 'white' }, headerBackTitle: ''  }}
           />
     <Stack.Screen
       name="Food Details"
